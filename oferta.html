@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAR — Oferta & Paquetes</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0a0f1aee; backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px; display: flex; align-items: center;
+    justify-content: space-between; height: 56px;
+  }
+  .nav-logo { font-size: 16px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo .pills { display: flex; gap: 4px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { display: block; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+  .nav-links a.active { background: var(--border); color: #f1f5f9; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+  .tag-blue { background: #1e3a5f; color: #60a5fa; }
+
+  .hero-offer {
+    text-align: center; padding: 48px 32px;
+    background: linear-gradient(160deg, #0f1e35 0%, var(--bg) 60%);
+    border: 1px solid #1e3a5f; border-radius: 20px;
+    margin-bottom: 48px; position: relative; overflow: hidden;
+  }
+  .hero-offer::before {
+    content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #1d4ed820 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-offer h1 {
+    font-size: 34px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 16px;
+    background: linear-gradient(135deg, #f8fafc 40%, #60a5fa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-offer p { font-size: 15px; color: var(--sub); max-width: 520px; margin: 0 auto; line-height: 1.65; }
+
+  .section-title { text-align: center; margin-bottom: 28px; }
+  .section-title h2 { font-size: 22px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .section-title p  { font-size: 14px; color: var(--muted); }
+
+  .packages { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 40px; align-items: start; }
+  @media (max-width: 700px) { .packages { grid-template-columns: 1fr; } }
+
+  .package { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; position: relative; }
+  .package:hover { border-color: #334155; transform: translateY(-2px); }
+  .package.featured { border-color: #2563eb; }
+
+  .featured-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: #2563eb; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 16px; border-radius: 0 0 10px 10px; }
+
+  .pkg-header { padding: 28px 24px 20px; border-bottom: 1px solid var(--border); }
+  .pkg-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .pkg-header h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: #f1f5f9; }
+  .pkg-header p  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .pkg-price { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .pkg-price .amount { font-size: 30px; font-weight: 800; color: #f8fafc; }
+  .pkg-price .amount span { font-size: 14px; font-weight: 400; color: var(--muted); }
+  .pkg-price .note { font-size: 11px; color: #475569; margin-top: 3px; }
+
+  .pkg-body { padding: 20px 24px 4px; }
+  .pkg-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; margin-bottom: 12px; display: block; }
+
+  .feature { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 9px; }
+  .feat-dot { font-size: 13px; margin-top: 2px; flex-shrink: 0; }
+  .fd-blue   { color: #3b82f6; }
+  .fd-green  { color: #22c55e; }
+  .fd-purple { color: #a78bfa; }
+  .feature p { font-size: 13px; color: var(--sub); line-height: 1.4; }
+  .feature p strong { color: #e2e8f0; font-weight: 600; }
+
+  .pkg-divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+  .pkg-cta { display: block; text-align: center; margin: 16px 24px 24px; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; cursor: default; }
+  .cta-blue   { background: #1d4ed8; color: #fff; }
+  .cta-bright { background: #2563eb; color: #fff; box-shadow: 0 0 20px #2563eb40; }
+  .cta-purple { background: #7c3aed; color: #fff; }
+
+  .upsell-note { background: #0d1f0f; border: 1px dashed #14532d; border-radius: 8px; padding: 10px 12px; font-size: 11px; color: #4ade80; margin: 12px 24px 0; line-height: 1.4; }
+
+  .upsell-flow { background: var(--bg3); border: 1px solid #1e3a5f; border-radius: 16px; padding: 28px 32px; }
+  .upsell-flow h3 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #60a5fa; margin-bottom: 20px; }
+  .flow-steps { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .flow-step { background: #1e293b; border-radius: 10px; padding: 12px 16px; flex: 1; min-width: 140px; }
+  .flow-step .num { font-size: 10px; font-weight: 700; color: #475569; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .flow-step p { font-size: 13px; color: #cbd5e1; line-height: 1.4; }
+  .flow-step p strong { color: #f8fafc; }
+  .flow-arrow { color: #334155; font-size: 20px; flex-shrink: 0; }
+
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 56px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
+    Método CAR
+  </a>
+  <ul class="nav-links">
+    <li><a href="modelo.html">Modelo de negocio</a></li>
+    <li><a href="icp.html">Cliente ideal</a></li>
+    <li><a href="oferta.html" class="active">Oferta & Paquetes</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero-offer">
+    <div class="tag tag-blue">Oferta irresistible</div>
+    <h1>Más clientes nuevos.<br>Los que ya compraron, vuelven.</h1>
+    <p>El sistema que capta clientes con Meta Ads y los retiene con flujos automáticos — para que tu negocio crezca sin que estés pegado al celular todo el día.</p>
+  </div>
+
+  <!-- PAQUETES -->
+  <div class="section-title">
+    <h2>Elegí el sistema que necesitás</h2>
+    <p>Tres paquetes según el momento de tu negocio</p>
+  </div>
+
+  <div class="packages">
+
+    <!-- PKG 1 -->
+    <div class="package">
+      <div class="pkg-header">
+        <span class="pkg-tag" style="color:#60a5fa;">Paquete 1</span>
+        <h2>Captación</h2>
+        <p>Para negocios que quieren escalar sus ventas con Meta Ads bien gestionado.</p>
+        <div class="pkg-price">
+          <div class="amount">A definir <span>/ mes</span></div>
+          <div class="note">+ presupuesto de pauta aparte</div>
+        </div>
+      </div>
+      <div class="pkg-body">
+        <span class="pkg-label">Incluye</span>
+        <div class="feature"><span class="feat-dot fd-blue">●</span><p><strong>Estrategia de campañas</strong> Meta Ads desde cero</p></div>
+        <div class="feature"><span class="feat-dot fd-blue">●</span><p><strong>Estructura por niveles de consciencia</strong> (N1 a N5)</p></div>
+        <div class="feature"><span class="feat-dot fd-blue">●</span><p><strong>Brief de creativos</strong> por ángulo y formato</p></div>
+        <div class="feature"><span class="feat-dot fd-blue">●</span><p><strong>Optimización semanal</strong> de campañas y presupuesto</p></div>
+        <div class="feature"><span class="feat-dot fd-blue">●</span><p><strong>Reporte mensual</strong> con métricas y próximos pasos</p></div>
+        <div class="feature"><span class="feat-dot fd-blue">●</span><p><strong>Pixel + tracking</strong> configurado correctamente</p></div>
+      </div>
+      <div class="upsell-note">↑ Upgrade disponible: agregá retención y duplicá el resultado de cada cliente captado.</div>
+      <a class="pkg-cta cta-blue">Empezar con Captación</a>
+    </div>
+
+    <!-- PKG 2 FEATURED -->
+    <div class="package featured">
+      <div class="featured-badge">MÁS ELEGIDO</div>
+      <div class="pkg-header">
+        <span class="pkg-tag" style="color:#4ade80;">Paquete 2</span>
+        <h2>CAR Esencial</h2>
+        <p>El sistema completo de captación y retención. Más ventas nuevas y recompras automáticas.</p>
+        <div class="pkg-price">
+          <div class="amount">A definir <span>/ mes</span></div>
+          <div class="note">+ presupuesto de pauta aparte</div>
+        </div>
+      </div>
+      <div class="pkg-body">
+        <span class="pkg-label">Todo del Paquete 1, más:</span>
+        <div class="feature"><span class="feat-dot fd-green">●</span><p><strong>Flujo post-compra</strong> — seguimiento automático después de cada venta</p></div>
+        <div class="feature"><span class="feat-dot fd-green">●</span><p><strong>Recupero de carrito abandonado</strong> — email + WhatsApp</p></div>
+        <div class="feature"><span class="feat-dot fd-green">●</span><p><strong>Campaña de recompra</strong> — segmentada por producto y tiempo</p></div>
+        <div class="feature"><span class="feat-dot fd-green">●</span><p><strong>Reactivación de inactivos</strong> — clientes que no compran hace +60 días</p></div>
+        <div class="feature"><span class="feat-dot fd-green">●</span><p><strong>Segmentación por comportamiento</strong> — VIP, recurrentes, únicos</p></div>
+        <div class="feature"><span class="feat-dot fd-green">●</span><p><strong>Ofertas complementarias automáticas</strong> post-compra</p></div>
+        <hr class="pkg-divider">
+        <div class="feature"><span class="feat-dot fd-green">●</span><p>Integración con <strong>TiendaNube / Shopify</strong></p></div>
+        <div class="feature"><span class="feat-dot fd-green">●</span><p>Reporte de <strong>LTV y tasa de recompra</strong> mensual</p></div>
+      </div>
+      <a class="pkg-cta cta-bright">Empezar con CAR Esencial</a>
+    </div>
+
+    <!-- PKG 3 -->
+    <div class="package">
+      <div class="pkg-header">
+        <span class="pkg-tag" style="color:#c4b5fd;">Paquete 3</span>
+        <h2>CAR Completo</h2>
+        <p>Para negocios que quieren además automatizar toda la atención al cliente con IA.</p>
+        <div class="pkg-price">
+          <div class="amount">A definir <span>/ mes</span></div>
+          <div class="note">+ presupuesto de pauta aparte</div>
+        </div>
+      </div>
+      <div class="pkg-body">
+        <span class="pkg-label">Todo del Paquete 2, más:</span>
+        <div class="feature"><span class="feat-dot fd-purple">●</span><p><strong>IA WhatsApp 24/7</strong> — responde consultas frecuentes automáticamente</p></div>
+        <div class="feature"><span class="feat-dot fd-purple">●</span><p><strong>Tracking de envíos automatizado</strong> — el cliente sabe dónde está su pedido</p></div>
+        <div class="feature"><span class="feat-dot fd-purple">●</span><p><strong>Recordatorios automáticos</strong> — 48hs, 24hs y 1hs antes de la entrega</p></div>
+        <div class="feature"><span class="feat-dot fd-purple">●</span><p><strong>Filtrado de leads</strong> — la IA califica antes de que lleguen a vos</p></div>
+        <div class="feature"><span class="feat-dot fd-purple">●</span><p><strong>Templates pre-aprobados</strong> Meta para campañas masivas de WhatsApp</p></div>
+        <hr class="pkg-divider">
+        <div class="feature"><span class="feat-dot fd-purple">●</span><p><strong>CRM centralizado</strong> — WhatsApp + Instagram + inbox en un solo lugar</p></div>
+      </div>
+      <a class="pkg-cta cta-purple">Empezar con CAR Completo</a>
+    </div>
+
+  </div>
+
+  <!-- FLUJO UPSELL NATURAL -->
+  <div class="upsell-flow">
+    <h3>Cómo escalan los clientes naturalmente</h3>
+    <div class="flow-steps">
+      <div class="flow-step"><div class="num">Paso 1</div><p>Empiezan con <strong>Captación</strong> — necesitan vender más</p></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="num">Paso 2</div><p>Las ventas crecen → agregan <strong>Retención</strong> para aprovechar la base</p></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="num">Paso 3</div><p>Escalan → el celular explota → agregan <strong>IA WhatsApp</strong></p></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="num">Resultado</div><p>Negocio que <strong>crece solo</strong> sin que el dueño sea el cuello de botella</p></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+</body>
+</html>

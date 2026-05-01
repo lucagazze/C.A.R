@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAR — Modelo de negocio</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0a0f1aee; backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px; display: flex; align-items: center;
+    justify-content: space-between; height: 56px;
+  }
+  .nav-logo { font-size: 16px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo .pills { display: flex; gap: 4px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { display: block; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+  .nav-links a.active { background: var(--border); color: #f1f5f9; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+  .tag-blue   { background: #1e3a5f; color: #60a5fa; }
+  .tag-green  { background: #14532d; color: #4ade80; }
+  .tag-red    { background: #450a0a; color: #f87171; }
+
+  .section-title { margin-bottom: 28px; }
+  .section-title h1 { font-size: 30px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .section-title p  { font-size: 14px; color: var(--muted); }
+
+  .car-pills { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+  .pill { padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 15px; }
+  .pill-c { background: #1e3a5f; color: #60a5fa; border: 1px solid #2563eb40; }
+  .pill-a { background: #1a3a2a; color: #4ade80; border: 1px solid #16a34a40; }
+  .pill-r { background: #3a1a2a; color: #f472b6; border: 1px solid #db277740; }
+  .pill span { font-size: 11px; font-weight: 400; opacity: 0.7; display: block; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .card p  { font-size: 13px; color: var(--sub); line-height: 1.55; }
+  .card.green { border-left: 3px solid #22c55e; }
+  .card.green h3 { color: #4ade80; }
+
+  .risk-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; margin-bottom: 12px; display: flex; gap: 16px; align-items: flex-start; }
+  .risk-number { font-size: 28px; font-weight: 800; color: #1e293b; line-height: 1; min-width: 32px; }
+  .risk-body h3 { font-size: 15px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+  .risk-body p  { font-size: 13px; color: var(--sub); line-height: 1.55; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+  .badge-critical { background: #450a0a; color: #f87171; }
+  .badge-high     { background: #431407; color: #fb923c; }
+  .badge-medium   { background: #3b2a00; color: #fbbf24; }
+
+  .reco { background: #0d1f0f; border: 1px solid #14532d; border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; display: flex; gap: 14px; align-items: flex-start; }
+  .reco-check { color: #22c55e; font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+  .reco-body h3 { font-size: 14px; font-weight: 600; color: #86efac; margin-bottom: 4px; }
+  .reco-body p  { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  .priority { background: #1a1200; border: 1px solid #fbbf2440; border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+  .priority h3 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fbbf24; margin-bottom: 14px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; background: #292100; border: 1px solid #fbbf2440; color: #fbbf24; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step p { font-size: 13px; color: var(--sub); padding-top: 2px; }
+  .step p strong { color: #e2e8f0; }
+
+  .block-title { display: flex; align-items: center; gap: 10px; margin: 32px 0 16px; }
+  .block-title h2 { font-size: 20px; font-weight: 600; color: #f1f5f9; }
+
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 56px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
+    Método CAR
+  </a>
+  <ul class="nav-links">
+    <li><a href="modelo.html" class="active">Modelo de negocio</a></li>
+    <li><a href="icp.html">Cliente ideal</a></li>
+    <li><a href="oferta.html">Oferta & Paquetes</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <div class="tag tag-blue">Análisis de modelo de negocio</div>
+  <div class="section-title">
+    <h1>Método CAR</h1>
+    <p>Captación · Atención · Retención — Mayo 2026</p>
+  </div>
+
+  <div class="car-pills">
+    <div class="pill pill-c">C <span>Captación — Meta Ads</span></div>
+    <div class="pill pill-a">A <span>Atención — IA WhatsApp</span></div>
+    <div class="pill pill-r">R <span>Retención — Automations</span></div>
+  </div>
+
+  <!-- LO QUE FUNCIONA -->
+  <div class="block-title"><div class="tag tag-green" style="margin:0;">Lo que está bien</div></div>
+  <div class="grid-2">
+    <div class="card green"><h3>Combinación tiene sentido real</h3><p>La mayoría de agencias entregan tráfico y abandonan al cliente. El CAR cierra el loop completo: conseguir + no perder.</p></div>
+    <div class="card green"><h3>Canal correcto para Argentina</h3><p>WhatsApp domina la comunicación. No email, no SMS. Apostar a este canal para atención y retención es la decisión correcta.</p></div>
+    <div class="card green"><h3>Nicho con recurrencia</h3><p>E-commerce de consumo repetido (cuero, telas, suplementos) tiene LTV real. Esto justifica pagar por retención.</p></div>
+    <div class="card green"><h3>Subpáginas por nicho</h3><p>"Algoritmia Odontológica" y similares: sube la percepción de expertise sin cambiar el servicio base. Muy escalable.</p></div>
+    <div class="card green"><h3>Arrancar con clientes actuales</h3><p>Usar la base existente para testear y conseguir testimoniales antes de salir al mercado. Orden correcto.</p></div>
+    <div class="card green"><h3>Un solo proveedor para el cliente</h3><p>Elimina la coordinación entre múltiples proveedores. Para el cliente es mucho más simple.</p></div>
+  </div>
+
+  <!-- RIESGOS -->
+  <div class="block-title"><div class="tag tag-red" style="margin:0;">Riesgos reales</div></div>
+
+  <div class="risk-card">
+    <div class="risk-number">01</div>
+    <div class="risk-body">
+      <h3>La IA de WhatsApp es el cuello de botella más peligroso <span class="badge badge-critical">Crítico</span></h3>
+      <p>WhatsApp Business API es restrictiva: templates necesitan aprobación de Meta (puede tardar días), ventana de sesión de 24hs, terceros como Clavijo suman costo y dependencia. Validar en producción antes de vender.</p>
+    </div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-number">02</div>
+    <div class="risk-body">
+      <h3>Bundlear todo desde el día uno <span class="badge badge-critical">Crítico</span></h3>
+      <p>Ads + WhatsApp AI + CRM + automations + integraciones = operación pesada. Si escalan sin SOPs sólidos, la calidad se rompe. El riesgo no es vender — es entregar.</p>
+    </div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-number">03</div>
+    <div class="risk-body">
+      <h3>La promesa "duplicar facturación" puede quemarlos <span class="badge badge-high">Alto</span></h3>
+      <p>Si onboardean clientes mal calificados — negocios en caída, productos sin recurrencia — no van a cumplir. Calificar estrictamente antes de onboardear.</p>
+    </div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-number">04</div>
+    <div class="risk-body">
+      <h3>Pricing bajo = muerte operativa <span class="badge badge-high">Alto</span></h3>
+      <p>El paquete completo no se puede entregar bien a precio bajo. Menos clientes, precio más alto, mejor entrega.</p>
+    </div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-number">05</div>
+    <div class="risk-body">
+      <h3>Dependencia mutua sin sistemas <span class="badge badge-medium">Medio</span></h3>
+      <p>Si cada uno es el único que sabe su parte, no pueden crecer. Los SOPs y Looms convierten esto en un negocio real.</p>
+    </div>
+  </div>
+
+  <!-- RECOMENDACIONES -->
+  <div class="block-title" style="margin-top:32px;"><div class="tag tag-green" style="margin:0;">Recomendaciones</div></div>
+  <div class="reco"><div class="reco-check">→</div><div class="reco-body"><h3>Arrancar con C + R (Captación + Retención)</h3><p>La Atención IA se suma como upsell natural cuando el cliente crece y se tapa de mensajes. No hace falta venderla desde el día uno.</p></div></div>
+  <div class="reco"><div class="reco-check">→</div><div class="reco-body"><h3>Validar la IA en producción antes de venderla</h3><p>Implementar en 1-2 clientes actuales. Solo cuando funciona bien se sale a vender el tier premium.</p></div></div>
+  <div class="reco"><div class="reco-check">→</div><div class="reco-body"><h3>Precio alto desde el inicio</h3><p>Es más fácil bajar que subir. Pocos clientes bien atendidos es mejor que muchos clientes mal pagados.</p></div></div>
+  <div class="reco"><div class="reco-check">→</div><div class="reco-body"><h3>SOPs antes de escalar, no después</h3><p>No pasar de 3 clientes sin el proceso documentado y replicable.</p></div></div>
+
+  <div class="priority">
+    <h3>Orden de ejecución recomendado</h3>
+    <div class="step"><div class="step-num">1</div><p><strong>Implementar retención en cliente actual</strong> — validar flujos, medir tiempo, documentar</p></div>
+    <div class="step"><div class="step-num">2</div><p><strong>Definir oferta y precio</strong> — C + R como core, A como upsell tier 2</p></div>
+    <div class="step"><div class="step-num">3</div><p><strong>Crear branding CAR + landing</strong> — funnel con el caso real del cliente piloto</p></div>
+    <div class="step"><div class="step-num">4</div><p><strong>Documentar SOPs</strong> — antes del cuarto cliente, no después</p></div>
+    <div class="step"><div class="step-num">5</div><p><strong>Lanzar con tráfico pago</strong> — campaña al funnel cuando tengan caso de estudio listo</p></div>
+  </div>
+
+</div>
+
+<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+</body>
+</html>

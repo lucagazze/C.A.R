@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método CAR</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0a0f1aee; backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px; display: flex; align-items: center;
+    justify-content: space-between; height: 56px;
+  }
+  .nav-logo { font-size: 16px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo .pills { display: flex; gap: 4px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { display: block; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+
+  .hero {
+    max-width: 960px; margin: 0 auto;
+    padding: 100px 24px 80px;
+    text-align: center;
+  }
+
+  .hero .tag { display: inline-block; background: #1e3a5f; color: #60a5fa; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 28px; }
+
+  .hero h1 {
+    font-size: 52px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; margin-bottom: 20px;
+    background: linear-gradient(135deg, #f8fafc 40%, #60a5fa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .hero p { font-size: 17px; color: var(--sub); max-width: 520px; margin: 0 auto 48px; line-height: 1.7; }
+
+  .car-cards { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+
+  .car-card {
+    width: 200px; padding: 20px 22px; border-radius: 16px;
+    text-align: left; text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    display: block;
+  }
+  .car-card:hover { transform: translateY(-3px); }
+
+  .car-card.c-card { background: #0d1e35; border: 1px solid #2563eb40; }
+  .car-card.a-card { background: #0d1f12; border: 1px solid #16a34a40; }
+  .car-card.r-card { background: #1f0d1a; border: 1px solid #db277740; }
+
+  .car-card .letter { font-size: 32px; font-weight: 900; margin-bottom: 8px; display: block; }
+  .c-card .letter { color: #60a5fa; }
+  .a-card .letter { color: #4ade80; }
+  .r-card .letter { color: #f472b6; }
+
+  .car-card .name { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
+  .car-card .desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  .nav-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+  @media (max-width: 600px) { .nav-cards { grid-template-columns: 1fr; } }
+
+  .nav-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 22px;
+    text-decoration: none; display: block;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .nav-card:hover { border-color: #334155; transform: translateY(-2px); }
+
+  .nav-card .nc-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .nc-blue   { color: #60a5fa; }
+  .nc-green  { color: #4ade80; }
+  .nc-purple { color: #c4b5fd; }
+
+  .nav-card h2 { font-size: 18px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .nav-card p  { font-size: 13px; color: var(--sub); line-height: 1.5; margin-bottom: 16px; }
+
+  .nav-card .arrow { font-size: 18px; color: #334155; }
+
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
+    Método CAR
+  </a>
+  <ul class="nav-links">
+    <li><a href="modelo.html">Modelo de negocio</a></li>
+    <li><a href="icp.html">Cliente ideal</a></li>
+    <li><a href="oferta.html">Oferta & Paquetes</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="tag">Algoritmia · Mayo 2026</div>
+  <h1>Método CAR</h1>
+  <p>El sistema que capta clientes nuevos y hace que los que ya compraron vuelvan a comprar — de forma automática.</p>
+
+  <div class="car-cards">
+    <div class="car-card c-card">
+      <span class="letter">C</span>
+      <div class="name">Captación</div>
+      <div class="desc">Meta Ads con estructura y niveles de consciencia</div>
+    </div>
+    <div class="car-card a-card">
+      <span class="letter">A</span>
+      <div class="name">Atención</div>
+      <div class="desc">IA WhatsApp 24/7 para atender y calificar leads</div>
+    </div>
+    <div class="car-card r-card">
+      <span class="letter">R</span>
+      <div class="name">Retención</div>
+      <div class="desc">Flujos automáticos para que el cliente recompre</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV CARDS -->
+<div class="nav-cards">
+  <a class="nav-card" href="modelo.html">
+    <span class="nc-tag nc-blue">Análisis</span>
+    <h2>Modelo de negocio</h2>
+    <p>Lo que está bien, los riesgos reales y el orden de ejecución recomendado.</p>
+    <div class="arrow">→</div>
+  </a>
+  <a class="nav-card" href="icp.html">
+    <span class="nc-tag nc-green">ICP</span>
+    <h2>Cliente ideal</h2>
+    <p>Perfil base, los 4 tipos de clientes que más necesitan el CAR, y las industrias con mejor fit.</p>
+    <div class="arrow">→</div>
+  </a>
+  <a class="nav-card" href="oferta.html">
+    <span class="nc-tag nc-purple">Oferta</span>
+    <h2>Oferta & Paquetes</h2>
+    <p>Los 3 paquetes, qué incluye cada uno y el flujo de upsell natural.</p>
+    <div class="arrow">→</div>
+  </a>
+</div>
+
+<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+</body>
+</html>
