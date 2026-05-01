@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAR — R: Retención</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+    --pink: #f472b6; --pink-dark: #3a1a2a; --pink-light: #f9a8d4;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: #0a0f1aee; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 16px; }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo .pills { display: flex; gap: 3px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-links { display: flex; gap: 2px; list-style: none; flex-wrap: wrap; }
+  .nav-links a { display: block; padding: 5px 10px; font-size: 12px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+  .nav-links a.active { background: #3a1a2a; color: #f472b6; }
+  .nav-links .sep { color: #1e293b; font-size: 12px; padding: 5px 2px; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  .letter-hero { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; padding: 28px 32px; background: linear-gradient(135deg, #1f0d1a, #0a0f1a); border: 1px solid #db277730; border-radius: 16px; }
+  .letter-big { font-size: 72px; font-weight: 900; color: var(--pink); line-height: 1; }
+  .letter-hero h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .letter-hero p  { font-size: 14px; color: var(--sub); line-height: 1.6; max-width: 500px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+  .tag-pink   { background: #3a1a2a; color: #f472b6; }
+  .tag-yellow { background: #3b2a00; color: #fbbf24; }
+  .tag-blue   { background: #1e3a5f; color: #60a5fa; }
+
+  .block { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+  .block-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
+  .block-sub   { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  .step-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .step-item:last-child { border-bottom: none; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; background: #3a1a2a; color: #f472b6; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-body h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 3px; }
+  .step-body p  { font-size: 13px; color: var(--sub); line-height: 1.5; }
+  .time-pill { display: inline-block; font-size: 10px; font-weight: 600; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; } }
+
+  .small-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .small-card h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 5px; }
+  .small-card p  { font-size: 12px; color: var(--sub); line-height: 1.4; }
+  .small-card .val { font-size: 20px; font-weight: 800; color: var(--pink); margin-bottom: 3px; }
+
+  /* SEGMENTOS */
+  .seg-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .seg-card .seg-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  .seg-card h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+  .seg-card p  { font-size: 12px; color: var(--sub); line-height: 1.4; margin-bottom: 6px; }
+  .seg-card .accion { font-size: 11px; color: #f472b6; }
+
+  /* FLOW TIMELINE */
+  .flow-block { background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid #f472b6; border-radius: 10px; padding: 18px 20px; margin-bottom: 12px; }
+  .flow-block .flow-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .flow-num { width: 24px; height: 24px; border-radius: 50%; background: #3a1a2a; color: #f472b6; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .flow-block h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; }
+  .flow-block .trigger { font-size: 11px; color: #f472b6; margin-bottom: 12px; display: block; }
+
+  .timeline-row { display: flex; gap: 12px; margin-bottom: 8px; align-items: flex-start; }
+  .tl-day { font-size: 10px; font-weight: 700; background: #3a1a2a; color: #f472b6; padding: 3px 8px; border-radius: 6px; min-width: 52px; text-align: center; flex-shrink: 0; }
+  .tl-channel { font-size: 10px; font-weight: 600; background: var(--bg2); color: var(--muted); padding: 3px 7px; border-radius: 6px; flex-shrink: 0; border: 1px solid var(--border); }
+  .tl-content { font-size: 12px; color: var(--sub); line-height: 1.4; }
+  .tl-content strong { color: #e2e8f0; }
+
+  /* EMAIL STRUCTURE */
+  .email-box { background: var(--bg3); border: 1px solid #3a1a2a; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .email-box .email-label { font-size: 10px; font-weight: 700; color: #f472b6; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .email-row { display: flex; gap: 10px; margin-bottom: 6px; }
+  .email-row .field { font-size: 11px; font-weight: 600; color: #475569; min-width: 80px; padding-top: 1px; }
+  .email-row .value { font-size: 12px; color: var(--sub); }
+  .email-row .value strong { color: #e2e8f0; }
+
+  /* METRICS */
+  .metric-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; text-align: center; }
+  .metric-card .met-val  { font-size: 22px; font-weight: 800; color: #f472b6; margin-bottom: 3px; }
+  .metric-card .met-name { font-size: 12px; color: var(--sub); margin-bottom: 2px; }
+  .metric-card .met-goal { font-size: 11px; color: #475569; }
+
+  .info-box { background: #1f0d1a; border: 1px solid #db277730; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+  .info-box p { font-size: 13px; color: #f9a8d4; line-height: 1.5; }
+
+  .check-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
+  .check-item .box { width: 15px; height: 15px; border: 1.5px solid #334155; border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
+  .check-item p { font-size: 13px; color: var(--sub); line-height: 1.4; }
+  .check-item p strong { color: #e2e8f0; }
+
+  .tools-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; background: var(--bg3); border-radius: 10px; }
+  .tools-label { font-size: 10px; font-weight: 700; color: #475569; width: 100%; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .tool-chip { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #cbd5e1; }
+
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
+    CAR
+  </a>
+  <ul class="nav-links">
+    <li><a href="modelo.html">Modelo</a></li>
+    <li><a href="icp.html">ICP</a></li>
+    <li><a href="oferta.html">Oferta</a></li>
+    <li><a href="validacion.html">Validación</a></li>
+    <li><a href="implementacion.html">Implementación</a></li>
+    <li><span class="sep">|</span></li>
+    <li><a href="captacion.html">C — Captación</a></li>
+    <li><a href="atencion.html">A — Atención</a></li>
+    <li><a href="retencion.html" class="active">R — Retención</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <div class="letter-hero">
+    <div class="letter-big">R</div>
+    <div>
+      <h1>Retención — Flujos automáticos</h1>
+      <p>El sistema que hace que los clientes que ya compraron vuelvan a comprar solos, sin que el dueño haga nada. El dinero más fácil de un e-commerce.</p>
+    </div>
+  </div>
+
+  <!-- NÚMEROS -->
+  <div class="tag tag-pink">Por qué es lo más importante</div>
+  <div class="block" style="margin-bottom:16px;">
+    <div class="block-title">El dinero que los negocios dejan sobre la mesa sin retención</div>
+    <div class="grid-3">
+      <div class="small-card"><div class="val">5–7x</div><p>más caro adquirir un cliente nuevo que retener uno existente.</p></div>
+      <div class="small-card"><div class="val">+25%</div><p>de incremento en ganancias con solo un 5% de mejora en retención.</p></div>
+      <div class="small-card"><div class="val">86%</div><p>de los carritos se abandonan. La retención recupera parte de ese dinero perdido.</p></div>
+    </div>
+    <div class="info-box" style="margin-top:14px;"><p>La mayoría de los negocios e-commerce se obsesionan con conseguir clientes nuevos y olvidan que ya tienen una base de personas que les compraron, que confían en ellos, y que están a un mensaje bien escrito de volver a comprar.</p></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SETUP -->
+  <div class="tag tag-pink">Setup inicial</div>
+  <div class="block">
+    <div class="block-title">Del cero al sistema activo en 7 días</div>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Conectar Klaviyo con Shopify/TiendaNube <span class="time-pill">Día 1</span></h4>
+        <p>Instalar la integración nativa. Klaviyo importa automáticamente: historial de compras, productos comprados, fecha de última compra, estado de pedido, email y teléfono de cada cliente. Esto es la base de todo.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Segmentar la base existente <span class="time-pill">Día 1–2</span></h4>
+        <p>Crear los 4 segmentos base (ver abajo). Esto es lo primero que hay que mostrarle al cliente — ver cuántos clientes tiene en cada categoría es impactante y justifica todo el sistema.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Activar Flow Post-compra y Carrito abandonado <span class="time-pill">Día 2–4</span></h4>
+        <p>Estos dos primeros. Son los de mayor impacto inmediato. El post-compra funciona desde la próxima venta. El carrito abandonado recupera ventas que se están perdiendo ahora mismo.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Calcular el ciclo de recompra por producto <span class="time-pill">Día 3</span></h4>
+        <p>¿Cada cuánto tiempo alguien necesita recomprar este producto? Suplementos: 30 días. Cuero/indumentaria: 60–90 días. Alimentos: 15–30 días. Este número determina el timing del flow de recompra.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Activar flujos de recompra y win-back <span class="time-pill">Día 4–7</span></h4>
+        <p>Una vez que los primeros dos flows están corriendo y no tienen errores, activar los flows de recompra y reactivación de inactivos.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEGMENTACIÓN -->
+  <div class="tag tag-pink">Segmentación</div>
+  <div class="block">
+    <div class="block-title">Los 4 segmentos base — Crear desde el día 1</div>
+    <div class="block-sub">Estos segmentos determinan qué mensaje recibe cada cliente</div>
+    <div class="grid-2">
+      <div class="seg-card" style="border-top:3px solid #fbbf24;">
+        <span class="seg-label" style="color:#fbbf24;">⭐ VIP</span>
+        <h4>3+ compras o gasto alto</h4>
+        <p>Los mejores clientes. Los que más confían. Trato especial, acceso anticipado a novedades, descuento exclusivo.</p>
+        <div class="accion">Acción: programa de fidelidad, preventa exclusiva, regalo sorpresa</div>
+      </div>
+      <div class="seg-card" style="border-top:3px solid #60a5fa;">
+        <span class="seg-label" style="color:#60a5fa;">🔁 Recurrentes</span>
+        <h4>2 compras en los últimos 90 días</h4>
+        <p>Están enganchados. El objetivo es convertirlos en VIP con la tercera compra.</p>
+        <div class="accion">Acción: cross-sell del producto complementario, descuento en bundle</div>
+      </div>
+      <div class="seg-card" style="border-top:3px solid #a78bfa;">
+        <span class="seg-label" style="color:#a78bfa;">1️⃣ Únicos</span>
+        <h4>1 sola compra, activos en 90 días</h4>
+        <p>Compraron una vez. La mayoría de la base cae acá. El objetivo es conseguir la segunda compra — que es la más difícil.</p>
+        <div class="accion">Acción: flow de recompra en el momento exacto + social proof</div>
+      </div>
+      <div class="seg-card" style="border-top:3px solid #f87171;">
+        <span class="seg-label" style="color:#f87171;">💤 Inactivos</span>
+        <h4>Sin compra en más de 60 días</h4>
+        <p>Compraron antes pero dejaron de hacerlo. No descartar — son más baratos de recuperar que conseguir nuevos.</p>
+        <div class="accion">Acción: win-back campaign con oferta irresistible de baja fricción</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FLOWS DETALLADOS -->
+  <div class="tag tag-pink">Los 6 flujos — Proceso completo</div>
+
+  <div class="flow-block">
+    <div class="flow-header"><div class="flow-num">1</div><h4>Post-compra — El más importante</h4></div>
+    <span class="trigger">Trigger: compra confirmada → activa inmediatamente</span>
+    <div class="timeline-row"><div class="tl-day">Hora 0</div><div class="tl-channel">Email + WA</div><div class="tl-content"><strong>Confirmación de orden.</strong> Número de pedido, resumen, tiempo estimado. Tono cálido, no corporativo.</div></div>
+    <div class="timeline-row"><div class="tl-day">Día 1</div><div class="tl-channel">WA</div><div class="tl-content"><strong>Pedido en camino.</strong> Template con link de tracking. Si no salió aún, avisar que se está preparando.</div></div>
+    <div class="timeline-row"><div class="tl-day">Día 2–3</div><div class="tl-channel">Email</div><div class="tl-content"><strong>Tip de uso del producto.</strong> No vender nada. Educar. Genera confianza y reduce devoluciones.</div></div>
+    <div class="timeline-row"><div class="tl-day">Día 7</div><div class="tl-channel">Email + WA</div><div class="tl-content"><strong>Pedido de reseña.</strong> Link directo a Google / Mercado Libre / la plataforma. Simple y sin fricción.</div></div>
+    <div class="timeline-row"><div class="tl-day">Día 14</div><div class="tl-channel">Email</div><div class="tl-content"><strong>Producto complementario.</strong> Primera oferta post-compra. Basada en lo que compró. Tono de recomendación, no de venta.</div></div>
+  </div>
+
+  <div class="flow-block">
+    <div class="flow-header"><div class="flow-num">2</div><h4>Carrito abandonado — Recupero de ventas perdidas</h4></div>
+    <span class="trigger">Trigger: carrito creado → sin compra en 60 minutos</span>
+    <div class="timeline-row"><div class="tl-day">1 hora</div><div class="tl-channel">Email</div><div class="tl-content"><strong>"Olvidaste algo"</strong> — mostrar exactamente los productos del carrito con foto. Link directo. Sin descuento todavía.</div></div>
+    <div class="timeline-row"><div class="tl-day">24 horas</div><div class="tl-channel">WA</div><div class="tl-content"><strong>Recordatorio WhatsApp.</strong> Mensaje corto y directo. "¿Tuviste algún problema para finalizar?" — bajar fricción, no vender.</div></div>
+    <div class="timeline-row"><div class="tl-day">72 horas</div><div class="tl-channel">Email</div><div class="tl-content"><strong>Último recordatorio con incentivo.</strong> Descuento pequeño (5–10%) o envío gratis. Solo si no compró aún. Urgencia real.</div></div>
+    <div class="info-box"><p>No dar descuento en el primer email de carrito — muchos usuarios abandonan adrede para esperar el cupón. Darlo solo si no compraron después de 72hs.</p></div>
+  </div>
+
+  <div class="flow-block">
+    <div class="flow-header"><div class="flow-num">3</div><h4>Recompra — El flujo de mayor ROI a largo plazo</h4></div>
+    <span class="trigger">Trigger: X días después de la última compra (según ciclo del producto)</span>
+    <div class="timeline-row"><div class="tl-day">Ciclo -5d</div><div class="tl-channel">Email</div><div class="tl-content"><strong>Recordatorio anticipado.</strong> "Pronto vas a necesitar más de [Producto]." Incluir el mismo producto con compra en 1 click.</div></div>
+    <div class="timeline-row"><div class="tl-day">Ciclo +0d</div><div class="tl-channel">WA</div><div class="tl-content"><strong>Recordatorio WhatsApp.</strong> Mensaje personalizado con el producto exacto que compró. Link directo.</div></div>
+    <div class="timeline-row"><div class="tl-day">Ciclo +7d</div><div class="tl-channel">Email</div><div class="tl-content"><strong>Si no compró.</strong> Producto nuevo o complementario. Cambiar el ángulo: mostrar qué más tiene la tienda.</div></div>
+    <div class="block-sub" style="margin-top:12px;">Ciclos de recompra por industria</div>
+    <div class="grid-4">
+      <div class="small-card" style="text-align:center; padding:10px;"><div class="val" style="font-size:16px;">30 días</div><p style="font-size:11px;">Suplementos / vitaminas</p></div>
+      <div class="small-card" style="text-align:center; padding:10px;"><div class="val" style="font-size:16px;">20 días</div><p style="font-size:11px;">Alimentos / café / té</p></div>
+      <div class="small-card" style="text-align:center; padding:10px;"><div class="val" style="font-size:16px;">45 días</div><p style="font-size:11px;">Skincare / cosmética</p></div>
+      <div class="small-card" style="text-align:center; padding:10px;"><div class="val" style="font-size:16px;">90 días</div><p style="font-size:11px;">Cuero / telas / ropa</p></div>
+    </div>
+  </div>
+
+  <div class="flow-block">
+    <div class="flow-header"><div class="flow-num">4</div><h4>Win-back — Recuperar inactivos</h4></div>
+    <span class="trigger">Trigger: sin compra en 60 días desde la última</span>
+    <div class="timeline-row"><div class="tl-day">Día 60</div><div class="tl-channel">Email</div><div class="tl-content"><strong>"Te extrañamos"</strong> — tono humano, sin presión. Mostrar novedades desde su última compra.</div></div>
+    <div class="timeline-row"><div class="tl-day">Día 67</div><div class="tl-channel">WA</div><div class="tl-content"><strong>Oferta exclusiva por WhatsApp.</strong> Descuento o beneficio real. "Solo para clientes que ya nos conocen."</div></div>
+    <div class="timeline-row"><div class="tl-day">Día 90</div><div class="tl-channel">Email</div><div class="tl-content"><strong>Última oportunidad.</strong> Mayor descuento + urgencia real (no falsa). "Esta oferta vence en 48hs."</div></div>
+    <div class="timeline-row"><div class="tl-day">Día 120</div><div class="tl-channel">Email</div><div class="tl-content"><strong>Dar de baja.</strong> "¿Querés seguir recibiendo novedades?" — Limpiar la lista y quedarse con los que responden.</div></div>
+  </div>
+
+  <div class="flow-block">
+    <div class="flow-header"><div class="flow-num">5</div><h4>Cross-sell / Upsell — Aumentar ticket promedio</h4></div>
+    <span class="trigger">Trigger: 14 días después de completar el flow post-compra sin segunda compra</span>
+    <div class="timeline-row"><div class="tl-day">Email</div><div class="tl-channel">Producto A</div><div class="tl-content"><strong>Recomendación personalizada.</strong> "Clientes que compraron [X] también llevan [Y]." Basado en datos reales de la tienda.</div></div>
+    <div class="timeline-row"><div class="tl-day">Email</div><div class="tl-channel">Bundle</div><div class="tl-content"><strong>Oferta de bundle con descuento.</strong> "Llevá los dos juntos y ahorrá 15%." Mejor percepción de valor que descuento directo.</div></div>
+  </div>
+
+  <div class="flow-block">
+    <div class="flow-header"><div class="flow-num">6</div><h4>Campaña mensual — El toque humano</h4></div>
+    <span class="trigger">Manual — 1 vez por mes, segmento activos últimos 90 días</span>
+    <div class="timeline-row"><div class="tl-day">Email</div><div class="tl-channel">Novedad</div><div class="tl-content"><strong>Novedad del mes o contenido de valor.</strong> No siempre vender. Una vez por mes educar o entretener mantiene la lista viva.</div></div>
+    <div class="timeline-row"><div class="tl-day">WA</div><div class="tl-channel">Promo</div><div class="tl-content"><strong>Promoción exclusiva para suscriptores.</strong> "Antes de publicarlo en redes, te lo ofrecemos a vos primero."</div></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MÉTRICAS -->
+  <div class="tag tag-pink">Métricas a monitorear</div>
+  <div class="block">
+    <div class="block-title">Cómo medir si la retención está funcionando</div>
+    <div class="grid-3" style="margin-bottom:16px;">
+      <div class="metric-card"><div class="met-val">+30%</div><div class="met-name">Tasa de recompra</div><div class="met-goal">Objetivo mínimo del sistema</div></div>
+      <div class="metric-card"><div class="met-val">&gt;3</div><div class="met-name">LTV / CAC ratio</div><div class="met-goal">Por cada $1 en adquisición, $3+ en lifetime</div></div>
+      <div class="metric-card"><div class="met-val">&lt;60d</div><div class="met-name">Tiempo entre compras</div><div class="met-goal">El sistema lo acorta progresivamente</div></div>
+      <div class="metric-card"><div class="met-val">&gt;45%</div><div class="met-name">Open rate emails</div><div class="met-goal">Con segmentación correcta es alcanzable</div></div>
+      <div class="metric-card"><div class="met-val">&gt;10%</div><div class="met-name">Recupero de carrito</div><div class="met-goal">Con los 3 pasos del flow</div></div>
+      <div class="metric-card"><div class="met-val">&lt;20%</div><div class="met-name">Tasa de inactivos</div><div class="met-goal">Si supera el 40%, algo está mal</div></div>
+    </div>
+    <div class="check-item"><div class="box"></div><p>Revisar métricas de cada flow <strong>cada 2 semanas</strong> al inicio</p></div>
+    <div class="check-item"><div class="box"></div><p>A/B testear los subject lines de emails (probar 2 versiones en el 20% de la lista antes de enviar al 100%)</p></div>
+    <div class="check-item"><div class="box"></div><p>Revisar tasa de baja (unsubscribe): si supera el 0.5% en un envío, el contenido no es relevante o se está enviando demasiado</p></div>
+    <div class="check-item"><div class="box"></div><p>Limpiar la lista cada 90 días: eliminar los que no abrieron ningún email en 6 meses</p></div>
+  </div>
+
+  <div class="tools-row">
+    <span class="tools-label">Herramientas del proceso</span>
+    <span class="tool-chip">Klaviyo (principal — email + SMS)</span>
+    <span class="tool-chip">Omnisend (alternativa más simple)</span>
+    <span class="tool-chip">ManyChat (WhatsApp flows)</span>
+    <span class="tool-chip">WoowUp (LatAm, para WhatsApp + email)</span>
+    <span class="tool-chip">Shopify / TiendaNube (datos fuente)</span>
+    <span class="tool-chip">Tidio (chat + automatización)</span>
+  </div>
+
+</div>
+
+<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+</body>
+</html>

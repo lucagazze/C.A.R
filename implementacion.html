@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAR — Implementación</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0a0f1aee; backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px; display: flex; align-items: center;
+    justify-content: space-between; height: 56px;
+  }
+  .nav-logo { font-size: 16px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo .pills { display: flex; gap: 4px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { display: block; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+  .nav-links a.active { background: var(--border); color: #f1f5f9; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+  .tag-blue   { background: #1e3a5f; color: #60a5fa; }
+  .tag-green  { background: #14532d; color: #4ade80; }
+  .tag-purple { background: #2e1065; color: #c4b5fd; }
+
+  .section-title { margin-bottom: 40px; }
+  .section-title h1 { font-size: 30px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .section-title p  { font-size: 14px; color: var(--muted); }
+
+  /* LETTER HEADER */
+  .letter-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 24px; padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .letter-badge {
+    width: 56px; height: 56px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 900; flex-shrink: 0;
+  }
+  .badge-c { background: #0d1e35; color: #60a5fa; border: 1px solid #2563eb40; }
+  .badge-a { background: #0d1f12; color: #4ade80; border: 1px solid #16a34a40; }
+  .badge-r { background: #1f0d1a; color: #f472b6; border: 1px solid #db277740; }
+
+  .letter-header h2 { font-size: 22px; font-weight: 700; color: #f1f5f9; }
+  .letter-header p  { font-size: 13px; color: var(--sub); margin-top: 3px; }
+
+  .letter-section {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; margin-bottom: 20px;
+  }
+
+  /* ONBOARDING STEPS */
+  .onboarding-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #475569; margin-bottom: 16px; display: block;
+  }
+
+  .step-list { margin-bottom: 24px; }
+
+  .impl-step {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+  }
+  .impl-step:last-child { border-bottom: none; }
+
+  .step-circle {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+  .sc-blue   { background: #1e3a5f; color: #60a5fa; }
+  .sc-green  { background: #14532d; color: #4ade80; }
+  .sc-purple { background: #2e1065; color: #c4b5fd; }
+
+  .impl-step-body h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 3px; }
+  .impl-step-body p  { font-size: 13px; color: var(--sub); line-height: 1.5; }
+
+  .time-badge {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px; margin-left: 8px;
+    vertical-align: middle; background: var(--bg3); color: var(--muted);
+  }
+
+  /* TOOLS ROW */
+  .tools-row {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 14px 16px; background: var(--bg3);
+    border-radius: 10px; margin-top: 4px;
+  }
+  .tools-row .tools-label { font-size: 11px; font-weight: 700; color: #475569; width: 100%; margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+  .tool-chip {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px 10px;
+    font-size: 12px; color: #cbd5e1;
+  }
+
+  /* CHECKLIST */
+  .checklist { margin-top: 20px; }
+  .checklist-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #475569; margin-bottom: 12px; display: block;
+  }
+  .check-item { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+  .check-item .box {
+    width: 16px; height: 16px; border: 1.5px solid #334155;
+    border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+  }
+  .check-item p { font-size: 13px; color: var(--sub); line-height: 1.4; }
+  .check-item p strong { color: #e2e8f0; }
+
+  /* FLOWS GRID */
+  .flows-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  @media (max-width: 600px) { .flows-grid { grid-template-columns: 1fr; } }
+
+  .flow-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .flow-card .flow-name { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 6px; }
+  .flow-card .flow-trigger { font-size: 11px; color: #4ade80; margin-bottom: 8px; display: block; }
+  .flow-step { font-size: 12px; color: var(--sub); padding: 3px 0; display: flex; gap: 6px; }
+  .flow-step::before { content: '→'; color: #334155; flex-shrink: 0; }
+
+  /* SOP BOX */
+  .sop-box {
+    background: #0f172a; border: 1px solid #fbbf2440;
+    border-radius: 12px; padding: 20px 24px; margin-top: 16px;
+  }
+  .sop-box h4 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fbbf24; margin-bottom: 12px; }
+  .sop-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; color: var(--sub); }
+  .sop-item::before { content: '📋'; font-size: 12px; flex-shrink: 0; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+  /* TIMELINE ONBOARDING */
+  .timeline { margin-top: 16px; }
+  .tl-week { display: flex; gap: 14px; margin-bottom: 12px; align-items: flex-start; }
+  .tl-label {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 8px; padding: 4px 10px; font-size: 11px;
+    font-weight: 700; color: var(--muted); white-space: nowrap; flex-shrink: 0; min-width: 70px; text-align: center;
+  }
+  .tl-content { font-size: 13px; color: var(--sub); line-height: 1.5; padding-top: 4px; }
+  .tl-content strong { color: #e2e8f0; }
+
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 56px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
+    Método CAR
+  </a>
+  <ul class="nav-links">
+    <li><a href="modelo.html">Modelo</a></li>
+    <li><a href="icp.html">Cliente ideal</a></li>
+    <li><a href="oferta.html">Oferta</a></li>
+    <li><a href="validacion.html">Validación</a></li>
+    <li><a href="implementacion.html" class="active">Implementación</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <div class="tag tag-blue">Sistema de implementación</div>
+  <div class="section-title">
+    <h1>Cómo implementar el CAR</h1>
+    <p>El proceso exacto para ser expertos y replicarlo con cada cliente nuevo sin fricción</p>
+  </div>
+
+  <!-- ══════════ C — CAPTACIÓN ══════════ -->
+  <div class="letter-header">
+    <div class="letter-badge badge-c">C</div>
+    <div>
+      <h2>Captación — Meta Ads</h2>
+      <p>El sistema para lanzar, optimizar y escalar campañas de forma predecible</p>
+    </div>
+  </div>
+
+  <div class="letter-section">
+    <span class="onboarding-title">Onboarding con cliente nuevo — Semana 1 y 2</span>
+
+    <div class="step-list">
+      <div class="impl-step">
+        <div class="step-circle sc-blue">1</div>
+        <div class="impl-step-body">
+          <h4>Auditoría inicial <span class="time-badge">Día 1</span></h4>
+          <p>Revisar cuenta de Meta Ads existente (si tiene). Analizar historial, estructura de campañas, pixel, públicos guardados, catálogo. Si no tiene, registrar desde cero.</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-blue">2</div>
+        <div class="impl-step-body">
+          <h4>Configuración técnica <span class="time-badge">Día 1–2</span></h4>
+          <p>Instalar/verificar Pixel, API de Conversiones, catálogo de productos, dominio verificado, cuenta publicitaria con método de pago. Conectar con Shopify/TiendaNube vía integración nativa.</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-blue">3</div>
+        <div class="impl-step-body">
+          <h4>Definir estructura de campañas <span class="time-badge">Día 2–3</span></h4>
+          <p>Una campaña por segmento de público. Un conjunto de anuncios por problema/dolor a resolver. Anuncios = variaciones de ángulo, formato y nivel de consciencia (N1–N5).</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-blue">4</div>
+        <div class="impl-step-body">
+          <h4>Brief de creativos <span class="time-badge">Día 3–5</span></h4>
+          <p>Entregar brief con: ángulo, nivel de consciencia, formato (video/estático/carrusel), gancho, copy y referencia visual. Mínimo 6 piezas para el lanzamiento (2 por nivel: N1, N3, N5).</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-blue">5</div>
+        <div class="impl-step-body">
+          <h4>Lanzamiento <span class="time-badge">Semana 2</span></h4>
+          <p>Activar campañas de tráfico frío (N1–N2) con presupuesto conservador. Dejar correr 3–4 días antes de optimizar. No tocar en las primeras 72hs.</p>
+        </div>
+      </div>
+    </div>
+
+    <span class="onboarding-title">Cadencia de optimización — Ongoing</span>
+    <div class="timeline">
+      <div class="tl-week"><div class="tl-label">Cada 3 días</div><div class="tl-content">Revisar métricas clave: CPM, CTR, CPC, ROAS, frecuencia. Pausar creativos con CTR &lt;1% después de 500 impresiones.</div></div>
+      <div class="tl-week"><div class="tl-label">Cada 36hs</div><div class="tl-content"><strong>Regla de escalado:</strong> aumentar presupuesto +5% por día si el ROAS está por encima del objetivo. Nunca más del 20% en una sola vez.</div></div>
+      <div class="tl-week"><div class="tl-label">Cada semana</div><div class="tl-content">Agregar creativos nuevos antes de que la frecuencia supere 3.0. Rotar ángulos. Revisar públicos y ampliar si el volumen baja.</div></div>
+      <div class="tl-week"><div class="tl-label">Mensual</div><div class="tl-content">Reporte completo al cliente: ROAS, CPA, frecuencia, top 3 creativos, próximos pasos.</div></div>
+    </div>
+
+    <div class="tools-row">
+      <span class="tools-label">Herramientas</span>
+      <span class="tool-chip">Meta Ads Manager</span>
+      <span class="tool-chip">Meta Business Suite</span>
+      <span class="tool-chip">Pixel + API Conversiones</span>
+      <span class="tool-chip">Shopify/TiendaNube</span>
+      <span class="tool-chip">nano-banana (creativos)</span>
+    </div>
+
+    <div class="sop-box">
+      <h4>SOPs necesarios para replicar</h4>
+      <div class="sop-item">Checklist de onboarding técnico (pixel, dominio, catálogo)</div>
+      <div class="sop-item">Plantilla de brief de creativos por nivel de consciencia</div>
+      <div class="sop-item">Plantilla de estructura de campañas (campaña → conjunto → anuncio)</div>
+      <div class="sop-item">Reglas de optimización documentadas (cuándo pausar, cuándo escalar)</div>
+      <div class="sop-item">Plantilla de reporte mensual para el cliente</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════ A — ATENCIÓN ══════════ -->
+  <div class="letter-header">
+    <div class="letter-badge badge-a">A</div>
+    <div>
+      <h2>Atención — IA WhatsApp</h2>
+      <p>El sistema para que el cliente no pierda ninguna consulta y la IA cierre el 50-65% sin intervención humana</p>
+    </div>
+  </div>
+
+  <div class="letter-section">
+    <span class="onboarding-title">Setup inicial — Primera semana</span>
+
+    <div class="step-list">
+      <div class="impl-step">
+        <div class="step-circle sc-green">1</div>
+        <div class="impl-step-body">
+          <h4>Registrar número en WhatsApp Business API <span class="time-badge">Día 1–2</span></h4>
+          <p>El cliente necesita un número dedicado (no puede ser el mismo que usa para chatear). Registrar en plataforma intermediaria (Clavijo / Respond.io / Wati). Verificar empresa en Meta Business.</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-green">2</div>
+        <div class="impl-step-body">
+          <h4>Documentar las 20 preguntas más frecuentes <span class="time-badge">Día 2</span></h4>
+          <p>Pedirle al cliente las preguntas que más recibe. Categorizarlas: pre-compra (producto, precio, envío), post-compra (estado del pedido, cambios, devoluciones), generales. Esto es el knowledge base de la IA.</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-green">3</div>
+        <div class="impl-step-body">
+          <h4>Crear y someter templates a Meta <span class="time-badge">Día 3–5</span></h4>
+          <p>Templates necesarios: confirmación de orden, estado de envío, recordatorio 48hs/24hs/1hs antes de entrega, pedido de reseña, oferta post-compra. Tiempo de aprobación: 24–72hs. Crear todos al mismo tiempo.</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-green">4</div>
+        <div class="impl-step-body">
+          <h4>Configurar flujos de la IA <span class="time-badge">Día 5–7</span></h4>
+          <p>Árbol de respuestas automáticas para preguntas frecuentes. Regla de escalación: si la IA no entiende la pregunta en 2 intentos, deriva al humano con resumen del contexto. Nunca dejar al cliente sin respuesta.</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-green">5</div>
+        <div class="impl-step-body">
+          <h4>Integrar con Shopify/TiendaNube <span class="time-badge">Día 6–7</span></h4>
+          <p>Conectar para que la IA pueda responder en tiempo real: "¿Cuándo llega mi pedido?" → la IA consulta el tracking automáticamente y responde sin intervención humana.</p>
+        </div>
+      </div>
+    </div>
+
+    <span class="onboarding-title">Flujos automáticos a activar</span>
+    <div class="flows-grid" style="margin-bottom:16px;">
+      <div class="flow-card">
+        <div class="flow-name">Respuesta automática 24/7</div>
+        <span class="flow-trigger">Trigger: cualquier mensaje entrante</span>
+        <div class="flow-step">Detectar intención del mensaje</div>
+        <div class="flow-step">Responder del knowledge base</div>
+        <div class="flow-step">Si no resuelve → derivar a humano</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Tracking de envío automático</div>
+        <span class="flow-trigger">Trigger: "¿cuándo llega?" / "mi pedido"</span>
+        <div class="flow-step">Consultar estado en Shopify/TiendaNube</div>
+        <div class="flow-step">Responder con link de tracking + ETA</div>
+        <div class="flow-step">Sin intervención humana</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Filtrado y calificación de leads</div>
+        <span class="flow-trigger">Trigger: lead nuevo desde anuncio</span>
+        <div class="flow-step">3 preguntas de calificación</div>
+        <div class="flow-step">Si califica → agendar llamada o cerrar</div>
+        <div class="flow-step">Si no califica → educación del producto</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Recordatorios de entrega</div>
+        <span class="flow-trigger">Trigger: orden confirmada</span>
+        <div class="flow-step">48hs antes: recordatorio con ETA</div>
+        <div class="flow-step">24hs antes: confirmación de dirección</div>
+        <div class="flow-step">1hs antes: aviso de llegada</div>
+      </div>
+    </div>
+
+    <div class="tools-row">
+      <span class="tools-label">Herramientas</span>
+      <span class="tool-chip">Clavijo (WhatsApp API)</span>
+      <span class="tool-chip">Respond.io (alternativa)</span>
+      <span class="tool-chip">Wati (alternativa)</span>
+      <span class="tool-chip">Meta Business Manager</span>
+      <span class="tool-chip">Shopify / TiendaNube API</span>
+    </div>
+
+    <div class="sop-box">
+      <h4>SOPs necesarios para replicar</h4>
+      <div class="sop-item">Proceso de registro de número en WhatsApp Business API</div>
+      <div class="sop-item">Plantilla de las 20 preguntas frecuentes por industria (suplementos, telas, cuero, etc.)</div>
+      <div class="sop-item">Lista de templates a crear + formato para submitir a Meta</div>
+      <div class="sop-item">Árbol de decisión de la IA (qué responde sola, qué escala al humano)</div>
+      <div class="sop-item">Checklist de testing antes de activar en producción</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════ R — RETENCIÓN ══════════ -->
+  <div class="letter-header">
+    <div class="letter-badge badge-r">R</div>
+    <div>
+      <h2>Retención — Flujos automáticos</h2>
+      <p>El sistema que hace que los clientes vuelvan a comprar sin que el dueño haga nada</p>
+    </div>
+  </div>
+
+  <div class="letter-section">
+    <span class="onboarding-title">Setup inicial — Primera semana</span>
+
+    <div class="step-list">
+      <div class="impl-step">
+        <div class="step-circle sc-purple">1</div>
+        <div class="impl-step-body">
+          <h4>Conectar plataforma de retención <span class="time-badge">Día 1</span></h4>
+          <p>Klaviyo (preferido para email + SMS) o Omnisend. Integrar con Shopify/TiendaNube para sincronizar automáticamente: historial de compras, productos comprados, fecha de última compra, estado de pedido.</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-purple">2</div>
+        <div class="impl-step-body">
+          <h4>Segmentar la base de clientes existente <span class="time-badge">Día 1–2</span></h4>
+          <p>Crear 4 segmentos base: <strong>VIP</strong> (compras +3 o gasto alto), <strong>Recurrentes</strong> (2 compras), <strong>Únicos</strong> (1 sola compra), <strong>Inactivos</strong> (sin compra en +60 días).</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-purple">3</div>
+        <div class="impl-step-body">
+          <h4>Activar los 5 flujos base <span class="time-badge">Día 2–5</span></h4>
+          <p>Post-compra, carrito abandonado, recompra, win-back y revisión de producto. Ver detalle abajo. Activar en orden: primero post-compra y carrito (mayor impacto inmediato).</p>
+        </div>
+      </div>
+      <div class="impl-step">
+        <div class="step-circle sc-purple">4</div>
+        <div class="impl-step-body">
+          <h4>Configurar canal WhatsApp en los flujos <span class="time-badge">Día 5–7</span></h4>
+          <p>Los flujos principales deben tener versión WhatsApp además de email. Carrito abandonado: email a la 1hs + WhatsApp a las 24hs. Win-back: email + WhatsApp 3 días después.</p>
+        </div>
+      </div>
+    </div>
+
+    <span class="onboarding-title">Los 5 flujos base — Activar en este orden</span>
+    <div class="flows-grid" style="margin-bottom:16px;">
+      <div class="flow-card" style="border-left:3px solid #f472b6;">
+        <div class="flow-name">1. Post-compra</div>
+        <span class="flow-trigger" style="color:#f472b6;">Trigger: compra confirmada</span>
+        <div class="flow-step">Día 1: email de bienvenida + tracking</div>
+        <div class="flow-step">Día 3: tip de uso del producto</div>
+        <div class="flow-step">Día 7: pedido de reseña</div>
+        <div class="flow-step">Día 14: oferta de producto complementario</div>
+      </div>
+      <div class="flow-card" style="border-left:3px solid #f472b6;">
+        <div class="flow-name">2. Carrito abandonado</div>
+        <span class="flow-trigger" style="color:#f472b6;">Trigger: carrito no comprado en 1hs</span>
+        <div class="flow-step">1hs: email con el carrito guardado</div>
+        <div class="flow-step">24hs: WhatsApp recordatorio</div>
+        <div class="flow-step">72hs: email con descuento o urgencia</div>
+      </div>
+      <div class="flow-card" style="border-left:3px solid #f472b6;">
+        <div class="flow-name">3. Recompra</div>
+        <span class="flow-trigger" style="color:#f472b6;">Trigger: X días desde última compra según producto</span>
+        <div class="flow-step">Calcular ciclo de recompra típico del producto</div>
+        <div class="flow-step">Email personalizado con el mismo producto</div>
+        <div class="flow-step">Si no compra en 7 días: WhatsApp de seguimiento</div>
+      </div>
+      <div class="flow-card" style="border-left:3px solid #f472b6;">
+        <div class="flow-name">4. Win-back (reactivación)</div>
+        <span class="flow-trigger" style="color:#f472b6;">Trigger: sin compra en +60 días</span>
+        <div class="flow-step">Día 60: email "te extrañamos" + novedad</div>
+        <div class="flow-step">Día 67: WhatsApp con oferta exclusiva</div>
+        <div class="flow-step">Día 90: última oportunidad + descuento</div>
+        <div class="flow-step">Día 120: dar de baja si no reacciona</div>
+      </div>
+      <div class="flow-card" style="border-left:3px solid #f472b6;">
+        <div class="flow-name">5. Cross-sell / Upsell</div>
+        <span class="flow-trigger" style="color:#f472b6;">Trigger: después del flow post-compra</span>
+        <div class="flow-step">Recomendar producto complementario</div>
+        <div class="flow-step">Basado en historial de compra del segmento</div>
+        <div class="flow-step">Oferta especial para clientes VIP</div>
+      </div>
+      <div class="flow-card" style="border-left:3px solid #f472b6;">
+        <div class="flow-name">6. Campaña mensual</div>
+        <span class="flow-trigger" style="color:#f472b6;">Manual — 1 vez por mes</span>
+        <div class="flow-step">Segmento: activos últimos 90 días</div>
+        <div class="flow-step">Email + WhatsApp con novedad o promo</div>
+        <div class="flow-step">A/B test de subject line</div>
+      </div>
+    </div>
+
+    <div class="tools-row">
+      <span class="tools-label">Herramientas</span>
+      <span class="tool-chip">Klaviyo (principal)</span>
+      <span class="tool-chip">Omnisend (alternativa)</span>
+      <span class="tool-chip">ManyChat (WhatsApp flows)</span>
+      <span class="tool-chip">Shopify / TiendaNube</span>
+      <span class="tool-chip">WoowUp (LatAm)</span>
+    </div>
+
+    <div class="sop-box">
+      <h4>SOPs necesarios para replicar</h4>
+      <div class="sop-item">Checklist de conexión Klaviyo + Shopify/TiendaNube</div>
+      <div class="sop-item">Plantilla de segmentación base (VIP / Recurrentes / Únicos / Inactivos)</div>
+      <div class="sop-item">Templates de email para los 5 flujos (por industria: suplementos, telas, cuero)</div>
+      <div class="sop-item">Cómo calcular el ciclo de recompra por tipo de producto</div>
+      <div class="sop-item">Checklist de activación de flujos en orden correcto</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TIMELINE GENERAL DE ONBOARDING -->
+  <div class="tag tag-purple" style="margin-bottom:16px;">Timeline general</div>
+  <div class="letter-section">
+    <span class="onboarding-title">Onboarding completo — De 0 a operativo</span>
+    <div class="timeline">
+      <div class="tl-week"><div class="tl-label">Semana 1</div><div class="tl-content"><strong>C:</strong> Setup técnico (pixel, cuenta, catálogo) + brief de primeros creativos. <strong>R:</strong> Conectar Klaviyo + segmentar base existente.</div></div>
+      <div class="tl-week"><div class="tl-label">Semana 2</div><div class="tl-content"><strong>C:</strong> Lanzar primeras campañas frías. <strong>R:</strong> Activar flow post-compra y carrito abandonado. <strong>A:</strong> Registrar número + someter templates a Meta.</div></div>
+      <div class="tl-week"><div class="tl-label">Semana 3</div><div class="tl-content"><strong>C:</strong> Primera ronda de optimización. <strong>R:</strong> Activar flows de recompra y win-back. <strong>A:</strong> Templates aprobados → activar IA de respuestas automáticas.</div></div>
+      <div class="tl-week"><div class="tl-label">Semana 4</div><div class="tl-content"><strong>C + R + A:</strong> Sistema completo operativo. Primera reunión de resultados con el cliente. Ajustes según datos reales.</div></div>
+      <div class="tl-week"><div class="tl-label">Mes 2+</div><div class="tl-content">Escalar lo que funciona. Rotar creativos. Agregar flujos avanzados (cumpleaños, programas de lealtad). Reporte mensual.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+</body>
+</html>

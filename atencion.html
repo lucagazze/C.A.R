@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAR — A: Atención</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+    --green: #22c55e; --green-dark: #1a3a2a; --green-light: #4ade80;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: #0a0f1aee; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 16px; }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo .pills { display: flex; gap: 3px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-links { display: flex; gap: 2px; list-style: none; flex-wrap: wrap; }
+  .nav-links a { display: block; padding: 5px 10px; font-size: 12px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+  .nav-links a.active { background: #1a3a2a; color: #4ade80; }
+  .nav-links .sep { color: #1e293b; font-size: 12px; padding: 5px 2px; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  .letter-hero { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; padding: 28px 32px; background: linear-gradient(135deg, #0d1f12, #0a0f1a); border: 1px solid #16a34a30; border-radius: 16px; }
+  .letter-big { font-size: 72px; font-weight: 900; color: var(--green-light); line-height: 1; }
+  .letter-hero h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .letter-hero p  { font-size: 14px; color: var(--sub); line-height: 1.6; max-width: 500px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+  .tag-green  { background: #14532d; color: #4ade80; }
+  .tag-yellow { background: #3b2a00; color: #fbbf24; }
+  .tag-red    { background: #450a0a; color: #f87171; }
+
+  .block { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+  .block-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
+  .block-sub   { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  .step-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .step-item:last-child { border-bottom: none; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; background: #14532d; color: #4ade80; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-body h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 3px; }
+  .step-body p  { font-size: 13px; color: var(--sub); line-height: 1.5; }
+  .time-pill { display: inline-block; font-size: 10px; font-weight: 600; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  .small-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .small-card h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 5px; }
+  .small-card p  { font-size: 12px; color: var(--sub); line-height: 1.4; }
+  .small-card .val { font-size: 20px; font-weight: 800; color: #4ade80; margin-bottom: 3px; }
+
+  .flow-card { background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid #22c55e; border-radius: 10px; padding: 16px; }
+  .flow-card h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+  .flow-card .trigger { font-size: 11px; color: #4ade80; margin-bottom: 10px; display: block; }
+  .flow-step { font-size: 12px; color: var(--sub); padding: 3px 0; display: flex; gap: 6px; }
+  .flow-step::before { content: '→'; color: #14532d; flex-shrink: 0; }
+
+  .template-box { background: var(--bg3); border: 1px solid #14532d; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .template-box .tpl-name { font-size: 10px; font-weight: 700; color: #4ade80; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  .template-box .tpl-text { font-size: 13px; color: #e2e8f0; line-height: 1.55; font-style: italic; }
+  .template-box .tpl-vars { font-size: 11px; color: #475569; margin-top: 6px; }
+  .template-box .tpl-time { font-size: 10px; color: #4ade80; }
+
+  .platform-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .platform-card h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+  .platform-card .rec { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; margin-bottom: 8px; display: block; }
+  .platform-card p { font-size: 12px; color: var(--sub); line-height: 1.4; margin-bottom: 6px; }
+  .platform-card .pro { font-size: 11px; color: #4ade80; }
+  .platform-card .con { font-size: 11px; color: #f87171; }
+
+  .warning { background: #1a0a0a; border: 1px solid #ef444430; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+  .warning p { font-size: 13px; color: #fca5a5; line-height: 1.5; }
+  .warning p strong { color: #f87171; }
+
+  .info-box { background: #0d1f12; border: 1px solid #14532d; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+  .info-box p { font-size: 13px; color: #86efac; line-height: 1.5; }
+
+  .check-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
+  .check-item .box { width: 15px; height: 15px; border: 1.5px solid #334155; border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
+  .check-item p { font-size: 13px; color: var(--sub); line-height: 1.4; }
+  .check-item p strong { color: #e2e8f0; }
+
+  .tools-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; background: var(--bg3); border-radius: 10px; }
+  .tools-label { font-size: 10px; font-weight: 700; color: #475569; width: 100%; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .tool-chip { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #cbd5e1; }
+
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
+    CAR
+  </a>
+  <ul class="nav-links">
+    <li><a href="modelo.html">Modelo</a></li>
+    <li><a href="icp.html">ICP</a></li>
+    <li><a href="oferta.html">Oferta</a></li>
+    <li><a href="validacion.html">Validación</a></li>
+    <li><a href="implementacion.html">Implementación</a></li>
+    <li><span class="sep">|</span></li>
+    <li><a href="captacion.html">C — Captación</a></li>
+    <li><a href="atencion.html" class="active">A — Atención</a></li>
+    <li><a href="retencion.html">R — Retención</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <div class="letter-hero">
+    <div class="letter-big">A</div>
+    <div>
+      <h1>Atención — IA WhatsApp</h1>
+      <p>El sistema para que ninguna consulta quede sin respuesta, la IA resuelva el 50–65% de forma automática, y el cliente sienta que lo atienden mejor que en cualquier otro negocio.</p>
+    </div>
+  </div>
+
+  <!-- CONTEXTO -->
+  <div class="tag tag-green">Por qué WhatsApp + IA</div>
+  <div class="block" style="margin-bottom:16px;">
+    <div class="block-title">El problema que resuelve la A</div>
+    <div class="block-sub">El cuello de botella más común en e-commerce en Argentina</div>
+    <div class="grid-3">
+      <div class="small-card"><div class="val">98%</div><p>tasa de apertura en WhatsApp. Ningún canal tiene esta atención del cliente.</p></div>
+      <div class="small-card"><div class="val">50–65%</div><p>de consultas se pueden cerrar automáticamente con IA sin intervención humana.</p></div>
+      <div class="small-card"><div class="val">24/7</div><p>la IA responde fuera del horario laboral, fines de semana y feriados. Sin costo adicional.</p></div>
+    </div>
+    <div class="info-box" style="margin-top:14px;"><p>El dueño típico de e-commerce en Argentina pasa 3–5 horas por día respondiendo los mismos mensajes en WhatsApp. La A le devuelve ese tiempo.</p></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PLATAFORMAS -->
+  <div class="tag tag-green">Elección de plataforma</div>
+  <div class="block">
+    <div class="block-title">¿Qué plataforma usar?</div>
+    <div class="block-sub">Comparativa de las 3 opciones principales para LatAm</div>
+    <div class="grid-3">
+      <div class="platform-card" style="border-top:3px solid #4ade80;">
+        <span class="rec">Recomendado LatAm</span>
+        <h4>Clavijo</h4>
+        <p>Plataforma latinoamericana específicamente construida para WhatsApp Business. Soporte en español.</p>
+        <div class="pro">✓ Precio accesible en USD para LatAm</div>
+        <div class="pro">✓ Soporte en español, comprenden el mercado</div>
+        <div class="pro">✓ Integración fácil con Shopify/TiendaNube</div>
+        <div class="con">✗ Menos features avanzadas que opciones globales</div>
+      </div>
+      <div class="platform-card">
+        <h4>Respond.io</h4>
+        <p>Plataforma global, CRM conversacional completo. Une WhatsApp + Instagram + email en un lugar.</p>
+        <div class="pro">✓ Multi-canal (WA + IG + email + más)</div>
+        <div class="pro">✓ IA nativa muy potente</div>
+        <div class="con">✗ Más caro, orientado a empresas medianas</div>
+        <div class="con">✗ Curva de aprendizaje mayor</div>
+      </div>
+      <div class="platform-card">
+        <h4>Wati</h4>
+        <p>Popular en India y LatAm. Fácil de usar, buen precio, API oficial de Meta.</p>
+        <div class="pro">✓ Muy fácil de configurar</div>
+        <div class="pro">✓ Precio competitivo</div>
+        <div class="con">✗ IA menos avanzada que Respond.io</div>
+        <div class="con">✗ Soporte en inglés principalmente</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PROCESO DE SETUP -->
+  <div class="tag tag-green">Proceso de setup — Semana 1</div>
+  <div class="block">
+    <div class="block-title">Del cero al sistema activo</div>
+    <div class="block-sub">Pasos en orden. No saltar ninguno.</div>
+
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Número dedicado para WhatsApp Business <span class="time-pill">Día 1</span></h4>
+        <p>El cliente necesita un número nuevo, no el que usa para chatear. Opciones: SIM nueva o número virtual (Twilio/VoIP). Importante: ese número no puede estar activo en WhatsApp personal.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Verificar empresa en Meta Business Manager <span class="time-pill">Día 1–2</span></h4>
+        <p>La cuenta de Business Manager del cliente necesita estar verificada para acceder a la API oficial. Proceso: subir documentos legales (CUIT, constancia de inscripción). Tiempo: 24–48hs.</p>
+        <div class="warning" style="margin-top:8px;"><p><strong>Importante:</strong> Sin verificación de empresa, los mensajes quedan limitados a 250 conversaciones únicas por día. Con verificación: 1.000+ desde el primer día.</p></div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Registrar número en la plataforma <span class="time-pill">Día 2</span></h4>
+        <p>Conectar el número nuevo a Clavijo/Respond.io/Wati. Seguir el proceso de verificación de la API: escanear QR, confirmar número con SMS/llamada.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Construir el knowledge base — Las 20 preguntas frecuentes <span class="time-pill">Día 2–3</span></h4>
+        <p>Pedirle al cliente: "¿Qué preguntas te hacen todos los días en WhatsApp?" Categorizar en 4 grupos:</p>
+        <ul>
+          <li>Pre-compra: precio, disponibilidad, materiales, tallas, envío</li>
+          <li>Post-compra: estado del pedido, tracking, cambios, devoluciones</li>
+          <li>Operativas: horarios, formas de pago, garantía</li>
+          <li>Otras: personalizaciones, pedidos al por mayor</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Crear y someter templates a Meta <span class="time-pill">Día 3–5</span></h4>
+        <p>Crear todos los templates al mismo tiempo. Tiempo de aprobación: 24–72hs. Crear de más para no quedarse sin opciones. Ver templates necesarios abajo.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h4>Configurar los flujos automáticos <span class="time-pill">Día 5–7</span></h4>
+        <p>Árbol de decisión: mensaje entrante → detectar intención → respuesta automática. Regla de escalación: si la IA no resuelve en 2 intentos → derivar al humano con resumen del contexto.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">7</div>
+      <div class="step-body">
+        <h4>Integrar con Shopify/TiendaNube <span class="time-pill">Día 6–7</span></h4>
+        <p>La IA necesita acceso al estado de los pedidos para responder "¿cuándo llega mi pedido?" sin humano. Conectar via webhook o integración nativa de la plataforma.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">8</div>
+      <div class="step-body">
+        <h4>Testing completo antes de activar <span class="time-pill">Día 7</span></h4>
+        <p>Simular 10 conversaciones con los escenarios más comunes. Verificar que la escalación funciona. Revisar que los templates llegan con el formato correcto. Solo activar cuando todo funciona.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TEMPLATES -->
+  <div class="tag tag-green">Templates de WhatsApp</div>
+  <div class="block">
+    <div class="block-title">Los templates que hay que crear desde el día 1</div>
+    <div class="block-sub">Crear todos juntos para que la aprobación llegue al mismo tiempo (24–72hs)</div>
+
+    <div class="template-box">
+      <span class="tpl-name">Confirmación de orden</span>
+      <div class="tpl-text">Hola {{nombre}} 👋 Tu pedido #{{numero_orden}} fue confirmado. Lo estamos preparando con cariño. Te avisamos cuando salga para entrega. Ante cualquier consulta, estamos acá.</div>
+      <div class="tpl-vars">Variables: nombre, numero_orden</div>
+    </div>
+    <div class="template-box">
+      <span class="tpl-name">Pedido en camino</span>
+      <div class="tpl-text">¡Tu pedido salió! 🚚 Podés rastrear tu envío acá: {{link_tracking}}. Tiempo estimado de entrega: {{fecha_estimada}}. ¿Alguna duda? Respondé este mensaje.</div>
+      <div class="tpl-vars">Variables: link_tracking, fecha_estimada</div>
+    </div>
+    <div class="template-box">
+      <span class="tpl-name">Recordatorio 24hs antes</span>
+      <div class="tpl-text">¡Mañana llega tu pedido! 📦 Asegurate de que haya alguien en {{direccion}} para recibirlo. Si necesitás reprogramar, avisanos antes de las {{hora_limite}}.</div>
+      <div class="tpl-vars">Variables: direccion, hora_limite</div>
+    </div>
+    <div class="template-box">
+      <span class="tpl-name">Pedido de reseña (48hs post-entrega)</span>
+      <div class="tpl-text">Hola {{nombre}} 😊 ¿Cómo llegó tu pedido? Tu opinión nos ayuda a mejorar y a que más personas nos conozcan. Si tenés 1 minuto, nos encantaría leerla: {{link_resena}}</div>
+      <div class="tpl-vars">Variables: nombre, link_resena</div>
+    </div>
+    <div class="template-box">
+      <span class="tpl-name">Recupero de carrito abandonado</span>
+      <div class="tpl-text">Hola {{nombre}} 👋 Vimos que dejaste {{producto}} en tu carrito. ¿Tuviste algún problema para finalizar la compra? Estamos para ayudarte: {{link_carrito}}</div>
+      <div class="tpl-vars">Variables: nombre, producto, link_carrito</div>
+    </div>
+    <div class="template-box">
+      <span class="tpl-name">Oferta de recompra</span>
+      <div class="tpl-text">Hola {{nombre}} 🎁 Hace {{dias}} días compraste {{producto_anterior}}. Tenemos una novedad que te puede interesar. Y como ya sos cliente, te dejamos {{descuento}} de descuento: {{link}}</div>
+      <div class="tpl-vars">Variables: nombre, dias, producto_anterior, descuento, link</div>
+    </div>
+
+    <div class="warning">
+      <p><strong>Reglas de templates Meta:</strong> No pueden incluir texto promocional sin ser categoría "Marketing" (costo más alto). Los templates de "Utilidad" (confirmaciones, trackings) son más baratos. Siempre dejar opt-out claro en mensajes de marketing.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FLUJOS -->
+  <div class="tag tag-green">Flujos automáticos</div>
+  <div class="block">
+    <div class="block-title">Los flujos que hay que tener activos</div>
+    <div class="grid-2">
+      <div class="flow-card">
+        <h4>Respuesta automática general</h4>
+        <span class="trigger">Trigger: mensaje entrante fuera de horario o primer contacto</span>
+        <div class="flow-step">Saludo + confirmar recepción del mensaje</div>
+        <div class="flow-step">Detectar intención con palabras clave</div>
+        <div class="flow-step">Pre-compra → responder del knowledge base</div>
+        <div class="flow-step">Tracking → consultar Shopify y responder</div>
+        <div class="flow-step">No entiende → derivar con contexto al humano</div>
+      </div>
+      <div class="flow-card">
+        <h4>Tracking automático de pedido</h4>
+        <span class="trigger">Trigger: "pedido", "envío", "cuándo llega", "tracking"</span>
+        <div class="flow-step">Pedir número de orden o email</div>
+        <div class="flow-step">Consultar estado en Shopify/TiendaNube</div>
+        <div class="flow-step">Responder con estado + link de tracking</div>
+        <div class="flow-step">Si entregado → pedir reseña</div>
+      </div>
+      <div class="flow-card">
+        <h4>Calificación de leads nuevos</h4>
+        <span class="trigger">Trigger: lead desde anuncio de Meta (click en WA)</span>
+        <div class="flow-step">Bienvenida + 3 preguntas de calificación</div>
+        <div class="flow-step">¿Qué necesitás? / ¿Cuánto comprás? / ¿Cuándo?</div>
+        <div class="flow-step">Si califica → enviar catálogo + agendar</div>
+        <div class="flow-step">Si no califica → educar con contenido</div>
+      </div>
+      <div class="flow-card">
+        <h4>Post-entrega (24hs después)</h4>
+        <span class="trigger">Trigger: estado del pedido cambia a "entregado"</span>
+        <div class="flow-step">Template de confirmación de entrega</div>
+        <div class="flow-step">Preguntar si todo llegó bien</div>
+        <div class="flow-step">Si hay problema → escalar urgente al humano</div>
+        <div class="flow-step">Si está bien → 24hs después: pedir reseña</div>
+      </div>
+    </div>
+
+    <div class="block-sub" style="margin-top:16px; margin-bottom:8px;">Regla de escalación — Cuándo la IA pasa al humano</div>
+    <div class="check-item"><div class="box"></div><p>Cuando la IA no entiende la pregunta en 2 intentos seguidos</p></div>
+    <div class="check-item"><div class="box"></div><p>Cuando el cliente expresa frustración o enojo (palabras clave: "mal", "problema", "queja", "indignado")</p></div>
+    <div class="check-item"><div class="box"></div><p>Cuando hay pedido de devolución o reclamo formal</p></div>
+    <div class="check-item"><div class="box"></div><p>Cuando la conversación requiere negociación de precio o condiciones especiales</p></div>
+    <div class="info-box"><p>Al escalar, la IA envía al humano: nombre del cliente, el historial de la conversación y un resumen en 1 línea de lo que necesita. El humano no arranca de cero.</p></div>
+  </div>
+
+  <div class="tools-row">
+    <span class="tools-label">Herramientas del proceso</span>
+    <span class="tool-chip">Clavijo (recomendado LatAm)</span>
+    <span class="tool-chip">Respond.io (premium)</span>
+    <span class="tool-chip">Wati (alternativa)</span>
+    <span class="tool-chip">Meta Business Manager</span>
+    <span class="tool-chip">Shopify / TiendaNube API</span>
+    <span class="tool-chip">Make / Zapier (automatizaciones)</span>
+  </div>
+
+</div>
+
+<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+</body>
+</html>
