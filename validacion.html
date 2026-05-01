@@ -115,24 +115,33 @@
 
   .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 
-  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 56px; }
+
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; flex-wrap: wrap; height: auto; min-height: 52px; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 8px 0 12px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 8px 12px; font-size: 13px; }
+    .nav-links .sep { display: none; }
+    .page { padding: 28px 16px; }
+    .section-title h1 { font-size: 22px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .car-pills { flex-direction: column; gap: 8px; }
+    .pill { text-align: center; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .comparison { grid-template-columns: 1fr; }
+    .casos-grid { grid-template-columns: 1fr; }
+  }
+    footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 56px; }
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
-    Método CAR
-  </a>
-  <ul class="nav-links">
-    <li><a href="modelo.html">Modelo</a></li>
-    <li><a href="icp.html">Cliente ideal</a></li>
-    <li><a href="oferta.html">Oferta</a></li>
-    <li><a href="validacion.html" class="active">Validación</a></li>
-    <li><a href="implementacion.html">Implementación</a></li>
-  </ul>
-</nav>
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
 
 <div class="page">
 
@@ -301,5 +310,6 @@
 </div>
 
 <footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+
 </body>
 </html>

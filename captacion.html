@@ -104,29 +104,35 @@
   .warning { background: #1a0a0a; border: 1px solid #ef444430; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
   .warning p { font-size: 13px; color: #fca5a5; line-height: 1.5; }
   .warning p strong { color: #f87171; }
+  .info-box { background: #0d1e35; border: 1px solid #1e3a5f; border-radius: 10px; padding: 14px 16px; }
+  .info-box p { font-size: 13px; color: #93c5fd; line-height: 1.5; }
 
-  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; flex-wrap: wrap; height: auto; min-height: 52px; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 8px 0 12px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 8px 12px; font-size: 13px; }
+    .nav-links .sep { display: none; }
+    .page { padding: 28px 16px; }
+    .section-title h1 { font-size: 22px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .car-pills { flex-direction: column; gap: 8px; }
+    .pill { text-align: center; }
+      .letter-hero { flex-direction: column; gap: 12px; padding: 20px 18px; }
+    .letter-big { font-size: 48px; }
+    .letter-hero h1 { font-size: 22px; }
+  }
+    footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
-    CAR
-  </a>
-  <ul class="nav-links">
-    <li><a href="modelo.html">Modelo</a></li>
-    <li><a href="icp.html">ICP</a></li>
-    <li><a href="oferta.html">Oferta</a></li>
-    <li><a href="validacion.html">Validación</a></li>
-    <li><a href="implementacion.html">Implementación</a></li>
-    <li><span class="sep">|</span></li>
-    <li><a href="captacion.html" class="active">C — Captación</a></li>
-    <li><a href="atencion.html">A — Atención</a></li>
-    <li><a href="retencion.html">R — Retención</a></li>
-  </ul>
-</nav>
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
 
 <div class="page">
 
@@ -168,6 +174,7 @@
     <div class="check-item"><div class="box"></div><p><strong>Cuenta de Instagram vinculada</strong> al Business Manager del cliente</p></div>
     <div class="check-item"><div class="box"></div><p><strong>Historial verificado</strong>: cuántas compras registra el pixel en los últimos 30 días (afecta la fase de aprendizaje)</p></div>
     <div class="warning"><p><strong>Regla:</strong> No lanzar campañas de conversión si el pixel tiene menos de 50 eventos de compra en los últimos 30 días. Usar primero tráfico o interacción para calentar el pixel.</p></div>
+    <div class="info-box" style="margin-top:12px;"><p><strong>Framework estandarizado:</strong> Los pasos de configuración técnica (pixel, API de conversiones, catálogo, domain verification) deben estar documentados como SOPs con video Loom. Un SOP por paso = el mismo nicho se replica sin pensar. Preparar estos documentos antes del segundo cliente.</p></div>
   </div>
 
   <hr class="divider">
@@ -276,7 +283,7 @@
     </div>
     <div class="rule-row">
       <div class="rule-icon">⛔</div>
-      <div class="rule-body"><h4>Pausar anuncio si...</h4><p>CTR menor a 1% después de 500+ impresiones. Frecuencia mayor a 3.0 con ROAS cayendo. CPA más del doble del objetivo después de 5 días.</p></div>
+      <div class="rule-body"><h4>Pausar anuncio si...</h4><p>CTR menor a 1% después de 500+ impresiones. Frecuencia mayor a 3.0 en los últimos 7 días con ROAS cayendo. CPA más del doble del objetivo después de 5 días.</p></div>
     </div>
     <div class="rule-row">
       <div class="rule-icon">📈</div>
@@ -284,7 +291,7 @@
     </div>
     <div class="rule-row">
       <div class="rule-icon">🔄</div>
-      <div class="rule-body"><h4>Rotar creativos cuando...</h4><p>La frecuencia supera 2.5 y el ROAS baja más del 15%. Siempre tener 2–3 creativos nuevos listos para rotar antes de que se agoten los actuales.</p></div>
+      <div class="rule-body"><h4>Rotar creativos cuando...</h4><p>La frecuencia supera 2.5 en los últimos 7 días y el ROAS baja más del 15%. Siempre tener 2–3 creativos nuevos listos para rotar antes de que se agoten los actuales.</p></div>
     </div>
     <div class="rule-row">
       <div class="rule-icon">📅</div>
@@ -307,5 +314,6 @@
 </div>
 
 <footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+
 </body>
 </html>

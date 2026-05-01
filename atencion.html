@@ -94,28 +94,32 @@
   .tools-label { font-size: 10px; font-weight: 700; color: #475569; width: 100%; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
   .tool-chip { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #cbd5e1; }
 
-  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; flex-wrap: wrap; height: auto; min-height: 52px; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 8px 0 12px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 8px 12px; font-size: 13px; }
+    .nav-links .sep { display: none; }
+    .page { padding: 28px 16px; }
+    .section-title h1 { font-size: 22px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .car-pills { flex-direction: column; gap: 8px; }
+    .pill { text-align: center; }
+      .letter-hero { flex-direction: column; gap: 12px; padding: 20px 18px; }
+    .letter-big { font-size: 48px; }
+    .letter-hero h1 { font-size: 22px; }
+  }
+    footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    <div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>
-    CAR
-  </a>
-  <ul class="nav-links">
-    <li><a href="modelo.html">Modelo</a></li>
-    <li><a href="icp.html">ICP</a></li>
-    <li><a href="oferta.html">Oferta</a></li>
-    <li><a href="validacion.html">Validación</a></li>
-    <li><a href="implementacion.html">Implementación</a></li>
-    <li><span class="sep">|</span></li>
-    <li><a href="captacion.html">C — Captación</a></li>
-    <li><a href="atencion.html" class="active">A — Atención</a></li>
-    <li><a href="retencion.html">R — Retención</a></li>
-  </ul>
-</nav>
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
 
 <div class="page">
 
@@ -149,29 +153,30 @@
     <div class="block-sub">Comparativa de las 3 opciones principales para LatAm</div>
     <div class="grid-3">
       <div class="platform-card" style="border-top:3px solid #4ade80;">
-        <span class="rec">Recomendado LatAm</span>
-        <h4>Clavijo</h4>
-        <p>Plataforma latinoamericana específicamente construida para WhatsApp Business. Soporte en español.</p>
-        <div class="pro">✓ Precio accesible en USD para LatAm</div>
-        <div class="pro">✓ Soporte en español, comprenden el mercado</div>
-        <div class="pro">✓ Integración fácil con Shopify/TiendaNube</div>
-        <div class="con">✗ Menos features avanzadas que opciones globales</div>
+        <span class="rec">Nuestra elección principal</span>
+        <h4>ChatWoot</h4>
+        <p>Open-source, se despliega una sola vez y sirve para todos los clientes. Proveedor oficial de WhatsApp Business API. Integración nativa con N8N para flows de IA.</p>
+        <div class="pro">✓ Una sola instancia para todos los clientes (sin costo por cliente)</div>
+        <div class="pro">✓ Proveedor oficial Meta — aprobación de templates en minutos</div>
+        <div class="pro">✓ Integración con N8N, SupaBase, OpenRouter</div>
+        <div class="pro">✓ Control total, sin depender de terceros</div>
+        <div class="con">✗ Requiere setup técnico inicial (servidor propio o Railway/Render)</div>
       </div>
       <div class="platform-card">
         <h4>Respond.io</h4>
         <p>Plataforma global, CRM conversacional completo. Une WhatsApp + Instagram + email en un lugar.</p>
         <div class="pro">✓ Multi-canal (WA + IG + email + más)</div>
         <div class="pro">✓ IA nativa muy potente</div>
-        <div class="con">✗ Más caro, orientado a empresas medianas</div>
+        <div class="con">✗ Más caro, costo por cliente o por seat</div>
         <div class="con">✗ Curva de aprendizaje mayor</div>
       </div>
       <div class="platform-card">
         <h4>Wati</h4>
         <p>Popular en India y LatAm. Fácil de usar, buen precio, API oficial de Meta.</p>
         <div class="pro">✓ Muy fácil de configurar</div>
-        <div class="pro">✓ Precio competitivo</div>
-        <div class="con">✗ IA menos avanzada que Respond.io</div>
-        <div class="con">✗ Soporte en inglés principalmente</div>
+        <div class="pro">✓ Precio competitivo para pocos clientes</div>
+        <div class="con">✗ Costo escala con cada cliente nuevo</div>
+        <div class="con">✗ IA menos flexible que solución propia</div>
       </div>
     </div>
   </div>
@@ -202,21 +207,23 @@
     <div class="step-item">
       <div class="step-num">3</div>
       <div class="step-body">
-        <h4>Registrar número en la plataforma <span class="time-pill">Día 2</span></h4>
-        <p>Conectar el número nuevo a Clavijo/Respond.io/Wati. Seguir el proceso de verificación de la API: escanear QR, confirmar número con SMS/llamada.</p>
+        <h4>Registrar número en ChatWoot <span class="time-pill">Día 2</span></h4>
+        <p>Conectar el número nuevo a la instancia de ChatWoot via API oficial de Meta. Seguir el proceso: agregar número en WhatsApp Manager → confirmar con SMS/llamada → vincular al inbox de ChatWoot del cliente. ChatWoot es proveedor oficial Meta — el proceso es directo.</p>
+        <div class="info-box" style="margin-top:8px;"><p>Los templates se crean desde <strong>WhatsApp Manager (business.facebook.com)</strong>. La aprobación normalmente es muy rápida — en minutos. Lo que puede variar es la entregabilidad según el proveedor, pero con ChatWoot como proveedor oficial esto no es un problema.</p></div>
       </div>
     </div>
     <div class="step-item">
       <div class="step-num">4</div>
       <div class="step-body">
-        <h4>Construir el knowledge base — Las 20 preguntas frecuentes <span class="time-pill">Día 2–3</span></h4>
-        <p>Pedirle al cliente: "¿Qué preguntas te hacen todos los días en WhatsApp?" Categorizar en 4 grupos:</p>
+        <h4>Construir el knowledge base — Base de conocimiento dinámica <span class="time-pill">Día 2–3</span></h4>
+        <p>Pedirle al cliente: "¿Qué preguntas te hacen todos los días en WhatsApp?" Documentar en lenguaje natural en un Google Drive compartido con el cliente. Categorizar en 4 grupos:</p>
         <ul>
           <li>Pre-compra: precio, disponibilidad, materiales, tallas, envío</li>
           <li>Post-compra: estado del pedido, tracking, cambios, devoluciones</li>
           <li>Operativas: horarios, formas de pago, garantía</li>
           <li>Otras: personalizaciones, pedidos al por mayor</li>
         </ul>
+        <div class="info-box" style="margin-top:10px;"><p><strong>Clave del sistema:</strong> La base de conocimiento vive en un Google Doc que el dueño del negocio puede modificar en tiempo real. Si hay una promo, un descuento nuevo, un producto agotado — lo escribe ahí y la IA lo incorpora. El cliente tiene control total sin depender de nosotros para cada cambio. Esto se integra con SupaBase para que N8N lo consulte dinámicamente en cada conversación.</p></div>
       </div>
     </div>
     <div class="step-item">
@@ -318,12 +325,12 @@
         <div class="flow-step">Si entregado → pedir reseña</div>
       </div>
       <div class="flow-card">
-        <h4>Calificación de leads nuevos</h4>
-        <span class="trigger">Trigger: lead desde anuncio de Meta (click en WA)</span>
-        <div class="flow-step">Bienvenida + 3 preguntas de calificación</div>
-        <div class="flow-step">¿Qué necesitás? / ¿Cuánto comprás? / ¿Cuándo?</div>
-        <div class="flow-step">Si califica → enviar catálogo + agendar</div>
-        <div class="flow-step">Si no califica → educar con contenido</div>
+        <h4>Recomendación de productos</h4>
+        <span class="trigger">Trigger: lead desde anuncio de Meta o consulta de "qué me recomendás"</span>
+        <div class="flow-step">Saludo + 2–3 preguntas de contexto (¿para qué lo usás?, ¿qué buscás?)</div>
+        <div class="flow-step">IA cruza respuestas con el catálogo de productos del cliente</div>
+        <div class="flow-step">Recomendar 1–2 productos específicos con argumentos personalizados</div>
+        <div class="flow-step">Link directo al producto → facilitar la compra con mínima fricción</div>
       </div>
       <div class="flow-card">
         <h4>Post-entrega (24hs después)</h4>
@@ -340,21 +347,39 @@
     <div class="check-item"><div class="box"></div><p>Cuando el cliente expresa frustración o enojo (palabras clave: "mal", "problema", "queja", "indignado")</p></div>
     <div class="check-item"><div class="box"></div><p>Cuando hay pedido de devolución o reclamo formal</p></div>
     <div class="check-item"><div class="box"></div><p>Cuando la conversación requiere negociación de precio o condiciones especiales</p></div>
-    <div class="info-box"><p>Al escalar, la IA envía al humano: nombre del cliente, el historial de la conversación y un resumen en 1 línea de lo que necesita. El humano no arranca de cero.</p></div>
+    <div class="info-box"><p>Al escalar, la IA envía al humano un resumen automático: nombre del cliente, historial de la conversación y qué necesita en 1 línea. El humano no arranca de cero. La notificación llega por el canal que el cliente prefiera: <strong>inbox de ChatWoot</strong> (recomendado), mensaje de WhatsApp automático al número del encargado, o via webhook a cualquier CRM.</p></div>
+  </div>
+
+  <!-- SOPs -->
+  <hr class="divider">
+  <div class="tag tag-green">SOPs necesarios</div>
+  <div class="block">
+    <div class="block-title">Documentación antes de escalar</div>
+    <div class="block-sub">Un SOP por proceso. Sin esto, cada cliente nuevo es empezar de cero.</div>
+    <div class="check-item"><div class="box"></div><p><strong>SOP: Registro de número en WhatsApp Business API</strong> — proceso completo de alta via WhatsApp Manager</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>SOP: Creación de ChatWoot para cliente nuevo</strong> — setup de instancia + vinculación API oficial + inbox</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Plantilla: 20 preguntas frecuentes por industria</strong> — suplementos, telas, cuero, skincare. Base de conocimiento en lenguaje natural lista para customizar (base de conocimiento por nicho = bastante replicable)</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Lista de templates + formato para submitir a Meta</strong> — templates de eventos comunes pre-aprobados para enviar al cliente. El cliente puede pedir modificaciones o templates personalizados.</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>SOP: Árbol de decisión de la IA</strong> — qué responde sola, qué escala al humano. Una vez probado por nicho: muy replicable.</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Checklist de testing</strong> — verificar todos los flujos en entorno interno antes de activar en producción</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>SOP técnico: SupaBase</strong> — estructura correcta de la base de conocimiento + integración con N8N</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>SOP técnico: OpenRouter</strong> — configuración del modelo de IA + definición de quién tiene las API keys (nuestras o del cliente)</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>SOP técnico: N8N completo</strong> — flujos de IA, APIs, vinculaciones, manejo de errores, ciberseguridad</p></div>
   </div>
 
   <div class="tools-row">
-    <span class="tools-label">Herramientas del proceso</span>
-    <span class="tool-chip">Clavijo (recomendado LatAm)</span>
-    <span class="tool-chip">Respond.io (premium)</span>
-    <span class="tool-chip">Wati (alternativa)</span>
-    <span class="tool-chip">Meta Business Manager</span>
+    <span class="tools-label">Stack tecnológico</span>
+    <span class="tool-chip">ChatWoot (plataforma principal)</span>
+    <span class="tool-chip">N8N (automatización de flujos IA)</span>
+    <span class="tool-chip">SupaBase (base de conocimiento)</span>
+    <span class="tool-chip">OpenRouter (modelos IA)</span>
+    <span class="tool-chip">Meta WhatsApp Manager</span>
     <span class="tool-chip">Shopify / TiendaNube API</span>
-    <span class="tool-chip">Make / Zapier (automatizaciones)</span>
   </div>
 
 </div>
 
 <footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+
 </body>
 </html>
