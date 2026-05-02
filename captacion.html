@@ -27,13 +27,11 @@
 
   .page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
 
-  /* HERO */
   .letter-hero { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; padding: 28px 32px; background: linear-gradient(135deg, #0d1e35, #0a0f1a); border: 1px solid #2563eb30; border-radius: 16px; }
   .letter-big { font-size: 72px; font-weight: 900; color: var(--blue-light); line-height: 1; }
   .letter-hero h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
   .letter-hero p  { font-size: 14px; color: var(--sub); line-height: 1.6; max-width: 500px; }
 
-  /* SHARED */
   .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
   .tag-blue   { background: #1e3a5f; color: #60a5fa; }
   .tag-green  { background: #14532d; color: #4ade80; }
@@ -43,70 +41,60 @@
   .block { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
   .block-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
   .block-sub   { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
-
   .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
 
-  /* STEPS */
-  .step-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-  .step-item:last-child { border-bottom: none; }
-  .step-num { width: 28px; height: 28px; border-radius: 50%; background: #1e3a5f; color: #60a5fa; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .step-body h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 3px; }
-  .step-body p  { font-size: 13px; color: var(--sub); line-height: 1.5; }
-  .step-body ul { margin-top: 6px; padding-left: 0; }
-  .step-body li { font-size: 12px; color: var(--sub); list-style: none; padding: 2px 0; display: flex; gap: 6px; }
-  .step-body li::before { content: '·'; color: #3b82f6; }
-  .time-pill { display: inline-block; font-size: 10px; font-weight: 600; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
-
-  /* GRID 2 */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-  @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 
-  /* SMALL CARD */
   .small-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
   .small-card h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 5px; }
   .small-card p  { font-size: 12px; color: var(--sub); line-height: 1.4; }
   .small-card .val { font-size: 20px; font-weight: 800; color: #60a5fa; margin-bottom: 3px; }
 
-  /* LEVELS */
-  .level-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .level-row:last-child { border-bottom: none; }
-  .level-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; min-width: 32px; text-align: center; }
-  .level-body h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 2px; }
-  .level-body p  { font-size: 12px; color: var(--sub); line-height: 1.4; }
-  .level-body .example { font-size: 11px; color: #3b82f6; margin-top: 4px; font-style: italic; }
-
-  /* COPY FORMAT */
-  .copy-box { background: var(--bg3); border-left: 3px solid #3b82f6; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 10px; }
-  .copy-box h4 { font-size: 12px; font-weight: 700; color: #60a5fa; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
-  .copy-box p  { font-size: 13px; color: var(--sub); line-height: 1.5; }
-  .copy-box .chars { font-size: 10px; color: #475569; margin-top: 4px; }
-
-  /* RULES */
-  .rule-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .rule-row:last-child { border-bottom: none; }
-  .rule-icon { font-size: 18px; flex-shrink: 0; }
-  .rule-body h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 2px; }
-  .rule-body p  { font-size: 12px; color: var(--sub); line-height: 1.4; }
-
-  /* TOOLS */
-  .tools-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; background: var(--bg3); border-radius: 10px; }
-  .tools-label { font-size: 10px; font-weight: 700; color: #475569; width: 100%; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
-  .tool-chip { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #cbd5e1; }
-
-  /* CHECKLIST */
   .check-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
   .check-item .box { width: 15px; height: 15px; border: 1.5px solid #334155; border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
   .check-item p { font-size: 13px; color: var(--sub); line-height: 1.4; }
   .check-item p strong { color: #e2e8f0; }
 
-  /* WARNING */
+  .tools-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; background: var(--bg3); border-radius: 10px; }
+  .tools-label { font-size: 10px; font-weight: 700; color: #475569; width: 100%; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .tool-chip { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #cbd5e1; }
+
   .warning { background: #1a0a0a; border: 1px solid #ef444430; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
   .warning p { font-size: 13px; color: #fca5a5; line-height: 1.5; }
   .warning p strong { color: #f87171; }
   .info-box { background: #0d1e35; border: 1px solid #1e3a5f; border-radius: 10px; padding: 14px 16px; }
   .info-box p { font-size: 13px; color: #93c5fd; line-height: 1.5; }
 
+  /* ACCORDION */
+  .accordion { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+  .acc-header { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; background: var(--bg2); transition: background 0.15s; user-select: none; }
+  .acc-header:hover { background: #151f35; }
+  .acc-body { display: none; padding: 16px; background: var(--bg3); border-top: 1px solid var(--border); }
+  .accordion.open .acc-body { display: block; }
+  .chevron { width: 15px; height: 15px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; flex-shrink: 0; margin-left: auto; }
+  .accordion.open .chevron { transform: rotate(180deg); }
+
+  /* LEVEL BADGE */
+  .level-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; min-width: 32px; text-align: center; }
+  .acc-title { font-size: 13px; font-weight: 600; color: #f1f5f9; flex: 1; }
+  .acc-sub { font-size: 11px; color: var(--muted); }
+  .example { font-size: 12px; color: #3b82f6; margin-top: 8px; font-style: italic; background: #0a0f1a; border-left: 2px solid #1e3a5f; padding: 8px 12px; border-radius: 0 6px 6px 0; }
+  .acc-body p { font-size: 13px; color: var(--sub); line-height: 1.5; margin-bottom: 8px; }
+  .acc-body p:last-child { margin-bottom: 0; }
+  .acc-body strong { color: #e2e8f0; }
+
+  /* COPY */
+  .copy-label { font-size: 11px; font-weight: 700; color: #60a5fa; letter-spacing: 1px; text-transform: uppercase; }
+  .copy-section { margin-bottom: 4px; }
+  .copy-field { font-size: 12px; color: var(--sub); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
+  .copy-field:last-child { border-bottom: none; }
+  .copy-field .cf-key { font-size: 11px; font-weight: 700; color: #475569; min-width: 60px; text-transform: uppercase; letter-spacing: 0.5px; padding-top: 1px; }
+  .copy-field .cf-val { flex: 1; }
+  .copy-chars { font-size: 10px; color: #fbbf24; font-weight: 600; }
+
+  /* RULE */
+  .rule-icon { font-size: 18px; flex-shrink: 0; }
 
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
   .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
@@ -118,15 +106,12 @@
     .nav-links a { padding: 8px 12px; font-size: 13px; }
     .nav-links .sep { display: none; }
     .page { padding: 28px 16px; }
-    .section-title h1 { font-size: 22px; }
-    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    .car-pills { flex-direction: column; gap: 8px; }
-    .pill { text-align: center; }
-      .letter-hero { flex-direction: column; gap: 12px; padding: 20px 18px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .letter-hero { flex-direction: column; gap: 12px; padding: 20px 18px; }
     .letter-big { font-size: 48px; }
     .letter-hero h1 { font-size: 22px; }
   }
-    footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
 </style>
 </head>
 <body>
@@ -136,184 +121,304 @@
 
 <div class="page">
 
-  <!-- HERO -->
   <div class="letter-hero">
     <div class="letter-big">C</div>
     <div>
       <h1>Captación — Meta Ads</h1>
-      <p>El proceso completo para conseguir clientes nuevos de forma predecible y escalable usando Meta Ads. Desde la configuración técnica hasta la optimización diaria.</p>
+      <p>El proceso completo para conseguir clientes nuevos de forma predecible y escalable. Desde la configuración técnica hasta la optimización diaria.</p>
     </div>
   </div>
 
-  <!-- 1. FILOSOFÍA -->
-  <div class="tag tag-blue">Filosofía base</div>
+  <!-- POR QUÉ META -->
+  <div class="tag tag-blue">Por qué Meta Ads</div>
   <div class="block" style="margin-bottom:16px;">
-    <div class="block-title">Por qué Meta Ads y no otro canal</div>
-    <div class="block-sub">El razonamiento detrás de la decisión de canal</div>
+    <div class="block-title">El canal con mayor ROI para e-commerce en Argentina</div>
+    <div class="block-sub">Combinación única de alcance masivo + costo por impacto bajo + retargeting preciso</div>
     <div class="grid-3">
-      <div class="small-card"><div class="val">470M</div><p>audiencia en LatAm. 5 de los 10 mercados más activos del mundo están en la región.</p></div>
-      <div class="small-card"><div class="val">5–7x</div><p>más barato el CPM en LatAm que en EE.UU. Mismo nivel de segmentación, fracción del costo.</p></div>
-      <div class="small-card"><div class="val">3.61:1</div><p>ROAS promedio de retargeting. El cliente que ya nos conoce compra mucho más barato.</p></div>
+      <div class="small-card"><div class="val">470M</div><p>audiencia activa en LatAm — 5 de los 10 mercados más activos del mundo están en la región.</p></div>
+      <div class="small-card"><div class="val">5–7×</div><p>más barato el CPM en Argentina vs EE.UU. Mismo nivel de segmentación, fracción del costo.</p></div>
+      <div class="small-card"><div class="val">3.6:1</div><p>ROAS promedio de retargeting. El cliente que ya conoce la marca compra mucho más barato de adquirir.</p></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- 2. SETUP TÉCNICO -->
+  <!-- SETUP TÉCNICO -->
   <div class="tag tag-blue">Setup técnico — Semana 1</div>
   <div class="block">
-    <div class="block-title">Configuración técnica — Checklist de onboarding</div>
-    <div class="block-sub">Lo que hay que tener ANTES de lanzar un solo anuncio</div>
-    <div class="check-item"><div class="box"></div><p><strong>Business Manager verificado</strong> con la empresa del cliente (nombre, sitio web, dirección)</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>Cuenta publicitaria creada</strong> con límite de gasto configurado y método de pago activo</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>Pixel instalado</strong> en el sitio web del cliente (via integración nativa de Shopify/TiendaNube o manual)</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>API de Conversiones</strong> activada — fundamental para rastrear conversiones con iOS 14+ sin depender solo de cookies</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>Dominio verificado</strong> en Business Manager — sin esto no se pueden usar eventos de conversión</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>Catálogo de productos</strong> sincronizado (para Dynamic Ads y retargeting de producto específico)</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>Eventos configurados</strong>: ViewContent, AddToCart, InitiateCheckout, Purchase — en ese orden de prioridad</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>Cuenta de Instagram vinculada</strong> al Business Manager del cliente</p></div>
-    <div class="check-item"><div class="box"></div><p><strong>Historial verificado</strong>: cuántas compras registra el pixel en los últimos 30 días (afecta la fase de aprendizaje)</p></div>
-    <div class="warning"><p><strong>Regla:</strong> No lanzar campañas de conversión si el pixel tiene menos de 50 eventos de compra en los últimos 30 días. Usar primero tráfico o interacción para calentar el pixel.</p></div>
-    <div class="info-box" style="margin-top:12px;"><p><strong>Framework estandarizado:</strong> Los pasos de configuración técnica (pixel, API de conversiones, catálogo, domain verification) deben estar documentados como SOPs con video Loom. Un SOP por paso = el mismo nicho se replica sin pensar. Preparar estos documentos antes del segundo cliente.</p></div>
+    <div class="block-title">Checklist antes de lanzar el primer anuncio</div>
+    <div class="block-sub">Sin esta base, cualquier campaña es tirar plata. Completar el 100% antes de crear un anuncio.</div>
+    <div class="check-item"><div class="box"></div><p><strong>Business Manager verificado</strong> con nombre de empresa, sitio web y dirección del cliente</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Cuenta publicitaria</strong> con límite de gasto configurado y método de pago activo</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Pixel instalado</strong> en el sitio (integración nativa TiendaNube/Shopify o manual)</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>API de Conversiones</strong> activada — recupera hasta el 30% de conversiones que iOS 14+ bloquea al Pixel solo</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Dominio verificado</strong> en Business Manager — necesario para usar eventos de conversión personalizados</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Catálogo de productos</strong> sincronizado vía feed automático — habilita los Dynamic Ads (DPA)</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Eventos configurados</strong>: ViewContent → AddToCart → InitiateCheckout → Purchase, en ese orden de prioridad</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Instagram vinculado</strong> al Business Manager del cliente</p></div>
+    <div class="check-item"><div class="box"></div><p><strong>Historial del pixel</strong>: cuántas compras hay en los últimos 30 días — determina si el pixel está maduro para campañas de conversión</p></div>
+    <div class="warning" style="margin-top:12px;"><p><strong>Regla:</strong> No lanzar campañas de conversión si el pixel tiene menos de 50 compras en los últimos 30 días. Usar primero tráfico o interacción para calentar el pixel y generar datos.</p></div>
+    <div class="info-box" style="margin-top:12px;"><p><strong>Documenta cada paso como SOP con Loom.</strong> Un video de 5 minutos por paso = el mismo setup se replica en el siguiente cliente del mismo nicho sin pensar. Preparar estos documentos antes del segundo cliente del mismo rubro.</p></div>
   </div>
 
   <hr class="divider">
 
-  <!-- 3. ESTRUCTURA DE CAMPAÑAS -->
+  <!-- ESTRUCTURA DE CAMPAÑAS -->
   <div class="tag tag-blue">Estructura de campañas</div>
   <div class="block">
-    <div class="block-title">La estructura correcta — Metodología propia</div>
-    <div class="block-sub">Una campaña por segmento. Un conjunto por problema. Un anuncio por variación.</div>
-    <div class="grid-3" style="margin-bottom:16px;">
-      <div class="small-card" style="border-top:3px solid #3b82f6;">
-        <h4>🏕 Campaña</h4>
-        <p>= Un segmento de público específico<br><br>Ej: "Mujeres 25–45 interesadas en suplementos"</p>
+    <div class="block-title">Una campaña por segmento — metodología propia</div>
+    <div class="block-sub">Campaña = segmento de público. Conjunto = problema a resolver. Anuncio = variación creativa.</div>
+    <div class="grid-3" style="margin-bottom:18px;">
+      <div class="small-card" style="border-top:3px solid #3b82f6;"><h4>🏕 Campaña</h4><p>Un segmento de público específico.<br><br>Ej: "Mujeres 25–45 interesadas en suplementos"</p></div>
+      <div class="small-card" style="border-top:3px solid #a78bfa;"><h4>📦 Conjunto de anuncios</h4><p>Un problema o dolor a resolver para ese segmento.<br><br>Ej: "No llegan a fin de mes con energía"</p></div>
+      <div class="small-card" style="border-top:3px solid #22c55e;"><h4>🎨 Anuncio</h4><p>Variación de ángulo, formato o nivel de consciencia.<br><br>Ej: N1 video + N3 carrusel + N5 estático</p></div>
+    </div>
+
+    <div class="accordion open">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#1e3a5f; color:#60a5fa;">1</span>
+        <div><div class="acc-title">Tráfico frío — Niveles N1 y N2</div><div class="acc-sub">Intereses amplios, lookalike, fase de descubrimiento</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="small-card" style="border-top:3px solid #a78bfa;">
-        <h4>📦 Conjunto de anuncios</h4>
-        <p>= Un problema o dolor a resolver para ese segmento<br><br>Ej: "No llegan a fin de mes con energía"</p>
-      </div>
-      <div class="small-card" style="border-top:3px solid #22c55e;">
-        <h4>🎨 Anuncio</h4>
-        <p>= Variación: distinto ángulo, formato o nivel de consciencia<br><br>Ej: N1 video + N3 carrusel + N5 estático</p>
+      <div class="acc-body">
+        <p><strong>Audiencia:</strong> intereses amplios relacionados al nicho, lookalike 1–5% de compradores anteriores.</p>
+        <p><strong>Objetivo:</strong> Compra si el pixel tiene más de 50 eventos/mes. Tráfico si el pixel es nuevo.</p>
+        <p><strong>Presupuesto:</strong> conservador al inicio — 20–30% del total. Escalar solo cuando haya datos.</p>
       </div>
     </div>
-    <div class="step-item">
-      <div class="step-num">1</div>
-      <div class="step-body"><h4>Campañas de tráfico frío (N1–N2)</h4><p>Públicos: intereses amplios, lookalike 1–5% de clientes anteriores. Objetivo: compra (si tiene pixel maduro) o tráfico/interacción (si es nuevo). Presupuesto: conservador al inicio.</p></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#2e1a5e; color:#a78bfa;">2</span>
+        <div><div class="acc-title">Retargeting — Niveles N3 y N4</div><div class="acc-sub">Visitantes web, abandono de carrito, video views</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p><strong>Audiencia:</strong> visitas al sitio últimos 30 días, AddToCart sin compra, video views +75%.</p>
+        <p><strong>Objetivo:</strong> Compra.</p>
+        <p><strong>Presupuesto:</strong> 20–30% del total. Generalmente el ROAS más alto del account.</p>
+        <p><strong>Formato ideal:</strong> DPA (Dynamic Product Ads) — muestra el producto exacto que vio el usuario. Sin necesidad de crear creativos manuales.</p>
+      </div>
     </div>
-    <div class="step-item">
-      <div class="step-num">2</div>
-      <div class="step-body"><h4>Campaña de retargeting (N3–N4)</h4><p>Público: visitas al sitio web últimos 30 días, AddToCart sin compra, video views +75%. Objetivo: compra. Presupuesto: 20–30% del total de inversión.</p></div>
-    </div>
-    <div class="step-item">
-      <div class="step-num">3</div>
-      <div class="step-body"><h4>Campaña de cierre (N5 — BOFU)</h4><p>Público: InitiateCheckout sin compra últimas 2 semanas, clientes con compra hace +90 días. Objetivo: compra. Creativos: oferta directa, urgencia, prueba social.</p></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#14532d; color:#4ade80;">3</span>
+        <div><div class="acc-title">Cierre — Nivel N5 (BOFU)</div><div class="acc-sub">InitiateCheckout sin compra, clientes de hace +90 días</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p><strong>Audiencia:</strong> InitiateCheckout sin compra en las últimas 2 semanas, compradores con más de 90 días sin volver.</p>
+        <p><strong>Objetivo:</strong> Compra con oferta directa.</p>
+        <p><strong>Creativos:</strong> oferta explícita, urgencia real, prueba social (reseñas, cantidad de clientes), garantía.</p>
+      </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- 4. NIVELES DE CONSCIENCIA -->
-  <div class="tag tag-blue">Niveles de consciencia</div>
+  <!-- NIVELES DE CONSCIENCIA -->
+  <div class="tag tag-blue">Niveles de consciencia — N1 a N5</div>
   <div class="block">
-    <div class="block-title">El funnel de creativos — N1 a N5</div>
-    <div class="block-sub">Cada anuncio habla a un nivel de conocimiento distinto del cliente</div>
-    <div class="level-row">
-      <div class="level-badge" style="background:#1e293b; color:#60a5fa;">N1</div>
-      <div class="level-body"><h4>Inconsciente del problema</h4><p>No sabe que tiene el problema. El anuncio lo despierta. Enfoque emocional, historia, situación relatable.</p><div class="example">Ej: "¿Por qué te cansas a las 3pm aunque dormiste bien?" (suplementos)</div></div>
+    <div class="block-title">El creativo correcto para cada estado mental del comprador</div>
+    <div class="block-sub">El error más común: hablarle a todos igual. Cada anuncio debe estar calibrado al nivel de consciencia. Click para ver descripción y ejemplos.</div>
+
+    <div class="accordion open">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#1e293b; color:#60a5fa;">N1</span>
+        <div><div class="acc-title">Inconsciente del problema</div><div class="acc-sub">No sabe que tiene el problema — hay que despertarlo</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>El usuario no está buscando nada. Se le interrumpe el scroll. El anuncio tiene que hacerlo pensar "esto me pasa a mí." Enfoque emocional, historia, situación relatable. No nombrar el producto todavía.</p>
+        <div class="example">Ej (suplementos): "¿Por qué te cansas a las 3pm aunque dormiste 8 horas?"</div>
+      </div>
     </div>
-    <div class="level-row">
-      <div class="level-badge" style="background:#1e293b; color:#a78bfa;">N2</div>
-      <div class="level-body"><h4>Consciente del problema</h4><p>Sabe que tiene el problema pero no busca solución activamente. Nombrar el problema y agitar.</p><div class="example">Ej: "El problema con la mayoría de suplementos de energía es que..."</div></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#1e293b; color:#a78bfa;">N2</span>
+        <div><div class="acc-title">Consciente del problema</div><div class="acc-sub">Sabe que tiene el problema pero no busca solución activamente</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Ya reconoce el problema pero no lo prioriza. El anuncio agita, pone el problema en primer plano. No proponer solución todavía — solo profundizar el dolor.</p>
+        <div class="example">Ej: "El problema con la mayoría de personas que se cansan fácil es que ignoran esta deficiencia..."</div>
+      </div>
     </div>
-    <div class="level-row">
-      <div class="level-badge" style="background:#1e293b; color:#fbbf24;">N3</div>
-      <div class="level-body"><h4>Consciente de la solución</h4><p>Sabe que existe una solución pero no conoce el producto. Presentar la solución, no el producto todavía.</p><div class="example">Ej: "Cómo los adaptógenos naturales cambiaron mi energía en 2 semanas"</div></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#1e293b; color:#fbbf24;">N3</span>
+        <div><div class="acc-title">Consciente de la solución</div><div class="acc-sub">Sabe que existe una solución, no conoce el producto</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Está investigando opciones. El anuncio presenta la categoría de solución, no el producto. Educar, no vender. Posicionar la solución como la obvia antes de presentar la marca.</p>
+        <div class="example">Ej: "Cómo los adaptógenos naturales cambiaron mi energía en 2 semanas (sin cafeína)"</div>
+      </div>
     </div>
-    <div class="level-row">
-      <div class="level-badge" style="background:#1e293b; color:#fb923c;">N4</div>
-      <div class="level-body"><h4>Consciente del producto</h4><p>Conoce el producto pero no decidió. Diferenciadores, beneficios específicos, comparación.</p><div class="example">Ej: "Por qué [Producto] funciona cuando otros fallan: los 3 ingredientes clave"</div></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#1e293b; color:#fb923c;">N4</span>
+        <div><div class="acc-title">Consciente del producto</div><div class="acc-sub">Conoce el producto, está comparando opciones</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Ya sabe que existe el producto pero no decidió comprarlo. El anuncio diferencia: por qué este y no el de la competencia. Ingredientes, proceso, garantías, prueba social específica.</p>
+        <div class="example">Ej: "Por qué [Producto] funciona cuando otros fallan: los 3 ingredientes que marcan la diferencia"</div>
+      </div>
     </div>
-    <div class="level-row">
-      <div class="level-badge" style="background:#1e293b; color:#4ade80;">N5</div>
-      <div class="level-body"><h4>Listo para comprar</h4><p>Solo necesita el empujón. Oferta, descuento, urgencia, prueba social, garantía.</p><div class="example">Ej: "+500 clientes en 30 días. Envío gratis. Probalo sin riesgo."</div></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="level-badge" style="background:#1e293b; color:#4ade80;">N5</span>
+        <div><div class="acc-title">Listo para comprar</div><div class="acc-sub">Solo necesita el empujón final</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>El usuario ya decidió comprar — solo está esperando la excusa. El anuncio ofrece: descuento, urgencia real, envío gratis, garantía, prueba social masiva. CTA directo y claro.</p>
+        <div class="example">Ej: "+500 clientes este mes. Envío gratis. Garantía 30 días. Probalo sin riesgo."</div>
+      </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- 5. COPY -->
+  <!-- COPY -->
   <div class="tag tag-blue">Formato de copy</div>
   <div class="block">
     <div class="block-title">Estructura de textos para cada anuncio</div>
-    <div class="block-sub">2 textos principales + 2 títulos por anuncio. Siempre.</div>
+    <div class="block-sub">2 versiones de texto + 2 títulos por anuncio. Siempre. Click para ver la estructura de cada uno.</div>
 
-    <div style="margin-bottom:16px;">
-      <p style="font-size:12px; color:#475569; text-transform:uppercase; letter-spacing:1px; font-weight:700; margin-bottom:10px;">Texto 1 — Lógico / Directo</p>
-      <div class="copy-box"><h4>Gancho</h4><p>Máximo 125 caracteres. Tiene que parar el scroll en la primera línea. Dato, pregunta, afirmación que contradice la creencia del cliente.</p><div class="chars">≤ 125 caracteres exactos</div></div>
-      <div class="copy-box"><h4>Cuerpo</h4><p>Bullets con emojis. Máximo 5 puntos. Beneficios concretos, no características. Cada bullet debe poder leerse solo.</p></div>
-      <div class="copy-box"><h4>CTA</h4><p>Una sola acción clara. "Comprá ahora", "Ver precio", "Quiero el mío". Nunca dos opciones.</p></div>
+    <div class="accordion open">
+      <div class="acc-header">
+        <span style="font-size:18px;">🔵</span>
+        <div><div class="acc-title">Texto 1 — Lógico / Directo</div><div class="acc-sub">Datos, beneficios concretos, CTA claro</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <div class="copy-field"><div class="cf-key">Gancho</div><div class="cf-val">Máximo 125 caracteres. Tiene que parar el scroll. Dato, pregunta, o afirmación que contradice una creencia. <span class="copy-chars">≤125 chars exactos</span></div></div>
+        <div class="copy-field"><div class="cf-key">Cuerpo</div><div class="cf-val">Bullets con emojis. Máximo 5 puntos. Beneficios concretos, no características. Cada bullet debe poder leerse solo.</div></div>
+        <div class="copy-field"><div class="cf-key">CTA</div><div class="cf-val">Una sola acción. "Comprá ahora", "Ver precio", "Quiero el mío." Nunca dos opciones en el mismo texto.</div></div>
+      </div>
     </div>
 
-    <div style="margin-bottom:16px;">
-      <p style="font-size:12px; color:#475569; text-transform:uppercase; letter-spacing:1px; font-weight:700; margin-bottom:10px;">Texto 2 — Emocional / Historia</p>
-      <div class="copy-box" style="border-left-color:#a78bfa;"><h4>Gancho</h4><p>Mismo límite de 125 caracteres pero arranca con situación emocional o historia relatable.</p><div class="chars">≤ 125 caracteres exactos</div></div>
-      <div class="copy-box" style="border-left-color:#a78bfa;"><h4>Cuerpo</h4><p>Historia de transformación: antes → qué pasó → después. Terminar con el resultado concreto.</p></div>
-      <div class="copy-box" style="border-left-color:#a78bfa;"><h4>CTA</h4><p>Mismo CTA que texto 1. La historia lleva al mismo destino.</p></div>
+    <div class="accordion">
+      <div class="acc-header">
+        <span style="font-size:18px;">🟣</span>
+        <div><div class="acc-title">Texto 2 — Emocional / Historia</div><div class="acc-sub">Situación relatable, transformación, misma CTA</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <div class="copy-field"><div class="cf-key">Gancho</div><div class="cf-val">Mismo límite de 125 caracteres pero arranca con situación emocional o historia relatable. <span class="copy-chars">≤125 chars</span></div></div>
+        <div class="copy-field"><div class="cf-key">Cuerpo</div><div class="cf-val">Historia de transformación: antes → qué pasó → después. Terminar con el resultado concreto y medible.</div></div>
+        <div class="copy-field"><div class="cf-key">CTA</div><div class="cf-val">Mismo CTA que texto 1. Dos ángulos distintos llevan al mismo destino.</div></div>
+      </div>
     </div>
 
-    <div>
-      <p style="font-size:12px; color:#475569; text-transform:uppercase; letter-spacing:1px; font-weight:700; margin-bottom:10px;">Títulos (Headline)</p>
-      <div class="copy-box" style="border-left-color:#fbbf24;"><h4>Título 1 — Claridad directa</h4><p>Máx 5 palabras + emoji al final. Beneficio directo. Máx 40 caracteres. Ej: "Envío gratis hoy 🚀"</p></div>
-      <div class="copy-box" style="border-left-color:#fbbf24;"><h4>Título 2 — Urgencia / Prueba social</h4><p>Máx 5 palabras + emoji. Número o tiempo. Ej: "+500 clientes este mes ⚡"</p></div>
+    <div class="accordion">
+      <div class="acc-header">
+        <span style="font-size:18px;">🟡</span>
+        <div><div class="acc-title">Títulos (Headline)</div><div class="acc-sub">2 variantes por anuncio — claridad y urgencia</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <div class="copy-field"><div class="cf-key">Título 1</div><div class="cf-val"><strong>Claridad directa.</strong> Máx 5 palabras + emoji al final. Beneficio directo. <span class="copy-chars">≤40 chars</span><br><span style="font-size:11px; color:#3b82f6; font-style:italic;">Ej: "Envío gratis hoy 🚀"</span></div></div>
+        <div class="copy-field"><div class="cf-key">Título 2</div><div class="cf-val"><strong>Urgencia o prueba social.</strong> Número o tiempo. <span class="copy-chars">≤40 chars</span><br><span style="font-size:11px; color:#3b82f6; font-style:italic;">Ej: "+500 clientes este mes ⚡"</span></div></div>
+      </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- 6. OPTIMIZACIÓN -->
+  <!-- OPTIMIZACIÓN -->
   <div class="tag tag-blue">Optimización y escalado</div>
   <div class="block">
-    <div class="block-title">Reglas de optimización — Cuándo actuar y cuándo no tocar</div>
-    <div class="block-sub">La regla más importante: no tocar en las primeras 72hs de un anuncio nuevo</div>
-    <div class="rule-row">
-      <div class="rule-icon">⏱</div>
-      <div class="rule-body"><h4>Primeras 72hs — NO TOCAR</h4><p>Meta necesita tiempo para salir de la fase de aprendizaje. Cualquier cambio reinicia el algoritmo. Dejar correr aunque los números no gusten.</p></div>
+    <div class="block-title">Reglas de cuándo actuar y cuándo no tocar</div>
+    <div class="block-sub">La regla más importante: no tocar en las primeras 72hs. Cada cambio reinicia el algoritmo.</div>
+
+    <div class="accordion open">
+      <div class="acc-header">
+        <span class="rule-icon">⏱</span>
+        <div><div class="acc-title">Primeras 72hs — No tocar nada</div><div class="acc-sub">Meta necesita tiempo para salir de la fase de aprendizaje</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Durante las primeras 72 horas Meta está en fase de aprendizaje: optimiza la entrega del anuncio hacia el público con mayor probabilidad de conversión. Cualquier cambio (presupuesto, audiencia, creativos) reinicia ese proceso.</p>
+        <p><strong>Dejar correr aunque los números no gusten.</strong> Los primeros días no son representativos del rendimiento real.</p>
+      </div>
     </div>
-    <div class="rule-row">
-      <div class="rule-icon">⛔</div>
-      <div class="rule-body"><h4>Pausar anuncio si...</h4><p>CTR menor a 1% después de 500+ impresiones. Frecuencia mayor a 3.0 en los últimos 7 días con ROAS cayendo. CPA más del doble del objetivo después de 5 días.</p></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="rule-icon">⛔</span>
+        <div><div class="acc-title">Cuándo pausar un anuncio</div><div class="acc-sub">3 señales claras de que no está funcionando</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Pausar si se cumplen estas condiciones (después de las 72hs iniciales):</p>
+        <p>• CTR menor a <strong>1%</strong> con más de 500 impresiones.<br>• Frecuencia mayor a <strong>3.0 en los últimos 7 días</strong> con ROAS cayendo.<br>• CPA más del doble del objetivo después de 5 días de datos.</p>
+      </div>
     </div>
-    <div class="rule-row">
-      <div class="rule-icon">📈</div>
-      <div class="rule-body"><h4>Escalar si...</h4><p>ROAS supera el objetivo por 2 días consecutivos. Aumentar presupuesto +5% cada 36hs. Nunca más del 20% de golpe — rompe la fase de aprendizaje.</p></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="rule-icon">📈</span>
+        <div><div class="acc-title">Cuándo y cómo escalar</div><div class="acc-sub">Nunca más del 20% de un golpe</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Escalar si el ROAS supera el objetivo por <strong>2 días consecutivos</strong>.</p>
+        <p>Método: aumentar presupuesto <strong>+5% a +10% cada 36hs</strong>. Nunca más del 20% de golpe — un aumento brusco vuelve a poner el anuncio en aprendizaje y pierde la optimización ganada.</p>
+      </div>
     </div>
-    <div class="rule-row">
-      <div class="rule-icon">🔄</div>
-      <div class="rule-body"><h4>Rotar creativos cuando...</h4><p>La frecuencia supera 2.5 en los últimos 7 días y el ROAS baja más del 15%. Siempre tener 2–3 creativos nuevos listos para rotar antes de que se agoten los actuales.</p></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="rule-icon">🔄</span>
+        <div><div class="acc-title">Cuándo rotar creativos</div><div class="acc-sub">Frecuencia alta + ROAS cayendo = creativo quemado</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Rotar cuando la frecuencia supera <strong>2.5 en los últimos 7 días</strong> y el ROAS baja más del 15%.</p>
+        <p><strong>Regla de preparación:</strong> siempre tener 2–3 creativos nuevos listos antes de que los actuales se quemen. No esperar a que fallen para empezar a crear.</p>
+      </div>
     </div>
-    <div class="rule-row">
-      <div class="rule-icon">📅</div>
-      <div class="rule-body"><h4>Revisión semanal obligatoria</h4><p>Revisar: CPM, CTR, CPC, frecuencia, ROAS, CPA. Comparar con semana anterior. Documentar los cambios hechos para poder atribuir resultados.</p></div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <span class="rule-icon">📅</span>
+        <div><div class="acc-title">Revisión semanal — Lo que se mide siempre</div><div class="acc-sub">5 métricas, cada lunes</div></div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>Cada lunes revisar: <strong>CPM</strong> (costo de visibilidad), <strong>CTR</strong> (relevancia del creativo), <strong>CPC</strong> (eficiencia del click), <strong>Frecuencia</strong> (fatiga), <strong>ROAS</strong> (retorno).</p>
+        <p>Comparar con la semana anterior. Documentar todos los cambios hechos — si no está documentado, no se puede atribuir resultado.</p>
+      </div>
     </div>
   </div>
 
-  <!-- 7. HERRAMIENTAS -->
   <div class="tools-row">
     <span class="tools-label">Herramientas del proceso</span>
     <span class="tool-chip">Meta Ads Manager</span>
     <span class="tool-chip">Meta Business Suite</span>
     <span class="tool-chip">Pixel + API Conversiones</span>
     <span class="tool-chip">Meta Events Manager</span>
-    <span class="tool-chip">Shopify / TiendaNube (integración)</span>
-    <span class="tool-chip">nano-banana (creativos)</span>
-    <span class="tool-chip">Foreplay / Meta Ad Library (referencias)</span>
+    <span class="tool-chip">Shopify / TiendaNube</span>
+    <span class="tool-chip">Canva Pro (creativos)</span>
+    <span class="tool-chip">Meta Ad Library (referencias)</span>
   </div>
 
 </div>
 
-<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+<footer>Sistema CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
 
+<script>
+document.querySelectorAll('.acc-header').forEach(function(h) {
+  h.addEventListener('click', function() { h.closest('.accordion').classList.toggle('open'); });
+});
+</script>
 </body>
 </html>
