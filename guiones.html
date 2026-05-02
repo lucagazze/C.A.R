@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guiones &amp; Copy · Sistema CAR</title>
+  <script src="navbar.js" defer></script>
+  <style>
+    :root {
+      --bg:  #0a0f1a; --bg2: #0f1520; --bg3: #141c2a;
+      --border: #1e293b; --text: #f1f5f9; --muted: #64748b; --sub: #94a3b8;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6}
+    .container{max-width:860px;margin:0 auto;padding:40px 24px 80px}
+
+    /* header */
+    .page-tag{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    h1{font-size:28px;font-weight:800;margin-bottom:8px}
+    .page-sub{color:var(--sub);font-size:14px;max-width:600px;margin-bottom:40px}
+
+    /* prompt cards */
+    .prompt-card{border-radius:14px;border:1px solid var(--border);margin-bottom:24px;overflow:hidden}
+    .pc-header{padding:22px 26px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+    .pc-header-left{flex:1}
+    .pc-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+    .pc-title{font-size:18px;font-weight:800;margin-bottom:6px}
+    .pc-desc{font-size:13px;color:var(--sub);line-height:1.6}
+    .pc-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+    .tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:5px;text-transform:uppercase;letter-spacing:.5px}
+
+    /* copy button */
+    .copy-btn{flex-shrink:0;font-size:12px;font-weight:700;padding:10px 20px;border-radius:8px;border:1px solid;cursor:pointer;transition:all .2s;white-space:nowrap;align-self:flex-start;margin-top:4px}
+    .copy-btn-video{border-color:#1e3a5f;background:rgba(96,165,250,.08);color:#60a5fa}
+    .copy-btn-video:hover{background:rgba(96,165,250,.15);border-color:#3b82f6}
+    .copy-btn-copy{border-color:#1a4d2e;background:rgba(34,197,94,.08);color:#4ade80}
+    .copy-btn-copy:hover{background:rgba(34,197,94,.15);border-color:#22c55e}
+    .copy-btn.copied{background:#071a0d;border-color:#22c55e;color:#22c55e}
+
+    /* divider */
+    .pc-divider{height:1px;background:var(--border);margin:0 26px}
+
+    /* prompt text */
+    .prompt-wrap{padding:0 26px 24px}
+    .pw-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:16px 0 10px}
+    .prompt-text{background:#06080f;border:1px solid var(--border);border-radius:10px;padding:20px 22px;font-size:12px;line-height:1.85;color:#b8ccde;white-space:pre-wrap;font-family:'SF Mono','Fira Code','Consolas',monospace;max-height:500px;overflow-y:auto}
+    .prompt-text::-webkit-scrollbar{width:5px}
+    .prompt-text::-webkit-scrollbar-track{background:transparent}
+    .prompt-text::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+    /* level pills at bottom */
+    .levels-row{display:flex;gap:4px;padding:0 26px 20px;flex-wrap:wrap}
+    .lv-pill{font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px;border:1px solid}
+    .lv-1{background:#1a1000;border-color:#3d2800;color:#f59e0b}
+    .lv-2{background:#0b1526;border-color:#1e3564;color:#3b82f6}
+    .lv-3{background:#130b24;border-color:#381d64;color:#a855f7}
+    .lv-4{background:#071820;border-color:#0d3848;color:#06b6d4}
+    .lv-5{background:#071a0d;border-color:#184828;color:#22c55e}
+
+    @media(max-width:640px){
+      h1{font-size:22px}
+      .pc-header{flex-direction:column}
+      .copy-btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-root"></div>
+<div class="container">
+
+  <div class="page-tag">Sistema CAR · Eugene Schwartz · Meta Ads</div>
+  <h1>Guiones &amp; Copy por Nivel de Consciencia</h1>
+  <p class="page-sub">Dos prompts. Uno genera los 5 guiones de video. El otro genera los 5 copies escritos. Completás los datos del negocio y Claude te arma el sistema completo.</p>
+
+  <!-- ══ PROMPT 1 — GUIONES DE VIDEO ══ -->
+  <div class="prompt-card">
+    <div class="pc-header" style="background:#0b1324">
+      <div class="pc-header-left">
+        <div class="pc-tag" style="color:#60a5fa">Prompt 1 — Guiones de video</div>
+        <div class="pc-title">5 scripts de video · N1 → N5</div>
+        <div class="pc-desc">Genera los 5 guiones completos de video para Meta Ads (Stories + Reels). Cada uno con marcas de tiempo exactas, diálogo, visual, texto en pantalla y notas de producción.</div>
+        <div class="pc-tags">
+          <span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">UGC · Voz en off · B-roll</span>
+          <span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">25–40 seg por video</span>
+          <span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">Stories / Reels 9:16</span>
+        </div>
+      </div>
+      <button class="copy-btn copy-btn-video" data-target="prompt-video">Copiar prompt</button>
+    </div>
+    <div class="pc-divider"></div>
+    <div class="prompt-wrap">
+      <div class="pw-label">Prompt completo — pegalo en Claude y completá los datos del negocio</div>
+      <div class="prompt-text" id="prompt-video">Sos un experto en publicidad de Meta Ads, copywriting de respuesta directa y producción de video para redes sociales.
+
+Tu tarea: crear los 5 guiones completos de video para una campaña de Meta Ads (Stories + Reels), uno por cada nivel de consciencia del framework de Eugene Schwartz. Los 5 videos forman un sistema que cubre todo el embudo.
+
+━━━━ DATOS DEL NEGOCIO (completar antes de enviar) ━━━━
+Negocio / servicio: [describir qué hace el negocio y cómo genera valor]
+Público objetivo: [edad, perfil, país, situación actual del negocio]
+Dolor principal: [la frustración que viven en el día a día, en sus palabras]
+Diferenciador: [por qué tu solución funciona cuando las otras no]
+Resultado concreto: [el outcome real que generás, con números si tenés]
+Prueba social: [clientes activos, casos reales, años de trayectoria]
+CTA final: [qué querés que hagan — agendar, comprar, registrarse]
+
+━━━━ FORMATO DE ENTREGA PARA CADA GUION ━━━━
+
+Usar exactamente este formato para los 5 niveles:
+
+─────────────────────────────────
+NIVEL N[X] — [NOMBRE DEL NIVEL]
+Duración: [segundos]  |  Audiencia: [fría / tibia / retargeting]
+Formato recomendado: [UGC / Voz en off + B-roll / Mixto]
+─────────────────────────────────
+
+[00–03 seg] GANCHO
+  Visual → [descripción de lo que se ve]
+  Diálogo → "[texto exacto que se dice o se lee]"
+  Pantalla → "[texto en pantalla si aplica]"
+
+[03–XX seg] [NOMBRE DE LA SECCIÓN]
+  Visual → [descripción]
+  Diálogo → "[texto exacto]"
+  Pantalla → "[si aplica]"
+
+[continuar con cada sección hasta el CTA]
+
+[XX–XX seg] CTA
+  Visual → [descripción]
+  Diálogo → "[texto exacto del CTA]"
+  Pantalla → "[link o acción visible en pantalla]"
+
+NOTAS DE PRODUCCIÓN:
+  Tono de voz → [cómo debe sonar: pausado, energético, íntimo, urgente]
+  Ritmo → [dinámico con cortes / pausado y reflexivo / constante]
+  B-roll clave → 1) ... 2) ... 3) ... 4) ...
+  Texto en pantalla → [instrucción general de tipografía y cuándo aparece]
+  Música → [estilo, BPM, si sube o baja en el CTA]
+  Diferencia vs otros videos → [qué hace único a este nivel respecto a los demás]
+
+━━━━ QUÉ DEBE LOGRAR CADA NIVEL ━━━━
+
+N1 — INCONSCIENTE | 25–28 seg | Audiencia fría
+El usuario NO sabe que tiene el problema. Scrollea sin pensar en tu negocio.
+→ Objetivo: interrumpir con un dato sorprendente, número impactante o pregunta incómoda.
+→ Regla absoluta: NUNCA mencionar la empresa, producto ni servicio.
+→ El gancho tiene que funcionar solo, sin contexto previo.
+→ CTA suave: "Descubrí por qué / Mirá esto / Hay algo que no sabías"
+
+N2 — PROBLEMA | 25–30 seg | Audiencia fría
+El usuario siente la frustración pero cree que "es así nomás".
+→ Objetivo: nombrar el dolor con tanta precisión que piense "esto soy yo".
+→ Validar que no es su culpa. Insinuar que hay salida sin revelarla.
+→ No resolver todavía. Solo nombrar, validar y abrir la puerta.
+→ CTA medio: "Ver cómo lo resolvieron / Hay un motivo concreto →"
+
+N3 — SOLUCIÓN | 30–40 seg | Audiencia tibia
+Ya sabe que existe una solución. Está evaluando opciones.
+→ Objetivo: presentar el mecanismo diferenciador como la opción más lógica.
+→ Atacar el método estándar (no marcas competidoras). Explicar el principio, no el producto.
+→ Primer video donde podés mencionar el nombre del servicio.
+→ CTA medio: "Ver si aplica a tu negocio / Diagnóstico gratuito"
+
+N4 — PRODUCTO | 30–40 seg | Retargeting
+Ya te conoce. Está evaluando. Necesita razones concretas para elegirte.
+→ Objetivo: features en lenguaje de beneficio + prueba social real + desmontar la objeción principal.
+→ No volvás a explicar el problema. Directo a resultados.
+→ CTA directo: "Agendar llamada / Ver precios / Empezar"
+
+N5 — DECISIÓN | 15–22 seg | Retargeting caliente
+Listo para comprar. Algo lo frenó (precio, timing, miedo).
+→ Objetivo: eliminar el último roce. Sin re-explicar el valor. Sin re-explicar el problema.
+→ Urgencia real si existe — NUNCA inventar urgencia falsa.
+→ CTA único y fuerte: "Agendá hoy / Empezamos esta semana"
+
+━━━━ REGLAS GLOBALES ━━━━
+· Formato vertical 9:16 para todos (Stories + Reels)
+· Los primeros 3 segundos de cada video son críticos — sin introducción, sin saludo
+· Tono general: conversacional, nunca corporativo
+· N1 y N2 nunca mencionan el servicio ni la empresa
+· Números concretos siempre > generalidades ("el 86%" > "la mayoría")
+· El CTA de cada nivel es proporcional a la temperatura de la audiencia
+· Si el formato es UGC: la persona habla a cámara, estilo orgánico, sin guion robotizado
+
+Generá los 5 guiones completos en orden N1 → N5.
+Separalos con "━━━━━━━━━━━━━━━━━━━━━━━━".</div>
+    </div>
+    <div class="levels-row">
+      <span class="lv-pill lv-1">N1 · Inconsciente</span>
+      <span class="lv-pill lv-2">N2 · Problema</span>
+      <span class="lv-pill lv-3">N3 · Solución</span>
+      <span class="lv-pill lv-4">N4 · Producto</span>
+      <span class="lv-pill lv-5">N5 · Decisión</span>
+    </div>
+  </div>
+
+  <!-- ══ PROMPT 2 — COPY ESCRITO ══ -->
+  <div class="prompt-card">
+    <div class="pc-header" style="background:#071a0d">
+      <div class="pc-header-left">
+        <div class="pc-tag" style="color:#4ade80">Prompt 2 — Copy escrito</div>
+        <div class="pc-title">5 copies completos · N1 → N5</div>
+        <div class="pc-desc">Genera los 5 copies escritos para Meta Ads. Cada uno con primary text completo, headline, descripción y botón de CTA. Longitud y tono calibrados por nivel.</div>
+        <div class="pc-tags">
+          <span class="tag" style="background:rgba(74,222,128,.1);color:#4ade80">Primary text · Headline · CTA</span>
+          <span class="tag" style="background:rgba(74,222,128,.1);color:#4ade80">Longitud por nivel</span>
+          <span class="tag" style="background:rgba(74,222,128,.1);color:#4ade80">Feed · Stories · Reels</span>
+        </div>
+      </div>
+      <button class="copy-btn copy-btn-copy" data-target="prompt-copy">Copiar prompt</button>
+    </div>
+    <div class="pc-divider"></div>
+    <div class="prompt-wrap">
+      <div class="pw-label">Prompt completo — pegalo en Claude y completá los datos del negocio</div>
+      <div class="prompt-text" id="prompt-copy">Sos un experto en copywriting de respuesta directa para Meta Ads (Facebook + Instagram).
+
+Tu tarea: escribir los 5 copies completos para una campaña de Meta Ads, uno por cada nivel de consciencia del framework de Eugene Schwartz. Cada copy tiene que poder funcionar solo, sin necesitar contexto de los otros.
+
+━━━━ DATOS DEL NEGOCIO (completar antes de enviar) ━━━━
+Negocio / servicio: [describir qué hace el negocio y cómo genera valor]
+Público objetivo: [edad, perfil, país, situación actual del negocio]
+Dolor principal: [la frustración que viven en el día a día, en sus palabras]
+Diferenciador: [por qué tu solución funciona cuando las otras no]
+Resultado concreto: [el outcome real que generás, con números si tenés]
+Prueba social: [clientes activos, casos reales, años de trayectoria]
+CTA final: [qué querés que hagan — agendar, comprar, registrarse]
+
+━━━━ FORMATO DE ENTREGA PARA CADA COPY ━━━━
+
+Usar exactamente este formato para los 5 niveles:
+
+─────────────────────────────────
+NIVEL N[X] — [NOMBRE]
+Temperatura: [Fría / Tibia / Retargeting]  |  Palabras: [cantidad]
+─────────────────────────────────
+
+PRIMARY TEXT:
+[el cuerpo completo del anuncio — con saltos de línea cada 2–3 oraciones]
+
+HEADLINE (máx. 40 chars):
+[el título que aparece debajo del creativo]
+
+DESCRIPCIÓN (máx. 25 chars):
+[texto secundario opcional — solo si suma, sino dejarlo en blanco]
+
+BOTÓN CTA:
+[la opción de Meta que corresponde: Más información / Ver más / Comprar / Registrarse / Contactar]
+
+CREATIVO RECOMENDADO:
+[una línea sobre qué tipo de imagen o video acompaña mejor a este copy]
+
+━━━━ SPECS TÉCNICAS A RESPETAR ━━━━
+· Los primeros 125 caracteres del primary text son los que se ven sin "Ver más" — el gancho va ahí
+· Primera línea = gancho. Si no engancha en 2 segundos, el copy falló.
+· Salto de línea cada 2–3 oraciones. El texto en bloque no se lee en mobile.
+· Nunca empezar con el nombre de la empresa.
+· Emojis: solo si el tono del nivel lo permite (N4 y N5 más directos, menos decorativos).
+· Headline: beneficio concreto o pregunta, nunca el nombre del negocio.
+
+━━━━ LONGITUD Y TONO POR NIVEL ━━━━
+
+N1 — INCONSCIENTE | 80–120 palabras | Audiencia fría
+→ Tono: disruptivo y curioso, como revelar un secreto que no conocían
+→ Primera línea: dato sorprendente, número impactante o pregunta incómoda
+→ NUNCA mencionar el servicio ni la empresa en este copy
+→ Terminar con curiosidad abierta, no con promesa de venta
+→ CTA suave: Más información / Ver más
+
+N2 — PROBLEMA | 60–90 palabras | Audiencia fría
+→ Tono: empático y directo, como alguien que vivió lo mismo
+→ Primera línea: el dolor exacto en las palabras del cliente, no en las tuyas
+→ Validar sin condescendencia. Insinuar la causa raíz al final.
+→ NUNCA mencionar el servicio ni la empresa en este copy
+→ CTA suave-medio: Ver más / Más información
+
+N3 — SOLUCIÓN | 70–100 palabras | Audiencia tibia
+→ Tono: educativo pero accesible, experto que comparte un insight
+→ Primera línea: reconocer la búsqueda o atacar el método estándar
+→ Presentar el mecanismo diferenciador — el principio, no el producto
+→ Primer nivel donde podés mencionar el nombre del servicio
+→ CTA medio: Ver más / Más información / Contactar
+
+N4 — PRODUCTO | 40–70 palabras | Retargeting
+→ Tono: confiado y basado en datos, sin adjetivos vacíos
+→ Primera línea: resultado concreto o prueba social — nada de promesas
+→ Features en lenguaje de beneficio. Desmontar la objeción principal.
+→ CTA directo: Contactar / Registrarse / Comprar
+
+N5 — DECISIÓN | 20–45 palabras | Retargeting caliente
+→ Tono: urgente sin desesperación — seguro, no agresivo
+→ Cortísimo. Solo el empujón final. Sin re-explicar el valor.
+→ Urgencia real si existe — NUNCA inventar urgencia falsa
+→ Un solo CTA. Si tiene sentido repetirlo en el texto, repetirlo.
+→ CTA fuerte: Contactar / Registrarse / Comprar
+
+━━━━ REGLAS GLOBALES ━━━━
+· Cada copy funciona solo, sin haber visto los otros
+· N1 y N2 nunca mencionan el servicio ni la empresa
+· El gancho de cada copy tiene que funcionar también como texto en pantalla de un estático
+· Números concretos siempre: "3 de cada 4 negocios" > "la mayoría de los negocios"
+· Nunca prometer resultados que no se puedan respaldar con datos reales
+· El CTA de cada nivel es proporcional a la temperatura de la audiencia
+
+Generá los 5 copies completos en orden N1 → N5.
+Separalos con "━━━━━━━━━━━━━━━━━━━━━━━━".</div>
+    </div>
+    <div class="levels-row">
+      <span class="lv-pill lv-1">N1 · Inconsciente</span>
+      <span class="lv-pill lv-2">N2 · Problema</span>
+      <span class="lv-pill lv-3">N3 · Solución</span>
+      <span class="lv-pill lv-4">N4 · Producto</span>
+      <span class="lv-pill lv-5">N5 · Decisión</span>
+    </div>
+  </div>
+
+</div>
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      if (!el) return;
+      var text = el.innerText || el.textContent;
+      var original = btn.textContent;
+      function done() {
+        btn.textContent = '✓ Copiado';
+        btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = original; btn.classList.remove('copied'); }, 2200);
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta); done();
+      }
+    });
+  });
+</script>
+</body>
+</html>

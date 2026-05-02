@@ -68,6 +68,7 @@
       li('costos.html',     'Costos') +
       li('validacion.html', 'Validaci\u00f3n') +
       li('sops.html',       'SOPs') +
+      li('guiones.html',    'Guiones') +
       '<li><span class="sep">|</span></li>' +
       li('captacion.html',  'C \u2014 Captaci\u00f3n') +
       li('atencion.html',   'A \u2014 Atenci\u00f3n') +
