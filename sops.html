@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema CAR — SOPs</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: #0a0f1aee; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 16px; }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo .pills { display: flex; gap: 3px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-links { display: flex; gap: 2px; list-style: none; flex-wrap: wrap; }
+  .nav-links a { display: block; padding: 5px 10px; font-size: 12px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+  .nav-links a.active { background: var(--border); color: #f1f5f9; }
+  .nav-links .sep { color: #1e293b; font-size: 12px; padding: 5px 2px; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+  .tag-blue   { background: #1e3a5f; color: #60a5fa; }
+  .tag-green  { background: #14532d; color: #4ade80; }
+  .tag-yellow { background: #3b2a00; color: #fbbf24; }
+  .tag-pink   { background: #3a1a2a; color: #f472b6; }
+  .tag-purple { background: #2e1a5e; color: #c4b5fd; }
+
+  .section-title { margin-bottom: 28px; }
+  .section-title h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .section-title p  { font-size: 14px; color: var(--muted); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+  /* SECTION HEADER */
+  .sop-section { margin-bottom: 32px; }
+  .sop-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .sop-letter { width: 32px; height: 32px; border-radius: 8px; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .letter-c  { background: #1e3a5f; color: #60a5fa; }
+  .letter-a  { background: #1a3a2a; color: #4ade80; }
+  .letter-r  { background: #3a1a2a; color: #f472b6; }
+  .letter-ops { background: #2e1a5e; color: #c4b5fd; }
+  .letter-on  { background: #3b2a00; color: #fbbf24; }
+  .sop-section-title { font-size: 15px; font-weight: 700; color: #f1f5f9; }
+  .sop-section-sub   { font-size: 12px; color: var(--muted); }
+
+  /* ACCORDION */
+  .accordion { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+  .acc-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; cursor: pointer; background: var(--bg2); transition: background 0.15s; user-select: none; gap: 12px; }
+  .acc-header:hover { background: #151f35; }
+  .acc-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+  .acc-id { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+  .id-c   { background: #1e3a5f; color: #60a5fa; }
+  .id-a   { background: #1a3a2a; color: #4ade80; }
+  .id-r   { background: #3a1a2a; color: #f472b6; }
+  .id-ops { background: #2e1a5e; color: #c4b5fd; }
+  .id-on  { background: #3b2a00; color: #fbbf24; }
+  .acc-info {}
+  .acc-name { font-size: 13px; font-weight: 600; color: #f1f5f9; }
+  .acc-desc { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .chevron { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; flex-shrink: 0; }
+  .accordion.open .chevron { transform: rotate(180deg); }
+  .acc-body { display: none; padding: 20px 18px; background: var(--bg3); border-top: 1px solid var(--border); }
+  .accordion.open .acc-body { display: block; }
+
+  /* STEPS */
+  .step-list { list-style: none; }
+  .step-list li { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: #1e293b; color: var(--sub); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-content { font-size: 13px; color: var(--sub); line-height: 1.5; }
+  .step-content strong { color: #cbd5e1; }
+  .step-content .note { font-size: 11px; color: var(--muted); margin-top: 3px; display: block; }
+  .step-content .code { font-family: monospace; font-size: 11px; background: #0a0f1a; color: #93c5fd; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 6px; }
+  .checklist-item { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--sub); }
+  .check-dot { width: 14px; height: 14px; border: 1px solid var(--border); border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
+
+  /* TOOLS ROW */
+  .tool-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .tool-pill { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: var(--bg2); border: 1px solid var(--border); color: var(--sub); }
+
+  /* METRICS ROW */
+  .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .metric-item { background: #0a0f1a; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center; }
+  .metric-item .m-val { font-size: 15px; font-weight: 700; color: #4ade80; }
+  .metric-item .m-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  /* INFO / WARN BOXES */
+  .info-box  { background: #0d1520; border: 1px solid #1e3a5f30; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 12px; color: #93c5fd; line-height: 1.5; }
+  .warn-box  { background: #1a0800; border: 1px solid #f59e0b30; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 12px; color: #fcd34d; line-height: 1.5; }
+  .green-box { background: #0d1f12; border: 1px solid #14532d; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 12px; color: #86efac; line-height: 1.5; }
+
+  /* SUMMARY BAR */
+  .sop-count { display: inline-flex; align-items: center; gap: 6px; background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: var(--sub); margin-bottom: 24px; }
+  .sop-count span { font-weight: 700; color: #f1f5f9; }
+
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; flex-wrap: wrap; height: auto; min-height: 52px; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 8px 0 12px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 8px 12px; font-size: 13px; white-space: normal; }
+    .nav-links .sep { display: none; }
+    .page { padding: 28px 16px; }
+    .section-title h1 { font-size: 22px; }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .acc-desc { display: none; }
+  }
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
+
+<div class="page">
+
+  <div class="tag tag-purple">SOPs — Procedimientos estándar</div>
+  <div class="section-title">
+    <h1>Cómo ejecutamos el Sistema CAR</h1>
+    <p>Cada proceso documentado con pasos exactos. Sin SOPs, cada cliente cuesta el doble de tiempo.</p>
+  </div>
+
+  <div class="sop-count">17 SOPs · <span>4</span> secciones · Click para expandir</div>
+
+  <!-- ONBOARDING -->
+  <div class="sop-section">
+    <div class="sop-section-header">
+      <div class="sop-letter letter-on">ON</div>
+      <div>
+        <div class="sop-section-title">Onboarding</div>
+        <div class="sop-section-sub">Del cierre a la primera entrega — 3 SOPs</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-on">ON-01</span>
+          <div class="acc-info">
+            <div class="acc-name">Kick-off y accesos</div>
+            <div class="acc-desc">Primera semana tras el pago del setup fee</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Enviar email de bienvenida</strong> dentro de las 24h del pago. Incluye: Loom de 5 min con el plan de trabajo, Google Form de accesos, fecha tentativa de kickoff call.<span class="note">Template: /Drive/Templates/Email-Bienvenida.docx</span></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Google Form de accesos</strong> — solicitar: Meta Business Manager (admin), Instagram (admin), TiendaNube / Shopify (staff con permiso de apps), WhatsApp número a migrar, Klaviyo (si ya tiene cuenta), dominio de email preferido.<span class="note">No empezar el setup hasta tener el 100% de los accesos.</span></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Crear carpeta del cliente en Drive</strong> con estructura estándar: /Accesos, /Creativos, /Reportes, /SOPs-cliente, /Contratos.<span class="note">Compartir la carpeta con el cliente en modo lectura.</span></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Kickoff call (30–45 min)</strong> — presentar el plan de los primeros 30 días, alinear expectativas, revisar el FAQ del negocio para la knowledge base de la IA.</div></li>
+          <li><div class="step-num">5</div><div class="step-content"><strong>Crear el documento de contexto del cliente</strong> — producto, ticket promedio, productos más vendidos, preguntas frecuentes de WhatsApp, tono de comunicación, competidores. Este documento alimenta la knowledge base de la IA.</div></li>
+        </ul>
+        <div class="tool-pills">
+          <span class="tool-pill">Google Drive</span>
+          <span class="tool-pill">Google Forms</span>
+          <span class="tool-pill">Loom</span>
+          <span class="tool-pill">Notion (opcional)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-on">ON-02</span>
+          <div class="acc-info">
+            <div class="acc-name">Contrato y facturación</div>
+            <div class="acc-desc">Antes de hacer cualquier trabajo</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Enviar contrato digital</strong> con: descripción del servicio, monto del setup fee + mensualidad, términos de cancelación (30 días de aviso), cláusula de propiedad de accesos (el cliente retiene todos los accesos al terminar).</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Confirmar pago del setup fee</strong> antes de crear cualquier acceso o iniciar cualquier configuración. El contrato firmado sin pago no habilita el trabajo.</div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Registrar en planilla de clientes activos</strong> — fecha de inicio, paquete contratado, próxima fecha de cobro, canal de comunicación principal.</div></li>
+        </ul>
+        <div class="warn-box">Regla: sin contrato firmado + pago del setup fee, no se toca nada. El trabajo "de buena fe" antes del pago siempre trae problemas.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-on">ON-03</span>
+          <div class="acc-info">
+            <div class="acc-name">Estructura de Drive por cliente</div>
+            <div class="acc-desc">Organización estándar de archivos y carpetas</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Estructura de carpetas:</strong><br>
+            <span class="code">/Clientes/[NombreCliente]/</span><br>
+            &nbsp;&nbsp;<span class="code">Accesos.txt</span> — credenciales encriptadas<br>
+            &nbsp;&nbsp;<span class="code">Contexto-Negocio.doc</span> — FAQ, tono, productos<br>
+            &nbsp;&nbsp;<span class="code">Reportes/</span> — un archivo por mes<br>
+            &nbsp;&nbsp;<span class="code">Creativos/</span> — con fecha y versión<br>
+            &nbsp;&nbsp;<span class="code">Contratos/</span>
+          </div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Nomenclatura de archivos:</strong> <span class="code">YYYY-MM_[Cliente]_[Tipo]_v1</span><br>Ejemplo: <span class="code">2026-05_SupleMax_Reporte.pdf</span></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Contexto-Negocio.doc</strong> es el archivo que el cliente puede editar directamente para actualizar precios, productos nuevos, preguntas frecuentes. N8N lee este archivo para actualizar la knowledge base de la IA automáticamente.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CAPTACIÓN -->
+  <div class="sop-section">
+    <div class="sop-section-header">
+      <div class="sop-letter letter-c">C</div>
+      <div>
+        <div class="sop-section-title">Captación — Meta Ads</div>
+        <div class="sop-section-sub">Setup + gestión mensual — 4 SOPs</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-c">C-01</span>
+          <div class="acc-info">
+            <div class="acc-name">Setup Meta Business Manager</div>
+            <div class="acc-desc">Pixel, API de conversiones, catálogo</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Verificar Business Manager del cliente.</strong> Si no tiene, crear en business.facebook.com. Agregar la Ad Account y vincular Página de Facebook + cuenta de Instagram.</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Instalar el Pixel de Meta.</strong> En TiendaNube: Apps → Meta Pixel → pegar ID. En Shopify: Online Store → Preferences → Facebook Pixel. Verificar con Meta Pixel Helper.</div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Configurar API de Conversiones (CAPI).</strong> Ir a Events Manager → Configurar → API de Conversiones. Para TiendaNube: activar la integración nativa. Para Shopify: usar la app de Meta oficial.<span class="note">Objetivo: tener los mismos eventos reportados por Pixel + CAPI (deduplicados con event_id). Esto recupera hasta el 20–30% de conversiones que iOS 14+ bloquea.</span></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Verificar dominio en BM.</strong> Configuración del negocio → Seguridad de marca → Dominios. Método: meta-tag en el <head> del sitio o DNS.<span class="note">Necesario para usar el Pixel y para Advantage+ Shopping.</span></div></li>
+          <li><div class="step-num">5</div><div class="step-content"><strong>Crear catálogo de productos</strong> si el cliente tiene e-commerce. Conectar directamente con TiendaNube/Shopify vía feed automático. El catálogo habilita Dynamic Ads (DPA) — el tipo de anuncio con mejor ROAS para e-commerce.</div></li>
+          <li><div class="step-num">6</div><div class="step-content"><strong>Configurar audiencias personalizadas base:</strong> Visitantes últimos 180 días, Compradores últimos 180 días, Abandono de carrito últimos 30 días, Visitantes de página de producto últimos 30 días.</div></li>
+        </ul>
+        <div class="tool-pills">
+          <span class="tool-pill">Meta Business Manager</span>
+          <span class="tool-pill">Meta Pixel</span>
+          <span class="tool-pill">API Conversiones</span>
+          <span class="tool-pill">Meta Pixel Helper (extensión)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-c">C-02</span>
+          <div class="acc-info">
+            <div class="acc-name">Estructura de campañas N1–N5</div>
+            <div class="acc-desc">5 niveles de consciencia del comprador</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">N1</div><div class="step-content"><strong>Inconsciente del problema</strong> — Awareness.<br>Objetivo: Alcance o Video Views. Audiencia: intereses amplios relacionados al nicho. Presupuesto: 10–15% del total.<span class="note">Formato: video corto (15–30 seg) que muestra el problema sin nombrar el producto.</span></div></li>
+          <li><div class="step-num">N2</div><div class="step-content"><strong>Consciente del problema</strong> — Consideración.<br>Objetivo: Tráfico o Interacción. Audiencia: intereses más específicos, lookalike de compradores. Presupuesto: 15–20%.<span class="note">Formato: carrusel comparativo, video "antes vs después", post educativo.</span></div></li>
+          <li><div class="step-num">N3</div><div class="step-content"><strong>Consciente de la solución</strong> — Conversión.<br>Objetivo: Conversiones (Compra). Audiencia: intereses precisos, lookalike 1% de compradores. Presupuesto: 30–40%.<span class="note">Formato: imagen con beneficio directo + CTA a producto específico.</span></div></li>
+          <li><div class="step-num">N4</div><div class="step-content"><strong>Consciente del producto</strong> — Retargeting.<br>Objetivo: Conversiones. Audiencia: visitantes web (90d), abandono carrito (14d), vistas de producto (30d). Presupuesto: 20–25%.<span class="note">Formato: DPA (Dynamic Product Ads) — muestra el producto exacto que vio el usuario.</span></div></li>
+          <li><div class="step-num">N5</div><div class="step-content"><strong>Listo para comprar / LTV</strong> — Upsell + Lookalike.<br>Objetivo: Conversiones. Audiencia: compradores de los últimos 180 días + lookalike de mejor LTV. Presupuesto: 15–20%.<span class="note">Formato: oferta de producto complementario, bundle, programa de referidos.</span></div></li>
+        </ul>
+        <div class="info-box">Regla de presupuesto: nunca más del 40% en un solo nivel. Si el ROAS del N4 es muy alto, escalar ese nivel primero antes de subir otros.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-c">C-03</span>
+          <div class="acc-info">
+            <div class="acc-name">Flujo mensual de gestión</div>
+            <div class="acc-desc">Revisión semanal y cierre de mes</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">L</div><div class="step-content"><strong>Lunes — Revisión de performance</strong>: abrir Ads Manager, filtrar últimos 7 días. Revisar: ROAS por conjunto, CPA, CTR, Frecuencia. Pausar conjuntos con CPA > 2× objetivo o Frecuencia > 3 en los últimos 7 días.</div></li>
+          <li><div class="step-num">X</div><div class="step-content"><strong>Miércoles — Ajustes</strong>: redistribuir presupuesto hacia los conjuntos con mejor ROAS. Si algún creativo superó 2.500 impresiones y el CTR es < 0.8%, pausarlo y crear variación.</div></li>
+          <li><div class="step-num">V</div><div class="step-content"><strong>Viernes — Exportar datos</strong>: descargar informe semanal de Ads Manager (columnas: gasto, alcance, impresiones, CTR, CPC, CPA, ROAS). Guardar en /Reportes/Semana-XX.</div></li>
+          <li><div class="step-num">★</div><div class="step-content"><strong>Cierre de mes (último día hábil)</strong>: análisis completo del mes, identificar 2–3 creativos ganadores, proponer nuevos creativos para el siguiente mes, enviar reporte al cliente (ver SOP C-04).</div></li>
+        </ul>
+        <div class="metrics-row">
+          <div class="metric-item"><div class="m-val">≥ 2.5</div><div class="m-lbl">ROAS objetivo mínimo</div></div>
+          <div class="metric-item"><div class="m-val">< 3.0</div><div class="m-lbl">Frecuencia semanal máx.</div></div>
+          <div class="metric-item"><div class="m-val">> 0.8%</div><div class="m-lbl">CTR mínimo aceptable</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-c">C-04</span>
+          <div class="acc-info">
+            <div class="acc-name">Reporte mensual de Captación</div>
+            <div class="acc-desc">Formato, métricas y entrega</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Métricas obligatorias:</strong> Gasto total, Alcance, Impresiones, CPM, CTR promedio, CPC, Conversiones (Compras), CPA, ROAS, Frecuencia promedio del mes.</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Análisis cualitativo:</strong> top 3 creativos del mes (con imagen + métricas), 1 creativo que falló (con hipótesis de por qué), propuesta de 2–3 creativos para el próximo mes.</div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Comparativa vs mes anterior:</strong> % de cambio en ROAS, CPA y Gasto. Si el ROAS bajó más del 15%, explicar la causa y la acción correctiva.</div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Entrega:</strong> PDF de 1–2 páginas + Google Slides si el cliente pide presentación. Entre los días 1 y 5 del mes siguiente. No enviar PDF sin revisión de los dos socios.</div></li>
+        </ul>
+        <div class="green-box">Formato del reporte en /Drive/Templates/Reporte-C-Template.pptx</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ATENCIÓN -->
+  <div class="sop-section">
+    <div class="sop-section-header">
+      <div class="sop-letter letter-a">A</div>
+      <div>
+        <div class="sop-section-title">Atención — WhatsApp IA</div>
+        <div class="sop-section-sub">Setup del sistema de IA + operación — 5 SOPs</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-a">A-01</span>
+          <div class="acc-info">
+            <div class="acc-name">Setup ChatWoot + WhatsApp Business API</div>
+            <div class="acc-desc">Registro del número, webhook y verificación</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Preparar el número de WhatsApp del cliente.</strong> Debe ser un número no registrado en WhatsApp personal. Si el cliente usa ese número actualmente en WA, migrarlo: abrir WA → Configuración → Cuenta → Migrar a WhatsApp Business API. Hacer backup de chats antes.</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Meta WhatsApp Manager.</strong> En business.facebook.com → WhatsApp Manager → Agregar número. Ingresar número, verificar con código SMS. Obtener: WABA ID y Phone Number ID.<span class="note">ChatWoot es proveedor oficial Meta (BSP) — el proceso dura minutos, no 72h.</span></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Configurar inbox en ChatWoot.</strong> Settings → Inboxes → Agregar Inbox → WhatsApp (API). Ingresar Phone Number ID, WABA ID, Access Token. Copiar la URL del webhook generada por ChatWoot.</div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Registrar webhook en Meta.</strong> Meta for Developers → App → WhatsApp → Configuración → Webhook. Pegar la URL de ChatWoot, ingresar el Verify Token, suscribirse a: messages, message_status_updates.</div></li>
+          <li><div class="step-num">5</div><div class="step-content"><strong>Verificación end-to-end:</strong> enviar un mensaje de WhatsApp al número del cliente desde otro teléfono. El mensaje debe aparecer en el inbox de ChatWoot en < 5 segundos.</div></li>
+        </ul>
+        <div class="tool-pills">
+          <span class="tool-pill">ChatWoot (Railway)</span>
+          <span class="tool-pill">Meta for Developers</span>
+          <span class="tool-pill">Meta WhatsApp Manager</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-a">A-02</span>
+          <div class="acc-info">
+            <div class="acc-name">Knowledge Base en SupaBase</div>
+            <div class="acc-desc">Base de conocimiento dinámica para la IA</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Crear proyecto en SupaBase.</strong> Un proyecto por cliente (o un proyecto compartido con schemas separados si está en free tier). Habilitar la extensión pgvector: SQL Editor → <span class="code">CREATE EXTENSION vector;</span></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Crear tabla de knowledge:</strong>
+            <span class="code">id, client_id, category, question, answer, embedding vector(1536), updated_at</span><br>
+            <span class="note">El embedding es el vector semántico que permite búsqueda por similitud.</span></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Poblar con el FAQ inicial del cliente.</strong> Categorías estándar: Precios, Envíos, Medios de pago, Cambios y devoluciones, Disponibilidad, Sobre los productos. Mínimo: 30–50 pares pregunta/respuesta para que la IA funcione bien.</div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Configurar la actualización dinámica.</strong> N8N escucha cambios en el Google Doc del cliente (trigger: Google Drive). Cuando el cliente edita el Contexto-Negocio.doc, N8N regenera los embeddings y actualiza SupaBase automáticamente.</div></li>
+          <li><div class="step-num">5</div><div class="step-content"><strong>Testear la búsqueda semántica.</strong> Consulta SQL en SupaBase: buscar pregunta similar a "¿tienen descuentos?" y verificar que retorne las respuestas correctas con similarity > 0.75.</div></li>
+        </ul>
+        <div class="info-box">Free tier de SupaBase cubre 500 MB de base de datos — suficiente para los primeros 3–4 clientes. Migrar a Pro ($25/mes) cuando se superen los 450 MB.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-a">A-03</span>
+          <div class="acc-info">
+            <div class="acc-name">Flujos N8N — Agente IA completo</div>
+            <div class="acc-desc">Lógica de respuesta automática y escalación</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Webhook trigger:</strong> ChatWoot envía un POST a N8N cada vez que llega un mensaje nuevo. El payload incluye: conversation_id, contact (nombre, teléfono), message_content, inbox_id.</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Clasificación del mensaje:</strong> OpenRouter (GPT-4o mini) clasifica el mensaje en: pregunta_frecuente | consulta_compleja | queja | pedido_humano | saludo.<span class="note">Costo: $0.15/1M tokens. Un mensaje promedio = ~200 tokens = $0.00003.</span></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Búsqueda en knowledge base:</strong> si es pregunta_frecuente, N8N genera el embedding del mensaje y busca en SupaBase (similarity search). Si similarity > 0.75 → responder automáticamente.</div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Generación de respuesta:</strong> el contexto recuperado de SupaBase + el historial de los últimos 5 mensajes de la conversación → prompt a OpenRouter. La respuesta generada se envía como mensaje del agente en ChatWoot.</div></li>
+          <li><div class="step-num">5</div><div class="step-content"><strong>Escalación a humano:</strong> si similarity < 0.5, si el cliente dijo "hablar con persona/humano/vendedor", o si es una queja → N8N asigna la conversación al agente humano en ChatWoot + envía notificación al equipo del cliente.</div></li>
+          <li><div class="step-num">6</div><div class="step-content"><strong>Recomendación de productos:</strong> si la IA detecta intención de compra, consulta la API de TiendaNube/Shopify y agrega en la respuesta el link directo al producto más relevante.</div></li>
+        </ul>
+        <div class="tool-pills">
+          <span class="tool-pill">N8N</span>
+          <span class="tool-pill">OpenRouter (GPT-4o mini)</span>
+          <span class="tool-pill">SupaBase pgvector</span>
+          <span class="tool-pill">ChatWoot API</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-a">A-04</span>
+          <div class="acc-info">
+            <div class="acc-name">Templates de WhatsApp — aprobación Meta</div>
+            <div class="acc-desc">Mensajes proactivos fuera de la ventana de 24h</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Cuándo usar templates:</strong> cuando hay que contactar a un cliente fuera de la ventana de 24h desde su último mensaje. Ejemplos: confirmación de pedido, aviso de envío, recordatorio de recompra.</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Categorías y costo:</strong><br>
+            • <strong>UTILITY</strong> (confirmación de pedido, estado de envío): dentro de ventana 24h = gratis. Fuera de ventana = costo por mensaje (actualización julio 2025: tarifa variable por país).<br>
+            • <strong>MARKETING</strong> (promos, recompra): siempre tienen costo. Argentina: aproximadamente $0.04–0.08 USD por mensaje.
+          </div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Crear template en Meta WhatsApp Manager:</strong> ir a Cuenta → Plantillas de mensajes → Crear. Formato: nombre (sin espacios, solo minúsculas), idioma (es), categoría, cuerpo del mensaje con variables <span class="code">&#123;&#123;1&#125;&#125;, &#123;&#123;2&#125;&#125;</span>. Botones opcionales: CTA o respuesta rápida.</div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Tiempo de aprobación:</strong> UTILITY → minutos a horas. MARKETING → entre 30 minutos y 24 horas.<span class="note">Si se rechaza, revisar: no hacer promesas de precios, no mencionar palabras prohibidas (gratis, ganaste, urgente), usar lenguaje neutral.</span></div></li>
+        </ul>
+        <div class="warn-box">Límite de calidad: si muchos usuarios reportan o bloquean los mensajes de un template, Meta reduce la calidad del número. Mantener tasa de reporte < 1%.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-a">A-05</span>
+          <div class="acc-info">
+            <div class="acc-name">QA — Testing del bot</div>
+            <div class="acc-desc">Criterios de aprobación antes de go-live</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Escenarios estándar de prueba (20 chequeos):</strong>
+            <span class="note">Preguntas básicas: ¿cuánto sale el envío? / ¿tienen stock de X? / ¿aceptan MercadoPago? / ¿cuánto demora el envío?</span>
+            <span class="note">Preguntas complejas: ¿pueden hacer envío urgente a Córdoba? / ¿el producto X es apto para diabéticos?</span>
+            <span class="note">Intención de compra: quiero comprar X / ¿tienen descuentos hoy?</span>
+            <span class="note">Fuera de tema: ¿me recomiendan un buen restaurante? / ¿cómo está el dólar?</span>
+            <span class="note">Pedido de humano: quiero hablar con alguien / necesito a una persona</span>
+            <span class="note">Queja: llegó roto / me cobraron de más / no llegó el pedido</span>
+          </div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Criterio de aprobación:</strong> el bot debe responder correctamente o derivar al humano en ≥ 90% de los escenarios de prueba. "Correcto" = respuesta útil y precisa, O derivación al agente humano con notificación enviada.</div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Aprobación del cliente:</strong> hacer el testing junto con el cliente. Que él haga preguntas en base a lo que le preguntan habitualmente. Ajustar la knowledge base según lo que falle.<span class="note">Grabar la sesión de testing con Loom para tenerlo documentado.</span></div></li>
+        </ul>
+        <div class="green-box">No lanzar el bot sin al menos 2 rondas de testing. Un bot con respuestas incorrectas genera más daño que no tener bot.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- RETENCIÓN -->
+  <div class="sop-section">
+    <div class="sop-section-header">
+      <div class="sop-letter letter-r">R</div>
+      <div>
+        <div class="sop-section-title">Retención — Klaviyo Email</div>
+        <div class="sop-section-sub">Dominio, flows y campañas mensuales — 4 SOPs</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-r">R-01</span>
+          <div class="acc-info">
+            <div class="acc-name">Setup de dominio + email warmup</div>
+            <div class="acc-desc">SPF/DKIM/DMARC y plan de calentamiento</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Dominio de envío.</strong> Usar un subdominio dedicado para email: <span class="code">mail.tiendaejemplo.com</span>. Nunca enviar desde el dominio raíz (riesgo de afectar la reputación del dominio principal).</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Configurar autenticación en DNS:</strong><br>
+            • <strong>SPF:</strong> TXT record → <span class="code">v=spf1 include:klaviyomail.com ~all</span><br>
+            • <strong>DKIM:</strong> dos CNAME records provistos por Klaviyo en Settings → Email<br>
+            • <strong>DMARC:</strong> TXT record → <span class="code">v=DMARC1; p=none; rua=mailto:dmarc@tudominio.com</span><br>
+            <span class="note">Verificar con MXToolbox.com que los tres registros están activos antes de enviar el primer email.</span>
+          </div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Plan de warmup (4 semanas):</strong><br>
+            Semana 1: 50 emails/día → solo los mejores contactos (compradores recientes, alta interacción)<br>
+            Semana 2: 100 emails/día → ampliar a todos los compradores del último año<br>
+            Semana 3: 200 emails/día → base completa de activos<br>
+            Semana 4+: volumen objetivo normal<br>
+            <span class="note">Objetivo: open rate > 35% en las primeras semanas. Si baja de 25%, pausar y revisar la lista.</span>
+          </div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Limpiar la lista antes del warmup.</strong> Eliminar contactos sin email, bounces anteriores, inactivos de más de 2 años. Una lista limpia del 70% vale más que una lista sucia del 100%.</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-r">R-02</span>
+          <div class="acc-info">
+            <div class="acc-name">Setup Klaviyo + integración TiendaNube/Shopify</div>
+            <div class="acc-desc">Conexión, propiedades y segmentación base</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Crear cuenta Klaviyo o acceder a la existente.</strong> Conectar la tienda: Klaviyo → Integrations → TiendaNube / Shopify. La integración sincroniza automáticamente: productos, órdenes, carritos abandonados, contactos.</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Verificar sincronización.</strong> Ir a Profiles → buscar un cliente reciente → confirmar que tiene: historial de compras, propiedades de producto, fecha de última orden.</div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Configurar propiedades custom:</strong><br>
+            <span class="code">total_spent</span> (lifetime value acumulado)<br>
+            <span class="code">order_count</span> (número de órdenes)<br>
+            <span class="code">last_purchase_category</span> (categoría del último producto comprado)<br>
+            <span class="note">Estas propiedades son las que alimentan la segmentación de todos los flows.</span>
+          </div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Crear los 4 segmentos base:</strong><br>
+            Activos (compraron en los últimos 90 días)<br>
+            En riesgo (compraron hace 91–180 días)<br>
+            Dormidos (compraron hace 181–365 días)<br>
+            Perdidos (sin compra hace +1 año)
+          </div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-r">R-03</span>
+          <div class="acc-info">
+            <div class="acc-name">Los 4 flows esenciales</div>
+            <div class="acc-desc">Post-compra, carrito, win-back y recompra</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Post-compra (3 emails):</strong><br>
+            Email 1 — Inmediato: confirmación de compra + tip de uso del producto<br>
+            Email 2 — Día 7: "¿Cómo te fue con tu compra?" + link a dejar reseña (Google/Tiendanube)<br>
+            Email 3 — Día 30: producto complementario con descuento del 10%<br>
+            <span class="note">Este flow tiene el open rate más alto de todos (60–70%). No contaminarlo con promociones agresivas.</span>
+          </div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Carrito abandonado (3 emails):</strong><br>
+            Email 1 — 1 hora: recordatorio simple, sin descuento<br>
+            Email 2 — 24 horas: mostrar el producto + reseñas del mismo<br>
+            Email 3 — 72 horas: descuento del 5–8% con expiración en 48h<br>
+            <span class="note">El email de 1 hora sin descuento recupera el 3–5% de los carritos solo. Muchos compradores abandonan por distracción, no por precio.</span>
+          </div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Recompra (1 email):</strong><br>
+            Trigger: X días después de la última compra (depende del ciclo del producto — suplementos: 30 días, skincare: 45 días, alimentos: 21 días).<br>
+            Contenido: recordatorio del producto comprado + agregar al carrito con un click.<br>
+            <span class="note">Configurar el ciclo de recompra en la kickoff call con el cliente. Preguntarle: "¿cada cuánto tiempo sus clientes suelen volver a comprar?"</span>
+          </div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Win-back (2 emails):</strong><br>
+            Email 1 — Día 90 de inactividad: "Te extrañamos" + oferta especial<br>
+            Email 2 — Día 180: última oportunidad + oferta más agresiva (15%)<br>
+            <span class="note">Si el contacto no abre ninguno de los dos → mover a lista suprimida. Limpiar activos trimestralmente mantiene la deliverability alta.</span>
+          </div></li>
+        </ul>
+        <div class="metrics-row">
+          <div class="metric-item"><div class="m-val">> 40%</div><div class="m-lbl">Open rate objetivo flows</div></div>
+          <div class="metric-item"><div class="m-val">> 2.5%</div><div class="m-lbl">CTR objetivo flows</div></div>
+          <div class="metric-item"><div class="m-val">≥ 20%</div><div class="m-lbl">Revenue atribuido a Klaviyo</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-r">R-04</span>
+          <div class="acc-info">
+            <div class="acc-name">Campaña mensual de email</div>
+            <div class="acc-desc">Planificación, diseño y envío</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><strong>Semana 3 del mes anterior:</strong> proponer al cliente tema de la campaña, segmento objetivo y oferta. El cliente aprueba por WhatsApp.</div></li>
+          <li><div class="step-num">2</div><div class="step-content"><strong>Semana 4:</strong> diseñar el email en Klaviyo (template de la marca). Copiar, imágenes de producto (provistos por el cliente o generados con Canva), CTA. Enviar preview al cliente para aprobación final.</div></li>
+          <li><div class="step-num">3</div><div class="step-content"><strong>Día 1–5 del mes:</strong> enviar a segmento Activos. Nunca enviar la campaña mensual a toda la lista — mantener la deliverability. Excluir a los que recibieron email en las últimas 72h (flows activos).</div></li>
+          <li><div class="step-num">4</div><div class="step-content"><strong>Reporte 48h después del envío:</strong> open rate, CTR, conversiones directas, revenue atribuido. Incluir en el reporte mensual general.</div></li>
+        </ul>
+        <div class="info-box">Mejor día/hora de envío: martes o jueves, entre 9 y 11 de la mañana (Argentina). Testear A/B de subject line en los primeros 3 meses para cada cliente.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OPERACIÓN -->
+  <div class="sop-section">
+    <div class="sop-section-header">
+      <div class="sop-letter letter-ops">OP</div>
+      <div>
+        <div class="sop-section-title">Operación mensual</div>
+        <div class="sop-section-sub">Checklists transversales y reporting — 2 SOPs</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-ops">OPS-01</span>
+          <div class="acc-info">
+            <div class="acc-name">Checklist de inicio de mes</div>
+            <div class="acc-desc">Verificaciones antes de comenzar la operación</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <div class="checklist">
+          <div class="checklist-item"><div class="check-dot"></div>Verificar que todos los pixels y API de conversiones estén enviando eventos (Events Manager → estado: activo)</div>
+          <div class="checklist-item"><div class="check-dot"></div>Confirmar que no haya alertas en Meta Business Manager (política, pago, cuenta restringida)</div>
+          <div class="checklist-item"><div class="check-dot"></div>Revisar balance de OpenRouter → mantener > $5 de crédito</div>
+          <div class="checklist-item"><div class="check-dot"></div>Verificar que ChatWoot está online (Railway → health check)</div>
+          <div class="checklist-item"><div class="check-dot"></div>Testear 2–3 mensajes de WhatsApp para confirmar que el bot responde correctamente</div>
+          <div class="checklist-item"><div class="check-dot"></div>Revisar N8N — que no haya ejecuciones fallidas del mes anterior</div>
+          <div class="checklist-item"><div class="check-dot"></div>Confirmar deliverability de Klaviyo (open rate del mes anterior > 25%)</div>
+          <div class="checklist-item"><div class="check-dot"></div>Lanzar la campaña mensual de email (si corresponde)</div>
+          <div class="checklist-item"><div class="check-dot"></div>Confirmar que el cliente pagó la mensualidad (si es inicio de período)</div>
+          <div class="checklist-item"><div class="check-dot"></div>Enviar el reporte del mes anterior (entre días 1 y 5)</div>
+        </div>
+        <div class="warn-box">Si hay algún item crítico sin check (bot caído, pixel sin datos), comunicar al cliente el mismo día con un mensaje directo. No esperar al reporte mensual.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-id id-ops">OPS-02</span>
+          <div class="acc-info">
+            <div class="acc-name">Reporte mensual integrado C+A+R</div>
+            <div class="acc-desc">Métricas, formato y entrega</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <ul class="step-list">
+          <li><div class="step-num">C</div><div class="step-content"><strong>Captación:</strong> Gasto, Alcance, CPM, CTR, CPA, ROAS, Frecuencia mensual promedio. Top 3 creativos con imagen. Comparativa vs mes anterior.</div></li>
+          <li><div class="step-num">A</div><div class="step-content"><strong>Atención:</strong> Mensajes recibidos, % resueltos por IA, % derivados a humano, tiempo de respuesta promedio (minutos), temas más consultados.</div></li>
+          <li><div class="step-num">R</div><div class="step-content"><strong>Retención:</strong> Open rate campañas + flows, CTR promedio, conversiones atribuidas a Klaviyo, revenue atribuido, % del total de facturación de la tienda.</div></li>
+          <li><div class="step-num">★</div><div class="step-content"><strong>Sección de conclusiones (1 párrafo):</strong> qué funcionó, qué no, qué se va a cambiar el mes siguiente. Sin tecnicismos. El cliente necesita entender el negocio, no el dashboard.</div></li>
+          <li><div class="step-num">★</div><div class="step-content"><strong>Formato y entrega:</strong> PDF de 2–3 páginas. Usar template en /Drive/Templates/Reporte-CAR.pptx. Enviar entre días 1 y 5 del mes siguiente. Si hay cliente con reunión mensual, enviar 2 días antes de la reunión.</div></li>
+        </ul>
+        <div class="green-box">El reporte no es un resumen de trabajo — es la demostración de valor. Si el cliente entiende cuánto gana con el sistema, nunca discute el precio de renovación.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Sistema CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+
+<script>
+document.querySelectorAll('.acc-header').forEach(function(h) {
+  h.addEventListener('click', function() {
+    h.closest('.accordion').classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>

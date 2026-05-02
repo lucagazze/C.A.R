@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema CAR — Costos</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
+    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: #0a0f1aee; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 16px; }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo .pills { display: flex; gap: 3px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-links { display: flex; gap: 2px; list-style: none; flex-wrap: wrap; }
+  .nav-links a { display: block; padding: 5px 10px; font-size: 12px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
+  .nav-links a.active { background: var(--border); color: #f1f5f9; }
+  .nav-links .sep { color: #1e293b; font-size: 12px; padding: 5px 2px; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+  .tag-yellow { background: #3b2a00; color: #fbbf24; }
+  .tag-blue   { background: #1e3a5f; color: #60a5fa; }
+  .tag-green  { background: #14532d; color: #4ade80; }
+  .tag-red    { background: #450a0a; color: #f87171; }
+
+  .section-title { margin-bottom: 28px; }
+  .section-title h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .section-title p  { font-size: 14px; color: var(--muted); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+  .block { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+  .block-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
+  .block-sub   { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+  /* COST TABLE */
+  .cost-table { width: 100%; border-collapse: collapse; }
+  .cost-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .cost-table td { font-size: 13px; color: var(--sub); padding: 10px 12px; border-bottom: 1px solid #0f172a; vertical-align: top; }
+  .cost-table tr:last-child td { border-bottom: none; }
+  .cost-table .tool-name { color: #f1f5f9; font-weight: 600; }
+  .cost-table .price { color: #fbbf24; font-weight: 700; white-space: nowrap; }
+  .cost-table .price-client { color: #60a5fa; font-weight: 700; }
+  .cost-table .badge-ours { display: inline-block; font-size: 9px; font-weight: 700; background: #1a2a00; color: #86efac; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+  .cost-table .badge-client { display: inline-block; font-size: 9px; font-weight: 700; background: #0d1e35; color: #93c5fd; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+
+  /* TOTAL ROW */
+  .total-row td { background: #0f172a; border-top: 1px solid var(--border) !important; }
+  .total-row .price { font-size: 15px; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* STAT CARD */
+  .stat-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; text-align: center; }
+  .stat-card .val  { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
+  .stat-card .label { font-size: 12px; color: var(--sub); line-height: 1.4; }
+
+  /* TIME TABLE */
+  .time-row { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .time-row:last-child { border-bottom: none; }
+  .time-letter { width: 28px; height: 28px; border-radius: 6px; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .letter-c { background: #1e3a5f; color: #60a5fa; }
+  .letter-a { background: #1a3a2a; color: #4ade80; }
+  .letter-r { background: #3a1a2a; color: #f472b6; }
+  .time-body h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 2px; }
+  .time-body p  { font-size: 12px; color: var(--sub); }
+  .time-pills { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .time-pill { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; background: var(--bg2); border: 1px solid var(--border); color: var(--sub); }
+  .time-pill.setup { border-color: #fbbf2440; color: #fbbf24; background: #1a1200; }
+  .time-pill.monthly { border-color: #4ade8040; color: #4ade80; background: #0d1f12; }
+
+  /* SCALE TABLE */
+  .scale-row { display: flex; gap: 0; border-bottom: 1px solid var(--border); }
+  .scale-row:last-child { border-bottom: none; }
+  .scale-col { flex: 1; padding: 12px 14px; font-size: 13px; }
+  .scale-head { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); padding: 8px 14px; display: flex; gap: 0; }
+  .scale-head span, .scale-col.label { flex: 1; }
+  .scale-col.label { font-weight: 600; color: #f1f5f9; }
+  .scale-col.green { color: #4ade80; font-weight: 700; }
+  .scale-col.yellow { color: #fbbf24; font-weight: 700; }
+
+  .info-box { background: #0d1520; border: 1px solid #1e3a5f30; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+  .info-box p { font-size: 13px; color: #93c5fd; line-height: 1.5; }
+
+  .warning-box { background: #1a0800; border: 1px solid #f59e0b30; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+  .warning-box p { font-size: 13px; color: #fcd34d; line-height: 1.5; }
+
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; flex-wrap: wrap; height: auto; min-height: 52px; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 8px 0 12px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 8px 12px; font-size: 13px; white-space: normal; }
+    .nav-links .sep { display: none; }
+    .page { padding: 28px 16px; }
+    .section-title h1 { font-size: 22px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .cost-table { font-size: 12px; }
+    .cost-table th, .cost-table td { padding: 8px; }
+    .scale-head, .scale-row { flex-direction: column; }
+    .scale-col { padding: 4px 14px; }
+  }
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
+
+<div class="page">
+
+  <div class="tag tag-yellow">Costos operativos</div>
+  <div class="section-title">
+    <h1>Cuánto cuesta operar el Sistema CAR</h1>
+    <p>Stack tecnológico, tiempo de trabajo por cliente y margen real del negocio</p>
+  </div>
+
+  <!-- RESUMEN -->
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="stat-card"><div class="val" style="color:#fbbf24;">~$60</div><div class="label">Costo fijo mensual del stack (nuestro lado)</div></div>
+    <div class="stat-card"><div class="val" style="color:#4ade80;">75–85%</div><div class="label">Margen real por cliente CAR Completo</div></div>
+    <div class="stat-card"><div class="val" style="color:#60a5fa;">1 cliente</div><div class="label">Alcanza para cubrir todos los costos fijos del stack</div></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STACK NUESTRO -->
+  <div class="tag tag-yellow">Nuestro costo mensual</div>
+  <div class="block">
+    <div class="block-title">Stack tecnológico — lo que pagamos nosotros</div>
+    <div class="block-sub">Una sola instancia de cada herramienta sirve para todos los clientes. Costo fijo sin importar cuántos clientes tengamos.</div>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Herramienta</th>
+          <th>Para qué sirve</th>
+          <th>Costo/mes</th>
+          <th>Notas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tool-name">ChatWoot</span><span class="badge-ours">nuestro</span></td>
+          <td>Plataforma central de WhatsApp AI</td>
+          <td><span class="price">$5–10</span></td>
+          <td>Self-hosted en Railway (Hobby $5/mes). Una instancia = todos los clientes.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">N8N</span><span class="badge-ours">nuestro</span></td>
+          <td>Automatización de flujos IA</td>
+          <td><span class="price">$26</span></td>
+          <td>Plan Starter n8n.io (€24/mes). Incluye 2.500 ejecuciones. Self-hosted en Railway: $5–10.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">SupaBase</span><span class="badge-ours">nuestro</span></td>
+          <td>Base de conocimiento de la IA</td>
+          <td><span class="price">$0–25</span></td>
+          <td>Free tier alcanza para los primeros 3–4 clientes (500 MB DB). Pro plan a $25/mes cuando escale.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">OpenRouter</span><span class="badge-ours">nuestro</span></td>
+          <td>Modelo de IA para respuestas</td>
+          <td><span class="price">$1–5</span></td>
+          <td>GPT-4o mini: $0.15/M tokens input. 1.000 mensajes WA ≈ $0.05 total. Ultrabajo.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">Railway</span><span class="badge-ours">nuestro</span></td>
+          <td>Hosting de ChatWoot + N8N</td>
+          <td><span class="price">$5–20</span></td>
+          <td>Hobby plan $5/mes incluye créditos. Pro $20/mes para más recursos.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">Canva Pro</span><span class="badge-ours">nuestro</span></td>
+          <td>Creativos para Meta Ads</td>
+          <td><span class="price">$13</span></td>
+          <td>Un plan. Se usa para todos los clientes.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">Google Workspace</span><span class="badge-ours">nuestro</span></td>
+          <td>Email, Drive, SOPs, docs compartidos</td>
+          <td><span class="price">$6–12</span></td>
+          <td>Business Starter $6/user/mes.</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2"><strong style="color:#f1f5f9;">Total stack mensual (nuestro)</strong></td>
+          <td><span class="price" style="font-size:16px;">$56–111</span></td>
+          <td style="color:#fbbf24; font-size:12px;">Rango: mínimo con self-host agresivo → máximo con todos en cloud.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <p><strong>Key insight:</strong> A diferencia de una agencia de ads tradicional, nuestro stack es compartido entre todos los clientes. Cuando sumamos el 5to cliente, el costo del stack sigue siendo el mismo $60/mes. El margen por cliente solo mejora con el tiempo.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- LO QUE PAGA EL CLIENTE -->
+  <div class="tag tag-blue">Lo que paga el cliente</div>
+  <div class="block">
+    <div class="block-title">Herramientas que factura o paga directamente el cliente</div>
+    <div class="block-sub">Estas herramientas van a nombre del cliente. Nosotros las configuramos y gestionamos; el cliente paga la suscripción.</div>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Herramienta</th>
+          <th>Costo mensual cliente</th>
+          <th>Cuándo aplica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tool-name">Meta Ads — presupuesto</span><span class="badge-client">cliente</span></td>
+          <td><span class="price-client">$500–3.000 USD</span></td>
+          <td>Siempre. Mínimo recomendado: $500/mes. El cliente paga directamente a Meta.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">Klaviyo</span><span class="badge-client">cliente</span></td>
+          <td><span class="price-client">$20–150 USD</span></td>
+          <td>Paquetes con Retención. $20 (500 contactos) → $100 (5.000) → $150 (10.000+).</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">WhatsApp Business API — mensajes</span><span class="badge-client">cliente</span></td>
+          <td><span class="price-client">$10–60 USD</span></td>
+          <td>Solo paquete con Atención. Mensajes de utilidad en ventana 24h: <strong>gratis</strong>. Marketing templates: costo variable según volumen.</td>
+        </tr>
+        <tr>
+          <td><span class="tool-name">Dominio + email corporativo</span><span class="badge-client">cliente</span></td>
+          <td><span class="price-client">$3–5 USD</span></td>
+          <td>Una sola vez por año (~$30–50/año). Solo si no tiene dominio propio. Necesario para Klaviyo.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="warning-box">
+      <p><strong>Importante:</strong> El presupuesto de Meta Ads NO es parte de nuestro honorario. Siempre aclarar esto en el cierre. "Vos pagás $X a Meta directamente, aparte de nuestro fee." El cliente que no diferencia el ad spend de los honorarios es un cliente problemático.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TIEMPO POR CLIENTE -->
+  <div class="tag tag-green">Tiempo de trabajo</div>
+  <div class="block">
+    <div class="block-title">Horas reales por cliente</div>
+    <div class="block-sub">El tiempo es el costo que no aparece en la planilla. Sin SOPs, cada cliente se come el doble de horas.</div>
+
+    <div class="time-row">
+      <div class="time-letter letter-c">C</div>
+      <div class="time-body">
+        <h4>Captación — Meta Ads</h4>
+        <p>Setup: Business Manager, pixel, API conversiones, catálogo, primeras campañas, creativos iniciales.</p>
+        <div class="time-pills">
+          <span class="time-pill setup">Setup: 8–12 hs</span>
+          <span class="time-pill monthly">Mensual: 6–10 hs</span>
+        </div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-letter letter-a">A</div>
+      <div class="time-body">
+        <h4>Atención — WhatsApp IA</h4>
+        <p>Setup: número API, ChatWoot, knowledge base, templates, flujos N8N, SupaBase, testing completo.</p>
+        <div class="time-pills">
+          <span class="time-pill setup">Setup: 15–20 hs</span>
+          <span class="time-pill monthly">Mensual: 2–4 hs</span>
+        </div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-letter letter-r">R</div>
+      <div class="time-body">
+        <h4>Retención — Klaviyo</h4>
+        <p>Setup: dominio + email warmup, Klaviyo, segmentación, 4–6 flows, primera campaña mensual.</p>
+        <div class="time-pills">
+          <span class="time-pill setup">Setup: 8–12 hs</span>
+          <span class="time-pill monthly">Mensual: 2–4 hs</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; padding:14px 16px; background:var(--bg3); border-radius:10px; display:flex; gap:24px; flex-wrap:wrap;">
+      <div><div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">CAR Esencial (C+R)</div><div style="font-size:18px; font-weight:700; color:#fbbf24;">Setup 20–28 hs</div><div style="font-size:12px; color:var(--sub);">Mensual: 8–14 hs</div></div>
+      <div><div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">CAR Completo (C+A+R)</div><div style="font-size:18px; font-weight:700; color:#fbbf24;">Setup 35–48 hs</div><div style="font-size:12px; color:var(--sub);">Mensual: 10–18 hs</div></div>
+      <div><div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Con SOPs maduros</div><div style="font-size:18px; font-weight:700; color:#4ade80;">Setup 18–25 hs</div><div style="font-size:12px; color:var(--sub);">Mensual: 8–12 hs</div></div>
+    </div>
+    <div class="info-box">
+      <p>Cada SOP documentado reduce 30–50% el tiempo de onboarding del siguiente cliente del mismo nicho. Invertir en documentación en los primeros 3 clientes paga dividendos a partir del 4to.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ECONOMÍA DEL NEGOCIO -->
+  <div class="tag tag-green">Economía del negocio</div>
+  <div class="block">
+    <div class="block-title">Qué pasa con los números a escala</div>
+    <div class="block-sub">Proyección con paquete CAR Completo a $2.500 USD/mes. No incluye el setup fee.</div>
+
+    <div class="scale-head">
+      <span>Clientes</span>
+      <span>Ingresos/mes</span>
+      <span>Stack (fijo)</span>
+      <span>Horas/mes</span>
+      <span>Margen aprox.</span>
+    </div>
+    <div class="scale-row">
+      <div class="scale-col label">1 cliente</div>
+      <div class="scale-col">$2.500</div>
+      <div class="scale-col">$80</div>
+      <div class="scale-col">~15 hs</div>
+      <div class="scale-col yellow">~$2.420 (97%)*</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-col label">3 clientes</div>
+      <div class="scale-col">$7.500</div>
+      <div class="scale-col">$80</div>
+      <div class="scale-col">~45 hs</div>
+      <div class="scale-col green">~$7.420 (99%)*</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-col label">5 clientes</div>
+      <div class="scale-col">$12.500</div>
+      <div class="scale-col">$80–110</div>
+      <div class="scale-col">~75 hs</div>
+      <div class="scale-col green">~$12.400 (99%)*</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-col label">8 clientes</div>
+      <div class="scale-col">$20.000</div>
+      <div class="scale-col">$110–160</div>
+      <div class="scale-col">~120 hs → contratar ayuda</div>
+      <div class="scale-col green">~$15.000–17.000**</div>
+    </div>
+
+    <p style="font-size:11px; color:var(--muted); margin-top:12px;">* Margen sobre costos de stack. No descuenta el costo de tiempo propio (variable según cómo valúen su hora). ** A partir de 7–8 clientes se necesita ayuda externa ($1.500–2.500/mes).</p>
+
+    <div class="warning-box" style="margin-top:14px;">
+      <p><strong>Punto de equilibrio real:</strong> Con 1 cliente CAR Completo se cubren todos los costos fijos del stack. A partir del segundo cliente, el stack es prácticamente gratis. La escasez es el tiempo, no los costos de herramientas.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CUÁNDO CONTRATAR -->
+  <div class="tag tag-yellow">Cuándo escalar el equipo</div>
+  <div class="block">
+    <div class="block-title">Señales para contratar ayuda</div>
+    <div class="grid-2">
+      <div style="background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:16px;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#fbbf24; margin-bottom:8px;">1–4 clientes — solos</div>
+        <p style="font-size:13px; color:var(--sub); line-height:1.5;">Manejable entre los dos. Foco en perfeccionar los SOPs y conseguir los primeros casos de estudio. No contratar antes de tener los procesos documentados.</p>
+      </div>
+      <div style="background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:16px;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#60a5fa; margin-bottom:8px;">5–7 clientes — asistente part-time</div>
+        <p style="font-size:13px; color:var(--sub); line-height:1.5;">Un asistente que ejecute los SOPs (no que los cree). Tareas: reportes, edición de creativos, monitoreo de flujos. Costo estimado: $400–700/mes. Ideal: estudiante de marketing con ganas.</p>
+      </div>
+      <div style="background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:16px;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#4ade80; margin-bottom:8px;">8+ clientes — media jornada fija</div>
+        <p style="font-size:13px; color:var(--sub); line-height:1.5;">Un media jornada dedicado que maneje 3–4 cuentas completo. Costo $800–1.200/mes. Cada cliente que trae paga su sueldo y más.</p>
+      </div>
+      <div style="background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:16px;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#f472b6; margin-bottom:8px;">10+ clientes — empresa real</div>
+        <p style="font-size:13px; color:var(--sub); line-height:1.5;">Account managers por especialidad (C, A, R). Estructura departamental. Los socios pasan a vender y supervisar, no a ejecutar.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Sistema CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+</body>
+</html>

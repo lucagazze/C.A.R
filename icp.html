@@ -12,22 +12,17 @@
   }
   body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: #0a0f1aee; backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px; display: flex; align-items: center;
-    justify-content: space-between; height: 56px;
-  }
-  .nav-logo { font-size: 16px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo .pills { display: flex; gap: 4px; }
-  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-  .nav-links { display: flex; gap: 4px; list-style: none; }
-  .nav-links a { display: block; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  nav { position: sticky; top: 0; z-index: 100; background: #0a0f1aee; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 16px; }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo .pills { display: flex; gap: 3px; }
+  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
+  .nav-links { display: flex; gap: 2px; list-style: none; flex-wrap: wrap; }
+  .nav-links a { display: block; padding: 5px 10px; font-size: 12px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
   .nav-links a:hover { background: var(--border); color: #f1f5f9; }
   .nav-links a.active { background: var(--border); color: #f1f5f9; }
+  .nav-links .sep { color: #1e293b; font-size: 12px; padding: 5px 2px; }
 
   .page { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
 
@@ -40,33 +35,53 @@
   .section-title h1 { font-size: 30px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
   .section-title p  { font-size: 14px; color: var(--muted); }
 
-  .icp-box { background: var(--bg3); border: 1px solid #1e3a5f; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
-  .icp-box.danger { background: #120a0a; border-color: #450a0a; }
-  .icp-box h3 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #60a5fa; margin-bottom: 14px; }
-  .icp-box.danger h3 { color: #f87171; }
-  .icp-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: #3b82f6; margin-top: 7px; flex-shrink: 0; }
-  .dot-red { background: #ef4444; }
-  .icp-row span { font-size: 13px; color: var(--sub); }
-  .icp-row span strong { color: #cbd5e1; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
 
-  .profiles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
-  @media (max-width: 600px) { .profiles-grid { grid-template-columns: 1fr; } }
+  /* CRITERIA BOX */
+  .criteria-box { background: var(--bg3); border: 1px solid #1e3a5f; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+  .criteria-header { padding: 16px 24px; border-bottom: 1px solid #1e293b; }
+  .criteria-header h3 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #60a5fa; }
 
-  .profile-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
-  .profile-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .profile-card p  { font-size: 13px; color: var(--sub); line-height: 1.5; }
+  /* CRITERION ACCORDION */
+  .crit-accordion { border-bottom: 1px solid #1e293b; }
+  .crit-accordion:last-child { border-bottom: none; }
+  .crit-header { display: flex; gap: 12px; padding: 13px 24px; cursor: pointer; align-items: center; transition: background 0.15s; user-select: none; }
+  .crit-header:hover { background: #0f172a; }
+  .crit-dot { width: 6px; height: 6px; border-radius: 50%; background: #3b82f6; flex-shrink: 0; margin-top: 2px; }
+  .crit-text { font-size: 13px; color: #cbd5e1; flex: 1; }
+  .crit-text strong { color: #e2e8f0; }
+  .chevron-sm { width: 14px; height: 14px; fill: none; stroke: #475569; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; flex-shrink: 0; }
+  .crit-accordion.open .chevron-sm { transform: rotate(180deg); }
+  .crit-body { display: none; padding: 0 24px 14px 42px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .crit-accordion.open .crit-body { display: block; }
+  .crit-source { font-size: 10px; color: #475569; margin-top: 6px; font-style: italic; }
 
-  .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-  @media (max-width: 600px) { .industry-grid { grid-template-columns: 1fr 1fr; } }
+  /* DANGER BOX */
+  .danger-box { background: #120a0a; border: 1px solid #450a0a; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+  .danger-box .criteria-header h3 { color: #f87171; }
+  .danger-row { display: flex; gap: 12px; padding: 11px 24px; border-bottom: 1px solid #200a0a; font-size: 13px; color: #94a3b8; align-items: flex-start; }
+  .danger-row:last-child { border-bottom: none; }
+  .dot-red { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; flex-shrink: 0; margin-top: 7px; }
 
-  .industry-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
-  .industry-card .ind-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; margin-bottom: 6px; display: block; }
-  .industry-card h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
-  .industry-card p  { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  /* PROFILE ACCORDION */
+  .accordion { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+  .acc-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; cursor: pointer; background: var(--bg2); transition: background 0.15s; user-select: none; gap: 12px; }
+  .acc-header:hover { background: #151f35; }
+  .acc-body { display: none; padding: 18px; background: var(--bg3); border-top: 1px solid var(--border); font-size: 13px; color: var(--sub); line-height: 1.6; }
+  .accordion.open .acc-body { display: block; }
+  .chevron { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; flex-shrink: 0; }
+  .accordion.open .chevron { transform: rotate(180deg); }
 
-  .block-title { margin: 28px 0 16px; }
+  .profile-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .profile-title { font-size: 14px; font-weight: 600; flex: 1; }
+  .profile-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; }
 
+  /* INDUSTRY ACCORDION */
+  .ind-icon { font-size: 18px; flex-shrink: 0; }
+  .ind-title { font-size: 13px; font-weight: 600; color: #f1f5f9; flex: 1; }
+  .ind-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; padding: 2px 7px; background: #0d1f12; border-radius: 20px; flex-shrink: 0; }
+
+  /* QUOTE BOX */
   .quote-box { background: #1a1200; border: 1px solid #fbbf2440; border-radius: 12px; padding: 24px 28px; margin-top: 8px; }
   .quote-box .label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fbbf24; margin-bottom: 12px; display: block; }
   .quote-box p { font-size: 16px; color: #e2e8f0; font-style: italic; line-height: 1.65; }
@@ -74,6 +89,7 @@
   .quote-box p::after  { content: '"'; color: #fbbf24; font-size: 28px; line-height: 0; vertical-align: -8px; margin-left: 4px; }
   .quote-box .sub { font-size: 12px; color: #475569; margin-top: 10px; }
 
+  .block-tag { margin-bottom: 14px; }
 
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
   .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
@@ -82,19 +98,14 @@
     .hamburger { display: flex; }
     .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 8px 0 12px; border-top: 1px solid var(--border); margin-top: 4px; }
     .nav-links.open { display: flex; }
-    .nav-links a { padding: 8px 12px; font-size: 13px; }
+    .nav-links a { padding: 8px 12px; font-size: 13px; white-space: normal; }
     .nav-links .sep { display: none; }
     .page { padding: 28px 16px; }
     .section-title h1 { font-size: 22px; }
-    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    .car-pills { flex-direction: column; gap: 8px; }
-    .pill { text-align: center; }
-      .profiles-grid { grid-template-columns: 1fr; }
-    .industry-grid { grid-template-columns: 1fr 1fr; }
     .quote-box { padding: 16px 18px; }
     .quote-box p { font-size: 14px; }
   }
-    footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 56px; }
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 56px; }
 </style>
 </head>
 <body>
@@ -107,71 +118,282 @@
   <div class="tag tag-blue">ICP — Perfil de cliente ideal</div>
   <div class="section-title">
     <h1>¿A quién le vendemos?</h1>
-    <p>El cliente que más necesita el CAR y puede pagarlo</p>
+    <p>El cliente que más necesita el CAR, puede pagarlo y tiene potencial para quedarse años. Click en cada criterio para ver el razonamiento.</p>
   </div>
 
   <!-- PERFIL BASE -->
-  <div class="icp-box">
-    <h3>Perfil base — solo entrar si cumple todo</h3>
-    <div class="icp-row"><div class="dot"></div><span>Dueño de e-commerce argentino, <strong>1–5 personas en el equipo</strong></span></div>
-    <div class="icp-row"><div class="dot"></div><span>Vende en <strong>TiendaNube o Shopify</strong></span></div>
-    <div class="icp-row"><div class="dot"></div><span>Factura <strong>$25M ARS/mes o más</strong> (~$20.000 USD) — el servicio debe ser el 10–15% de su facturación, no el 40%</span></div>
-    <div class="icp-row"><div class="dot"></div><span>Ya tiene clientes que vuelven, pero <strong>sin sistema para aprovecharlo</strong></span></div>
-    <div class="icp-row"><div class="dot"></div><span>Usa <strong>WhatsApp activamente</strong> — recibe consultas y cierra ventas ahí</span></div>
+  <div class="criteria-box">
+    <div class="criteria-header">
+      <h3>Criterios base — solo entrar si cumple todos</h3>
+    </div>
+
+    <div class="crit-accordion open">
+      <div class="crit-header">
+        <div class="crit-dot"></div>
+        <span class="crit-text">Dueño de e-commerce argentino, <strong>equipo de 1–5 personas</strong></span>
+        <svg class="chevron-sm" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="crit-body">
+        Un negocio de más de 5 personas suele tener un área de marketing interna o externalizada con contrato largo. Menos de 1 persona (emprendedor solo, sin tiempo) no puede ejecutar los feedbacks ni hacer crecer la relación. El rango 1–5 es donde el dueño toma las decisiones él mismo, tiene el dolor en primera persona y puede moverse rápido.
+        <div class="crit-source">Referencia: este es el perfil de cliente que valida el servicio con mayor velocidad — no hay burocracia para aprobar cambios.</div>
+      </div>
+    </div>
+
+    <div class="crit-accordion">
+      <div class="crit-header">
+        <div class="crit-dot"></div>
+        <span class="crit-text">Vende en <strong>TiendaNube o Shopify</strong></span>
+        <svg class="chevron-sm" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="crit-body">
+        Nuestro stack de automatización (N8N, SupaBase, Klaviyo) tiene integraciones nativas con TiendaNube y Shopify. Sincronización de productos, órdenes, carrito abandonado y contactos funciona sin código. Clientes con plataformas propias o MercadoShops requieren desarrollo a medida: más tiempo, más costo, más riesgo.
+        <br><br>
+        TiendaNube tiene más del 70% del e-commerce argentino. Shopify es la opción de los negocios que escalan o venden al exterior.
+        <div class="crit-source">Dato: TiendaNube Argentina superó las 150.000 tiendas activas en 2024.</div>
+      </div>
+    </div>
+
+    <div class="crit-accordion">
+      <div class="crit-header">
+        <div class="crit-dot"></div>
+        <span class="crit-text">Factura <strong>$25M ARS/mes o más</strong> (~$20.000 USD al tipo de cambio libre)</span>
+        <svg class="chevron-sm" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="crit-body">
+        La regla del 10%: un servicio de marketing debería representar entre el 8% y el 15% de la facturación del cliente. Si el cliente factura menos de $20.000 USD y pagamos $1.700 USD de mensualidad, el servicio pesa el 8.5% — dentro del rango.
+        <br><br>
+        Por debajo de eso, el cliente siente el precio como "demasiado" sin haber visto resultados, churnea rápido y consume el mismo tiempo que uno que paga el doble. <strong>Los clientes que facturan poco son los que más piden y menos pagan.</strong>
+        <div class="crit-source">Regla de agencias internacionales: el marketing spend saludable es 7–15% del GMV para e-commerce.</div>
+      </div>
+    </div>
+
+    <div class="crit-accordion">
+      <div class="crit-header">
+        <div class="crit-dot"></div>
+        <span class="crit-text">Ya tiene clientes que vuelven, pero <strong>sin sistema para aprovecharlo</strong></span>
+        <svg class="chevron-sm" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="crit-body">
+        La retención no creamos el hábito de compra — lo sistematizamos. Si el producto es bueno y los clientes compran de nuevo por voluntad propia, eso prueba que hay product-market fit. Nosotros ponemos el sistema que hace que ese comportamiento sea más frecuente, más automático y más medible.
+        <br><br>
+        Un negocio sin ningún cliente recurrente tiene un problema de producto o de mercado, no de sistema. No podemos solucionar eso.
+      </div>
+    </div>
+
+    <div class="crit-accordion">
+      <div class="crit-header">
+        <div class="crit-dot"></div>
+        <span class="crit-text">Usa <strong>WhatsApp activamente</strong> — recibe consultas y cierra ventas ahí</span>
+        <svg class="chevron-sm" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="crit-body">
+        Argentina tiene una de las tasas de uso de WhatsApp más altas del mundo: +93% de penetración en usuarios de internet (We Are Social 2024). En e-commerce local, WhatsApp es el canal de atención primario para la mayoría de los negocios menores a 50 empleados.
+        <br><br>
+        Si el cliente no recibe mensajes en WhatsApp, el módulo de Atención no le agrega valor. El CAR Esencial (sin Atención) sigue teniendo sentido para esos casos.
+        <div class="crit-source">Fuente: We Are Social Digital Report Argentina 2024 — WhatsApp es la app más usada con 93.4% de alcance.</div>
+      </div>
+    </div>
   </div>
+
+  <hr class="divider">
 
   <!-- 4 PERFILES -->
-  <div class="block-title"><div class="tag tag-blue" style="margin:0;">Los 4 perfiles que más necesitan el CAR</div></div>
-  <div class="profiles-grid">
-    <div class="profile-card" style="border-left:3px solid #3b82f6;">
-      <h3 style="color:#60a5fa;">El que vende bien pero pierde clientes</h3>
-      <p>Buen producto, la gente compra una vez y no vuelve. Retención cero. Sin follow-up post-compra. El CAR le resuelve el problema más grande.</p>
+  <div class="block-tag"><div class="tag tag-blue" style="margin:0;">Los 4 perfiles que más necesitan el CAR</div></div>
+
+  <div class="accordion open">
+    <div class="acc-header">
+      <div class="profile-icon" style="background:#1e3a5f;">📉</div>
+      <div style="flex:1; min-width:0;">
+        <div class="profile-title" style="color:#60a5fa;">El que vende bien pero pierde clientes</div>
+        <div style="font-size:12px; color:var(--muted);">Buen producto, retención cero</div>
+      </div>
+      <span class="profile-tag" style="background:#1e3a5f; color:#60a5fa;">FIT ALTO</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
-    <div class="profile-card" style="border-left:3px solid #a78bfa;">
-      <h3 style="color:#c4b5fd;">El que está tapado de mensajes</h3>
-      <p>Pasa horas respondiendo lo mismo en WhatsApp. Sabe que debería automatizar pero no sabe cómo. La IA le devuelve horas de vida.</p>
-    </div>
-    <div class="profile-card" style="border-left:3px solid #f59e0b;">
-      <h3 style="color:#fbbf24;">El que probó ads y "no le funcionaron"</h3>
-      <p>Gastó plata sin estructura ni seguimiento. Cree que las redes no sirven para su negocio. En realidad tuvo mala ejecución.</p>
-    </div>
-    <div class="profile-card" style="border-left:3px solid #22c55e;">
-      <h3 style="color:#4ade80;">El que creció orgánico y quiere escalar</h3>
-      <p>Buena base, buenas reseñas, depende del boca a boca. Quiere crecer pero no sabe cómo pisar el acelerador.</p>
+    <div class="acc-body">
+      El producto funciona — la gente compra. Pero después no pasa nada. Sin follow-up post-compra, sin emails de recompra, sin segmentación de clientes activos vs dormidos. Cada mes es empezar desde cero.
+      <br><br>
+      <strong style="color:#e2e8f0;">Por qué encaja perfecto:</strong> el problema es 100% de sistema, no de producto. El CAR le da el flujo automático que retiene clientes sin que el dueño tenga que hacer nada. Resultado visible en los primeros 30 días.
+      <br><br>
+      <strong style="color:#e2e8f0;">Señal en la call:</strong> "Tengo mucha gente que compró una vez y no volvió." Si dice esto, es este perfil.
     </div>
   </div>
+
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="profile-icon" style="background:#2e1a5e;">📱</div>
+      <div style="flex:1; min-width:0;">
+        <div class="profile-title" style="color:#c4b5fd;">El que está tapado de mensajes</div>
+        <div style="font-size:12px; color:var(--muted);">Horas al día respondiendo lo mismo en WhatsApp</div>
+      </div>
+      <span class="profile-tag" style="background:#2e1a5e; color:#c4b5fd;">FIT ALTO</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Este dueño pasa 2–4 horas por día respondiendo: "¿tienen stock?", "¿cuánto tarda el envío?", "¿aceptan MercadoPago?". Las mismas preguntas, todos los días. Sabe que debería automatizar pero no tiene tiempo para armar el sistema.
+      <br><br>
+      <strong style="color:#e2e8f0;">Por qué encaja perfecto:</strong> el dolor es inmediato y medible en horas por semana. La IA de WhatsApp le devuelve esas horas desde el primer mes. El ROI no necesita cálculo — él ya sabe cuánto vale su tiempo.
+      <br><br>
+      <strong style="color:#e2e8f0;">Señal en la call:</strong> "Paso el día pegado al celular contestando WhatsApp." CAR Completo, no CAR Esencial.
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="profile-icon" style="background:#3b2a00;">🎯</div>
+      <div style="flex:1; min-width:0;">
+        <div class="profile-title" style="color:#fbbf24;">El que probó ads y "no le funcionaron"</div>
+        <div style="font-size:12px; color:var(--muted);">Gastó plata, no vio resultados, desconfía</div>
+      </div>
+      <span class="profile-tag" style="background:#3b2a00; color:#fbbf24;">FIT MEDIO-ALTO</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Tuvo una mala experiencia previa con publicidad — una agencia que cobró sin estructura, sin métricas, sin retención post-click. El resultado fue gasto sin ROI y ahora desconfía de toda la industria.
+      <br><br>
+      <strong style="color:#e2e8f0;">Por qué encaja perfecto:</strong> su experiencia fue mala ejecución, no mal canal. Meta Ads funciona — el 93% del e-commerce global invierte en social ads (eMarketer 2024). El CAR le da la estructura que antes le faltó.
+      <br><br>
+      <strong style="color:#e2e8f0;">Cómo trabajarlo:</strong> no defender la publicidad genéricamente. Preguntar "¿qué métricas te mostraba tu agencia anterior?" — si no saben responder o la respuesta es "alcance y likes", ahí está el problema.
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="profile-icon" style="background:#14532d;">🚀</div>
+      <div style="flex:1; min-width:0;">
+        <div class="profile-title" style="color:#4ade80;">El que creció orgánico y quiere escalar</div>
+        <div style="font-size:12px; color:var(--muted);">Buena base, depende del boca a boca</div>
+      </div>
+      <span class="profile-tag" style="background:#14532d; color:#4ade80;">FIT ALTO</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Creció por recomendaciones, buen producto, presencia en redes sin pagar. Tiene una base sólida y buenos reviews, pero el crecimiento es lento porque depende de factores que no puede controlar.
+      <br><br>
+      <strong style="color:#e2e8f0;">Por qué encaja perfecto:</strong> tiene el activo más importante — una base de clientes satisfechos. El CAR convierte esa base en un motor predecible: retención con Klaviyo, ads con audiencias lookalike de sus mejores clientes, WhatsApp para responder las consultas del tráfico nuevo.
+      <br><br>
+      <strong style="color:#e2e8f0;">Señal en la call:</strong> "Crecí sin publicidad, ahora quiero pisar el acelerador pero no sé por dónde empezar."
+    </div>
+  </div>
+
+  <hr class="divider">
 
   <!-- INDUSTRIAS -->
-  <div class="block-title"><div class="tag tag-green" style="margin:0;">Industrias con mejor fit</div></div>
-  <div class="industry-grid">
-    <div class="industry-card"><span class="ind-tag">Alta recurrencia</span><h4>Suplementos / nutrición</h4><p>Muchas preguntas pre-venta, comunidad activa, compra mensual.</p></div>
-    <div class="industry-card"><span class="ind-tag">Alta recurrencia</span><h4>Skincare / cosmética</h4><p>Recurrencia alta, compra emocional, consultas frecuentes.</p></div>
-    <div class="industry-card"><span class="ind-tag">Alta recurrencia</span><h4>Mascotas</h4><p>Recurrencia extrema. Los dueños son muy leales al proveedor.</p></div>
-    <div class="industry-card"><span class="ind-tag">Caso propio</span><h4>Telas / materia prima textil</h4><p>Costureras y diseñadores compran seguido. WhatsApp-heavy. Caso de estudio disponible.</p></div>
-    <div class="industry-card"><span class="ind-tag">Caso propio</span><h4>Cuero / marroquinería</h4><p>Recurrencia, caso de estudio real ya documentado.</p></div>
-    <div class="industry-card"><span class="ind-tag">Buenos márgenes</span><h4>Alimentos gourmet</h4><p>Recurrencia, WhatsApp es el canal principal en Argentina.</p></div>
+  <div class="block-tag"><div class="tag tag-green" style="margin:0;">Industrias con mejor fit</div></div>
+  <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">El factor determinante es la recurrencia de compra. A mayor frecuencia de recompra, mayor impacto del sistema. Click para ver el razonamiento por industria.</p>
+
+  <div class="accordion open">
+    <div class="acc-header">
+      <div class="ind-icon">💊</div>
+      <span class="ind-title">Suplementos y nutrición</span>
+      <span class="ind-badge">Recurrencia alta</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Ciclo de recompra: 30–45 días (un frasco dura ese tiempo). El cliente que sigue el suplemento lo recompra sistemáticamente si tiene un recordatorio en el momento justo. Sin sistema, recompra por su cuenta o cambia de marca. Con sistema, el flujo de recompra de Klaviyo se activa en el día 28 automáticamente.
+      <br><br>
+      Además: muchas preguntas pre-venta (ingredientes, dosis, combinaciones) que la IA de WhatsApp resuelve sin intervención humana.
+    </div>
   </div>
 
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="ind-icon">✨</div>
+      <span class="ind-title">Skincare y cosmética</span>
+      <span class="ind-badge">Recurrencia alta</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Ciclo de recompra: 45–60 días. Compra emocional de alta fidelidad — cuando el cliente encuentra un producto de skincare que le funciona, no lo cambia fácilmente. El email de recompra con "tu hidratante se está terminando" tiene tasas de apertura que triplican las de campañas genéricas.
+      <br><br>
+      WhatsApp es muy activo en este nicho: preguntas sobre tipo de piel, combinación de productos, reacciones. La IA reduce el tiempo de atención sin perder la calidez del canal.
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="ind-icon">🐾</div>
+      <span class="ind-title">Mascotas (alimento y accesorios)</span>
+      <span class="ind-badge">Recurrencia extrema</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Ciclo de recompra: 20–30 días para alimento. Los dueños de mascotas son el segmento con mayor LTV en e-commerce — no les cambian la comida al perro si el producto funciona. La retención aquí es casi automática con el producto correcto.
+      <br><br>
+      El CAR multiplica esa fidelidad: email de recompra antes de que se acabe el stock, WhatsApp para consultas sobre salud/alimentación, retargeting a compradores de productos relacionados (juguetes, accesorios).
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="ind-icon">🧵</div>
+      <span class="ind-title">Telas y materia prima textil</span>
+      <span class="ind-badge">Caso propio</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Caso de estudio propio disponible. El cliente típico es un diseñador o costurera que compra cada 2–4 semanas. Muy activo en WhatsApp (consultas sobre disponibilidad de colores, combinaciones, tiempos de entrega).
+      <br><br>
+      Aplicamos el sistema completo en este nicho y tenemos métricas propias de referencia para usar en la discovery call con clientes del mismo rubro.
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="ind-icon">👜</div>
+      <span class="ind-title">Cuero y marroquinería</span>
+      <span class="ind-badge">Caso propio</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Caso de estudio propio. Comprador recurrente (artesanos, talabarteros, diseñadores de accesorios) con alta frecuencia. El catálogo de productos es específico y las preguntas son técnicas — exactamente el tipo de knowledge base que la IA maneja bien.
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="ind-icon">🧀</div>
+      <span class="ind-title">Alimentos gourmet</span>
+      <span class="ind-badge">Buenos márgenes</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      Ciclo de recompra: 14–30 días. WhatsApp es el canal dominante para este tipo de comercios en Argentina — pedidos, consultas de disponibilidad, reservas. Márgenes por producto más altos que el e-commerce estándar, lo que hace que el setup fee sea fácil de justificar como porcentaje del GMV.
+    </div>
+  </div>
+
+  <hr class="divider">
+
   <!-- NO IDEAL -->
-  <div class="icp-box danger">
-    <h3>Quién NO es el cliente ideal</h3>
-    <div class="icp-row"><div class="dot dot-red"></div><span>Negocios nuevos sin ventas probadas</span></div>
-    <div class="icp-row"><div class="dot dot-red"></div><span>Productos de compra única (muebles, electrónica, autos)</span></div>
-    <div class="icp-row"><div class="dot dot-red"></div><span>Negocios de servicios — el flujo de automatización no aplica igual</span></div>
-    <div class="icp-row"><div class="dot dot-red"></div><span>Estacionales puros (solo una temporada al año)</span></div>
-    <div class="icp-row"><div class="dot dot-red"></div><span>Empresas grandes con equipo interno de marketing</span></div>
+  <div class="danger-box">
+    <div class="criteria-header" style="border-color:#200a0a;">
+      <h3>Quién NO es el cliente ideal</h3>
+    </div>
+    <div class="danger-row"><div class="dot-red"></div><span>Negocios nuevos sin ventas probadas — no hay base de clientes para retener</span></div>
+    <div class="danger-row"><div class="dot-red"></div><span>Productos de compra única (muebles, electrónica, autos) — sin ciclo de recompra, el sistema pierde su mayor ventaja</span></div>
+    <div class="danger-row"><div class="dot-red"></div><span>Negocios de servicios — los flujos de automatización están diseñados para e-commerce físico, no para venta de servicios</span></div>
+    <div class="danger-row"><div class="dot-red"></div><span>Estacionales puros (solo una temporada al año) — el costo mensual no se justifica con 2–3 meses de actividad</span></div>
+    <div class="danger-row"><div class="dot-red"></div><span>Empresas grandes con equipo interno de marketing — tienen sus propias herramientas y no pueden delegar el acceso que necesitamos</span></div>
   </div>
 
   <!-- SÍNTOMA CLAVE -->
   <div class="quote-box">
     <span class="label">El síntoma que identifica al cliente ideal en 10 segundos</span>
     <p>Paso el día en el celular respondiendo mensajes y sé que tengo clientes que deberían volver a comprar, pero no tengo tiempo de perseguirlos.</p>
-    <div class="sub">Si el dueño dice algo así → es el cliente ideal</div>
+    <div class="sub">Si el dueño dice algo así en los primeros 5 minutos de la call → es el cliente ideal para CAR Completo.</div>
   </div>
 
 </div>
 
-<footer>Método CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
+<footer>Sistema CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
 
+<script>
+document.querySelectorAll('.acc-header').forEach(function(h) {
+  h.addEventListener('click', function() { h.closest('.accordion').classList.toggle('open'); });
+});
+document.querySelectorAll('.crit-header').forEach(function(h) {
+  h.addEventListener('click', function() { h.closest('.crit-accordion').classList.toggle('open'); });
+});
+</script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 (function () {
   var page = location.pathname.split('/').pop() || 'index.html';
 
-  // Color activo por seccion
   var active = {
     'captacion.html': 'background:#1e3a5f;color:#60a5fa',
     'atencion.html':  'background:#1a3a2a;color:#4ade80',
@@ -21,17 +20,19 @@
       '<div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>' +
       ' Sistema CAR' +
     '</a>' +
-    '<button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>' +
+    '<button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>' +
     '<ul class="nav-links">' +
-      li('modelo.html',         'Modelo') +
-      li('icp.html',            'ICP') +
-      li('oferta.html',         'Oferta') +
-      li('validacion.html',     'Validación') +
-      li('implementacion.html', 'Implementación') +
+      li('modelo.html',      'Modelo') +
+      li('icp.html',         'ICP') +
+      li('oferta.html',      'Oferta') +
+      li('precios.html',     'Precios') +
+      li('costos.html',      'Costos') +
+      li('validacion.html',  'Validación') +
+      li('sops.html',        'SOPs') +
       '<li><span class="sep">|</span></li>' +
-      li('captacion.html',  'C \u2014 Captación') +
-      li('atencion.html',   'A \u2014 Atención') +
-      li('retencion.html',  'R \u2014 Retención') +
+      li('captacion.html',   'C — Captación') +
+      li('atencion.html',    'A — Atención') +
+      li('retencion.html',   'R — Retención') +
     '</ul>';
 
   var nav = document.createElement('nav');
