@@ -96,6 +96,20 @@
   /* RULE */
   .rule-icon { font-size: 18px; flex-shrink: 0; }
 
+  /* PROMPT BLOCK */
+  .prompt-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
+  .prompt-card-header { background: #0b1324; padding: 20px 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); }
+  .prompt-card-header-left { flex: 1; }
+  .prompt-card-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
+  .prompt-card-sub { font-size: 13px; color: var(--muted); }
+  .copy-btn { font-size: 12px; font-weight: 700; padding: 8px 18px; border-radius: 8px; border: 1px solid #1e3a5f; background: rgba(96,165,250,.08); color: #60a5fa; cursor: pointer; transition: all .2s; white-space: nowrap; flex-shrink: 0; }
+  .copy-btn:hover { background: rgba(96,165,250,.15); border-color: #3b82f6; }
+  .copy-btn.copied { background: #071a0d; border-color: #22c55e; color: #22c55e; }
+  .prompt-text { padding: 20px 24px; font-size: 12px; line-height: 1.8; color: #b8ccde; white-space: pre-wrap; font-family: 'SF Mono','Fira Code','Consolas',monospace; background: #06080f; max-height: 480px; overflow-y: auto; }
+  .prompt-text::-webkit-scrollbar { width: 5px; }
+  .prompt-text::-webkit-scrollbar-track { background: transparent; }
+  .prompt-text::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
   .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
   @media (max-width: 768px) {
@@ -110,6 +124,8 @@
     .letter-hero { flex-direction: column; gap: 12px; padding: 20px 18px; }
     .letter-big { font-size: 48px; }
     .letter-hero h1 { font-size: 22px; }
+    .prompt-card-header { flex-direction: column; }
+    .copy-btn { width: 100%; }
   }
   footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
 </style>
@@ -400,7 +416,7 @@
     </div>
   </div>
 
-  <div class="tools-row">
+  <div class="tools-row" style="margin-bottom:32px;">
     <span class="tools-label">Herramientas del proceso</span>
     <span class="tool-chip">Meta Ads Manager</span>
     <span class="tool-chip">Meta Business Suite</span>
@@ -411,6 +427,100 @@
     <span class="tool-chip">Meta Ad Library (referencias)</span>
   </div>
 
+  <hr class="divider">
+
+  <!-- PROMPT ANDRÓMEDA -->
+  <div class="tag tag-blue">Prompt — Generador de anuncios Andrómeda</div>
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <div class="prompt-card-header-left">
+        <div class="prompt-card-title">5 anuncios de video completos · N1 → N5 · Copy + Guion</div>
+        <div class="prompt-card-sub">Completá los datos del negocio y pegalo en Claude. Genera el ecosistema completo: texto del anuncio + guion de video para cada nivel de consciencia.</div>
+      </div>
+      <button class="copy-btn" data-target="prompt-andromeda">Copiar prompt</button>
+    </div>
+    <div class="prompt-text" id="prompt-andromeda">Actuá como un Media Buyer Senior y Copywriter de respuesta directa especializado en la metodología "Andrómeda" de Meta Ads. Tu filosofía es clara: "El creativo es la segmentación". No dependemos de intereses ocultos en la plataforma; usamos el mensaje para filtrar curiosos y atraer compradores altamente calificados.
+
+Tu tarea: crear un ecosistema completo de 5 anuncios de video (Stories + Reels) basados en los 5 niveles de consciencia de Eugene Schwartz. Estos 5 anuncios convivirán en un mismo Conjunto de Anuncios enfocado en resolver UN solo problema.
+
+━━━━ DATOS DEL NEGOCIO (completar antes de enviar) ━━━━
+
+Buyer Persona: [edad, perfil exacto, situación actual]
+
+A quién EXCLUIMOS (Filtro): [quién NO queremos que nos contacte o compre]
+
+Dolor principal (Pain Point): [la frustración exacta que viven en su día a día, en sus palabras]
+
+Mecanismo Diferenciador: [por qué tu solución funciona cuando las otras fallan]
+
+Objeciones Reales: [por qué dudan en comprarte: precio, tiempo, desconfianza, etc.]
+
+Resultado concreto: [la transformación real y medible que generás]
+
+Prueba social: [casos reales, volumen de clientes, garantías]
+
+Oferta y CTA final: [qué deben hacer y qué incentivo hay para hacerlo HOY]
+
+━━━━ FORMATO DE ENTREGA POR CADA NIVEL ━━━━
+Generar el paquete completo para cada anuncio usando esta estructura exacta:
+
+─────────────────────────────────
+NIVEL N[X] — [NOMBRE DEL NIVEL] (Embudos: TOF/MOF/BOF)
+Rol del anuncio: [atraer tráfico frío / nutrir / cerrar ventas]
+─────────────────────────────────
+1. TEXTOS DEL ANUNCIO (Meta Ads)
+
+Texto Principal (Cuerpo): [Máximo 5 bullets con emojis o una historia corta de transformación. Copy directo, sin lenguaje corporativo].
+
+Título (Gancho): [Máximo 5 palabras + emoji enfocadas en un beneficio claro o prueba social].
+
+2. GUION DEL VIDEO (Vertical 9:16)
+[00–03 seg] EL GANCHO (Scroll-stopper)
+  Visual: [Instrucción del B-roll o acción en cámara]
+  Hook Verbal: "[Texto exacto, disruptivo. Debe frenar el scroll en seco]"
+  Texto en pantalla: "[Texto visual de apoyo]"
+
+[03–XX seg] DESARROLLO
+  Visual: [Instrucción]
+  Diálogo: "[Texto exacto]"
+
+[XX–XX seg] CTA
+  Visual: [Instrucción]
+  Diálogo: "[Llamado a la acción único, claro y sin fricción]"
+
+━━━━ REGLAS ESTRATÉGICAS POR NIVEL ━━━━
+
+N1 — INCONSCIENTE (Top of Funnel) | 25–30 seg
+Estado: Scrollea sin saber que tiene un problema.
+Regla: PROHIBIDO nombrar la marca o el producto. Enfoque 100% emocional o de contraste. El objetivo es que diga "esto me pasa a mí".
+
+N2 — CONSCIENTE DEL PROBLEMA (Top of Funnel) | 25–30 seg
+Estado: Le duele, pero cree que "es así nomás".
+Regla: Agitar el dolor y aplicar "Copy de Exclusión" (Ej: "Si sos X y te pasa Y..."). Validar su frustración. Cero venta de producto, solo plantear que existe una salida.
+
+N3 — CONSCIENTE DE LA SOLUCIÓN (Middle of Funnel) | 30–40 seg
+Estado: Busca soluciones, evalúa opciones.
+Regla: Presentar el "Mecanismo Diferenciador". Explicar la lógica técnica o el proceso de por qué tu método funciona. Acá se presenta la marca por primera vez.
+
+N4 — CONSCIENTE DEL PRODUCTO (Bottom of Funnel) | 30–40 seg
+Estado: Te conoce, pero no te eligió.
+Regla: Destruir las objeciones planteadas en los datos del negocio. Usar prueba social agresiva, mostrar resultados tangibles y garantías. Lenguaje 100% de beneficio.
+
+N5 — MUY CONSCIENTE (Bottom of Funnel) | 15–20 seg
+Estado: Listo para comprar, dejó el carrito abandonado o la charla por la mitad.
+Regla: Cero re-explicación. Directo al grano. Fricción cero. Oferta directa, escasez o urgencia real ("Últimos lugares", "Envío gratis hoy"). CTA imperativo.
+
+━━━━ REGLAS GLOBALES DE COPYWRITING ━━━━
+
+Cero lenguaje de "gurú" o palabras corporativas vacías ("somos líderes", "soluciones integrales").
+
+Escribir como si le hablaras a un colega o cliente en un café (tono conversacional e íntimo).
+
+Todo lo que pueda ser un número exacto, debe serlo (ej: "47 días" en lugar de "poco tiempo").
+
+Generá los 5 anuncios completos en orden N1 → N5. Separalos con "━━━━━━━━━━━━━━━━━━━━━━━━".</div>
+  </div>
+
 </div>
 
 <footer>Sistema CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
@@ -418,6 +528,28 @@
 <script>
 document.querySelectorAll('.acc-header').forEach(function(h) {
   h.addEventListener('click', function() { h.closest('.accordion').classList.toggle('open'); });
+});
+
+document.querySelectorAll('.copy-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var el = document.getElementById(btn.getAttribute('data-target'));
+    if (!el) return;
+    var text = el.innerText || el.textContent;
+    var original = btn.textContent;
+    function done() {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = original; btn.classList.remove('copied'); }, 2200);
+    }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(done);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+      document.body.removeChild(ta); done();
+    }
+  });
 });
 </script>
 </body>
