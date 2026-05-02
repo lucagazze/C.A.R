@@ -429,7 +429,7 @@
 
   <hr class="divider">
 
-  <!-- PROMPT ANDRÓMEDA -->
+  <!-- PROMPT ANDRÓMEDA — TEXTO -->
   <div class="tag tag-blue">Prompt — Generador de anuncios Andrómeda</div>
   <div class="prompt-card">
     <div class="prompt-card-header">
@@ -519,6 +519,192 @@ Escribir como si le hablaras a un colega o cliente en un café (tono conversacio
 Todo lo que pueda ser un número exacto, debe serlo (ej: "47 días" en lugar de "poco tiempo").
 
 Generá los 5 anuncios completos en orden N1 → N5. Separalos con "━━━━━━━━━━━━━━━━━━━━━━━━".</div>
+  </div>
+
+  <!-- PROMPT ANDRÓMEDA — EXCEL -->
+  <div class="tag tag-blue" style="margin-top:24px;">Prompt — Generador Excel Andrómeda</div>
+  <div class="prompt-card">
+    <div class="prompt-card-header" style="background:#071a0d;">
+      <div class="prompt-card-header-left">
+        <div class="prompt-card-title">5 anuncios completos → archivo Excel .xlsx</div>
+        <div class="prompt-card-sub">Genera un script Python (openpyxl) que crea el Excel profesional listo para entregar al cliente: 6 pestañas, copy + guion de video por nivel, notas de producción y checklist.</div>
+      </div>
+      <button class="copy-btn" data-target="prompt-excel" style="border-color:#1a4d2e;background:rgba(34,197,94,.08);color:#4ade80;">Copiar prompt</button>
+    </div>
+    <div class="prompt-text" id="prompt-excel">Actuá como un Media Buyer Senior, Copywriter de respuesta directa y experto en Python (openpyxl), especializado en la metodología "Andrómeda" de Meta Ads.
+
+Tu filosofía: "El creativo es la segmentación." El mensaje filtra curiosos y atrae compradores calificados. No dependemos de intereses ocultos.
+
+Tu tarea tiene DOS partes:
+1. Generar el contenido creativo completo: 5 anuncios (copy + guion de video) basados en los 5 niveles de consciencia de Eugene Schwartz.
+2. Generar un script Python con openpyxl que cree un archivo Excel (.xlsx) profesional con todo ese contenido, listo para entregar al cliente o al equipo de producción.
+
+━━━━ DATOS DEL NEGOCIO (completar antes de enviar) ━━━━
+
+Nombre del cliente / marca: [nombre exacto — se usa para el nombre del archivo]
+
+Buyer Persona: [edad, perfil exacto, situación actual]
+
+A quién EXCLUIMOS (Filtro): [quién NO queremos que nos contacte o compre]
+
+Dolor principal (Pain Point): [la frustración exacta en las palabras del cliente]
+
+Mecanismo Diferenciador: [por qué tu solución funciona cuando las otras fallan]
+
+Objeciones Reales: [por qué dudan: precio, tiempo, desconfianza, etc.]
+
+Resultado concreto: [transformación real y medible que generás]
+
+Prueba social: [casos reales, volumen de clientes, garantías]
+
+Oferta y CTA final: [qué deben hacer y qué incentivo hay para hacerlo HOY]
+
+━━━━ ESTRUCTURA DEL EXCEL — 6 PESTAÑAS ━━━━
+
+PESTAÑA 1 — "📋 Resumen"
+· Header principal: [CLIENTE] · Meta Ads · Ecosistema Andrómeda 5 Niveles
+· Párrafo de introducción: qué es este archivo y cómo usarlo
+· Tabla resumen (5 filas): ANUNCIO | NIVEL | EMBUDO | FRASE GANCHO | ROL
+· Especificaciones técnicas generales (tabla):
+  - Formato: Vertical 9:16 (Stories y Reels)
+  - Resolución: 1080 x 1920 px mínimo
+  - Archivo: MP4
+  - Subtítulos: Obligatorios en todos los videos
+  - Iluminación: Luz natural frontal o aro de luz
+  - Audio: Micrófono de solapa, ambiente silencioso
+  - Tomas a grabar: Mínimo 3 por video. Quedarse con la más natural.
+· Datos pendientes a confirmar con el cliente (tabla)
+
+PESTAÑAS 2 A 6 — Una por nivel (N1 → N5)
+Estructura exacta de cada pestaña, de arriba hacia abajo:
+
+[BLOQUE A — HEADER]
+· Fila merged al ancho completo
+· Texto: "N[X] — [NOMBRE DEL NIVEL] · [TOF / MOF / BOF]"
+· Fila siguiente (italic): GANCHO: "[el hook verbal exacto del video]"
+· Fila siguiente: OBJETIVO: [descripción del objetivo de este anuncio]
+
+[BLOQUE B — TEXTOS DEL ANUNCIO]
+· Sub-header: "TEXTOS DEL ANUNCIO (Meta Ads)"
+· Fila: Texto Principal | [el copy completo con saltos de línea \n entre párrafos]
+· Fila: Headline | [máximo 40 caracteres]
+· Fila: Botón CTA | [opción Meta: Más información / Contactar / Comprar / Registrarse]
+
+[BLOQUE C — GUION DE VIDEO]
+· Sub-header: "GUION DEL VIDEO — [X] SEGUNDOS · Vertical 9:16"
+· Fila de leyenda (3 columnas): 📷 CÁMARA = persona hablando | 🎙 VOZ EN OFF = solo B-roll | B-roll = imágenes de apoyo
+· Tabla con 6 columnas:
+  TIEMPO | SECCIÓN | FORMATO | LO QUE SE VE (Visual/B-roll) | LO QUE SE DICE (Diálogo/Voz) | TEXTO EN PANTALLA
+· Filas de contenido por segmento temporal:
+  - [00–03 seg] | GANCHO | 📷 CÁMARA o 🎙 VOZ EN OFF | desc visual | "hook verbal exacto" | texto overlay
+  - [03–XX seg] | DESARROLLO | formato | desc visual | "diálogo exacto" | texto si aplica
+  - [XX–XX seg] | [SECCIÓN] | formato | desc visual | "diálogo exacto" | texto si aplica
+  - [XX–XX seg] | CIERRE | 📷 CÁMARA | acción de cierre | "CTA exacto" | link o acción
+  (adaptar la cantidad de filas a la duración de cada nivel)
+
+[BLOQUE D — NOTAS DE PRODUCCIÓN]
+· Sub-header: "NOTAS DE PRODUCCIÓN"
+· Tabla de 2 columnas (etiqueta | valor):
+  - Tono de voz | [descripción]
+  - Ritmo | [lento / dinámico / pausado]
+  - Energía | [íntimo / urgente / conversacional / técnico]
+  - B-roll clave | 1) ... \n 2) ... \n 3) ... \n 4) ...
+  - Texto en pantalla | [instrucciones de tipografía y timing]
+  - Música | [BPM aproximado, estilo, cuándo baja para el CTA]
+  - Subtítulos | Obligatorios — agregar en edición
+  - Safe zone | Evitar 14% de los bordes superior e inferior
+  - Diferencia vs otros videos | [qué hace único a este nivel]
+
+[BLOQUE E — CHECKLIST]
+· Sub-header: "CHECKLIST DE GRABACIÓN"
+· Lista de ítems con ✅:
+  - Arranca directo con la frase gancho, sin introducción
+  - El protagonista mira a cámara todo el tiempo (si es UGC)
+  - Tono natural, no robotizado
+  - Audio limpio (sin ruido ambiente)
+  - Termina con CTA claro y concreto
+  - Tiene subtítulos en la edición final
+  - [ítems específicos según el nivel y formato]
+
+━━━━ REGLAS DE CONTENIDO POR NIVEL ━━━━
+
+N1 — INCONSCIENTE (TOF) | 25–30 seg
+Estado: Scrollea sin saber que tiene un problema.
+Regla: PROHIBIDO nombrar la marca o el producto. Enfoque 100% emocional o de contraste.
+Copy: disruptivo, curioso. Hook = dato sorprendente o pregunta incómoda.
+Guion: UGC o Voz en off + B-roll. Sin intro, directo al gancho.
+
+N2 — CONSCIENTE DEL PROBLEMA (TOF) | 25–30 seg
+Estado: Le duele, pero cree que "es así nomás".
+Regla: Agitar el dolor. Aplicar Copy de Exclusión ("Si sos X y te pasa Y..."). Validar frustración.
+Copy: empático, directo. Sin mencionar la marca todavía.
+Guion: Nombrar el dolor exacto en los primeros 3 segundos.
+
+N3 — CONSCIENTE DE LA SOLUCIÓN (MOF) | 30–40 seg
+Estado: Busca soluciones, evalúa opciones.
+Regla: Presentar el Mecanismo Diferenciador. Acá se nombra la marca por primera vez.
+Copy: educativo, técnico pero accesible. El protagonista es el mecanismo, no la empresa.
+Guion: Reconocer la búsqueda → explicar por qué los otros fallan → presentar el mecanismo.
+
+N4 — CONSCIENTE DEL PRODUCTO (BOF) | 30–40 seg
+Estado: Te conoce, pero no te eligió.
+Regla: Destruir objeciones. Prueba social agresiva. Features en lenguaje de beneficio.
+Copy: confiado, basado en datos. Resultado concreto en la primera línea.
+Guion: Empezar con resultado → features → desmontar objeción principal → CTA directo.
+
+N5 — MUY CONSCIENTE (BOF) | 15–20 seg
+Estado: Listo para comprar, dejó el carrito o la charla por la mitad.
+Regla: Cero re-explicación. Directo al grano. Urgencia o escasez REAL solamente.
+Copy: cortísimo (20–40 palabras). Un solo CTA. Urgencia si existe y es verdadera.
+Guion: Recordatorio del resultado → eliminar último freno → CTA fuerte. Sin rodeos.
+
+━━━━ REGLAS GLOBALES DE COPYWRITING ━━━━
+· Cero lenguaje corporativo vacío ("somos líderes", "soluciones integrales").
+· Tono conversacional — como si le hablaras a un colega en un café.
+· Todo número exacto cuando sea posible ("47 días" en lugar de "poco tiempo").
+· Los primeros 3 segundos de cada video son críticos — sin saludo, sin introducción.
+
+━━━━ ESPECIFICACIONES TÉCNICAS DEL EXCEL ━━━━
+
+Librería: openpyxl
+Guardar en: C:\Users\lucag\Desktop\CLAUDE\[NombreCliente]\Brief_[NombreCliente]_Andromeda.xlsx
+
+Paleta de colores (hex sin #):
+· 0D2B55 → headers principales (texto blanco, bold 13pt)
+· 1B4F8A → sub-headers de sección (texto blanco, bold 11pt)
+· 2E75B6 → tabla de guion — header de columnas (texto blanco, bold 10pt)
+· 2C1A0E → header de notas de producción (texto blanco, bold 11pt)
+· C8860A → gancho/hook en el header (italic, bold 11pt)
+· D6E4F0 → celdas de etiqueta col izquierda (texto 1B4F8A, bold 9pt)
+· EBF5FB → celdas de acento (objetivo, tono, energía)
+· F5E6C8 → fila GANCHO en tabla de guion (dorado claro)
+· D0E8FF → filas DESARROLLO en tabla de guion (azul muy claro)
+· 1E8449 → header checklist (texto blanco, bold 11pt)
+· FFFFFF → filas normales de contenido
+· F5F5F5 → filas alternas
+· 1A1A1A → texto principal, 10pt regular
+· CCCCCC → borde fino en todas las celdas con contenido
+
+Anchos de columna por pestaña:
+· Resumen: col A=24, col B=20, col C=20, col D=42, col E=42
+· Niveles (A–F): A=12 (tiempo), B=14 (sección), C=14 (formato), D=28 (visual), E=36 (diálogo), F=20 (pantalla)
+· Notas y copy: col A=26 (etiqueta), col B=55 (contenido, merged C–F)
+
+Alturas de fila:
+· Headers principales: 32px
+· Sub-headers: 24px
+· Filas de contenido corto: 18px
+· Filas con texto largo (copy, guion, notas): wrap_text=True, altura = max(18, len(texto)//4 + 16)
+· Filas espaciadoras: 8px (sin borde, sin fondo)
+
+Formato general:
+· Todo texto con wrap_text=True y vertical="center"
+· Headers y sub-headers: merged al ancho completo de la pestaña
+· Bordes CCCCCC (thin) en todas las celdas con contenido
+· Filas espaciadoras: sin borde, sin fondo
+· El script debe ejecutarse sin errores con: python nombre_script.py
+
+Generá primero todo el contenido creativo (copy + guion) para los 5 niveles, y luego el script Python completo que construye el Excel con ese contenido hardcodeado.</div>
   </div>
 
 </div>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema CAR — Reportes</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a; --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+  .tag-blue { background: #1e3a5f; color: #60a5fa; }
+  .tag-green { background: #14532d; color: #4ade80; }
+  .tag-yellow { background: #3b2a00; color: #fbbf24; }
+  .tag-pink { background: #3a1a2a; color: #f472b6; }
+  .tag-purple { background: #2e1a5e; color: #c4b5fd; }
+  .section-title { margin-bottom: 28px; }
+  .section-title h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .section-title p { font-size: 14px; color: var(--muted); }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+  .accordion { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+  .acc-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; cursor: pointer; background: var(--bg2); transition: background 0.15s; user-select: none; gap: 12px; }
+  .acc-header:hover { background: #151f35; }
+  .acc-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+  .acc-id { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+  .id-blue { background: #1e3a5f; color: #60a5fa; }
+  .id-green { background: #14532d; color: #4ade80; }
+  .id-yellow { background: #3b2a00; color: #fbbf24; }
+  .id-pink { background: #3a1a2a; color: #f472b6; }
+  .id-purple { background: #2e1a5e; color: #c4b5fd; }
+  .acc-name { font-size: 13px; font-weight: 600; color: #f1f5f9; }
+  .acc-desc { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .chevron { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; flex-shrink: 0; }
+  .accordion.open .chevron { transform: rotate(180deg); }
+  .acc-body { display: none; padding: 20px 18px; background: var(--bg3); border-top: 1px solid var(--border); }
+  .accordion.open .acc-body { display: block; }
+  .step-list { list-style: none; }
+  .step-list li { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: #1e293b; color: var(--sub); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-content { font-size: 13px; color: var(--sub); line-height: 1.5; }
+  .step-content strong { color: #cbd5e1; }
+  .step-content .note { font-size: 11px; color: var(--muted); margin-top: 3px; display: block; }
+  .info-box { background: #0d1520; border: 1px solid #1e3a5f30; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 12px; color: #93c5fd; line-height: 1.5; }
+  .warn-box { background: #1a0800; border: 1px solid #f59e0b30; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 12px; color: #fcd34d; line-height: 1.5; }
+  .green-box { background: #0d1f12; border: 1px solid #14532d; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 12px; color: #86efac; line-height: 1.5; }
+  .kv-list { display: flex; flex-direction: column; gap: 8px; }
+  .kv-row { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; }
+  .kv-key { font-weight: 600; color: #cbd5e1; min-width: 160px; flex-shrink: 0; }
+  .kv-val { color: var(--sub); }
+  .sub-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 16px 0 8px; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+  .metric-card { background: #0a0f1a; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+  .metric-card .mc-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; font-weight: 600; letter-spacing: 0.5px; }
+  .metric-card .mc-val { font-size: 15px; font-weight: 700; }
+  .mc-blue { color: #60a5fa; }
+  .mc-green { color: #4ade80; }
+  .mc-pink { color: #f472b6; }
+  .mc-yellow { color: #fbbf24; }
+  .template-block { background: #0a0f1a; border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-size: 13px; color: var(--sub); line-height: 1.8; }
+  .template-block .t-section { font-weight: 700; color: #93c5fd; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 14px; margin-bottom: 4px; }
+  .template-block .t-section:first-child { margin-top: 0; }
+  .signal-list { display: flex; flex-direction: column; gap: 8px; }
+  .signal-item { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--sub); }
+  .signal-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .dot-green { background: #4ade80; }
+  .dot-yellow { background: #fbbf24; }
+  .dot-red { background: #f87171; }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .page { padding: 28px 16px; }
+    .section-title h1 { font-size: 22px; }
+    .acc-desc { display: none; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .kv-key { min-width: 110px; }
+  }
+  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
+<div class="page">
+
+  <div class="tag tag-pink">Reportes</div>
+  <div class="section-title">
+    <h1>Cómo reportar resultados</h1>
+    <p>Qué mostrar, cómo presentar meses malos y cuándo pedir más presupuesto.</p>
+  </div>
+
+  <!-- MÉTRICAS POR MÓDULO -->
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="acc-left">
+        <span class="acc-id id-blue">Métricas</span>
+        <div class="acc-info">
+          <div class="acc-name">Qué reportar — por módulo C + A + R</div>
+          <div class="acc-desc">Las métricas que realmente importan por cada capa del sistema</div>
+        </div>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      <div class="sub-label">C — Captación (Meta Ads)</div>
+      <div class="metrics-grid">
+        <div class="metric-card"><div class="mc-label">ROAS</div><div class="mc-val mc-blue">Target &gt;2.5x</div></div>
+        <div class="metric-card"><div class="mc-label">CPL / CPA</div><div class="mc-val mc-green">Según ticket</div></div>
+        <div class="metric-card"><div class="mc-label">CTR</div><div class="mc-val mc-blue">&gt;1.5% feed</div></div>
+        <div class="metric-card"><div class="mc-label">Frecuencia</div><div class="mc-val mc-yellow">&lt;3.5</div></div>
+        <div class="metric-card"><div class="mc-label">Alcance nuevo</div><div class="mc-val mc-blue">% semana a semana</div></div>
+        <div class="metric-card"><div class="mc-label">Gasto total</div><div class="mc-val mc-green">vs. plan</div></div>
+      </div>
+      <div class="sub-label">A — Atención (CRM / WhatsApp)</div>
+      <div class="kv-list">
+        <div class="kv-row"><span class="kv-key">Tiempo de respuesta</span><span class="kv-val">Target: primer respuesta en &lt;2 horas en horario laboral.</span></div>
+        <div class="kv-row"><span class="kv-key">Tasa de conversación</span><span class="kv-val">% de leads que entran en conversación real vs. silencio.</span></div>
+        <div class="kv-row"><span class="kv-key">Lead a venta</span><span class="kv-val">% de leads totales que terminaron comprando.</span></div>
+      </div>
+      <div class="sub-label" style="margin-top:16px">R — Retención (email / LTV)</div>
+      <div class="kv-list">
+        <div class="kv-row"><span class="kv-key">Open rate email</span><span class="kv-val">Target: &gt;25% para lista fría, &gt;35% para lista activa.</span></div>
+        <div class="kv-row"><span class="kv-key">Churn mensual</span><span class="kv-val">% de clientes activos que no volvieron a comprar en 60 días.</span></div>
+        <div class="kv-row"><span class="kv-key">LTV / Compra repetida</span><span class="kv-val">Cuánto gasta un cliente en los primeros 90 días.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANTILLA REPORTE -->
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="acc-left">
+        <span class="acc-id id-green">Plantilla</span>
+        <div class="acc-info">
+          <div class="acc-name">Estructura del reporte mensual</div>
+          <div class="acc-desc">Orden y secciones del reporte que se envía al cliente cada mes</div>
+        </div>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      <div class="template-block">
+        <div class="t-section">1. Resumen ejecutivo (3 líneas)</div>
+        Mes X · $[gasto] invertido · [X leads] · [X ventas] · ROAS [X.X]. La campaña [funcionó bien / tuvo problemas con Z].
+
+        <div class="t-section">2. Captación — Meta Ads</div>
+        Tabla con: Campaña · Gasto · Alcance · Clicks · CTR · CPA · Resultados.<br>
+        Creativos: qué funcionó, qué se pausó, qué se va a testear el próximo mes.
+
+        <div class="t-section">3. Atención — Pipeline de leads</div>
+        Leads totales → conversaciones → ventas cerradas. Dónde se pierden los leads.
+
+        <div class="t-section">4. Retención — Email / recompras</div>
+        Flujos activos. Open rate, click rate, conversiones por flujo.
+
+        <div class="t-section">5. Mes que viene</div>
+        3 acciones concretas. "Vamos a testear X porque Y. Vamos a escalar Z porque mostró [dato]."
+      </div>
+      <div class="info-box">Formato: Google Slides o PDF. Máximo 8 slides. El cliente no quiere leer un ensayo. Quiere ver si el dinero está funcionando.</div>
+    </div>
+  </div>
+
+  <!-- MESES MALOS -->
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="acc-left">
+        <span class="acc-id id-yellow">Crisis</span>
+        <div class="acc-info">
+          <div class="acc-name">Cómo presentar resultados malos</div>
+          <div class="acc-desc">El peor error es esperar al reporte mensual para dar malas noticias</div>
+        </div>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      <ul class="step-list">
+        <li><span class="step-num">1</span><div class="step-content"><strong>Comunicar proactivamente</strong><span class="note">Si ves que la semana 2 va mal, avisás en la semana 2, no en el reporte de fin de mes. El cliente que se entera tarde es el que se va.</span></div></li>
+        <li><span class="step-num">2</span><div class="step-content"><strong>Contexto antes de números</strong><span class="note">"Este mes hubo [cambio de algoritmo / saturación de audiencia / período post-fiestas]. Es un factor externo, no exclusivo de nuestra cuenta."</span></div></li>
+        <li><span class="step-num">3</span><div class="step-content"><strong>Datos, no excusas</strong><span class="note">Mostrar exactamente qué cayó y cuánto. No minimizar. El cliente ya lo sabe si tiene acceso a la cuenta.</span></div></li>
+        <li><span class="step-num">4</span><div class="step-content"><strong>Plan de acción concreto</strong><span class="note">"Para el mes que viene vamos a hacer X (cambio de creativos), Y (nueva audiencia), Z (ajuste de puja)." Sin plan, es solo una queja.</span></div></li>
+        <li><span class="step-num">5</span><div class="step-content"><strong>No proponer descuento en el fee</strong><span class="note">Ofrecer descuento cuando las cosas van mal entrena al cliente a pedir descuentos siempre. Ofrecer trabajo extra (nuevo creativo, análisis adicional) en cambio.</span></div></li>
+      </ul>
+      <div class="warn-box">⚠️ Si hay 2 meses malos consecutivos sin mejora, tener la conversación honesta: "El problema puede estar fuera de los ads. ¿Podemos revisar el producto / precio / proceso de ventas?"</div>
+    </div>
+  </div>
+
+  <!-- CUÁNDO PEDIR AUMENTO -->
+  <div class="accordion">
+    <div class="acc-header">
+      <div class="acc-left">
+        <span class="acc-id id-purple">Retainer</span>
+        <div class="acc-info">
+          <div class="acc-name">Cuándo y cómo pedir aumento de retainer</div>
+          <div class="acc-desc">No pedir nunca sin datos. No esperar siempre a que el cliente proponga.</div>
+        </div>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body">
+      <div class="sub-label">Señales de que el momento es correcto</div>
+      <div class="signal-list">
+        <div class="signal-item"><div class="signal-dot dot-green"></div><span>3+ meses de resultados consistentemente buenos (ROAS por encima del target).</span></div>
+        <div class="signal-item"><div class="signal-dot dot-green"></div><span>El cliente aumentó su presupuesto de ads por iniciativa propia.</span></div>
+        <div class="signal-item"><div class="signal-dot dot-green"></div><span>Agregamos trabajo real que no estaba en el contrato original (nuevo módulo A o R).</span></div>
+        <div class="signal-item"><div class="signal-dot dot-green"></div><span>El cliente nos recomendó a alguien: señal de satisfacción alta.</span></div>
+        <div class="signal-item"><div class="signal-dot dot-yellow"></div><span>El cliente pide más trabajo sin hablar de más pago.</span></div>
+      </div>
+      <div class="sub-label" style="margin-top:16px">Cómo pedirlo</div>
+      <div class="kv-list">
+        <div class="kv-row"><span class="kv-key">Timing</span><span class="kv-val">En una reunión de resultados positivos. Nunca por mensaje de texto. Nunca a fin de mes justo antes del cierre.</span></div>
+        <div class="kv-row"><span class="kv-key">Framing</span><span class="kv-val">"En los últimos 3 meses generamos [resultado concreto]. Para el próximo trimestre quiero expandir [qué: creativos, nuevo canal, automatización], y eso requiere ajustar el fee a $X."</span></div>
+        <div class="kv-row"><span class="kv-key">Cuánto pedir</span><span class="kv-val">Incrementos del 20-30% son defendibles con resultados. Más del 50% requiere agregar un módulo claro.</span></div>
+        <div class="kv-row"><span class="kv-key">Si dicen que no</span><span class="kv-val">Entender por qué. ¿Es presupuesto real o no ven el valor? Si es lo segundo, hay un problema de comunicación anterior.</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<footer>Sistema CAR — Algoritmia</footer>
+<script>
+  document.querySelectorAll('.acc-header').forEach(h => {
+    h.addEventListener('click', () => h.closest('.accordion').classList.toggle('open'));
+  });
+</script>
+</body>
+</html>

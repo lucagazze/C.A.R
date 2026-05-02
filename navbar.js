@@ -54,25 +54,43 @@
     return '<li><a href="' + href + '"' + cls + style + '>' + text + '</a></li>';
   }
 
+  function sep() {
+    return '<li><span class="sep">|</span></li>';
+  }
+
   var navHTML =
     '<a class="nav-logo" href="index.html">' +
       '<div class="pills"><span class="c">C</span><span class="a">A</span><span class="r">R</span></div>' +
       ' Sistema CAR' +
     '</a>' +
-    '<button class="hamburger" aria-label="Men\u00fa"><span></span><span></span><span></span></button>' +
+    '<button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>' +
     '<ul class="nav-links">' +
-      li('modelo.html',     'Modelo') +
-      li('icp.html',        'ICP') +
-      li('oferta.html',     'Oferta') +
-      li('precios.html',    'Precios') +
-      li('costos.html',     'Costos') +
-      li('validacion.html', 'Validaci\u00f3n') +
-      li('sops.html',       'SOPs') +
-      li('guiones.html',    'Guiones') +
-      '<li><span class="sep">|</span></li>' +
-      li('captacion.html',  'C \u2014 Captaci\u00f3n') +
-      li('atencion.html',   'A \u2014 Atenci\u00f3n') +
-      li('retencion.html',  'R \u2014 Retenci\u00f3n') +
+      /* — Fundamentos — */
+      li('modelo.html',            'Modelo') +
+      li('icp.html',               'ICP') +
+      li('oferta.html',            'Oferta') +
+      li('precios.html',           'Precios') +
+      li('costos.html',            'Costos') +
+      li('validacion.html',        'Validación') +
+      sep() +
+      /* — Operaciones — */
+      li('sops.html',              'SOPs') +
+      li('stack.html',             'Stack') +
+      sep() +
+      /* — Negocio — */
+      li('ventas.html',            'Ventas') +
+      li('propuestas.html',        'Propuestas') +
+      li('casos.html',             'Casos') +
+      li('metricas.html',          'Métricas') +
+      li('clientes-dificiles.html','Clientes difíciles') +
+      li('reportes.html',          'Reportes') +
+      sep() +
+      /* — Creativos + CAR — */
+      li('guiones.html',           'Guiones') +
+      sep() +
+      li('captacion.html',         'C — Captación') +
+      li('atencion.html',          'A — Atención') +
+      li('retencion.html',         'R — Retención') +
     '</ul>';
 
   var nav = document.createElement('nav');
