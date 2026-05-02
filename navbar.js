@@ -78,9 +78,7 @@
       li('stack.html',             'Stack') +
       sep() +
       /* — Negocio — */
-      li('ventas.html',            'Ventas') +
       li('propuestas.html',        'Propuestas') +
-      li('casos.html',             'Casos') +
       li('metricas.html',          'Métricas') +
       li('clientes-dificiles.html','Clientes difíciles') +
       li('reportes.html',          'Reportes') +
