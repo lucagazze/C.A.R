@@ -26,7 +26,9 @@
     .question { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
     .question h4 { font-size: 1rem; margin-bottom: 8px; color: #fff; }
     .question p { font-size: 0.85rem; color: var(--text-muted); }
-    .score-tag { font-size: 0.75rem; color: var(--secondary); font-weight: 700; }
+    .score-list { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .score-option { font-size: 0.8rem; color: var(--secondary); font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .score-option::before { content: '•'; font-weight: 900; }
   </style>
 </head>
 <body>
@@ -125,27 +127,52 @@
         <div class="form-box">
           <div class="question">
             <h4>1. Facturación Mensual (E-commerce)</h4>
-            <div class="score-tag">> $50k USD = 20 pts | $20k-$50k = 17 pts | $10k-$20k = 14 pts | < $10k = 5 pts</div>
+            <div class="score-list">
+              <div class="score-option">> $50k USD = 20 pts</div>
+              <div class="score-option">$20k-$50k = 17 pts</div>
+              <div class="score-option">$10k-$20k = 14 pts</div>
+              <div class="score-option">< $10k = 5 pts</div>
+            </div>
           </div>
           <div class="question">
             <h4>2. Frecuencia de Recompra Natural</h4>
-            <div class="score-tag">Mensual (Suple/Skin) = 20 pts | Trimestral (Ropa) = 15 pts | Anual (Muebles) = 5 pts</div>
+            <div class="score-list">
+              <div class="score-option">Mensual (Suple/Skin) = 20 pts</div>
+              <div class="score-option">Trimestral (Ropa) = 15 pts</div>
+              <div class="score-option">Anual (Muebles) = 5 pts</div>
+            </div>
           </div>
           <div class="question">
             <h4>3. Volumen de Consultas WhatsApp</h4>
-            <div class="score-tag">> 40 chats/día = 15 pts | 15-40 chats/día = 10 pts | < 15/día = 5 pts</div>
+            <div class="score-list">
+              <div class="score-option">> 40 chats/día = 15 pts</div>
+              <div class="score-option">15-40 chats/día = 10 pts</div>
+              <div class="score-option">< 15 chats/día = 5 pts</div>
+            </div>
           </div>
           <div class="question">
             <h4>4. Margen Bruto de Producto</h4>
-            <div class="score-tag">65%+ = 15 pts | 45%-65% = 10 pts | < 45% = 5 pts</div>
+            <div class="score-list">
+              <div class="score-option">65%+ = 15 pts</div>
+              <div class="score-option">45%-65% = 10 pts</div>
+              <div class="score-option">< 45% = 5 pts</div>
+            </div>
           </div>
           <div class="question">
             <h4>5. Plataforma Técnica</h4>
-            <div class="score-tag">Shopify/TiendaNube = 15 pts | Woo/Magento = 10 pts | Solo DM = 0 pts (DQ)</div>
+            <div class="score-list">
+              <div class="score-option">Shopify/TiendaNube = 15 pts</div>
+              <div class="score-option">Woo/Magento = 10 pts</div>
+              <div class="score-option">Solo DM = 0 pts (Descalificado)</div>
+            </div>
           </div>
           <div class="question">
             <h4>6. Inversión Actual en Ads</h4>
-            <div class="score-tag">> $3k USD = 15 pts | $1k-$3k = 10 pts | < $1k = 5 pts</div>
+            <div class="score-list">
+              <div class="score-option">> $3k USD = 15 pts</div>
+              <div class="score-option">$1k-$3k = 10 pts</div>
+              <div class="score-option">< $1k = 5 pts</div>
+            </div>
           </div>
         </div>
         <div class="glass-card">

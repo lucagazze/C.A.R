@@ -1,7 +1,7 @@
 :root {
   /* Colors - Sleek Dark Palette with Higher Contrast */
   --bg-deep: #020617;
-  --bg-card: rgba(15, 23, 42, 0.7);
+  --bg-card: #0f172a; /* Solid Slate 900 */
   --bg-accent: rgba(30, 41, 59, 0.6);
   
   --primary: #818cf8; /* Lighter Indigo */
@@ -100,9 +100,9 @@ p { color: var(--text-sub); font-size: 1.05rem; }
 
 .glass-card:hover {
   transform: translateY(-8px);
-  border-color: var(--border-hover);
-  background: rgba(30, 41, 59, 0.6);
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(99, 102, 241, 0.1);
+  border-color: var(--primary);
+  background: #1e293b; /* Solid Slate 800 */
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9);
 }
 
 .glass-card h3 {
