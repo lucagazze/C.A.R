@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventas | C.A.R SYSTEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sub-nav {
+      position: sticky; top: 64px; z-index: 90;
+      background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0; overflow-x: auto; white-space: nowrap;
+    }
+    .sub-nav .container { display: flex; gap: 24px; }
+    .sub-nav a { color: var(--text-sub); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .sub-nav a:hover { color: #fff; }
+    
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+    @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
+    
+    .form-box { background: var(--bg-card); border-radius: 24px; padding: 32px; border: 1px solid var(--border); }
+    .question { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+    .question h4 { font-size: 1rem; margin-bottom: 8px; color: #fff; }
+    .question p { font-size: 0.85rem; color: var(--text-muted); }
+    .score-tag { font-size: 0.75rem; color: var(--secondary); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
+
+<div class="sub-nav">
+  <div class="container">
+    <a href="#precios">Precios</a>
+    <a href="#proceso-venta">Proceso de Venta</a>
+    <a href="#calificacion">Calificación</a>
+    <a href="#garantia">Garantía</a>
+    <a href="#escasez">Escasez</a>
+    <a href="#casos">Casos de Estudio</a>
+    <a href="#terminos">Términos</a>
+  </div>
+</div>
+
+<main>
+  <!-- PRECIOS -->
+  <section id="precios" class="section">
+    <div class="container">
+      <span class="header-tag">ESTRATEGIA COMERCIAL</span>
+      <h1 class="gradient-text">Pricing & Estructura</h1>
+      <p>No cobramos por hora, cobramos por el sistema instalado y el resultado generado.</p>
+      
+      <div class="pricing-grid">
+        <!-- GROWTH -->
+        <div class="glass-card">
+          <div class="tag tag-blue">CAR Growth</div>
+          <div style="font-size: 2.5rem; font-weight: 800; margin: 16px 0;">$1.700 <span style="font-size: 1rem; color: var(--text-muted);">USD/mes</span></div>
+          <p style="font-size: 0.9rem; color: var(--secondary); font-weight: 700;">+ $800 Setup Fee (Único)</p>
+          <ul style="list-style: none; padding: 0; margin-top: 24px; font-size: 0.9rem; color: var(--text-sub);">
+            <li style="margin-bottom: 8px;">✓ Gestión Meta Ads Completa</li>
+            <li style="margin-bottom: 8px;">✓ Setup Klaviyo & Flows Base</li>
+            <li style="margin-bottom: 8px;">✓ Inbox Omnicanal (ChatWoot)</li>
+          </ul>
+        </div>
+        
+        <!-- FULL -->
+        <div class="glass-card" style="border-color: var(--primary);">
+          <div class="tag tag-purple">CAR Full</div>
+          <div style="font-size: 2.5rem; font-weight: 800; margin: 16px 0;">$2.800 <span style="font-size: 1rem; color: var(--text-muted);">USD/mes</span></div>
+          <p style="font-size: 0.9rem; color: var(--primary-light); font-weight: 700;">+ $1.200 Setup Fee (Único)</p>
+          <ul style="list-style: none; padding: 0; margin-top: 24px; font-size: 0.9rem; color: var(--text-sub);">
+            <li style="margin-bottom: 8px;">✓ Todo lo de Growth + IA AutÃ³noma</li>
+            <li style="margin-bottom: 8px;">✓ Agente IA en WhatsApp 24/7</li>
+            <li style="margin-bottom: 8px;">✓ Retención Avanzada Email + WAP</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="warning-box" style="margin-top: 32px; background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); padding: 24px; border-radius: 16px;">
+        <p style="color: #f59e0b; font-size: 0.9rem;"><strong>El Setup Fee no es negociable.</strong> Cubre las 25-48 horas de trabajo técnico inicial que garantiza que el sistema funcione desde el día 1.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO DE VENTA -->
+  <section id="proceso-venta" class="section">
+    <div class="container">
+      <h2 class="gradient-text">Proceso de Venta & Reuniones</h2>
+      <div class="grid grid-3">
+        <div class="glass-card">
+          <div class="tag tag-blue">Paso 1</div>
+          <h3>Discovery Call</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Llamada de 15 min para validar el CAR Fit Score y entender si podemos ayudar realmente al negocio.</p>
+        </div>
+        <div class="glass-card">
+          <div class="tag tag-purple">Paso 2</div>
+          <h3>Propuestas</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Presentación del sistema adaptado al volumen actual del cliente. Foco en retorno de inversión incremental.</p>
+        </div>
+        <div class="glass-card">
+          <div class="tag tag-green">Paso 3</div>
+          <h3>Reuniones de Ventas</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Manejo de objeciones técnicas y comerciales. Negociación de términos de pago y fechas de implementación.</p>
+          <ul style="font-size: 0.75rem; color: var(--text-sub); margin-top: 10px;">
+            <li>• Objeciones de precio</li>
+            <li>• Objeciones de tiempo</li>
+            <li>• Dudas tecnológicas (IA/API)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALIFICACION -->
+  <section id="calificacion" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <h2 class="gradient-text">Formulario de Pre-Calificación</h2>
+      <p style="margin-bottom: 32px;">Cálculo del CAR Fit Score (Máximo 100 puntos). Usamos este score para decidir si avanzamos a la llamada comercial.</p>
+      
+      <div class="grid grid-2">
+        <div class="form-box">
+          <div class="question">
+            <h4>1. Facturación Mensual (E-commerce)</h4>
+            <div class="score-tag">> $50k USD = 20 pts | $20k-$50k = 17 pts | $10k-$20k = 14 pts | < $10k = 5 pts</div>
+          </div>
+          <div class="question">
+            <h4>2. Frecuencia de Recompra Natural</h4>
+            <div class="score-tag">Mensual (Suple/Skin) = 20 pts | Trimestral (Ropa) = 15 pts | Anual (Muebles) = 5 pts</div>
+          </div>
+          <div class="question">
+            <h4>3. Volumen de Consultas WhatsApp</h4>
+            <div class="score-tag">> 40 chats/día = 15 pts | 15-40 chats/día = 10 pts | < 15/día = 5 pts</div>
+          </div>
+          <div class="question">
+            <h4>4. Margen Bruto de Producto</h4>
+            <div class="score-tag">65%+ = 15 pts | 45%-65% = 10 pts | < 45% = 5 pts</div>
+          </div>
+          <div class="question">
+            <h4>5. Plataforma Técnica</h4>
+            <div class="score-tag">Shopify/TiendaNube = 15 pts | Woo/Magento = 10 pts | Solo DM = 0 pts (DQ)</div>
+          </div>
+          <div class="question">
+            <h4>6. Inversión Actual en Ads</h4>
+            <div class="score-tag">> $3k USD = 15 pts | $1k-$3k = 10 pts | < $1k = 5 pts</div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <h3>Reglas de Clasificación</h3>
+          <ul style="list-style: none; padding: 0; margin-top: 24px;">
+            <li style="margin-bottom: 24px;">
+              <div style="font-weight: 700; color: var(--secondary); font-size: 1.1rem;">80-100 Puntos: Redirigir a Calendario</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Alto fit. El negocio tiene el volumen y margen necesario para que el sistema genere un ROI masivo inmediato.</p>
+            </li>
+            <li style="margin-bottom: 24px;">
+              <div style="font-weight: 700; color: var(--primary-light); font-size: 1.1rem;">60-79 Puntos: Revisión Manual</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Fit medio. Requiere un diagnóstico previo de costos para asegurar viabilidad.</p>
+            </li>
+            <li>
+              <div style="font-weight: 700; color: #ef4444; font-size: 1.1rem;">Menos de 60: No Califica</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">No agendar llamada comercial. Derivar a contenido educativo o guías de implementación básica.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTIA -->
+  <section id="garantia" class="section">
+    <div class="container" style="text-align: center;">
+      <h2 class="gradient-text">Garantía de Implementación</h2>
+      <div class="glass-card" style="max-width: 800px; margin: 0 auto; border-color: var(--secondary);">
+        <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-main);">
+          "No prometemos duplicar facturación sin mirar tus números. Lo que <strong>garantizamos</strong> es que las piezas acordadas del Sistema CAR se implementan y quedan funcionando. Si algo que depende de nosotros no queda activo en el plazo definido, seguimos trabajando sin costo hasta completarlo."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCASEZ & URGENCIA -->
+  <section id="escasez" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="glass-card">
+          <div class="tag tag-blue">Escasez Operativa</div>
+          <h3>Cupos Limitados</h3>
+          <p style="font-size: 0.95rem;">CAR no es un servicio masivo. Cada implementación requiere auditoría y configuración técnica manual. Solo onboardeamos <strong>2 clientes nuevos por mes</strong>.</p>
+        </div>
+        <div class="glass-card">
+          <div class="tag tag-purple">Urgencia Real</div>
+          <h3>Costo de Inacción</h3>
+          <p style="font-size: 0.95rem;">Cada mes que el sistema no está instalado es un mes de consultas perdidas y recompras que se lleva tu competencia. Cuanto antes implementemos, antes empezamos a medir y corregir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASOS DE ESTUDIO -->
+  <section id="casos" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <h2 class="gradient-text">Casos de Estudio</h2>
+      <div class="grid grid-2">
+        <div class="glass-card">
+          <h3>E-commerce de Suplementos</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px; color: var(--text-sub);">Implementación de CAR Full. Incremento del 40% en recompra en los primeros 90 días mediante automatización de WhatsApp + Email.</p>
+        </div>
+        <div class="glass-card">
+          <h3>Marca de Indumentaria</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px; color: var(--text-sub);">Reducción del 70% en tiempo de respuesta en atención comercial mediante IA. Aumento de conversión del 12% en tráfico de Ads.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMINOS -->
+  <section id="terminos" class="section">
+    <div class="container">
+      <h2 class="gradient-text">Términos Comerciales</h2>
+      <div class="glass-card">
+        <div class="grid grid-3">
+          <div>
+            <h4 style="color: #fff; margin-bottom: 8px;">Moneda</h4>
+            <p style="font-size: 0.9rem;"><strong>USD.</strong> Cobramos en dólares para proteger el valor del servicio en Argentina.</p>
+          </div>
+          <div>
+            <h4 style="color: #fff; margin-bottom: 8px;">Pago Setup</h4>
+            <p style="font-size: 0.9rem;"><strong>100% Adelantado.</strong> La implementación técnica comienza solo con el setup fee saldado.</p>
+          </div>
+          <div>
+            <h4 style="color: #fff; margin-bottom: 8px;">Cancelación</h4>
+            <p style="font-size: 0.9rem;"><strong>30 Días.</strong> Aviso previo por escrito para dar de baja el servicio sin penalidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="text-align: center; padding: 48px 24px; color: var(--text-muted); border-top: 1px solid var(--border);">
+  <div class="container">
+    <p>&copy; 2026 C.A.R SYSTEM. Creado por Algoritmia + Fluyent.Ai.</p>
+  </div>
+</footer>
+
+</body>
+</html>

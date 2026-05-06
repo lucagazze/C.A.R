@@ -1,474 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAR — A: Atención</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --bg: #0a0f1a; --bg2: #111827; --bg3: #0f172a;
-    --border: #1e293b; --text: #e2e8f0; --muted: #64748b; --sub: #94a3b8;
-    --green: #22c55e; --green-dark: #1a3a2a; --green-light: #4ade80;
-  }
-  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
-  nav { position: sticky; top: 0; z-index: 100; background: #0a0f1aee; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 16px; }
-  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 2px; color: #f8fafc; display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
-  .nav-logo .pills { display: flex; gap: 3px; }
-  .nav-logo .c { background: #1e3a5f; color: #60a5fa; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
-  .nav-logo .a { background: #1a3a2a; color: #4ade80; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
-  .nav-logo .r { background: #3a1a2a; color: #f472b6; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
-  .nav-links { display: flex; gap: 2px; list-style: none; flex-wrap: wrap; }
-  .nav-links a { display: block; padding: 5px 10px; font-size: 12px; font-weight: 500; color: var(--sub); text-decoration: none; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
-  .nav-links a:hover { background: var(--border); color: #f1f5f9; }
-  .nav-links a.active { background: #1a3a2a; color: #4ade80; }
-  .nav-links .sep { color: #1e293b; font-size: 12px; padding: 5px 2px; }
-
-  .page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
-
-  .letter-hero { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; padding: 28px 32px; background: linear-gradient(135deg, #0d1f12, #0a0f1a); border: 1px solid #16a34a30; border-radius: 16px; }
-  .letter-big { font-size: 72px; font-weight: 900; color: var(--green-light); line-height: 1; }
-  .letter-hero h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
-  .letter-hero p  { font-size: 14px; color: var(--sub); line-height: 1.6; max-width: 500px; }
-
-  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
-  .tag-green  { background: #14532d; color: #4ade80; }
-  .tag-yellow { background: #3b2a00; color: #fbbf24; }
-  .tag-red    { background: #450a0a; color: #f87171; }
-
-  .block { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
-  .block-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
-  .block-sub   { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
-
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-
-  .small-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
-  .small-card h4 { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 5px; }
-  .small-card p  { font-size: 12px; color: var(--sub); line-height: 1.4; }
-  .small-card .val { font-size: 20px; font-weight: 800; color: #4ade80; margin-bottom: 3px; }
-
-  /* PLATFORM */
-  .platform-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 4px; }
-  .platform-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-  .platform-card h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
-  .platform-card .rec { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; margin-bottom: 8px; display: block; }
-  .platform-card p { font-size: 12px; color: var(--sub); line-height: 1.4; margin-bottom: 6px; }
-  .platform-card .pro { font-size: 11px; color: #4ade80; padding: 2px 0; }
-  .platform-card .con { font-size: 11px; color: #f87171; padding: 2px 0; }
-
-  /* ACCORDION */
-  .accordion { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
-  .acc-header { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; background: var(--bg2); transition: background 0.15s; user-select: none; }
-  .acc-header:hover { background: #0d1a0d; }
-  .acc-body { display: none; padding: 16px; background: var(--bg3); border-top: 1px solid var(--border); }
-  .accordion.open .acc-body { display: block; }
-  .chevron { width: 15px; height: 15px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; flex-shrink: 0; margin-left: auto; }
-  .accordion.open .chevron { transform: rotate(180deg); }
-  .acc-num { width: 26px; height: 26px; border-radius: 50%; background: #14532d; color: #4ade80; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .acc-title { font-size: 13px; font-weight: 600; color: #f1f5f9; flex: 1; }
-  .acc-badge { font-size: 10px; color: var(--muted); white-space: nowrap; }
-  .acc-body p { font-size: 13px; color: var(--sub); line-height: 1.5; margin-bottom: 8px; }
-  .acc-body p:last-child { margin-bottom: 0; }
-  .acc-body strong { color: #e2e8f0; }
-  .acc-body ul { margin: 6px 0 6px 0; padding: 0; }
-  .acc-body li { font-size: 12px; color: var(--sub); list-style: none; padding: 3px 0; display: flex; gap: 6px; }
-  .acc-body li::before { content: '·'; color: #22c55e; flex-shrink: 0; }
-
-  /* TEMPLATE */
-  .tpl-name-badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: #0d1f12; color: #4ade80; padding: 2px 8px; border-radius: 20px; }
-  .tpl-preview { font-size: 13px; color: #e2e8f0; line-height: 1.55; font-style: italic; margin-bottom: 8px; background: #0a0f1a; padding: 12px 14px; border-radius: 8px; border-left: 2px solid #22c55e; }
-  .tpl-vars { font-size: 11px; color: #475569; }
-
-  /* FLOW */
-  .flow-step { font-size: 12px; color: var(--sub); padding: 4px 0; display: flex; gap: 6px; }
-  .flow-step::before { content: '→'; color: #14532d; flex-shrink: 0; }
-  .flow-trigger { font-size: 11px; color: #4ade80; margin-bottom: 10px; display: block; font-style: italic; }
-
-  /* CHECKLIST */
-  .check-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
-  .check-item .box { width: 15px; height: 15px; border: 1.5px solid #334155; border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
-  .check-item p { font-size: 13px; color: var(--sub); line-height: 1.4; }
-  .check-item p strong { color: #e2e8f0; }
-
-  .warning { background: #1a0a0a; border: 1px solid #ef444430; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
-  .warning p { font-size: 13px; color: #fca5a5; line-height: 1.5; }
-  .warning p strong { color: #f87171; }
-  .info-box { background: #0d1f12; border: 1px solid #14532d; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
-  .info-box p { font-size: 13px; color: #86efac; line-height: 1.5; }
-
-  .tools-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; background: var(--bg3); border-radius: 10px; }
-  .tools-label { font-size: 10px; font-weight: 700; color: #475569; width: 100%; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
-  .tool-chip { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #cbd5e1; }
-
-  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; flex-shrink: 0; }
-  .hamburger span { display: block; width: 22px; height: 2px; background: #94a3b8; border-radius: 2px; transition: 0.2s; }
-  @media (max-width: 768px) {
-    nav { padding: 0 16px; flex-wrap: wrap; height: auto; min-height: 52px; }
-    .hamburger { display: flex; }
-    .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 8px 0 12px; border-top: 1px solid var(--border); margin-top: 4px; }
-    .nav-links.open { display: flex; }
-    .nav-links a { padding: 8px 12px; font-size: 13px; }
-    .nav-links .sep { display: none; }
-    .page { padding: 28px 16px; }
-    .grid-2, .grid-3, .platform-grid { grid-template-columns: 1fr; }
-    .letter-hero { flex-direction: column; gap: 12px; padding: 20px 18px; }
-    .letter-big { font-size: 48px; }
-    .letter-hero h1 { font-size: 22px; }
-    .acc-badge { display: none; }
-  }
-  footer { text-align: center; color: #334155; font-size: 12px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 48px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atención | C.A.R SYSTEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .feature-list { list-style: none; padding: 0; }
+    .feature-list li {
+      background: var(--bg-accent);
+      padding: 16px; border-radius: 12px;
+      margin-bottom: 12px; border: 1px solid var(--border);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .icon-box { font-size: 1.5rem; }
+    
+    .chat-mockup {
+      background: #0d1117; border: 1px solid var(--border);
+      border-radius: 20px; padding: 20px;
+      max-width: 400px; margin: 0 auto;
+    }
+    .msg { margin-bottom: 12px; padding: 10px 14px; border-radius: 12px; font-size: 0.85rem; max-width: 80%; }
+    .msg-in { background: #30363d; color: #fff; align-self: flex-start; }
+    .msg-out { background: var(--primary); color: #fff; align-self: flex-end; margin-left: auto; }
+  </style>
 </head>
 <body>
 
 <div id="nav-root"></div>
 <script src="navbar.js"></script>
 
-<div class="page">
-
-  <div class="letter-hero">
-    <div class="letter-big">A</div>
-    <div>
-      <h1>Atención — IA en WhatsApp</h1>
-      <p>El sistema que responde el 50–65% de las consultas solo, sin intervención humana, y escala al equipo cuando realmente se necesita.</p>
-    </div>
-  </div>
-
-  <!-- POR QUÉ -->
-  <div class="tag tag-green">El problema que resuelve</div>
-  <div class="block" style="margin-bottom:16px;">
-    <div class="block-title">El cuello de botella más común en e-commerce argentino</div>
-    <div class="block-sub">El dueño promedio pasa 3–5 horas por día respondiendo las mismas preguntas en WhatsApp.</div>
-    <div class="grid-3">
-      <div class="small-card"><div class="val">98%</div><p>tasa de apertura en WhatsApp. Ningún canal tiene esta atención del usuario.</p></div>
-      <div class="small-card"><div class="val">50–65%</div><p>de consultas se resuelven automáticamente con IA sin intervención humana.</p></div>
-      <div class="small-card"><div class="val">24/7</div><p>la IA responde fuera del horario laboral, fines de semana y feriados. Sin costo adicional.</p></div>
-    </div>
-    <div class="info-box"><p>WhatsApp tiene 93.4% de penetración en usuarios de internet argentinos (We Are Social 2024) — es el canal de atención primario para e-commerce de menos de 50 empleados. Automatizarlo bien es una ventaja competitiva real.</p></div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- PLATAFORMA -->
-  <div class="tag tag-green">Elección de plataforma</div>
-  <div class="block">
-    <div class="block-title">Por qué elegimos ChatWoot</div>
-    <div class="block-sub">Una sola instancia sirve para todos los clientes — no hay costo adicional por cliente nuevo.</div>
-    <div class="platform-grid">
-      <div class="platform-card" style="border-top:3px solid #4ade80;">
-        <span class="rec">✓ Nuestra elección</span>
-        <h4>ChatWoot</h4>
-        <p>Open-source, self-hosted en Railway. Proveedor oficial Meta — aprobación de templates en minutos. Una instancia = todos los clientes.</p>
-        <div class="pro">✓ Sin costo por cliente adicional</div>
-        <div class="pro">✓ Integración nativa N8N + SupaBase</div>
-        <div class="pro">✓ Control total, sin lock-in</div>
-        <div class="con">✗ Requiere setup técnico inicial</div>
-      </div>
-      <div class="platform-card">
-        <h4>Respond.io</h4>
-        <p>CRM conversacional multi-canal (WA + IG + email). IA nativa potente.</p>
-        <div class="pro">✓ Multi-canal out of the box</div>
-        <div class="con">✗ Costo por seat o por cliente</div>
-        <div class="con">✗ Dependencia de terceros</div>
-      </div>
-      <div class="platform-card">
-        <h4>Wati</h4>
-        <p>Popular en LatAm, fácil de configurar, API oficial Meta.</p>
-        <div class="pro">✓ Setup rápido y simple</div>
-        <div class="con">✗ El costo escala por cliente</div>
-        <div class="con">✗ Menos flexible para IA custom</div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- SETUP -->
-  <div class="tag tag-green">Setup — Semana 1</div>
-  <div class="block">
-    <div class="block-title">Del cero al bot activo en 7 días</div>
-    <div class="block-sub">Pasos en orden. No saltar ninguno. Click en cada paso para ver el detalle.</div>
-
-    <div class="accordion open">
-      <div class="acc-header">
-        <div class="acc-num">1</div>
-        <div class="acc-title">Número dedicado para WhatsApp Business API</div>
-        <span class="acc-badge">Día 1</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <p>El cliente necesita un número nuevo, separado del que usa para chatear. Opciones: SIM nueva o número virtual (Twilio, VoIP).</p>
-        <p><strong>Requisito clave:</strong> ese número NO puede estar activo en WhatsApp personal. Si el cliente lo usa actualmente, hacer migración: WA → Configuración → Cuenta → Migrar a Business API. Backup de chats antes.</p>
-      </div>
+<main class="section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <span class="header-tag">MÓDULO A — ATENCIÓN COMERCIAL</span>
+      <h1 class="gradient-text">IA & Conversión</h1>
+      <p style="max-width: 700px; margin: 0 auto;">Automatizamos la atención al cliente con IA entrenada específicamente para vender, calificar y resolver dudas 24/7 en WhatsApp.</p>
     </div>
 
-    <div class="accordion">
-      <div class="acc-header">
-        <div class="acc-num">2</div>
-        <div class="acc-title">Verificación de empresa en Meta Business Manager</div>
-        <span class="acc-badge">Día 1–2</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <p>La cuenta del cliente debe estar <strong>verificada como empresa</strong> para acceder a la API oficial. Proceso: subir documentos (CUIT, constancia de inscripción AFIP). Tiempo: 24–48hs.</p>
-        <div class="warning" style="margin-top:8px;"><p><strong>Sin verificación:</strong> límite de 250 conversaciones únicas/día. <strong>Con verificación:</strong> 1.000+ desde el primer día.</p></div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <div class="acc-num">3</div>
-        <div class="acc-title">Registrar número en ChatWoot + webhook Meta</div>
-        <span class="acc-badge">Día 2</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <p>En WhatsApp Manager: agregar número → verificar con SMS → obtener WABA ID y Phone Number ID.</p>
-        <p>En ChatWoot: Settings → Inboxes → Agregar → WhatsApp API → pegar WABA ID + Phone Number ID + Access Token. Copiar la URL del webhook generada.</p>
-        <p>En Meta for Developers: registrar esa URL + Verify Token. Suscribirse a: messages, message_status_updates.</p>
-        <p><strong>Verificación:</strong> enviar un mensaje al número desde otro celular → debe aparecer en el inbox de ChatWoot en menos de 5 segundos.</p>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <div class="acc-num">4</div>
-        <div class="acc-title">Construir la knowledge base dinámica</div>
-        <span class="acc-badge">Día 2–3</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <p>Pedirle al cliente: "¿Qué preguntas te hacen todos los días?" Documentar en un Google Doc compartido en 4 categorías:</p>
-        <ul>
-          <li>Pre-compra: precio, disponibilidad, materiales, medidas, envío</li>
-          <li>Post-compra: estado del pedido, tracking, cambios, devoluciones</li>
-          <li>Operativas: horarios, medios de pago, garantía</li>
-          <li>Otras: personalizaciones, pedidos al por mayor</li>
+    <div class="grid grid-2" style="margin-bottom: 80px; align-items: center;">
+      <div>
+        <h2 style="margin-bottom: 24px;">Atención con IA </h2>
+        <ul class="feature-list">
+          <li>
+            <div class="icon-box">🤖</div>
+            <div>
+              <div style="font-weight: 700;">Respuestas Instantáneas</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">La IA responde preguntas frecuentes (FAQs) en milisegundos, eliminando el tiempo de espera.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon-box">🛍️</div>
+            <div>
+              <div style="font-weight: 700;">Recomendación de Productos</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Basado en el contexto del cliente, la IA sugiere el producto ideal para su necesidad.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon-box">👨‍💼</div>
+            <div>
+              <div style="font-weight: 700;">Escalado Humano</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Si la consulta es compleja o requiere un humano, la IA notifica y deriva al equipo de ventas.</p>
+            </div>
+          </li>
         </ul>
-        <div class="info-box"><p><strong>La clave del sistema:</strong> el cliente puede modificar este Google Doc en tiempo real. Si hay una promo nueva o un producto agotado, lo escribe ahí y N8N actualiza SupaBase automáticamente — sin depender de nosotros para cada cambio.</p></div>
+      </div>
+      <div class="chat-mockup">
+        <div class="msg msg-in">¿Tienen stock del suplemento de 500mg? ¿Envían a Rosario?</div>
+        <div class="msg msg-out">¡Hola! Sí, tenemos stock disponible. Enviamos a todo el país, a Rosario llega en 48hs hábiles. ¿Querés que te pase el link de compra o tenés alguna duda sobre la dosis?</div>
+        <div class="msg msg-in">Pasame el link porfa.</div>
+        <div class="msg msg-out">Aquí lo tenés: [Link] ¡Cualquier otra duda avisame!</div>
       </div>
     </div>
 
-    <div class="accordion">
-      <div class="acc-header">
-        <div class="acc-num">5</div>
-        <div class="acc-title">Crear y someter templates a Meta</div>
-        <span class="acc-badge">Día 3–5</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <p>Crear todos los templates juntos para que la aprobación llegue al mismo tiempo. En WhatsApp Manager → Plantillas de mensajes → Crear.</p>
-        <p><strong>Categorías:</strong> UTILITY (confirmaciones, trackings) → aprobación en minutos, costo bajo. MARKETING (promos) → hasta 24hs, costo mayor.</p>
-        <p>Ver templates estándar en la sección siguiente.</p>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <div class="acc-num">6</div>
-        <div class="acc-title">Configurar los flujos en N8N</div>
-        <span class="acc-badge">Día 5–7</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <p>Flujo principal: webhook ChatWoot → clasificar intención (OpenRouter) → buscar en SupaBase (similarity search) → generar respuesta → enviar como agente.</p>
-        <p>Regla de escalación: si similarity &lt; 0.5 o el usuario pide hablar con humano → asignar conversación al agente humano en ChatWoot + notificación.</p>
-        <p>Integración con Shopify/TiendaNube: permite que la IA responda "¿cuándo llega mi pedido?" consultando la API de la tienda en tiempo real.</p>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <div class="acc-num">7</div>
-        <div class="acc-title">Testing completo antes del go-live</div>
-        <span class="acc-badge">Día 7</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <p>Simular mínimo 20 conversaciones: preguntas frecuentes, preguntas complejas, intención de compra, fuera de tema, quejas, pedido de humano.</p>
-        <p><strong>Criterio de aprobación:</strong> ≥90% de respuestas correctas o derivación apropiada al humano. Hacer el testing junto con el cliente — que él pruebe con sus preguntas reales.</p>
-        <div class="warning" style="margin-top:8px;"><p><strong>No lanzar sin al menos 2 rondas de testing.</strong> Un bot con respuestas incorrectas genera más daño que no tener bot.</p></div>
+    <!-- INFRAESTRUCTURA -->
+    <div class="glass-card" style="margin-bottom: 80px;">
+      <h3>Plataforma: ChatWoot + WAP API</h3>
+      <p style="margin-top: 16px;">Usamos ChatWoot como proveedor oficial para evitar suscripciones costosas por cliente y centralizar WhatsApp, Instagram y Email en un solo inbox omnicanal.</p>
+      <div class="grid grid-3" style="margin-top: 32px;">
+        <div style="background: var(--bg-accent); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; color: var(--primary-light);">Base Variable</div>
+          <p style="font-size: 0.8rem; margin-top: 8px;">Actualizá promociones y stock en tiempo real desde un documento simple.</p>
+        </div>
+        <div style="background: var(--bg-accent); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; color: var(--primary-light);">Templates Meta</div>
+          <p style="font-size: 0.8rem; margin-top: 8px;">Aprobación rápida de plantillas oficiales para campañas de outbound.</p>
+        </div>
+        <div style="background: var(--bg-accent); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; color: var(--primary-light);">Métricas de Venta</div>
+          <p style="font-size: 0.8rem; margin-top: 8px;">Tracking de cuántas ventas cerró la IA vs cuántas escaló a humanos.</p>
+        </div>
       </div>
     </div>
   </div>
+</main>
 
-  <hr class="divider">
-
-  <!-- TEMPLATES -->
-  <div class="tag tag-green">Templates de WhatsApp</div>
-  <div class="block">
-    <div class="block-title">Los 6 templates esenciales — crear todos desde el día 1</div>
-    <div class="block-sub">Crearlos juntos para que la aprobación llegue al mismo tiempo. Click para ver el texto de cada uno.</div>
-
-    <div class="accordion open">
-      <div class="acc-header">
-        <span class="tpl-name-badge">UTILITY</span>
-        <div class="acc-title" style="flex:1; margin-left:8px;">Confirmación de orden</div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <div class="tpl-preview">Hola {{nombre}} 👋 Tu pedido #{{numero_orden}} fue confirmado. Lo estamos preparando con cariño. Te avisamos cuando salga para entrega. Ante cualquier consulta, estamos acá.</div>
-        <div class="tpl-vars">Variables: nombre, numero_orden — Categoría: UTILITY — Costo: gratis en ventana 24h</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span class="tpl-name-badge">UTILITY</span>
-        <div class="acc-title" style="flex:1; margin-left:8px;">Pedido en camino</div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <div class="tpl-preview">¡Tu pedido salió! 🚚 Podés rastrear tu envío acá: {{link_tracking}}. Tiempo estimado de entrega: {{fecha_estimada}}. ¿Alguna duda? Respondé este mensaje.</div>
-        <div class="tpl-vars">Variables: link_tracking, fecha_estimada — Categoría: UTILITY</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span class="tpl-name-badge">UTILITY</span>
-        <div class="acc-title" style="flex:1; margin-left:8px;">Recordatorio 24hs antes de entrega</div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <div class="tpl-preview">¡Mañana llega tu pedido! 📦 Asegurate de que haya alguien en {{direccion}} para recibirlo. Si necesitás reprogramar, avisanos antes de las {{hora_limite}}.</div>
-        <div class="tpl-vars">Variables: direccion, hora_limite — Categoría: UTILITY</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span class="tpl-name-badge">UTILITY</span>
-        <div class="acc-title" style="flex:1; margin-left:8px;">Pedido de reseña (48hs post-entrega)</div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <div class="tpl-preview">Hola {{nombre}} 😊 ¿Cómo llegó tu pedido? Tu opinión nos ayuda a mejorar y a que más personas nos conozcan. Si tenés 1 minuto, nos encantaría leerla: {{link_resena}}</div>
-        <div class="tpl-vars">Variables: nombre, link_resena — Categoría: UTILITY</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span class="tpl-name-badge">MARKETING</span>
-        <div class="acc-title" style="flex:1; margin-left:8px;">Carrito abandonado</div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <div class="tpl-preview">Hola {{nombre}} 👋 Vimos que dejaste {{producto}} en tu carrito. ¿Tuviste algún problema para finalizar la compra? Estamos para ayudarte: {{link_carrito}}</div>
-        <div class="tpl-vars">Variables: nombre, producto, link_carrito — Categoría: MARKETING — tiene costo por envío</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span class="tpl-name-badge">MARKETING</span>
-        <div class="acc-title" style="flex:1; margin-left:8px;">Oferta de recompra</div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <div class="tpl-preview">Hola {{nombre}} 🎁 Hace {{dias}} días compraste {{producto_anterior}}. Tenemos una novedad que te puede interesar. Y como ya sos cliente, te dejamos {{descuento}} de descuento: {{link}}</div>
-        <div class="tpl-vars">Variables: nombre, dias, producto_anterior, descuento, link — Categoría: MARKETING</div>
-        <div class="warning"><p><strong>Templates MARKETING:</strong> no pueden incluir promesas de precio sin ser revisadas. Siempre dejar opt-out claro. Tasa de reportes &gt; 1% degrada la calidad del número.</p></div>
-      </div>
-    </div>
+<footer style="text-align: center; padding: 48px 24px; color: var(--text-muted); border-top: 1px solid var(--border);">
+  <div class="container">
+    <p>&copy; 2026 C.A.R SYSTEM. Creado por Algoritmia + Fluyent.Ai.</p>
   </div>
+</footer>
 
-  <hr class="divider">
-
-  <!-- FLUJOS -->
-  <div class="tag tag-green">Flujos automáticos</div>
-  <div class="block">
-    <div class="block-title">Los 4 flujos que deben estar activos desde el día 1</div>
-    <div class="block-sub">Click en cada flujo para ver el árbol de decisión completo.</div>
-
-    <div class="accordion open">
-      <div class="acc-header">
-        <span style="font-size:16px;">🤖</span>
-        <div style="flex:1;"><div class="acc-title">Respuesta automática general</div><div style="font-size:11px; color:var(--muted);">Trigger: cualquier mensaje entrante</div></div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <span class="flow-trigger">Trigger: mensaje entrante fuera de horario o primer contacto del usuario</span>
-        <div class="flow-step">Confirmar recepción del mensaje</div>
-        <div class="flow-step">Clasificar intención: pregunta_frecuente | consulta_compleja | queja | pedido_humano | saludo</div>
-        <div class="flow-step">Pre-compra → buscar en knowledge base (SupaBase)</div>
-        <div class="flow-step">Tracking → consultar API Shopify/TiendaNube y responder con estado</div>
-        <div class="flow-step">No entiende en 2 intentos → derivar al humano con resumen del contexto</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span style="font-size:16px;">📦</span>
-        <div style="flex:1;"><div class="acc-title">Tracking automático de pedido</div><div style="font-size:11px; color:var(--muted);">Trigger: palabras clave de envío</div></div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <span class="flow-trigger">Trigger: palabras "pedido", "envío", "cuándo llega", "tracking" en el mensaje</span>
-        <div class="flow-step">Pedir número de orden o email del cliente</div>
-        <div class="flow-step">Consultar estado en Shopify/TiendaNube vía API</div>
-        <div class="flow-step">Responder con estado actual + link de tracking</div>
-        <div class="flow-step">Si el pedido fue entregado → solicitar reseña con link directo</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span style="font-size:16px;">🎯</span>
-        <div style="flex:1;"><div class="acc-title">Recomendación de productos</div><div style="font-size:11px; color:var(--muted);">Trigger: lead desde Meta Ads o consulta de "qué me recomendás"</div></div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <span class="flow-trigger">Trigger: lead entrante desde anuncio de Meta o intención de compra detectada</span>
-        <div class="flow-step">Saludo + 2–3 preguntas de contexto personalizadas (¿para qué lo usás? ¿qué buscás?)</div>
-        <div class="flow-step">IA cruza respuestas con el catálogo de productos del cliente</div>
-        <div class="flow-step">Recomendar 1–2 productos con argumentos personalizados</div>
-        <div class="flow-step">Link directo al producto para compra con mínima fricción</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header">
-        <span style="font-size:16px;">✅</span>
-        <div style="flex:1;"><div class="acc-title">Post-entrega (24hs después)</div><div style="font-size:11px; color:var(--muted);">Trigger: estado del pedido cambia a "entregado"</div></div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="acc-body">
-        <span class="flow-trigger">Trigger: webhook de plataforma notifica que el pedido fue entregado</span>
-        <div class="flow-step">Template de confirmación de entrega</div>
-        <div class="flow-step">Preguntar si todo llegó en perfecto estado</div>
-        <div class="flow-step">Si hay problema reportado → escalar urgente al humano inmediatamente</div>
-        <div class="flow-step">Si confirma que llegó bien → 24hs después: solicitar reseña</div>
-      </div>
-    </div>
-
-    <div class="info-box" style="margin-top:4px;">
-      <p><strong>Escalación al humano:</strong> la IA envía un resumen automático — nombre del cliente, historial de la conversación y qué necesita en una línea. El agente no arranca de cero. Notificación vía inbox de ChatWoot (recomendado) o webhook a cualquier CRM.</p>
-    </div>
-  </div>
-
-  <div class="tools-row">
-    <span class="tools-label">Stack tecnológico</span>
-    <span class="tool-chip">ChatWoot (plataforma principal)</span>
-    <span class="tool-chip">N8N (flujos de IA)</span>
-    <span class="tool-chip">SupaBase + pgvector (knowledge base)</span>
-    <span class="tool-chip">OpenRouter / GPT-4o mini</span>
-    <span class="tool-chip">Meta WhatsApp Manager</span>
-    <span class="tool-chip">Shopify / TiendaNube API</span>
-  </div>
-
-</div>
-
-<footer>Sistema CAR — Captación · Atención · Retención · Algoritmia · Mayo 2026</footer>
-
-<script>
-document.querySelectorAll('.acc-header').forEach(function(h) {
-  h.addEventListener('click', function() { h.closest('.accordion').classList.toggle('open'); });
-});
-</script>
 </body>
 </html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estrategia | C.A.R SYSTEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sub-nav {
+      position: sticky; top: 64px; z-index: 90;
+      background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0; overflow-x: auto; white-space: nowrap;
+    }
+    .sub-nav .container { display: flex; gap: 24px; }
+    .sub-nav a { color: var(--text-sub); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .sub-nav a:hover { color: #fff; }
+    
+    .score-badge {
+      font-size: 2.5rem; font-weight: 800; color: var(--secondary);
+      background: var(--secondary-glow); padding: 10px 20px; border-radius: 16px;
+      display: inline-block; margin-bottom: 10px;
+    }
+    
+    .thesis-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px; margin-top: 32px;
+      position: relative; overflow: hidden;
+    }
+    .thesis-box::before {
+      content: '"'; position: absolute; top: 20px; left: 20px;
+      font-size: 8rem; color: rgba(255, 255, 255, 0.05); font-family: 'Outfit';
+    }
+
+    .fit-item { margin-bottom: 20px; }
+    .fit-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+    .fit-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .fit-fill { height: 100%; background: var(--secondary); border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
+
+<div class="sub-nav">
+  <div class="container">
+    <a href="#sistema">Sistema</a>
+    <a href="#icp">ICP</a>
+    <a href="#validacion">Validación</a>
+    <a href="#riesgos">Riesgos</a>
+    <a href="#recomendaciones">Recomendaciones</a>
+    <a href="#fit-score">CAR Fit Score</a>
+  </div>
+</div>
+
+<main>
+  <!-- SISTEMA -->
+  <section id="sistema" class="section">
+    <div class="container">
+      <span class="header-tag">ESTRATEGIA 01</span>
+      <h1 class="gradient-text">Sistema / Modelo CAR</h1>
+      <p style="max-width: 700px;">Instalamos una estructura para captar, atender y retener desde un mismo sistema, aumentando el LTV y reduciendo la dependencia del dueño.</p>
+      
+      <div class="thesis-box animate-fade-up">
+        <h3 style="margin-bottom: 16px; color: #fff;">Nuestra Tesis</h3>
+        <p style="font-size: 1.2rem; line-height: 1.6; font-style: italic; color: var(--text-main);">
+          "Los e-commerce de recompra en Argentina no tienen solo un problema de adquisición. Tienen un problema de sistema: captan clientes de forma irregular, atienden consultas manualmente y no explotan la recompra. CAR instala una estructura para cerrar el loop completo."
+        </p>
+      </div>
+
+      <div class="grid grid-3" style="margin-top: 64px;">
+        <div class="glass-card">
+          <div class="tag tag-blue">C</div>
+          <h3>Captación</h3>
+          <p>Meta Ads con estructura técnica y niveles de consciencia para traer tráfico calificado de forma constante.</p>
+        </div>
+        <div class="glass-card">
+          <div class="tag tag-green">A</div>
+          <h3>Atención</h3>
+          <p>IA WhatsApp 24/7 (ChatWoot + API) para atender, calificar y recomendar productos de forma instantánea.</p>
+        </div>
+        <div class="glass-card">
+          <div class="tag tag-purple">R</div>
+          <h3>Retención</h3>
+          <p>Flujos automáticos (Klaviyo) de recompra y fidelización para que cada cliente valga 3x más.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICP -->
+  <section id="icp" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <h2 class="gradient-text">Cliente Ideal (ICP)</h2>
+      <div class="grid grid-2">
+        <div class="glass-card">
+          <h3>Criterios de Filtro</h3>
+          <ul style="list-style: none; padding: 0; margin-top: 20px;">
+            <li style="margin-bottom: 16px; display: flex; gap: 12px; color: var(--text-sub);">
+              <span style="color: var(--secondary);">✓</span> 
+              <span>Facturación > USD 10.000/mes (Ideal 20k-50k)</span>
+            </li>
+            <li style="margin-bottom: 16px; display: flex; gap: 12px; color: var(--text-sub);">
+              <span style="color: var(--secondary);">✓</span> 
+              <span>TiendaNube o Shopify (Stack compatible)</span>
+            </li>
+            <li style="margin-bottom: 16px; display: flex; gap: 12px; color: var(--text-sub);">
+              <span style="color: var(--secondary);">✓</span> 
+              <span>Producto con recompra natural comprobada</span>
+            </li>
+            <li style="margin-bottom: 16px; display: flex; gap: 12px; color: var(--text-sub);">
+              <span style="color: var(--secondary);">✓</span> 
+              <span>Volumen de consultas en WhatsApp > 15/día</span>
+            </li>
+          </ul>
+        </div>
+        <div class="glass-card">
+          <h3>Sectores con Máximo Fit</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;">
+            <span class="tag tag-green">Suplementos & Nutrición</span>
+            <span class="tag tag-green">Skincare & Cosmética</span>
+            <span class="tag tag-green">Mascotas</span>
+            <span class="tag tag-green">Telas & Textil</span>
+            <span class="tag tag-green">Marroquinería (Cuero)</span>
+            <span class="tag tag-green">Alimentos Gourmet</span>
+          </div>
+          <p style="font-size: 0.85rem; margin-top: 20px; color: var(--text-muted);">El factor determinante es la <strong>recurrencia de compra</strong>. A mayor frecuencia, mayor impacto del sistema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALIDACION -->
+  <section id="validacion" class="section">
+    <div class="container">
+      <h2 class="gradient-text">Validación del Modelo</h2>
+      <div class="grid grid-4" style="margin-bottom: 40px;">
+        <div class="glass-card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">98%</div>
+          <p style="font-size: 0.8rem; color: var(--text-sub);">Apertura en WhatsApp</p>
+        </div>
+        <div class="glass-card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--secondary);">36:1</div>
+          <p style="font-size: 0.8rem; color: var(--text-sub);">ROI Retención (Email)</p>
+        </div>
+        <div class="glass-card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">61%</div>
+          <p style="font-size: 0.8rem; color: var(--text-sub);">Recupero Carrito (WAP+IA)</p>
+        </div>
+        <div class="glass-card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: #fff;">5-7x</div>
+          <p style="font-size: 0.8rem; color: var(--text-sub);">Más barato retener que captar</p>
+        </div>
+      </div>
+      <div class="glass-card">
+        <h3>WhatsApp en Argentina</h3>
+        <p style="margin-bottom: 20px;">93% de penetración. El 72% del comercio conversacional en LatAm pasa por WhatsApp. Es el canal de mayor intención de compra.</p>
+        <div class="grid grid-3">
+          <div style="background: var(--bg-accent); padding: 16px; border-radius: 12px;">
+            <div style="color: var(--secondary); font-weight: 700;">+85%</div>
+            <p style="font-size: 0.75rem;">Crecimiento en transacciones WAP 2025</p>
+          </div>
+          <div style="background: var(--bg-accent); padding: 16px; border-radius: 12px;">
+            <div style="color: var(--secondary); font-weight: 700;">15-20%</div>
+            <p style="font-size: 0.75rem;">CTR en mensajes (vs 2% email)</p>
+          </div>
+          <div style="background: var(--bg-accent); padding: 16px; border-radius: 12px;">
+            <div style="color: var(--secondary); font-weight: 700;">50-65%</div>
+            <p style="font-size: 0.75rem;">Consultas cerradas por IA sin humanos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIESGOS -->
+  <section id="riesgos" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <h2 class="gradient-text">Riesgos Reales</h2>
+      <div class="grid grid-3">
+        <div class="glass-card" style="border-top: 4px solid #ef4444;">
+          <div class="tag" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">Crítico</div>
+          <h3>Cuello de Botella IA</h3>
+          <p style="font-size: 0.9rem;">WhatsApp Business API es restrictiva. Templates y sesiones requieren gestión técnica experta para no quedar bloqueados.</p>
+        </div>
+        <div class="glass-card" style="border-top: 4px solid #f59e0b;">
+          <div class="tag" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">Alto</div>
+          <h3>Escalabilidad Operativa</h3>
+          <p style="font-size: 0.9rem;">El riesgo no es vender — es entregar. Sin SOPs sólidos, la calidad se rompe. Implementamos antes de escalar.</p>
+        </div>
+        <div class="glass-card" style="border-top: 4px solid #3b82f6;">
+          <div class="tag" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">Medio</div>
+          <h3>Dependencia del Dueño</h3>
+          <p style="font-size: 0.9rem;">Si el sistema depende de tu tiempo, no es un sistema. CAR busca automatizar el 80% de la gestión.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMENDACIONES -->
+  <section id="recomendaciones" class="section">
+    <div class="container">
+      <h2 class="gradient-text">Recomendaciones Estratégicas</h2>
+      <div class="grid grid-2">
+        <div class="glass-card">
+          <h3>Fase 1: Estabilización</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px; color: var(--text-sub);">Antes de escalar Ads, es crítico asegurar que la atención en WhatsApp no sea un cuello de botella. Recomendamos activar el CRM centralizado (ChatWoot) inmediatamente.</p>
+        </div>
+        <div class="glass-card">
+          <h3>Fase 2: Expansión de LTV</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px; color: var(--text-sub);">Una vez que el flujo de captación es constante, el foco debe pasar 100% a la retención. Cada punto de mejora en la recompra tiene un impacto directo en el beneficio neto sin costo de adquisición adicional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAR FIT SCORE -->
+  <section id="fit-score" class="section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <h2 class="gradient-text">CAR Fit Score</h2>
+        <p>Nuestro sistema de calificación para asegurar el éxito del cliente.</p>
+      </div>
+      
+      <div class="grid grid-2">
+        <div class="glass-card">
+          <div class="score-badge">80 - 100</div>
+          <h3>Cliente Ideal</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px;">Negocio con alto potencial. Prioridad absoluta para implementación del Sistema CAR Completo.</p>
+          <div style="margin-top: 24px;">
+            <div class="fit-item">
+              <div class="fit-label"><span>Facturación Mensual (Max 20 pts)</span><span>20 pts</span></div>
+              <div class="fit-bar"><div class="fit-fill" style="width: 100%;"></div></div>
+            </div>
+            <div class="fit-item">
+              <div class="fit-label"><span>Recompra Natural (Max 20 pts)</span><span>20 pts</span></div>
+              <div class="fit-bar"><div class="fit-fill" style="width: 100%;"></div></div>
+            </div>
+            <div class="fit-item">
+              <div class="fit-label"><span>Volumen WhatsApp (Max 15 pts)</span><span>15 pts</span></div>
+              <div class="fit-bar"><div class="fit-fill" style="width: 100%;"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <h3>Reglas de Admisión</h3>
+          <ul style="list-style: none; padding: 0; margin-top: 24px;">
+            <li style="margin-bottom: 20px;">
+              <div style="font-weight: 700; color: #fff;">80–100: Cliente Ideal</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Acceso directo a CAR Full y acompañamiento premium.</p>
+            </li>
+            <li style="margin-bottom: 20px;">
+              <div style="font-weight: 700; color: #fff;">60–79: Fit Medio</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Puede entrar con CAR Growth o paquete limitado.</p>
+            </li>
+            <li>
+              <div style="font-weight: 700; color: #f87171;">Menos de 60: No Vender</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">El sistema no generará el ROI necesario para el cliente.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="text-align: center; padding: 48px 24px; color: var(--text-muted); border-top: 1px solid var(--border);">
+  <div class="container">
+    <p>&copy; 2026 C.A.R SYSTEM. Creado por Algoritmia + Fluyent.Ai.</p>
+  </div>
+</footer>
+
+</body>
+</html>
