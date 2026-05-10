@@ -1,0 +1,1607 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skincare — Oferta, Prospección y Creativos | C.A.R SYSTEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* SUB NAV */
+    .sub-nav {
+      position: sticky; top: 44px; z-index: 90;
+      background: rgba(2,6,23,0.85); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0; overflow-x: auto; white-space: nowrap;
+    }
+    .sub-nav .container { display: flex; gap: 14px; min-width: max-content; margin: 0 auto; }
+    .sub-nav a { color: var(--text-muted); text-decoration: none; font-size: 11.5px; font-weight: 600;
+      transition: color 0.2s; letter-spacing: 0.03em; }
+    .sub-nav a:hover { color: #fff; }
+    .sub-nav .divider { color: var(--border); }
+
+    /* PART HEADER */
+    .part-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 48px;
+    }
+    .part-number {
+      font-size: 4rem; font-weight: 800; font-family: 'Outfit';
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,0.12);
+      line-height: 1; flex-shrink: 0;
+    }
+    .part-number.green { -webkit-text-stroke-color: rgba(52,211,153,0.25); }
+    .part-number.blue  { -webkit-text-stroke-color: rgba(129,140,248,0.25); }
+    .part-number.pink  { -webkit-text-stroke-color: rgba(244,114,182,0.25); }
+
+    /* STEPS PILL */
+    .step-pill {
+      display: flex; gap: 0; align-items: stretch;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden; margin-bottom: 16px;
+    }
+    .step-num-pill {
+      width: 56px; min-height: 100%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 800; font-family: 'Outfit'; color: #fff; flex-shrink: 0;
+    }
+    .step-body { padding: 20px 24px; flex: 1; }
+    .step-body h4 { font-size: 1rem; margin-bottom: 4px; }
+    .step-body p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; }
+    .step-body .step-detail { font-size: 0.83rem; color: var(--text-muted); margin-top: 8px; }
+    .step-body .step-detail strong { color: var(--text-sub); }
+
+    .bg-green { background: linear-gradient(180deg, rgba(52,211,153,0.8), rgba(16,185,129,0.8)); }
+    .bg-blue  { background: linear-gradient(180deg, rgba(129,140,248,0.8), rgba(99,102,241,0.8)); }
+    .bg-pink  { background: linear-gradient(180deg, rgba(244,114,182,0.8), rgba(236,72,153,0.8)); }
+    .bg-orange{ background: linear-gradient(180deg, rgba(251,191,36,0.8), rgba(245,158,11,0.8)); }
+
+    /* FORMATO CARDS */
+    .formato-badge {
+      font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 12px; display: inline-block;
+    }
+    .badge-gold   { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .badge-green2 { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+    .badge-blue2  { background: rgba(129,140,248,0.12); color: #818cf8; border: 1px solid rgba(129,140,248,0.25); }
+    .badge-gray   { background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+
+    .formato-stat { font-size: 2.2rem; font-weight: 800; font-family: 'Outfit'; margin: 8px 0; }
+    .formato-stat.green { color: var(--secondary); }
+    .formato-stat.blue  { color: var(--primary); }
+    .formato-stat.gold  { color: #fbbf24; }
+
+    .formato-name { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .formato-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .formato-use  { margin-top: 14px; font-size: 0.8rem; color: var(--text-sub);
+      background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px; }
+    .formato-use strong { color: #fff; }
+
+    /* FORMATO STACK — fila con video */
+    .formato-stack { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+
+    .formato-row {
+      display: grid; grid-template-columns: 1fr 400px; gap: 0;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden; transition: border-color 0.3s;
+    }
+    .formato-row:hover { border-color: rgba(255,255,255,0.2); }
+    .formato-row.winner-format { border-color: rgba(52,211,153,0.4); }
+    .formato-row.winner-format:hover { border-color: rgba(52,211,153,0.7); }
+
+    .formato-info { padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+
+    /* Video lateral */
+    .formato-video-wrap {
+      background: #000; border-left: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; min-height: 240px;
+    }
+    .formato-video-wrap iframe {
+      width: 100%; height: 100%; min-height: 240px; border: none; display: block;
+    }
+    .formato-video-wrap.portrait {
+      width: 400px; aspect-ratio: 9/16; min-height: unset;
+    }
+    .formato-video-wrap.portrait iframe {
+      min-height: unset; width: 100%; height: 100%;
+    }
+    .formato-video-wrap.landscape { aspect-ratio: 16/9; min-height: unset; }
+    .formato-video-wrap.landscape iframe { min-height: unset; width: 100%; height: 100%; }
+
+    /* Video label */
+    .video-label {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--text-muted); margin-top: 12px; display: flex; align-items: center; gap: 6px;
+    }
+    .video-label::before { content: '▶'; font-size: 0.55rem; }
+
+    @media (max-width: 900px) {
+      .formato-row { grid-template-columns: 1fr; }
+      .formato-video-wrap { border-left: none; border-top: 1px solid var(--border); width: 100% !important; aspect-ratio: 16/9 !important; }
+      .formato-video-wrap.portrait { aspect-ratio: 16/9 !important; }
+    }
+
+    /* ANGULOS */
+    .angulo-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 28px;
+      margin-bottom: 16px;
+    }
+    .angulo-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .angulo-icon { font-size: 1.6rem; }
+    .angulo-name { font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0; }
+    .angulo-nc { font-size: 0.72rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .angulo-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 12px; }
+    .angulo-examples { display: flex; flex-direction: column; gap: 8px; }
+    .example-line {
+      font-size: 0.85rem; color: var(--text-sub); background: rgba(255,255,255,0.04);
+      border-left: 3px solid var(--primary); border-radius: 0 10px 10px 0; padding: 10px 14px;
+      font-style: italic; line-height: 1.5;
+    }
+    .example-line.green-border { border-color: var(--secondary); }
+    .example-line.pink-border  { border-color: var(--accent); }
+    .example-line.gold-border  { border-color: #fbbf24; }
+
+    /* HOOKS */
+    .hooks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    @media (max-width: 600px) { .hooks-grid { grid-template-columns: 1fr; } }
+    .hook-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 20px 22px;
+    }
+    .hook-type { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--primary); margin-bottom: 8px; }
+    .hook-examples { display: flex; flex-direction: column; gap: 6px; }
+    .hook-line { font-size: 0.88rem; color: var(--text-main); font-weight: 500; padding: 7px 12px;
+      background: rgba(255,255,255,0.04); border-radius: 8px; line-height: 1.45; }
+
+    /* SCRIPT VISUAL */
+    .script-block {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden; margin-top: 24px;
+    }
+    .script-row { display: grid; grid-template-columns: 100px 1fr; border-bottom: 1px solid var(--border); }
+    .script-row:last-child { border-bottom: none; }
+    .script-time {
+      padding: 18px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700; text-align: center; border-right: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .script-time .secs { font-size: 1.1rem; font-family: 'Outfit'; font-weight: 800; }
+    .script-content { padding: 18px 24px; }
+    .script-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .script-text  { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+    .script-tip   { font-size: 0.78rem; color: #fbbf24; margin-top: 6px; }
+
+    /* OFERTA SECTION */
+    .oferta-box {
+      background: linear-gradient(135deg, rgba(52,211,153,0.06) 0%, rgba(129,140,248,0.06) 100%);
+      border: 1px solid rgba(52,211,153,0.2); border-radius: 28px; padding: 44px;
+      margin-top: 32px; position: relative; overflow: hidden;
+    }
+    .oferta-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary), var(--accent));
+    }
+
+    .precio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
+    @media (max-width: 700px) { .precio-grid { grid-template-columns: 1fr; } }
+    .precio-card {
+      border-radius: 20px; padding: 28px; text-align: center; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03); position: relative;
+    }
+    .precio-card.recommended {
+      border-color: rgba(52,211,153,0.4);
+      background: rgba(52,211,153,0.04);
+    }
+    .precio-card.recommended::before {
+      content: 'RECOMENDADO';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--secondary); color: #020617; font-size: 0.65rem; font-weight: 800;
+      letter-spacing: 0.1em; padding: 4px 14px; border-radius: 100px;
+    }
+    .precio-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .precio-value { font-size: 2.4rem; font-weight: 800; font-family: 'Outfit'; color: #fff; margin-bottom: 4px; }
+    .precio-value span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+    .precio-desc  { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-top: 12px; }
+    .precio-items { margin-top: 16px; text-align: left; }
+    .precio-item  { font-size: 0.8rem; color: var(--text-sub); padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 8px; align-items: flex-start; }
+    .precio-item:last-child { border: none; }
+    .precio-item::before { content: '✓'; color: var(--secondary); font-weight: 700; flex-shrink: 0; }
+
+    /* OBJECIONES */
+    .objecion-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
+      overflow: hidden; margin-bottom: 14px;
+    }
+    .objecion-q {
+      padding: 18px 24px; background: rgba(248,113,113,0.05); border-bottom: 1px solid var(--border);
+      font-size: 0.9rem; color: #f87171; font-weight: 600; display: flex; gap: 10px; align-items: flex-start;
+    }
+    .objecion-q::before { content: '—'; color: #f87171; flex-shrink: 0; }
+    .objecion-a {
+      padding: 18px 24px; font-size: 0.88rem; color: var(--text-sub); line-height: 1.6;
+    }
+    .objecion-a strong { color: var(--secondary); }
+
+    /* DM SCRIPTS */
+    .msg-bubble {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: 18px 18px 18px 4px; padding: 16px 20px;
+      font-size: 0.88rem; color: var(--text-sub); line-height: 1.6;
+      max-width: 85%; margin-bottom: 12px;
+    }
+    .msg-bubble.sent {
+      background: rgba(129,140,248,0.1); border-color: rgba(129,140,248,0.2);
+      border-radius: 18px 18px 4px 18px;
+      margin-left: auto; color: #c7d2fe;
+    }
+    .msg-label { font-size: 0.65rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 6px; }
+    .msg-label.right { text-align: right; }
+    .msg-wrapper { margin-bottom: 20px; }
+    .msg-wrapper.right { display: flex; flex-direction: column; align-items: flex-end; }
+
+    .chat-container {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px; margin-top: 16px;
+    }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .checklist li {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 0.88rem; color: var(--text-sub); line-height: 1.5;
+    }
+    .check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 6px;
+      background: rgba(52,211,153,0.15); border: 1px solid rgba(52,211,153,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; color: var(--secondary); font-weight: 700; margin-top: 1px; }
+
+    /* WARNING / TIP BOXES */
+    .warn-box {
+      border-radius: 16px; padding: 18px 22px; margin-top: 16px;
+      font-size: 0.88rem; line-height: 1.55;
+    }
+    .warn-box.red   { background: rgba(248,113,113,0.06); border: 1px solid rgba(248,113,113,0.2); color: #fca5a5; }
+    .warn-box.green { background: rgba(52,211,153,0.06);  border: 1px solid rgba(52,211,153,0.2);  color: #6ee7b7; }
+    .warn-box.blue  { background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.2); color: #a5b4fc; }
+    .warn-box.gold  { background: rgba(251,191,36,0.06);  border: 1px solid rgba(251,191,36,0.2);  color: #fcd34d; }
+    .warn-box strong { color: #fff; }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ── MINI PAGER + LIGHTBOX ── */
+    .cr-mini {
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      min-width: 230px; max-width: 270px;
+      background: #000; flex-shrink: 0;
+    }
+    .cr-mini-media {
+      position: relative; cursor: pointer;
+      height: 190px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: #000;
+    }
+    .cr-mini-media.portrait { height: 300px; max-width: 170px; margin: 0 auto; width: 100%; }
+    .cr-mini-media img,
+    .cr-mini-media video {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain; display: block;
+    }
+    .cr-mini-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; transition: background 0.2s; pointer-events: none;
+    }
+    .cr-mini-media:hover .cr-mini-overlay { background: rgba(0,0,0,0.42); }
+    .cr-expand {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+      color: #fff; font-size: 17px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s; pointer-events: all;
+    }
+    .cr-mini-media:hover .cr-expand { opacity: 1; }
+    .cr-mini-label {
+      font-size: 10px; color: #64748b; padding: 5px 10px;
+      background: rgba(0,0,0,0.5); white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis; flex-shrink: 0;
+    }
+    .cr-mini-nav {
+      display: flex; align-items: center;
+      padding: 7px 10px; gap: 8px;
+      background: rgba(0,0,0,0.7); flex-shrink: 0;
+    }
+    .cr-nav-btn {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: #94a3b8; width: 26px; height: 26px; border-radius: 5px;
+      cursor: pointer; font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s; flex-shrink: 0;
+    }
+    .cr-nav-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .cr-nav-label { flex: 1; font-size: 10px; color: #94a3b8; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cr-nav-count { font-size: 10px; color: #475569; flex-shrink: 0; }
+
+    /* ── LIGHTBOX ── */
+    #lb { display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.93); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb-content { position: relative; display: flex; align-items: center; justify-content: center;
+      max-width: 90vw; max-height: 90vh; }
+    #lb-media img { max-width: 88vw; max-height: 82vh; display: block; border-radius: 4px; }
+    #lb-media video { max-width: 88vw; max-height: 82vh; display: block; outline: none; }
+    #lb-close { position: fixed; top: 18px; right: 22px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; width: 38px; height: 38px; border-radius: 50%; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10001; }
+    #lb-close:hover { background: rgba(255,255,255,0.2); }
+    .lb-arrow { position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; width: 46px; height: 46px; border-radius: 50%; font-size: 24px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 10001; transition: background 0.15s; }
+    .lb-arrow:hover { background: rgba(255,255,255,0.25); }
+    #lb-prev { left: 18px; } #lb-next { right: 18px; }
+    #lb-info { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.65); color: #94a3b8; font-size: 12px;
+      padding: 6px 18px; border-radius: 20px; white-space: nowrap; z-index: 10001; }
+
+    /* ANGULO MINI CARDS */
+    .angulo-mini-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 16px 18px;
+    }
+    .angulo-mini-icon { font-size: 1.4rem; margin-bottom: 6px; }
+    .angulo-mini-nc { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary); margin-bottom: 4px; }
+    .angulo-mini-name { font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .angulo-mini-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* EJEMPLO BLOCK */
+    .ejemplo-block { display: flex; flex-direction: column; gap: 8px; }
+    .ejemplo-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary); }
+    .ejemplo-block .cr-mini { max-width: 100%; width: 100%; }
+
+        /* ANGULO ROW */
+    .angulo-row { grid-template-columns: 1fr 270px; }
+    .angulo-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .angulo-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .angulo-nc { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--secondary); margin-bottom: 3px; }
+    .angulo-name { font-size: 1rem; font-weight: 700; color: #fff; }
+    .angulo-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 14px; }
+    .angulo-examples { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+    .example-line { font-size: 0.8rem; color: #94a3b8; padding: 7px 12px; border-radius: 8px; border-left: 3px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); font-style: italic; line-height: 1.4; }
+    .example-line.pink-border { border-left-color: rgba(244,114,182,0.5); }
+    .example-line.green-border { border-left-color: rgba(52,211,153,0.5); }
+    .example-line.gold-border { border-left-color: rgba(251,191,36,0.5); }
+
+        /* BENCHMARK TABLE */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.88rem; }
+    th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    th { color: var(--secondary); font-weight: 700; font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.07em; background: rgba(255,255,255,0.02); }
+    td { color: var(--text-sub); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* STAT SMALL */
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 28px 0; }
+    @media (max-width: 800px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+    .kpi-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 20px;
+      text-align: center;
+    }
+    .kpi-val { font-size: 1.8rem; font-weight: 800; font-family: 'Outfit'; color: var(--secondary); }
+    .kpi-lab { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+    /* GENERAL */
+    .section-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--secondary); margin-bottom: 8px; display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
+
+<div class="sub-nav">
+  <div class="container">
+    <a href="#oferta">La Oferta</a>
+    <span class="divider">·</span>
+    <a href="#pricing">Precios</a>
+    <span class="divider">·</span>
+    <a href="#portal">Portal del Cliente</a>
+    <span class="divider">·</span>
+    <a href="#retencion">Retención</a>
+    <span class="divider">·</span>
+    <a href="#objeciones">Objeciones</a>
+    <span class="divider">·</span>
+    <a href="#campanas">Campañas</a>
+    <span class="divider">·</span>
+    <a href="#formatos">Formatos</a>
+    <span class="divider">·</span>
+    <a href="#angulos">Ángulos</a>
+    <span class="divider">·</span>
+    <a href="#audiencias">Audiencias</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  PARTE 1 — LA OFERTA                                    -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <section id="oferta" class="section">
+    <div class="container">
+
+      <div class="part-header">
+        <div class="part-number green">01</div>
+        <div>
+          <span class="section-label">Parte 1 — La Oferta</span>
+          <h1 class="gradient-text" style="margin-bottom:4px;">Cómo armar y presentar<br>la oferta CAR para skincare</h1>
+          <p style="font-size:0.95rem; max-width:600px;">El sistema completo: qué incluye, cómo explicarlo, cómo presentarlo y cómo cerrar sin que parezca que estás vendiendo tres cosas a la vez.</p>
+        </div>
+      </div>
+
+      <!-- QUÉ ES LA OFERTA -->
+      <h2 class="gradient-text" style="font-size:1.8rem; margin-bottom:8px;">Qué incluye el sistema CAR para una marca de skincare</h2>
+      <p style="max-width:700px; margin-bottom:28px;">No vendés Meta Ads + chatbot + automatización. Vendés <strong style="color:#fff;">un sistema que crece la facturación de la marca de skincare desde el primer anuncio hasta la segunda compra.</strong> Eso es lo que compran.</p>
+
+      <div class="oferta-box">
+        <h3 style="font-size:1.4rem; margin-bottom:4px; color:#fff;">El Sistema CAR — Skincare Edition</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:28px;">Lo que instalás en el negocio del cliente. Explicado para que ellos lo entiendan en 60 segundos.</p>
+
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+          <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); border-radius:18px; padding:24px;">
+            <div style="font-size:1.6rem; margin-bottom:8px;">📢</div>
+            <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--secondary); margin-bottom:6px;">C — Captación</div>
+            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">Publicidad en Meta que trae compradores reales</h4>
+            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">Campañas en Facebook e Instagram segmentadas a mujeres que ya están buscando rutina de skincare. Creativos que paran el scroll y llevan a la compra. Optimización semanal basada en datos.</p>
+          </div>
+          <div style="background:rgba(129,140,248,0.08); border:1px solid rgba(129,140,248,0.2); border-radius:18px; padding:24px;">
+            <div style="font-size:1.6rem; margin-bottom:8px;">💬</div>
+            <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:6px;">A — Atención</div>
+            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">IA que atiende consultas en WhatsApp 24/7</h4>
+            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">Un asistente de IA que responde preguntas sobre tipo de piel, rutinas, compatibilidad de productos y métodos de pago. Sin demoras. Sin que el dueño tenga que estar disponible.</p>
+          </div>
+          <div style="background:rgba(244,114,182,0.08); border:1px solid rgba(244,114,182,0.2); border-radius:18px; padding:24px;">
+            <div style="font-size:1.6rem; margin-bottom:8px;">🔄</div>
+            <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:6px;">R — Retención</div>
+            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">Automatizaciones que hacen recomprar al cliente</h4>
+            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">A los 45 días de la compra, el cliente recibe un mensaje automático recordando que el producto se le está por terminar. También flujos de bienvenida, tracking de envío y reactivación de inactivos.</p>
+          </div>
+        </div>
+
+        <div class="warn-box green" style="margin-top:24px;">
+          <strong>Cómo explicarlo en la llamada:</strong> "Lo que instalamos es un sistema que hace tres cosas: trae compradores nuevos con publicidad, los atiende automáticamente para que no se caigan antes de comprar, y los reactiva solos cuando se les termina el producto. Es el loop completo, sin que vos tengas que estar en ninguno de los tres."
+        </div>
+      </div>
+
+      <!-- PASO A PASO DE LA PRESENTACIÓN -->
+      <h2 class="gradient-text" style="font-size:1.8rem; margin-top:56px; margin-bottom:8px;">Paso a paso para presentar la oferta</h2>
+      <p style="max-width:700px; margin-bottom:28px;">Desde que abrís la llamada hasta que mandás la propuesta. Orden exacto.</p>
+
+      <div class="step-pill">
+        <div class="step-num-pill bg-green">1</div>
+        <div class="step-body">
+          <h4>Empezá por el diagnóstico, no por la oferta</h4>
+          <p>Los primeros 10 minutos de la llamada son para escuchar. Hacé estas 4 preguntas antes de explicar cualquier cosa.</p>
+          <div class="step-detail">
+            <strong>"¿Cuántas órdenes por mes generan online?"</strong><br>
+            <strong>"¿De esas, cuántas son de clientes que ya compraron antes?"</strong><br>
+            <strong>"¿Cómo manejan hoy las consultas que llegan por WhatsApp o DM?"</strong><br>
+            <strong>"¿Están corriendo publicidad en Meta ahora o lo hicieron antes?"</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-pill">
+        <div class="step-num-pill bg-green">2</div>
+        <div class="step-body">
+          <h4>Identificá el dolor principal y repetílo en tus propias palabras</h4>
+          <p>Antes de presentar el sistema, resumí lo que escuchaste. Eso crea confianza y demuestra que entendiste.</p>
+          <div class="step-detail">
+            Ejemplo: <strong>"Lo que entiendo es que están generando ventas con publicidad pero tienen mucho trabajo manual en la atención, y sienten que los clientes no vuelven a comprar solos. ¿Es correcto?"</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-pill">
+        <div class="step-num-pill bg-green">3</div>
+        <div class="step-body">
+          <h4>Presentá el sistema CAR conectado a sus palabras</h4>
+          <p>No explicás las herramientas. Explicás cómo el sistema resuelve exactamente lo que ellos dijeron en el paso anterior.</p>
+          <div class="step-detail">
+            <strong>"Hay tres problemas que resuelve el sistema: uno, la adquisición irregular — instalamos campañas que traen gente lista para comprar rutina de skincare. Dos, la atención manual — una IA atiende todas las consultas de WhatsApp 24 horas. Tres, la recompra — a los 45 días le mandamos un mensaje automático al cliente recordando que el producto se le termina."</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-pill">
+        <div class="step-num-pill bg-green">4</div>
+        <div class="step-body">
+          <h4>Hacé el audit en vivo — tu mejor arma de ventas</h4>
+          <p>Si tienen ads corriendo, abrís Meta Ad Library y revisás sus creativos con ellos. Si tienen WhatsApp, le mandás un mensaje de prueba y mostrás cuánto demoran en responder. Esta es la movida que más cierra.</p>
+          <div class="step-detail">
+            Datos: <strong>Una agencia que hace un audit en vivo durante la discovery call cierra a la mitad del tiempo vs. mandando solo una propuesta escrita.</strong> El audit demuestra que ya sabés su problema antes de cobrarles.
+          </div>
+        </div>
+      </div>
+
+      <div class="step-pill">
+        <div class="step-num-pill bg-green">5</div>
+        <div class="step-body">
+          <h4>Presentá el precio con ancla y justificación de ROI</h4>
+          <p>Nunca sueltes el precio sin antes establecer qué valor genera. Primero el número que dejan de capturar, después el costo del sistema.</p>
+          <div class="step-detail">
+            Ejemplo: <strong>"Si el 20% de sus clientes actuales repitiera compra en 60 días en lugar de no volver, ¿cuánto sería eso en facturación extra al mes? [Esperás que hagan el cálculo]. Eso es lo que el sistema de retención está capturando ahora mismo sin que lo vean. El costo del sistema es [X]. Es una fracción de eso."</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-pill">
+        <div class="step-num-pill bg-green">6</div>
+        <div class="step-body">
+          <h4>Mandá la propuesta en menos de 24 horas</h4>
+          <p>El momentum se enfría. La propuesta debe ser simple, visual y con tres opciones de precio. No una pared de texto.</p>
+          <div class="step-detail">
+            Estructura: <strong>Resumen de lo que escuchaste → El sistema CAR explicado en 3 puntos → 3 opciones de precio → Próximo paso claro → Deadline de decisión (7 días).</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ PRICING ════════════════════ -->
+  <section id="pricing" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <span class="section-label">Pricing</span>
+      <h2 class="gradient-text">El retainer sube<br>con tu resultado</h2>
+      <p style="max-width:680px; margin-bottom:8px;">Setup fijo. Retainer mensual escalonado según la facturación mensual del cliente — cuanto más crece su negocio, más crece el fee. Alineamos incentivos desde el día uno.</p>
+
+      <div class="warn-box blue" style="margin-bottom:32px;">
+        <strong>Regla Argentina:</strong> Cobrar en USD o con indexación mensual a inflación. Si el cliente pide pesos — al tipo de cambio del momento con cláusula de ajuste mensual.
+      </div>
+
+      <!-- Setup fijo -->
+      <div style="max-width:680px; margin:0 auto 24px;">
+        <div style="background:var(--bg-card); border:1px solid rgba(52,211,153,0.3); border-radius:16px; padding:20px 28px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--secondary); margin-bottom:4px;">Pago único al inicio</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">Setup, instalación del sistema CAR + onboarding</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:2.4rem; font-weight:800; font-family:'Outfit'; color:#fff; line-height:1;">USD 600</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">setup único</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tiers -->
+      <div style="max-width:680px; margin:0 auto;">
+        <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:12px; padding-left:4px;">Retainer mensual — según facturación del cliente</div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+
+          <!-- Tier 1 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:4px;">Tier 1 — Arranque</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">Hasta USD 20.000 / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">El fee de arranque mientras el sistema toma velocidad.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#34d399; line-height:1;">USD 600</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+          <!-- Tier 2 -->
+          <div style="background:var(--bg-card); border:1px solid rgba(52,211,153,0.25); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--secondary); margin-bottom:4px;">Tier 2 — Crecimiento</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">USD 20.000 – 50.000 / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">El sistema ya tiene datos. Los creativos y los flujos están optimizados.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#34d399; line-height:1;">USD 1.200</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+          <!-- Tier 3 -->
+          <div style="background:var(--bg-card); border:1px solid rgba(129,140,248,0.3); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:4px;">Tier 3 — Escala</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">USD 50.000 – 100.000 / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">Operación de alto volumen. Más creativos, más flujos, más seguimiento.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#818cf8; line-height:1;">USD 2.000</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+          <!-- Tier 4 -->
+          <div style="background:var(--bg-card); border:1px solid rgba(251,191,36,0.3); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fbbf24; margin-bottom:4px;">Tier 4 — Alto impacto</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">USD 100.000+ / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">Marcas de alto volumen con operación CAR completa en su máxima expresión.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#fbbf24; line-height:1;">USD 3.000</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:12px; font-size:0.75rem; color:var(--text-muted); padding:0 4px; line-height:1.6;">
+          * Facturación medida mensualmente con integración a TiendaNube o Shopify. Ad spend siempre aparte — mínimo recomendado USD 800/mes en Meta Ads. El tier se revisa cada mes y se ajusta según el cierre real.
+        </div>
+      </div>
+
+      <!-- Includes por pilar -->
+      <div style="max-width:680px; margin:24px auto 0;">
+        <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:12px; padding-left:4px;">Todo esto incluido en todos los tiers</div>
+        <div class="glass-card" style="padding:0; overflow:hidden; border-color:rgba(255,255,255,0.08);">
+
+          <!-- C -->
+          <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#34d399; flex-shrink:0;">C</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#34d399;">Captación — Meta Ads</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#34d399; flex-shrink:0;">◦</span>Gestión completa de campañas — estructura Caro Dubi (1 campaña por audiencia, conjuntos por pain point)</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#34d399; flex-shrink:0;">◦</span>6+ creativos por mes (UGC, estático, carrusel, reels) con copy por nivel de consciencia</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#34d399; flex-shrink:0;">◦</span>Reporte quincenal de métricas + llamada mensual de revisión</div>
+            </div>
+          </div>
+
+          <!-- A -->
+          <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(129,140,248,0.15); border:1px solid rgba(129,140,248,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#818cf8; flex-shrink:0;">A</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#818cf8;">Atención — WhatsApp IA</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#818cf8; flex-shrink:0;">◦</span>IA completa sobre WhatsApp: consultas de producto, cierre de venta, post-compra</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#818cf8; flex-shrink:0;">◦</span>Transferencia a humano si la consulta lo requiere — sin fricción, sin perder la venta</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#818cf8; flex-shrink:0;">◦</span>Inbox Chatwoot: el cliente ve todos los chats en tiempo real desde su portal</div>
+            </div>
+          </div>
+
+          <!-- R -->
+          <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(244,114,182,0.12); border:1px solid rgba(244,114,182,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#f472b6; flex-shrink:0;">R</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#f472b6;">Retención — Automatizaciones</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#f472b6; flex-shrink:0;">◦</span>3 flujos automáticos: Bienvenida (día 0) · Recompra (día 45) · Reactivación (día 90+)</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#f472b6; flex-shrink:0;">◦</span>Mensajes enviados por WhatsApp API — el cliente ve cada conversación en su panel</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#f472b6; flex-shrink:0;">◦</span>Tracking de envíos integrado — el cliente puede activar o pausar el sistema cuando quiera</div>
+            </div>
+          </div>
+
+          <!-- Portal -->
+          <div style="padding:18px 24px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#fbbf24; flex-shrink:0;">+</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fbbf24;">Portal del Cliente — incluido siempre</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Dashboard propio: métricas de Meta Ads en tiempo real sin entrar al Administrador</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Acceso al inbox de Chatwoot: puede leer todos los chats de la IA con sus clientes</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Toggle para activar o pausar la IA con un click — control total en todo momento</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Seguimos agregando datos y funciones — cada mejora llega sin costo extra para clientes activos</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="warn-box green" style="margin-top:24px; max-width:680px; margin-left:auto; margin-right:auto;">
+        <strong>El argumento de ROI:</strong> Si el sistema lleva al cliente de USD 20K a USD 50K/mes, el fee pasa de USD 600 a USD 1.200. El cliente facturó USD 30K más — el aumento del fee es el 4% de esa ganancia incremental. La ecuación se sostiene sola en cada tier.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════ PORTAL DEL CLIENTE ════════════════════ -->
+  <section id="portal" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <span class="section-label">Diferencial de la oferta</span>
+      <h2 class="gradient-text">Portal del Cliente — Dashboard CAR</h2>
+      <p style="max-width:700px; margin-bottom:12px;">Todos los clientes del sistema CAR reciben acceso a una plataforma propia donde pueden ver y controlar todo el trabajo que les hacemos en tiempo real.</p>
+      <div class="warn-box blue" style="margin-bottom:40px;">
+        <strong>Por qué esto importa en la venta:</strong> La mayoría de las agencias manda reportes en PDF una vez por mes. Con el Portal del Cliente, el dueño ve los números cuando quiere, puede activar o pausar la IA con un click, y tiene acceso a todos los chats en tiempo real. Eso genera confianza y reduce drásticamente las preguntas de "¿cómo va?" que consumen tiempo.
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom:32px;">
+
+        <!-- Chatwoot -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(129,140,248,0.3);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(129,140,248,0.15); border:1px solid rgba(129,140,248,0.3); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">💬</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:2px;">Canal de comunicación</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Inbox de Chatwoot</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El cliente puede ver todos los chats que la IA está teniendo con sus clientes finales en tiempo real. Puede leer las conversaciones, ver cómo responde la IA, y detectar patrones de consulta.</p>
+          <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-sub); line-height:1.6;">
+            <strong style="color:#fff;">Powered by:</strong> Chatwoot (open source) · Acceso con usuario y contraseña propios · Sin límite de conversaciones
+          </div>
+        </div>
+
+        <!-- Toggle IA -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(52,211,153,0.3);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">🤖</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--secondary); margin-bottom:2px;">Control del sistema</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Activar / Pausar la IA</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El cliente puede activar o pausar la IA con un solo click. Si hay una temporada especial, un lanzamiento o prefieren atención 100% humana por un período, lo controlan ellos.</p>
+          <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-sub); line-height:1.6;">
+            <strong style="color:#fff;">Toggle en tiempo real:</strong> Activado → IA responde · Pausado → conversaciones van al equipo humano directamente
+          </div>
+        </div>
+
+        <!-- Métricas Meta Ads -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(251,191,36,0.3);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">📊</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fbbf24; margin-bottom:2px;">Publicidad</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Métricas de Meta Ads</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El cliente ve sus métricas de publicidad sin tener que entrar al Administrador de Meta. ROAS, gasto diario, alcance, clics, conversiones — simplificado y actualizado automáticamente.</p>
+          <div style="background:rgba(251,191,36,0.06); border:1px solid rgba(251,191,36,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-sub); line-height:1.6;">
+            <strong style="color:#fff;">Sin acceso a Meta Ads Manager:</strong> El cliente no necesita entrar a la plataforma. Los números llegan solos al Dashboard.
+          </div>
+        </div>
+
+        <!-- Futuras features -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(244,114,182,0.25);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(244,114,182,0.12); border:1px solid rgba(244,114,182,0.25); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">🔮</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:2px;">En desarrollo</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Próximas funciones</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El portal se actualiza continuamente. Las funciones nuevas se agregan sin costo adicional para clientes activos — es parte del diferencial del sistema CAR.</p>
+          <div style="background:rgba(244,114,182,0.05); border:1px solid rgba(244,114,182,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-muted); line-height:1.8;">
+            <span style="color:var(--accent);">◦</span> Historial de automatizaciones de retención<br>
+            <span style="color:var(--accent);">◦</span> Reporte de recompra y LTV del cliente<br>
+            <span style="color:var(--accent);">◦</span> Panel de creación de flujos<br>
+            <span style="color:var(--accent);">◦</span> Notificaciones por WhatsApp de métricas clave
+          </div>
+        </div>
+
+      </div>
+
+      <div class="warn-box green">
+        <strong>Cómo presentarlo en la llamada:</strong> "Además del servicio, vas a tener acceso a un panel propio donde podés ver los chats de la IA, las métricas de publicidad, y activar o pausar el sistema cuando quieras. Es tu negocio — nosotros lo manejamos, pero vos tenés visibilidad total en todo momento."
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════ FLUJOS DE RETENCIÓN ════════════════════ -->
+  <section id="retencion" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <span class="section-label">Sistema R — Retención</span>
+      <h2 class="gradient-text">Flujos de retención —<br>qué se dispara, cuándo y qué dice</h2>
+      <p style="max-width:700px; margin-bottom:12px;">La R del CAR. Tres automatizaciones sobre WhatsApp + Chatwoot que generan recompra sin trabajo manual. Se activan solas en función del historial de compra.</p>
+      <div class="warn-box blue" style="margin-bottom:36px;">
+        <strong>Plataforma:</strong> Chatwoot (open source, self-hosted) + WhatsApp Business API. Los mensajes los envía la IA del sistema automáticamente. El cliente puede ver cada conversación desde su Portal en tiempo real.
+      </div>
+
+      <!-- Flow 1 -->
+      <div class="step-pill" style="margin-bottom:14px;">
+        <div class="step-num-pill" style="background:rgba(52,211,153,0.15); color:#34d399; min-width:72px; font-size:0.75rem; text-align:center; padding:0 12px; line-height:1.3;">FLOW<br>01</div>
+        <div class="step-body">
+          <h4 style="color:#34d399; margin-bottom:6px;">Bienvenida — Se dispara el Día 0</h4>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"><strong style="color:#fff;">Trigger:</strong> Orden completada en TiendaNube / Shopify → webhook → Chatwoot → mensaje automático por WhatsApp.</div>
+          <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:10px; padding:12px 16px; font-size:0.82rem; line-height:1.7; color:#e2e8f0; margin-bottom:10px;">
+            <span style="color:#34d399; font-weight:700;">Mensaje:</span> "Hola [Nombre] 👋 Tu pedido está confirmado — lo estamos preparando. En 24–48 hs tenés el código de seguimiento. Cualquier consulta respondemos por acá ✨"
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-muted);"><strong style="color:#fff;">Objetivo:</strong> Confirmar la compra, reducir ansiedad post-pago, y abrir el canal de WhatsApp para los flujos siguientes.</div>
+        </div>
+      </div>
+
+      <!-- Flow 2 -->
+      <div class="step-pill" style="margin-bottom:14px;">
+        <div class="step-num-pill" style="background:rgba(129,140,248,0.15); color:#818cf8; min-width:72px; font-size:0.75rem; text-align:center; padding:0 12px; line-height:1.3;">FLOW<br>02</div>
+        <div class="step-body">
+          <h4 style="color:#818cf8; margin-bottom:6px;">Recompra — Se dispara el Día 45</h4>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"><strong style="color:#fff;">Trigger:</strong> 45 días después de la primera compra. El producto promedio de skincare dura 45–60 días — el mensaje llega justo cuando se está por terminar.</div>
+          <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:10px; padding:12px 16px; font-size:0.82rem; line-height:1.7; color:#e2e8f0; margin-bottom:10px;">
+            <span style="color:#818cf8; font-weight:700;">Mensaje:</span> "Hola [Nombre]! ¿Cómo te fue con [Producto]? 🌿 Ya vas por la mitad del frasco — si querés reponerlo antes de que se te termine, esta semana tenemos envío gratis. ¿Te armamos el pedido? 😊"
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-muted);"><strong style="color:#fff;">Objetivo:</strong> Segunda compra antes de que el cliente agote el stock y compre en otro lado. Es el flujo con mayor impacto en LTV de los tres.</div>
+        </div>
+      </div>
+
+      <!-- Flow 3 -->
+      <div class="step-pill" style="margin-bottom:36px;">
+        <div class="step-num-pill" style="background:rgba(244,114,182,0.12); color:#f472b6; min-width:72px; font-size:0.75rem; text-align:center; padding:0 12px; line-height:1.3;">FLOW<br>03</div>
+        <div class="step-body">
+          <h4 style="color:#f472b6; margin-bottom:6px;">Reactivación — Se dispara el Día 90+</h4>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"><strong style="color:#fff;">Trigger:</strong> Cliente que compró una vez hace más de 90 días y no volvió a comprar. Solo se activa si no respondió al Flujo 2.</div>
+          <div style="background:rgba(244,114,182,0.06); border:1px solid rgba(244,114,182,0.2); border-radius:10px; padding:12px 16px; font-size:0.82rem; line-height:1.7; color:#e2e8f0; margin-bottom:10px;">
+            <span style="color:#f472b6; font-weight:700;">Mensaje:</span> "Hola [Nombre] 🌸 Hace un tiempo que no sabemos de vos. Queremos que vuelvas — te dejamos un 15% de descuento en tu próxima compra, válido por 72 horas. → [LINK con descuento aplicado]"
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-muted);"><strong style="color:#fff;">Objetivo:</strong> Recuperar el cliente antes de que se pierda definitivamente. El descuento es el último recurso — si tampoco responde acá, se archiva el contacto.</div>
+        </div>
+      </div>
+
+      <div class="warn-box green">
+        <strong>Cómo presentarlo en la llamada:</strong> "El sistema manda mensajes solo: cuando alguien compra, a los 45 días cuando el producto se está por terminar, y a los 90 días si no volvió a comprar. Todo se ve en el Portal — podés leer cada conversación y pausar el sistema cuando quieras."
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== OBJECIONES ======================== -->
+  <section id="objeciones" class="section">
+    <div class="container">
+      <span class="section-label">Manejo de objeciones</span>
+      <h2 class="gradient-text">Las objeciones mas comunes<br>y como responderlas</h2>
+      <p style="max-width:700px; margin-bottom:32px;">No improvises. Estas van a aparecer en el 90% de las llamadas.</p>
+
+      <div class="objecion-card">
+        <div class="objecion-q">&ldquo;&iquest;Como se que la IA no va a responder mal o arruinar una venta?&rdquo;</div>
+        <div class="objecion-a"><strong>Respuesta:</strong> &ldquo;Muy buena pregunta. El sistema tiene un umbral: si la consulta es compleja o se detecta friccion, transfiere a un humano. Los primeros 30 dias operamos con supervision manual de las conversaciones para que veas como responde. El objetivo no es reemplazar al equipo &mdash; es que el equipo no tenga que estar disponible 24 horas para las preguntas basicas.&rdquo;</div>
+      </div>
+
+      <div class="objecion-card">
+        <div class="objecion-q">&ldquo;&iquest;Que garantia tienen de resultados?&rdquo;</div>
+        <div class="objecion-a"><strong>Respuesta:</strong> &ldquo;La garantia que ofrecemos es la de proceso: en los primeros 30 dias instalamos el sistema, en los dias 30 a 60 optimizamos en base a datos reales, y al mes 3 tenes metricas claras de antes y despues en retencion y atencion. Si al mes 2 no ven ningun movimiento en las metricas que acordamos, revisamos el modelo de precio juntos. No prometemos un ROAS especifico sin ver los datos, pero si que el sistema funciona &mdash; <strong>y podes verlo con clientes actuales [mostrar caso si tenes].</strong>&rdquo;</div>
+      </div>
+
+      <div class="objecion-card">
+        <div class="objecion-q">&ldquo;Ya tenemos alguien que nos maneja las redes / los ads.&rdquo;</div>
+        <div class="objecion-a"><strong>Respuesta:</strong> &ldquo;Perfecto, el sistema CAR no es solo ads. El diferencial esta en la atencion post-clic (WhatsApp IA que cierra ventas que se estaban cayendo) y en la retencion (automatizaciones que generan recompra sin trabajo manual). Eso es lo que generalmente no esta cubierto. &iquest;Hoy tienen algo instalado para reactivar a los clientes que compraron hace 45 dias?&rdquo;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ ESTRUCTURA DE CAMPAÑAS ════════════════════ -->
+  <section id="campanas" class="section">
+    <div class="container">
+      <span class="section-label">Meta Ads — Caro Dubi × Charley T</span>
+      <h2 class="gradient-text">Estructura de campañas Meta —<br>el método que escala</h2>
+      <p style="max-width:740px; margin-bottom:12px;">La forma en que la mayoría armaba campañas (prospección vs retargeting, intereses manuales, múltiples campañas) ya no escala. Lo que sigue es la estructura que enseñan Caro Dubi y Charley T — simple, basada en señales creativas, y diseñada para que el algoritmo haga el trabajo.</p>
+
+      <div class="warn-box gold" style="margin-bottom:36px;">
+        <strong>Principio base (Charley T):</strong> "Simple scales, complex fails." Ya no existe separar prospección de retargeting manualmente. Meta es el algoritmo — tu trabajo es darle señales claras con la estructura y los creativos. Él decide quién ve qué.
+      </div>
+
+      <!-- ── ESTRUCTURA PRINCIPAL ── -->
+      <h3 style="font-size:1.1rem; color:#fff; margin-bottom:6px;">La estructura completa</h3>
+      <p style="font-size:0.83rem; color:var(--text-muted); margin-bottom:20px;">1 Campaña por audiencia → Conjuntos por pain point → Creativos por nivel de consciencia</p>
+
+      <!-- Nivel 1: Campaña -->
+      <div class="step-pill" style="margin-bottom:12px;">
+        <div class="step-num-pill" style="background:rgba(52,211,153,0.15); color:#34d399; min-width:64px; font-size:0.72rem; text-align:center; padding:0 10px; line-height:1.3;">CAM<br>PAÑA</div>
+        <div class="step-body">
+          <h4 style="color:#34d399; margin-bottom:8px;">1 Campaña por audiencia — CBO activado</h4>
+          <div style="font-size:0.82rem; color:var(--text-muted); line-height:1.7; margin-bottom:10px;">
+            Cada campaña = un segmento de público distinto (mujeres 25–45, hombres 30–50, etc.). <strong style="color:#fff;">CBO (Campaign Budget Optimization) siempre activado</strong> — Meta distribuye el presupuesto entre conjuntos según qué está funcionando en tiempo real.<br><br>
+            <strong style="color:#fff;">Broad targeting</strong> — sin intereses, sin exclusiones manuales, Advantage+ Audience. Cuando le ponés intereses le estás diciendo a Meta cómo hacer su trabajo. Él sabe mejor que vos quién compra.
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:8px; padding:10px 14px; font-size:0.78rem; line-height:1.6; color:var(--text-sub);">
+              <strong style="color:#34d399;">Nombre:</strong> [NICHO] | [AUDIENCIA] | [FECHA]<br>Ej: Skincare | Muj_25-44 | May25
+            </div>
+            <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:8px; padding:10px 14px; font-size:0.78rem; line-height:1.6; color:var(--text-sub);">
+              <strong style="color:#34d399;">Objetivo:</strong> Ventas (no tráfico, no alcance). Siempre optimizar para el evento más profundo del funnel que tengas datos.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nivel 2: Conjuntos por pain point -->
+      <div class="step-pill" style="margin-bottom:12px;">
+        <div class="step-num-pill" style="background:rgba(129,140,248,0.15); color:#818cf8; min-width:64px; font-size:0.72rem; text-align:center; padding:0 10px; line-height:1.3;">CON<br>JUNTO</div>
+        <div class="step-body">
+          <h4 style="color:#818cf8; margin-bottom:8px;">Conjuntos por pain point — un dolor por conjunto</h4>
+          <div style="font-size:0.82rem; color:var(--text-muted); line-height:1.7; margin-bottom:12px;">
+            Acá está el corazón de la estructura de Caro Dubi: <strong style="color:#fff;">cada conjunto de anuncios = un dolor específico de tu cliente ideal</strong>. No segmentás por audiencia, segmentás por problema. Meta entrega cada conjunto al tipo de persona que tiene ese dolor.
+          </div>
+          <div style="font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:8px;">Pain points para skincare — ejemplos reales</div>
+          <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:10px;">
+            <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:8px; padding:9px 13px; font-size:0.79rem; color:#e2e8f0; line-height:1.5;">
+              😤 <strong>CA 01 — Piel seca</strong><br><span style="color:var(--text-muted);">"Piel seca todo el año, se pela, sin brillo"</span>
+            </div>
+            <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:8px; padding:9px 13px; font-size:0.79rem; color:#e2e8f0; line-height:1.5;">
+              😤 <strong>CA 02 — Manchas</strong><br><span style="color:var(--text-muted);">"Manchas que no se van, piel apagada, tono desparejo"</span>
+            </div>
+            <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:8px; padding:9px 13px; font-size:0.79rem; color:#e2e8f0; line-height:1.5;">
+              😤 <strong>CA 03 — Acné</strong><br><span style="color:var(--text-muted);">"Acné que vuelve, poros grandes, piel grasa"</span>
+            </div>
+            <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:8px; padding:9px 13px; font-size:0.79rem; color:#e2e8f0; line-height:1.5;">
+              😤 <strong>CA 04 — Sensible</strong><br><span style="color:var(--text-muted);">"Piel sensible que reacciona a todo, enrojece, pica"</span>
+            </div>
+          </div>
+          <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:8px; padding:10px 14px; font-size:0.78rem; line-height:1.6; color:var(--text-sub);">
+            <strong style="color:#818cf8;">Nombre:</strong> [PAIN POINT] — Ej: CA01_PielSeca | CA02_Manchas
+          </div>
+        </div>
+      </div>
+
+      <!-- Nivel 3: Creativos por NC -->
+      <div class="step-pill" style="margin-bottom:32px;">
+        <div class="step-num-pill" style="background:rgba(244,114,182,0.12); color:#f472b6; min-width:64px; font-size:0.72rem; text-align:center; padding:0 10px; line-height:1.3;">ANUN<br>CIO</div>
+        <div class="step-body">
+          <h4 style="color:#f472b6; margin-bottom:8px;">Creativos por nivel de consciencia — cubre el funnel entero</h4>
+          <div style="font-size:0.82rem; color:var(--text-muted); line-height:1.7; margin-bottom:12px;">
+            Dentro de cada conjunto van los creativos. <strong style="color:#fff;">Cada creativo apunta a un nivel de consciencia distinto</strong> — así el mismo conjunto convierte frío, tibio y caliente sin necesitar campañas separadas. El algoritmo decide a quién mostrar cada uno.
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px;">
+            <div style="background:rgba(244,114,182,0.06); border:1px solid rgba(244,114,182,0.2); border-radius:8px; padding:9px 10px; font-size:0.73rem; line-height:1.5; text-align:center;">
+              <div style="color:#f472b6; font-weight:800; font-size:0.8rem; margin-bottom:3px;">N1</div>
+              <div style="color:#fff; font-weight:700; margin-bottom:3px;">Inconsciente</div>
+              <div style="color:var(--text-muted);">Hook emocional — el dolor sin mencionar el producto</div>
+            </div>
+            <div style="background:rgba(251,191,36,0.06); border:1px solid rgba(251,191,36,0.2); border-radius:8px; padding:9px 10px; font-size:0.73rem; line-height:1.5; text-align:center;">
+              <div style="color:#fbbf24; font-weight:800; font-size:0.8rem; margin-bottom:3px;">N2</div>
+              <div style="color:#fff; font-weight:700; margin-bottom:3px;">Problema</div>
+              <div style="color:var(--text-muted);">Identifica el dolor: "¿Tenés la piel seca todo el año?"</div>
+            </div>
+            <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:8px; padding:9px 10px; font-size:0.73rem; line-height:1.5; text-align:center;">
+              <div style="color:#34d399; font-weight:800; font-size:0.8rem; margin-bottom:3px;">N3</div>
+              <div style="color:#fff; font-weight:700; margin-bottom:3px;">Solución</div>
+              <div style="color:var(--text-muted);">El mecanismo: ingrediente activo, demo, before/after</div>
+            </div>
+            <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:8px; padding:9px 10px; font-size:0.73rem; line-height:1.5; text-align:center;">
+              <div style="color:#818cf8; font-weight:800; font-size:0.8rem; margin-bottom:3px;">N4</div>
+              <div style="color:#fff; font-weight:700; margin-bottom:3px;">Producto</div>
+              <div style="color:var(--text-muted);">El producto específico: textura, rutina, UGC</div>
+            </div>
+            <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:8px; padding:9px 10px; font-size:0.73rem; line-height:1.5; text-align:center;">
+              <div style="color:#34d399; font-weight:800; font-size:0.8rem; margin-bottom:3px;">N5</div>
+              <div style="color:#fff; font-weight:700; margin-bottom:3px;">Decisión</div>
+              <div style="color:var(--text-muted);">Precio, oferta, prueba social, envío gratis</div>
+            </div>
+          </div>
+          <div style="background:rgba(244,114,182,0.06); border:1px solid rgba(244,114,182,0.15); border-radius:8px; padding:10px 14px; font-size:0.78rem; line-height:1.6; color:var(--text-sub);">
+            <strong style="color:#f472b6;">Nombre:</strong> [ÁNGULO] | [FORMATO] | [N] — Ej: Manchas_Before-After | UGC | N3
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── PRESUPUESTO Y ESCALA ── -->
+      <h3 style="font-size:1.1rem; color:#fff; margin-bottom:6px;">Presupuesto y escala — método Caro Dubi</h3>
+      <p style="font-size:0.83rem; color:var(--text-muted); margin-bottom:16px;">No existe una relación lineal entre más inversión y más resultados. La escala es quirúrgica.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:24px;">
+
+        <div style="background:var(--bg-card); border:1px solid rgba(52,211,153,0.2); border-radius:14px; padding:20px;">
+          <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--secondary); margin-bottom:8px;">Cómo subir</div>
+          <div style="font-size:1rem; font-weight:700; color:#fff; margin-bottom:8px;">+5–10% cada día y medio</div>
+          <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.65;">Si los números acompañan (CPA dentro del objetivo, ROAS positivo), subís el budget entre 5% y 10% y esperás al menos un día y medio antes de volver a tocar. Saltos grandes resetean el algoritmo y perdés el aprendizaje acumulado.</div>
+        </div>
+
+        <div style="background:var(--bg-card); border:1px solid rgba(244,114,182,0.2); border-radius:14px; padding:20px;">
+          <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:8px;">Cuándo NO tocar</div>
+          <div style="font-size:1rem; font-weight:700; color:#fff; margin-bottom:8px;">Primeros 7 días — manos afuera</div>
+          <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.65;">El algoritmo necesita tiempo para aprender. Si el CPA sube en los primeros días no significa que no funciona — está en fase de aprendizaje. La regla: nunca cambiar más de una variable a la vez.</div>
+        </div>
+
+        <div style="background:var(--bg-card); border:1px solid rgba(251,191,36,0.2); border-radius:14px; padding:20px;">
+          <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fbbf24; margin-bottom:8px;">Señal de problema</div>
+          <div style="font-size:1rem; font-weight:700; color:#fff; margin-bottom:8px;">CPA alto → revisar creativos primero</div>
+          <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.65;">Antes de tocar presupuesto o audiencia, revisá los creativos. El 80% de las veces el problema es el creativo — el hook, el ángulo, o el nivel de consciencia equivocado. Pausar el anuncio, no el conjunto.</div>
+        </div>
+
+        <div style="background:var(--bg-card); border:1px solid rgba(129,140,248,0.2); border-radius:14px; padding:20px;">
+          <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:8px;">PSM (Charley T)</div>
+          <div style="font-size:1rem; font-weight:700; color:#fff; margin-bottom:8px;">LTV ÷ (COGS + CPA)</div>
+          <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.65;">PSM &gt; 1 = el negocio es rentable a escala. PSM &gt; 2 = podés gastar el doble de lo que gastás y seguir ganando. Usá esto en lugar de obsesionarte con el ROAS — el ROAS no cuenta el LTV.</div>
+        </div>
+
+      </div>
+
+      <!-- Lo que NO hacer -->
+      <div class="warn-box" style="margin-bottom:20px;">
+        <strong>Lo que ya no funciona y no hacemos:</strong> Separar prospección de retargeting manualmente · Usar intereses o exclusiones · Múltiples campañas por objetivo · Subir budget más del 10% de golpe · Mirar el ROAS diario como única métrica · Tocar la campaña antes de 7 días.
+      </div>
+
+      <div class="warn-box green">
+        <strong>Cómo presentarlo en la llamada:</strong> "La estructura la armamos nosotros. Una campaña por tipo de audiencia, dentro dividida por el problema que tiene tu cliente. Cada problema tiene creativos que van desde quien ni sabe que existe el producto hasta quien ya está a punto de comprar. El algoritmo de Meta decide quién ve qué — nosotros le damos las señales correctas."
+      </div>
+
+    </div>
+  </section>
+
+  
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  PARTE 2 — LOS MEJORES CREATIVOS PARA SKINCARE          -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <section id="formatos" class="section">
+    <div class="container">
+
+      <div class="part-header">
+        <div class="part-number pink">02</div>
+        <div>
+          <span class="section-label">Parte 2 — Creativos Ganadores</span>
+          <h1 class="gradient-text" style="margin-bottom:4px;">Los mejores creativos para<br>publicidad de skincare</h1>
+          <p style="font-size:0.95rem; max-width:600px;">Basado en el análisis de 300+ ads top de beauty a nivel global, datos de ROAS reales, y lo que específicamente funciona en Meta para marcas D2C de cosméticos.</p>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val">36,8%</div>
+          <div class="kpi-lab">de los mejores ads de belleza son formato UGC — domina por sobre todos los demás</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">7 meses</div>
+          <div class="kpi-lab">es la duración promedio de los mejores ads de before/after — el creativo más longevo</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">4,43x</div>
+          <div class="kpi-lab">ROAS alcanzado con UGC + retargeting en campañas de ecommerce de belleza</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">3 seg</div>
+          <div class="kpi-lab">tiempo máximo para capturar la atención — si en 3 segundos no enganchó, perdiste</div>
+        </div>
+      </div>
+
+
+      <div class="warn-box gold" style="margin-top:24px;">
+        <strong>Regla de los formatos:</strong> UGC para encontrar el ángulo ganador → Estático para escalar → Carrusel para educación y catálogo → Reels para reach masivo. No uses un solo formato — el sistema usa todos en capas según el objetivo.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ ÁNGULOS ════════════════════ -->
+  <section id="angulos" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <span class="section-label">Ángulos Creativos</span>
+      <h2 class="gradient-text">Los 7 ángulos que convierten<br>en skincare</h2>
+      <p style="max-width:700px; margin-bottom:32px;">Cada ángulo apunta a un nivel de consciencia diferente. Necesitás todos para cubrir el funnel completo.</p>
+
+      <div class="formato-stack">
+
+        <!-- A1: Problema + Dolor -->
+        <div class="formato-row angulo-row">
+          <div class="formato-info">
+            <div class="angulo-header"><div class="angulo-icon">😤</div><div><div class="angulo-nc">N1 — N2 · Frío</div><div class="angulo-name">Problema + Dolor</div></div></div>
+            <div class="angulo-desc">Abrís con el dolor que tiene el cliente aunque no sepa que el producto es la solución. Para audiencias que ni saben que tu marca existe. Es el ángulo de más alto volumen pero menor conversión directa.</div>
+            <div class="angulo-examples">
+              <div class="example-line pink-border">"¿Tu piel se ve opaca sin importar qué crema usás?"</div>
+              <div class="example-line pink-border">"El problema no es tu piel seca. Es que usás los productos en el orden equivocado."</div>
+              <div class="example-line pink-border">"Si tu hidratante no dura más de 2 horas, hay una razón."</div>
+            </div>
+            <div class="video-label">2 ejemplos reales · ‹ › para navegar · click para expandir</div>
+          </div>
+          
+          <div class="cr-mini" id="pager-a1">
+            <div class="cr-mini-media" onclick="openLb('pager-a1')">
+              <div class="cr-mini-overlay"><button class="cr-expand" onclick="event.stopPropagation();openLb('pager-a1')">&#x26F6;</button></div>
+            </div>
+            <div class="cr-mini-label"></div>
+            <div class="cr-mini-nav">
+              <button class="cr-nav-btn" onclick="navPager('pager-a1',-1)">&#8249;</button>
+              <span class="cr-nav-label"></span>
+              <span class="cr-nav-count"></span>
+              <button class="cr-nav-btn" onclick="navPager('pager-a1',1)">&#8250;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- A2: Ingrediente educativo -->
+        <div class="formato-row angulo-row">
+          <div class="formato-info">
+            <div class="angulo-header"><div class="angulo-icon">🔬</div><div><div class="angulo-nc">N2 — N3 · Frío-Tibio</div><div class="angulo-name">Ingrediente educativo</div></div></div>
+            <div class="angulo-desc">Explicás un ingrediente como si hablaras con una amiga. Uno por creativo — no una lista. Construye confianza y posicionás la marca como experta antes de pedir la compra.</div>
+            <div class="angulo-examples">
+              <div class="example-line green-border">"Esto es lo que hace la Niacinamida — y por qué todas las marcas la están usando."</div>
+              <div class="example-line green-border">"El Ácido Hialurónico no hidrata si lo aplicás mal. Esto es lo que nadie te cuenta."</div>
+              <div class="example-line green-border">"Por qué el Retinol da resultados en 4 semanas y no en 4 días."</div>
+            </div>
+            <div class="video-label">5 ejemplos reales · ‹ › para navegar · click para expandir</div>
+          </div>
+          
+          <div class="cr-mini" id="pager-a2">
+            <div class="cr-mini-media" onclick="openLb('pager-a2')">
+              <div class="cr-mini-overlay"><button class="cr-expand" onclick="event.stopPropagation();openLb('pager-a2')">&#x26F6;</button></div>
+            </div>
+            <div class="cr-mini-label"></div>
+            <div class="cr-mini-nav">
+              <button class="cr-nav-btn" onclick="navPager('pager-a2',-1)">&#8249;</button>
+              <span class="cr-nav-label"></span>
+              <span class="cr-nav-count"></span>
+              <button class="cr-nav-btn" onclick="navPager('pager-a2',1)">&#8250;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- A3: Before / After -->
+        <div class="formato-row angulo-row">
+          <div class="formato-info">
+            <div class="angulo-header"><div class="angulo-icon">📸</div><div><div class="angulo-nc">N3 — N4 · Tibio</div><div class="angulo-name">Before / After con historia real</div></div></div>
+            <div class="angulo-desc">No una transformación milagrosa — un resultado honesto. Los resultados graduales y reales generan más confianza que los dramáticos retocados. El cliente se identifica con alguien parecido a ella.</div>
+            <div class="angulo-examples">
+              <div class="example-line">"4 semanas usando esto — sin filtros, sin edición."</div>
+              <div class="example-line">"Me tomó 3 meses. No es magia, es constancia + el producto correcto."</div>
+              <div class="example-line">"Le presté mi rutina a mi hermana por un mes. Esto pasó."</div>
+            </div>
+            <div class="video-label">5 ejemplos reales · ‹ › para navegar · click para expandir</div>
+          </div>
+          
+          <div class="cr-mini" id="pager-a3">
+            <div class="cr-mini-media" onclick="openLb('pager-a3')">
+              <div class="cr-mini-overlay"><button class="cr-expand" onclick="event.stopPropagation();openLb('pager-a3')">&#x26F6;</button></div>
+            </div>
+            <div class="cr-mini-label"></div>
+            <div class="cr-mini-nav">
+              <button class="cr-nav-btn" onclick="navPager('pager-a3',-1)">&#8249;</button>
+              <span class="cr-nav-label"></span>
+              <span class="cr-nav-count"></span>
+              <button class="cr-nav-btn" onclick="navPager('pager-a3',1)">&#8250;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- A4: Prueba social + Autoridad -->
+        <div class="formato-row angulo-row">
+          <div class="formato-info">
+            <div class="angulo-header"><div class="angulo-icon">👩‍⚕️</div><div><div class="angulo-nc">N3 — N4 · Tibio</div><div class="angulo-name">Prueba social + Autoridad</div></div></div>
+            <div class="angulo-desc">Testimonios reales, menciones de dermatólogos, premios o cantidad de clientas. Funciona mejor combinado con un visual de demo — el testimonio solo sin imagen no convierte bien.</div>
+            <div class="angulo-examples">
+              <div class="example-line gold-border">"Lo recomendaron más de 2.000 clientas en Argentina." [Con reviews reales]</div>
+              <div class="example-line gold-border">"Aprobado por dermatólogos. Libre de parabenos. Formulado en Argentina."</div>
+              <div class="example-line gold-border">"★★★★★ — 'Probé todo para el acné y esto fue lo único que funcionó.' — Valentina, Córdoba"</div>
+            </div>
+            <div class="video-label">5 ejemplos reales · ‹ › para navegar · click para expandir</div>
+          </div>
+          
+          <div class="cr-mini" id="pager-a4">
+            <div class="cr-mini-media" onclick="openLb('pager-a4')">
+              <div class="cr-mini-overlay"><button class="cr-expand" onclick="event.stopPropagation();openLb('pager-a4')">&#x26F6;</button></div>
+            </div>
+            <div class="cr-mini-label"></div>
+            <div class="cr-mini-nav">
+              <button class="cr-nav-btn" onclick="navPager('pager-a4',-1)">&#8249;</button>
+              <span class="cr-nav-label"></span>
+              <span class="cr-nav-count"></span>
+              <button class="cr-nav-btn" onclick="navPager('pager-a4',1)">&#8250;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- A5: Demo de producto -->
+        <div class="formato-row angulo-row">
+          <div class="formato-info">
+            <div class="angulo-header"><div class="angulo-icon">🎥</div><div><div class="angulo-nc">N4 · Tibio-Caliente</div><div class="angulo-name">Demo de producto / Textura</div></div></div>
+            <div class="angulo-desc">Mostrar el producto en acción: la textura, el finish, cómo se siente al aplicarlo. Para quien ya sabe qué problema tiene pero no eligió tu marca todavía. El 53,5% de los UGC ganadores son demos.</div>
+            <div class="angulo-examples">
+              <div class="example-line green-border">"Esta textura es lo más. Mirá cómo se absorbe." [Close-up aplicación]</div>
+              <div class="example-line green-border">"Skin que no pesa ni brilla — así queda después de aplicar el serum."</div>
+            </div>
+            <div class="video-label">8 ejemplos reales (locales + YouTube) · ‹ › para navegar · click para expandir</div>
+          </div>
+          
+          <div class="cr-mini" id="pager-a5">
+            <div class="cr-mini-media" onclick="openLb('pager-a5')">
+              <div class="cr-mini-overlay"><button class="cr-expand" onclick="event.stopPropagation();openLb('pager-a5')">&#x26F6;</button></div>
+            </div>
+            <div class="cr-mini-label"></div>
+            <div class="cr-mini-nav">
+              <button class="cr-nav-btn" onclick="navPager('pager-a5',-1)">&#8249;</button>
+              <span class="cr-nav-label"></span>
+              <span class="cr-nav-count"></span>
+              <button class="cr-nav-btn" onclick="navPager('pager-a5',1)">&#8250;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- A6: Oferta + Urgencia -->
+        <div class="formato-row angulo-row">
+          <div class="formato-info">
+            <div class="angulo-header"><div class="angulo-icon">⚡</div><div><div class="angulo-nc">N4 — N5 · Caliente</div><div class="angulo-name">Oferta + Urgencia</div></div></div>
+            <div class="angulo-desc">Para retargeting — personas que ya vieron el producto o estuvieron en el sitio. Precio, descuento, bundle, envío gratis, tiempo limitado. No uses urgencia falsa — en Argentina se nota y destruye confianza.</div>
+            <div class="angulo-examples">
+              <div class="example-line pink-border">"Última semana con el precio de lanzamiento. Sin código, el descuento se aplica solo."</div>
+              <div class="example-line pink-border">"Comprá 2 y el envío es gratis a todo el país — solo hasta el domingo."</div>
+              <div class="example-line pink-border">"El kit que más vendemos esta temporada. Quedan [X] unidades en stock."</div>
+            </div>
+            <div class="video-label">9 ejemplos reales (Deals Deluxe + Farmaonline + YouTube) · ‹ › para navegar</div>
+          </div>
+          
+          <div class="cr-mini" id="pager-a6">
+            <div class="cr-mini-media" onclick="openLb('pager-a6')">
+              <div class="cr-mini-overlay"><button class="cr-expand" onclick="event.stopPropagation();openLb('pager-a6')">&#x26F6;</button></div>
+            </div>
+            <div class="cr-mini-label"></div>
+            <div class="cr-mini-nav">
+              <button class="cr-nav-btn" onclick="navPager('pager-a6',-1)">&#8249;</button>
+              <span class="cr-nav-label"></span>
+              <span class="cr-nav-count"></span>
+              <button class="cr-nav-btn" onclick="navPager('pager-a6',1)">&#8250;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- A7: Comparación / USP directo -->
+        <div class="formato-row angulo-row">
+          <div class="formato-info">
+            <div class="angulo-header"><div class="angulo-icon">🏷️</div><div><div class="angulo-nc">N5 · Decisión</div><div class="angulo-name">Comparación / USP directo</div></div></div>
+            <div class="angulo-desc">El cliente ya quiere comprar skincare, está eligiendo entre opciones. Acá vendés el diferencial de tu marca vs. las alternativas. Sin atacar a competidores — mostrás por qué el tuyo es la elección correcta.</div>
+            <div class="angulo-examples">
+              <div class="example-line">"A diferencia de las cremas genéricas, este serum tiene el 10% de Niacinamida concentrada."</div>
+              <div class="example-line">"Formulado sin alcohol, sin fragancia, sin relleno. Solo lo que tu piel necesita."</div>
+            </div>
+            <div class="video-label">5 ejemplos reales · ‹ › para navegar · click para expandir</div>
+          </div>
+          
+          <div class="cr-mini" id="pager-a7">
+            <div class="cr-mini-media" onclick="openLb('pager-a7')">
+              <div class="cr-mini-overlay"><button class="cr-expand" onclick="event.stopPropagation();openLb('pager-a7')">&#x26F6;</button></div>
+            </div>
+            <div class="cr-mini-label"></div>
+            <div class="cr-mini-nav">
+              <button class="cr-nav-btn" onclick="navPager('pager-a7',-1)">&#8249;</button>
+              <span class="cr-nav-label"></span>
+              <span class="cr-nav-count"></span>
+              <button class="cr-nav-btn" onclick="navPager('pager-a7',1)">&#8250;</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="audiencias" class="section">
+    <div class="container">
+      <span class="section-label">Audiencias y Puntos de Dolor</span>
+      <h2 class="gradient-text">Los 3 segmentos que compran<br>y los 3 dolores que los mueven</h2>
+      <p style="max-width:700px; margin-bottom:48px;">No se apunta a "mujeres que les gusta el skincare". Se apunta a una persona con un problema específico. Estos son los perfiles que más convierten en Argentina.</p>
+
+      <!-- TOP 3 AUDIENCIAS -->
+      <h3 style="color:var(--secondary); font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:24px;">Top 3 Audiencias</h3>
+      <div class="grid grid-3" style="margin-bottom:48px;">
+
+        <!-- Audiencia 1 -->
+        <div class="glass-card" style="border-color:rgba(244,114,182,0.3); position:relative;">
+          <div style="position:absolute; top:-1px; left:24px; background:var(--accent); color:#fff; font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; padding:3px 12px; border-radius:0 0 8px 8px;">Audiencia 1 — Alta urgencia</div>
+          <div style="margin-top:16px;">
+            <div style="font-size:2rem; margin-bottom:8px;">😣</div>
+            <h3 style="font-size:1.05rem; margin-bottom:6px; color:#fff;">Piel con acné / problemática</h3>
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:16px;">Mujeres 18–32 · Impulso emocional alto · Compra por frustración acumulada</div>
+            <div style="background:rgba(244,114,182,0.06); border:1px solid rgba(244,114,182,0.15); border-radius:12px; padding:14px 16px; font-size:0.82rem; margin-bottom:14px;">
+              <div style="color:#f9a8d4; font-weight:700; margin-bottom:6px;">Intereses Meta</div>
+              <div style="color:var(--text-muted); line-height:1.7;">Skincare · Acne treatment · Paula's Choice · La Roche-Posay · Neutrogena · Dermatología</div>
+            </div>
+            <div style="background:rgba(244,114,182,0.06); border:1px solid rgba(244,114,182,0.15); border-radius:12px; padding:14px 16px; font-size:0.82rem;">
+              <div style="color:#f9a8d4; font-weight:700; margin-bottom:6px;">Lo que las mueve</div>
+              <div style="color:var(--text-muted); line-height:1.7;">Vergüenza social · No poder salir sin base · Haber probado de todo sin resultado · Quieren solución rápida y real</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audiencia 2 -->
+        <div class="glass-card" style="border-color:rgba(129,140,248,0.3); position:relative;">
+          <div style="position:absolute; top:-1px; left:24px; background:var(--primary); color:#fff; font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; padding:3px 12px; border-radius:0 0 8px 8px;">Audiencia 2 — Mayor ticket</div>
+          <div style="margin-top:16px;">
+            <div style="font-size:2rem; margin-bottom:8px;">⏳</div>
+            <h3 style="font-size:1.05rem; margin-bottom:6px; color:#fff;">Anti-aging preventivo</h3>
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:16px;">Mujeres 32–48 · Profesionales · Primera vez invirtiendo en piel</div>
+            <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:12px; padding:14px 16px; font-size:0.82rem; margin-bottom:14px;">
+              <div style="color:#c4b5fd; font-weight:700; margin-bottom:6px;">Intereses Meta</div>
+              <div style="color:var(--text-muted); line-height:1.7;">Anti-aging · Retinol · Vitamina C serum · Estée Lauder · Cuidado de la piel · Bienestar femenino</div>
+            </div>
+            <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:12px; padding:14px 16px; font-size:0.82rem;">
+              <div style="color:#c4b5fd; font-weight:700; margin-bottom:6px;">Lo que las mueve</div>
+              <div style="color:var(--text-muted); line-height:1.7;">Empiezan a notar las líneas · Quieren prevenir antes de corregir · Dispuestas a pagar más por ingredientes científicos · Compran en rutina</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audiencia 3 -->
+        <div class="glass-card" style="border-color:rgba(52,211,153,0.3); position:relative;">
+          <div style="position:absolute; top:-1px; left:24px; background:var(--secondary); color:#000; font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; padding:3px 12px; border-radius:0 0 8px 8px;">Audiencia 3 — Recompra alta</div>
+          <div style="margin-top:16px;">
+            <div style="font-size:2rem; margin-bottom:8px;">💧</div>
+            <h3 style="font-size:1.05rem; margin-bottom:6px; color:#fff;">Piel seca / opaca / sin glow</h3>
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:16px;">Mujeres 25–42 · Buscan resultado visible · Alta fidelidad a marcas</div>
+            <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:12px; padding:14px 16px; font-size:0.82rem; margin-bottom:14px;">
+              <div style="color:#6ee7b7; font-weight:700; margin-bottom:6px;">Intereses Meta</div>
+              <div style="color:var(--text-muted); line-height:1.7;">Hyaluronic acid · Moisturizer · Glow skin · CeraVe · The Ordinary · Rutina de skincare</div>
+            </div>
+            <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:12px; padding:14px 16px; font-size:0.82rem;">
+              <div style="color:#6ee7b7; font-weight:700; margin-bottom:6px;">Lo que las mueve</div>
+              <div style="color:var(--text-muted); line-height:1.7;">Quieren piel luminosa sin filtro · Buscan hidratación que dure todo el día · Les importa la calidad del ingrediente activo</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TOP 3 PAIN POINTS -->
+      <h3 style="color:var(--accent); font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:24px;">Top 3 Dolores (Pain Points)</h3>
+
+      <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:48px;">
+
+        <div style="display:grid; grid-template-columns:72px 1fr; gap:0; background:var(--bg-card); border:1px solid rgba(244,114,182,0.25); border-radius:20px; overflow:hidden;">
+          <div style="background:linear-gradient(180deg,rgba(244,114,182,0.8),rgba(236,72,153,0.8)); display:flex; align-items:center; justify-content:center; font-size:1.4rem;">😤</div>
+          <div style="padding:20px 24px;">
+            <h4 style="font-size:1rem; color:#fff; margin-bottom:4px;">"Probé todo y nada me funciona"</h4>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin:0; line-height:1.6;">Frustración acumulada con productos del supermercado o de farmacia. Están listas para pagar más si alguien les demuestra que es diferente. El creativo que demuestra un resultado real les rompe el escepticismo.</p>
+            <div style="margin-top:10px; font-size:0.77rem; color:var(--accent);">→ Creativos ideales: Before/After · Testimonial UGC · "¿Por qué X no te funciona?"</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:72px 1fr; gap:0; background:var(--bg-card); border:1px solid rgba(251,191,36,0.25); border-radius:20px; overflow:hidden;">
+          <div style="background:linear-gradient(180deg,rgba(251,191,36,0.8),rgba(245,158,11,0.8)); display:flex; align-items:center; justify-content:center; font-size:1.4rem;">💸</div>
+          <div style="padding:20px 24px;">
+            <h4 style="font-size:1rem; color:#fff; margin-bottom:4px;">"Gasto una fortuna y no veo resultados"</h4>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin:0; line-height:1.6;">Gastaron plata en cremas caras y no funcionaron. El dolor es doble: emocional (frustración con la piel) + económico (desperdicio de plata). El ángulo correcto es mostrar ROI claro: "Por lo que pagás una vez por semana en café, podés tener una rutina que realmente funcione."</p>
+            <div style="margin-top:10px; font-size:0.77rem; color:#fbbf24;">→ Creativos ideales: Precio visible · Comparativa vs. competencia · "Lo que te estás perdiendo"</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:72px 1fr; gap:0; background:var(--bg-card); border:1px solid rgba(129,140,248,0.25); border-radius:20px; overflow:hidden;">
+          <div style="background:linear-gradient(180deg,rgba(129,140,248,0.8),rgba(99,102,241,0.8)); display:flex; align-items:center; justify-content:center; font-size:1.4rem;">😶</div>
+          <div style="padding:20px 24px;">
+            <h4 style="font-size:1rem; color:#fff; margin-bottom:4px;">"No me animo a salir sin maquillaje / me da vergüenza mi piel"</h4>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin:0; line-height:1.6;">El dolor más emocional y el más poderoso para convertir. La piel es identidad y autoestima. El creativo que toca esto tiene que ser empático (no agresivo) y mostrar transformación, no solo producto.</p>
+            <div style="margin-top:10px; font-size:0.77rem; color:var(--primary);">→ Creativos ideales: UGC "Día 30" · Story personal · Video sin maquillaje → transformación</div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </section>
+
+<footer style="text-align: center; padding: 48px 24px; color: var(--text-muted); border-top: 1px solid var(--border);">
+  <div class="container">
+    <p>&copy; 2026 SISTEMA CAR. Una creación conjunta de <strong>Algoritmia</strong> &amp; <strong>Fluyent.ai</strong>.</p>
+  </div>
+</footer>
+
+
+<!-- Lightbox -->
+<div id="lb" onclick="if(event.target===this)closeLb()">
+  <button id="lb-close" onclick="closeLb()">&#x2715;</button>
+  <button class="lb-arrow" id="lb-prev" onclick="lbNav(-1)">&#8249;</button>
+  <div id="lb-content"><div id="lb-media"></div></div>
+  <button class="lb-arrow" id="lb-next" onclick="lbNav(1)">&#8250;</button>
+  <div id="lb-info"></div>
+</div>
+
+<script>
+var _pagers = {}, _lbPager = null, _lbIdx = 0;
+
+function initPager(id, items) {
+  _pagers[id] = { items: items, idx: 0 };
+  _rp(id);
+}
+
+function _rp(id) {
+  var p = _pagers[id];
+  var el = document.getElementById(id);
+  if (!el) return;
+  var item = p.items[p.idx];
+  var media = el.querySelector('.cr-mini-media');
+  var overlay = media.querySelector('.cr-mini-overlay');
+  Array.from(media.children).forEach(function(c) { if (c !== overlay) c.remove(); });
+
+  if (item.type === 'video') {
+    var v = document.createElement('video');
+    v.muted = true; v.preload = 'metadata'; v.setAttribute('playsinline','');
+    v.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+    v.src = item.src;
+    media.insertBefore(v, overlay);
+  } else if (item.type === 'image') {
+    var img = document.createElement('img');
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+    img.src = item.src; img.alt = item.label || '';
+    media.insertBefore(img, overlay);
+  } else if (item.type === 'youtube') {
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'width:100%;height:100%;position:relative;overflow:hidden;';
+    var thumb = document.createElement('img');
+    thumb.src = 'https://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
+    thumb.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    var play = document.createElement('div');
+    play.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;';
+    play.innerHTML = '<div style="width:42px;height:42px;background:rgba(220,38,38,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px rgba(0,0,0,0.6);"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M8 5v14l11-7z"/></svg></div>';
+    wrap.appendChild(thumb); wrap.appendChild(play);
+    media.insertBefore(wrap, overlay);
+  }
+
+  var labelEl = el.querySelector('.cr-mini-label');
+  var navLbl = el.querySelector('.cr-nav-label');
+  var navCnt = el.querySelector('.cr-nav-count');
+  if (labelEl) labelEl.textContent = item.label || '';
+  if (navLbl)  navLbl.textContent  = item.label || '';
+  if (navCnt)  navCnt.textContent  = (p.idx + 1) + ' / ' + p.items.length;
+}
+
+function navPager(id, dir) {
+  var p = _pagers[id];
+  p.idx = (p.idx + dir + p.items.length) % p.items.length;
+  _rp(id);
+}
+
+function openLb(id) {
+  _lbPager = id; _lbIdx = _pagers[id].idx;
+  _rlb();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function _rlb() {
+  var p = _pagers[_lbPager];
+  var item = p.items[_lbIdx];
+  var mediaEl = document.getElementById('lb-media');
+  mediaEl.innerHTML = '';
+  if (item.type === 'video') {
+    var v = document.createElement('video');
+    v.src = item.src; v.controls = true; v.autoplay = true; v.setAttribute('playsinline','');
+    v.style.cssText = 'max-width:88vw;max-height:82vh;display:block;outline:none;';
+    mediaEl.appendChild(v);
+  } else if (item.type === 'image') {
+    var img = document.createElement('img');
+    img.src = item.src;
+    img.style.cssText = 'max-width:88vw;max-height:82vh;display:block;border-radius:4px;';
+    mediaEl.appendChild(img);
+  } else if (item.type === 'youtube') {
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/' + item.id + '?autoplay=1&rel=0&modestbranding=1';
+    iframe.setAttribute('allowfullscreen','');
+    iframe.setAttribute('allow','autoplay; encrypted-media');
+    iframe.style.cssText = 'width:min(88vw,900px);height:min(80vh,506px);border:none;border-radius:4px;display:block;';
+    mediaEl.appendChild(iframe);
+  }
+  var info = document.getElementById('lb-info');
+  if (info) info.textContent = (item.label || '') + ' · ' + (_lbIdx + 1) + ' / ' + p.items.length;
+  var n = p.items.length > 1;
+  var lp = document.getElementById('lb-prev'); if (lp) lp.style.display = n ? 'flex' : 'none';
+  var ln = document.getElementById('lb-next'); if (ln) ln.style.display = n ? 'flex' : 'none';
+}
+
+function lbNav(dir) {
+  var v = document.querySelector('#lb-media video'); if (v) v.pause();
+  var f = document.querySelector('#lb-media iframe'); if (f) f.src = '';
+  _lbIdx = (_lbIdx + dir + _pagers[_lbPager].items.length) % _pagers[_lbPager].items.length;
+  _rlb();
+}
+
+function closeLb() {
+  var v = document.querySelector('#lb-media video'); if (v) v.pause();
+  var f = document.querySelector('#lb-media iframe'); if (f) f.src = '';
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  else if (e.key === 'ArrowRight') lbNav(1);
+  else if (e.key === 'Escape') closeLb();
+});
+
+/* ── EJEMPLOS locales ── */
+initPager('pager-ugc', [
+  { type: 'video', src: 'creativos/dermag_video_1.mp4',  label: 'Dermaglós — UGC #1' },
+  { type: 'video', src: 'creativos/dermag_video_2.mp4',  label: 'Dermaglós — UGC #2' },
+  { type: 'video', src: 'creativos/dermag_video_3.mp4',  label: 'Dermaglós — UGC #3' },
+  { type: 'video', src: 'creativos/natura_video_1.mp4',  label: 'Natura — Demo' },
+  { type: 'video', src: 'creativos/melina_video_1.mp4',  label: 'Melina Budek — UGC' },
+  { type: 'video', src: 'creativos/radielle_video_1.mp4',label: 'Radielle Argentina' }
+]);
+initPager('pager-static', [
+  { type: 'image', src: 'creativos/dermag_callouts_1.jpg', label: 'Dermaglós — Callouts' },
+  { type: 'image', src: 'creativos/dermag_pink_1.jpg',     label: 'Dermaglós — Pink' },
+  { type: 'image', src: 'creativos/dermag_duo_1.jpg',      label: 'Dermaglós — Duo' },
+  { type: 'image', src: 'creativos/catarain_1.jpg',        label: 'CATARAIN' },
+  { type: 'image', src: 'creativos/weland_4.jpg',          label: 'Weland — Concealer' },
+  { type: 'image', src: 'creativos/weland_5.jpg',          label: 'Weland — Hand Cream' }
+]);
+initPager('pager-carousel', [
+  { type: 'image', src: 'creativos/farma_1.jpg', label: 'Farmaonline — Slide 1' },
+  { type: 'image', src: 'creativos/farma_2.jpg', label: 'Farmaonline — Slide 2' },
+  { type: 'image', src: 'creativos/farma_3.jpg', label: 'Farmaonline — Slide 3' },
+  { type: 'image', src: 'creativos/farma_4.jpg', label: 'Farmaonline — Slide 4' },
+  { type: 'image', src: 'creativos/farma_5.jpg', label: 'Farmaonline — Slide 5' },
+  { type: 'image', src: 'creativos/farma_6.jpg', label: 'Farmaonline — Slide 6' },
+  { type: 'image', src: 'creativos/deals_1.jpg', label: 'Deals Deluxe — Oferta 1' },
+  { type: 'image', src: 'creativos/deals_2.jpg', label: 'Deals Deluxe — Oferta 2' },
+  { type: 'image', src: 'creativos/deals_3.jpg', label: 'Deals Deluxe — Oferta 3' },
+  { type: 'image', src: 'creativos/deals_4.jpg', label: 'Deals Deluxe — Oferta 4' },
+  { type: 'image', src: 'creativos/deals_5.jpg', label: 'Deals Deluxe — Oferta 5' },
+  { type: 'image', src: 'creativos/deals_6.jpg', label: 'Deals Deluxe — Oferta 6' }
+]);
+initPager('pager-reels', [
+  { type: 'video', src: 'creativos/dermag_video_3.mp4', label: 'Dermaglós — Reel vertical' }
+]);
+
+/* ── ÁNGULOS: YouTube Shorts + locales ── */
+initPager('pager-a1', [
+  { type: 'youtube', id: 'LW0e7QydwRQ', label: 'Acne oily skin — Dolor del público' },
+  { type: 'youtube', id: 'tkKABzvA_4I', label: 'Acne cleansing — Guía del problema' }
+]);
+initPager('pager-a2', [
+  { type: 'youtube', id: '7zfhC3E6FhQ', label: 'Retinol + Niacinamide + HA — Educación' },
+  { type: 'youtube', id: 'g8MkNZ14Rds', label: 'Retinol + Hialurónico — Combo' },
+  { type: 'youtube', id: '5S9dhWnGS6M', label: 'Niacinamida — Beneficios' },
+  { type: 'youtube', id: '7hsW1KsddUg', label: 'Cirujano: ingrediente #1 — Retinol' },
+  { type: 'youtube', id: 'QaP7SAiTIkw', label: 'Must-Have: Niacinamida — Educación' }
+]);
+initPager('pager-a3', [
+  { type: 'youtube', id: 'QbUjFwQIyg4', label: 'Mr Lulu — Transformación de piel' },
+  { type: 'youtube', id: 'C3AWGhkI5pc', label: 'Skincare Before vs After — Resultados' },
+  { type: 'youtube', id: 'spiW4U2AI9Y', label: 'Acne Before and After — Real' },
+  { type: 'youtube', id: 'tVt0yy0P224', label: 'Real Skin. Real Results — 31 días' },
+  { type: 'youtube', id: 'HRL-R28txfc', label: "Men's Skincare — Resultados reales" }
+]);
+initPager('pager-a4', [
+  { type: 'video',   src: 'creativos/melina_video_1.mp4', label: 'Melina Budek — Testimonial UGC' },
+  { type: 'youtube', id: 'rjQdKnbZqDc', label: 'Cosmetique — Testimonial real' },
+  { type: 'youtube', id: 'I5CdqB5m78Y', label: 'Incellderm — Review sin pago' },
+  { type: 'youtube', id: 'tAnpp0a0bjE', label: 'Vixin Skincare — Clientes hablan' },
+  { type: 'youtube', id: 'XbDArkl46a8', label: 'Emily Incellderm — Resultados reales' }
+]);
+initPager('pager-a5', [
+  { type: 'video',   src: 'creativos/dermag_video_1.mp4',   label: 'Dermaglós — Demo #1' },
+  { type: 'video',   src: 'creativos/dermag_video_2.mp4',   label: 'Dermaglós — Demo #2' },
+  { type: 'video',   src: 'creativos/natura_video_1.mp4',   label: 'Natura — Demo aplicación' },
+  { type: 'video',   src: 'creativos/radielle_video_1.mp4', label: 'Radielle Argentina — Demo' },
+  { type: 'youtube', id: 'PyoIlBV0kRk', label: 'Cómo usar un serum — Dermatólogo' },
+  { type: 'youtube', id: '5EXUCctdud8', label: 'How to Layer Skincare Products' },
+  { type: 'youtube', id: 'r66kP2Ln8kA', label: 'Hydrating Serum — Tutorial aplicación' },
+  { type: 'youtube', id: '14FVSguadYQ', label: 'Orden correcto AM & PM — Rutina' }
+]);
+initPager('pager-a6', [
+  { type: 'image',   src: 'creativos/deals_1.jpg', label: 'Deals Deluxe — Oferta 1' },
+  { type: 'image',   src: 'creativos/deals_2.jpg', label: 'Deals Deluxe — Oferta 2' },
+  { type: 'image',   src: 'creativos/deals_3.jpg', label: 'Deals Deluxe — Oferta 3' },
+  { type: 'image',   src: 'creativos/deals_4.jpg', label: 'Deals Deluxe — Oferta 4' },
+  { type: 'image',   src: 'creativos/deals_5.jpg', label: 'Deals Deluxe — Oferta 5' },
+  { type: 'image',   src: 'creativos/deals_6.jpg', label: 'Deals Deluxe — Oferta 6' },
+  { type: 'image',   src: 'creativos/farma_1.jpg', label: 'Farmaonline — Oferta slide 1' },
+  { type: 'image',   src: 'creativos/farma_2.jpg', label: 'Farmaonline — Oferta slide 2' },
+  { type: 'youtube', id: 'WJ79FCM-Kzk', label: 'iHerb 28% OFF — Oferta real' }
+]);
+initPager('pager-a7', [
+  { type: 'image',   src: 'creativos/dermag_duo_1.jpg', label: 'Dermaglós — Pack Duo' },
+  { type: 'image',   src: 'creativos/weland_4.jpg',    label: 'Weland — Diferencial Concealer' },
+  { type: 'image',   src: 'creativos/weland_5.jpg',    label: 'Weland — Hand Cream USP' },
+  { type: 'image',   src: 'creativos/catarain_1.jpg',  label: 'CATARAIN — USP directo' },
+  { type: 'youtube', id: 'tQuqOZ8E5DM', label: 'Stop Using Skincare Wrong — USP' }
+]);
+</script>
+
+</body>
+</html>
