@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nichos Estratégicos | C.A.R SYSTEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sub-nav {
+      position: sticky; top: 64px; z-index: 90;
+      background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0; overflow-x: auto; white-space: nowrap;
+    }
+    .sub-nav .container { display: flex; gap: 24px; }
+    .sub-nav a { color: var(--text-sub); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .sub-nav a:hover { color: #fff; }
+
+    table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 24px; font-size: 0.9rem; }
+    th, td { padding: 14px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--secondary); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; background: rgba(255,255,255,0.02); }
+    td { color: var(--text-sub); }
+    tr:last-child td { border-bottom: none; }
+    
+    .rank-number {
+      font-size: 2rem; font-weight: 800; color: var(--primary);
+      background: rgba(99, 102, 241, 0.1); width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px; margin-bottom: 16px; border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    .metric-card {
+      border-left: 4px solid var(--secondary);
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="navbar.js"></script>
+
+<div class="sub-nav">
+  <div class="container">
+    <a href="#intro">Visión General</a>
+    <a href="#ranking">Ranking de Nichos</a>
+    <a href="#analisis">Análisis por Nicho</a>
+    <a href="#metricas">Métricas Clave</a>
+    <a href="#comercial">Plan Comercial</a>
+  </div>
+</div>
+
+<main>
+  <!-- INTRODUCCIÓN -->
+  <section id="intro" class="section">
+    <div class="container">
+      <span class="header-tag">TARGETING ESPECÍFICO</span>
+      <h1 class="gradient-text">Nichos de E-commerce con Mejor Fit CAR</h1>
+      <p style="max-width: 800px;">El mejor encaje para el Sistema CAR no está en "cualquier e-commerce", sino en negocios D2C donde coinciden <strong>adquisición pagable con Ads, compra conversacional, recompra suficiente y unit economics</strong> capaces de soportar un servicio premium.</p>
+      
+      <div class="grid grid-2" style="margin-top: 40px;">
+        <div class="glass-card">
+          <h3 style="color: var(--primary);">Conclusión Ejecutiva</h3>
+          <p style="font-size: 0.95rem; margin-top: 12px; color: var(--text-main); line-height: 1.6;">
+            Los subnichos con mejor fit no son necesariamente los más grandes, sino los que más aprovechan las tres palancas: Captación, Atención y Retención.<br><br>
+            Bajo estos criterios, los nichos prioritarios para prospección high-ticket en Argentina son: <strong>dermocosmética/skincare, pet shop premium, suplementos, indumentaria íntima/básicos, mercería/telas, accesorios auto-moto y alimentos funcionales</strong>.
+          </p>
+        </div>
+        <div class="glass-card">
+          <h3 style="color: var(--accent);">Método de Evaluación</h3>
+          <ul style="list-style: none; padding: 0; margin-top: 16px;">
+            <li style="margin-bottom: 10px; display: flex; gap: 8px;"><span style="color: var(--secondary);">•</span> <span><strong>Tamaño y volumen:</strong> Suficientes negocios para prospectar.</span></li>
+            <li style="margin-bottom: 10px; display: flex; gap: 8px;"><span style="color: var(--secondary);">•</span> <span><strong>Ticket y margen:</strong> Capacidad para pagar el setup y la cuota mensual.</span></li>
+            <li style="margin-bottom: 10px; display: flex; gap: 8px;"><span style="color: var(--secondary);">•</span> <span><strong>Recompra natural:</strong> Ciclo de reposición < 90 días para el pilar de Retención.</span></li>
+            <li style="margin-bottom: 10px; display: flex; gap: 8px;"><span style="color: var(--secondary);">•</span> <span><strong>Carga de atención:</strong> Consultas frecuentes pre y post compra (para IA).</span></li>
+            <li style="margin-bottom: 10px; display: flex; gap: 8px;"><span style="color: var(--secondary);">•</span> <span><strong>Paid media:</strong> Escalable a través de anuncios pagados.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING -->
+  <section id="ranking" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <h2 class="gradient-text">Ranking de Prioridad</h2>
+      <p style="margin-bottom: 40px;">Prioridad comercial para prospección con oferta high-ticket CAR.</p>
+      
+      <div class="grid grid-3">
+        <!-- 1 -->
+        <div class="glass-card">
+          <div class="rank-number">1</div>
+          <h3>Dermocosmética, skincare y haircare</h3>
+          <p style="font-size: 0.9rem; margin-top: 8px;">Mejor cruce entre rutina, recompra, margen, educación previa y atención conversacional.</p>
+          <div style="margin-top: 16px;"><span class="tag tag-green">Prioridad Alta</span></div>
+        </div>
+        <!-- 2 -->
+        <div class="glass-card">
+          <div class="rank-number">2</div>
+          <h3>Pet shop premium y salud animal</h3>
+          <p style="font-size: 0.9rem; margin-top: 8px;">Recompra extraordinaria, muchas consultas y necesidad de seguimiento frecuente.</p>
+          <div style="margin-top: 16px;"><span class="tag tag-green">Prioridad Alta</span></div>
+        </div>
+        <!-- 3 -->
+        <div class="glass-card">
+          <div class="rank-number">3</div>
+          <h3>Suplementos y nutrición deportiva</h3>
+          <p style="font-size: 0.9rem; margin-top: 8px;">Excelente para C+A+R, aunque exige cuidado regulatorio y precisión en mensajes.</p>
+          <div style="margin-top: 16px;"><span class="tag tag-green">Prioridad Alta</span></div>
+        </div>
+        <!-- 4 -->
+        <div class="glass-card">
+          <div class="rank-number" style="color: var(--accent); background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.2);">4</div>
+          <h3>Indumentaria íntima y básicos</h3>
+          <p style="font-size: 0.9rem; margin-top: 8px;">Volumen alto, preguntas por talle/cambio/stock y buena recompra en básicos.</p>
+          <div style="margin-top: 16px;"><span class="tag tag-green">Prioridad Alta</span></div>
+        </div>
+        <!-- 5 -->
+        <div class="glass-card">
+          <div class="rank-number" style="color: var(--accent); background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.2);">5</div>
+          <h3>Telas y mercería</h3>
+          <p style="font-size: 0.9rem; margin-top: 8px;">Muy conversacional, buen B2B/B2C recurrente, aunque menos masivo.</p>
+          <div style="margin-top: 16px;"><span class="tag tag-green">Prioridad Alta</span></div>
+        </div>
+        <!-- 6 & 7 -->
+        <div class="glass-card">
+          <div class="rank-number" style="color: var(--secondary); background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2);">6-7</div>
+          <h3>Auto-moto & Alimentos saludables</h3>
+          <p style="font-size: 0.9rem; margin-top: 8px;">Ticket alto pero selectivos. En alimentos la recompra es alta pero menor peso en Atención.</p>
+          <div style="margin-top: 16px;"><span class="tag tag-purple">Prioridad Media</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLA COMPARATIVA -->
+  <section id="analisis" class="section">
+    <div class="container">
+      <h2 class="gradient-text">Análisis Detallado por Subnicho</h2>
+      
+      <div class="glass-card" style="margin-top: 24px; overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Subnicho</th>
+              <th>Volumen Estimado</th>
+              <th>Ticket Promedio</th>
+              <th>Margen Típico</th>
+              <th>Recompra</th>
+              <th>Atención</th>
+              <th>High-Ticket Fit</th>
+              <th>Riesgos Principales</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dermocosmética / Skincare</strong></td>
+              <td>1.000-2.000</td>
+              <td>ARS 35k-90k</td>
+              <td>55-75%</td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td>Regulación, stock, vencimientos</td>
+            </tr>
+            <tr>
+              <td><strong>Pet Shop Premium</strong></td>
+              <td>1.500-3.000</td>
+              <td>ARS 20k-80k</td>
+              <td>25-65%</td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td>Logística pesada, mix margen, stock</td>
+            </tr>
+            <tr>
+              <td><strong>Suplementos</strong></td>
+              <td>500-1.000</td>
+              <td>ARS 35k-120k</td>
+              <td>50-70%</td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td>Riesgo sanitario, regulatorio</td>
+            </tr>
+            <tr>
+              <td><strong>Indumentaria Íntima/Básicos</strong></td>
+              <td>3.000-5.000</td>
+              <td>ARS 45k-120k</td>
+              <td>50-70%</td>
+              <td><span style="color: var(--accent);">Media</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td>Media-Alta</td>
+              <td>Talles, cambios, competencia</td>
+            </tr>
+            <tr>
+              <td><strong>Telas/Mercería</strong></td>
+              <td>800-1.500</td>
+              <td>ARS 20k-90k</td>
+              <td>35-60%</td>
+              <td><span style="color: var(--accent);">Media</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td>Media</td>
+              <td>Stock/color, despachos, catálogo</td>
+            </tr>
+            <tr>
+              <td><strong>Repuestos Auto-Moto</strong></td>
+              <td>700-1.200</td>
+              <td>ARS 60k-250k</td>
+              <td>25-50%</td>
+              <td><span style="color: #ef4444;">Baja</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td>Compatibilidad, devoluciones</td>
+            </tr>
+            <tr>
+              <td><strong>Alimentos Saludables</strong></td>
+              <td>700-1.500</td>
+              <td>ARS 15k-50k</td>
+              <td>30-50%</td>
+              <td><span style="color: var(--secondary);">Alta</span></td>
+              <td><span style="color: var(--accent);">Media</span></td>
+              <td>Media</td>
+              <td>Vencimientos, precio, logística</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICAS CLAVE -->
+  <section id="metricas" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <h2 class="gradient-text">Métricas Clave para Validar Leads</h2>
+      <p style="margin-bottom: 40px;">Condiciones mínimas que debe cumplir un prospecto para asegurar rentabilidad.</p>
+      
+      <div class="grid grid-3">
+        <div class="glass-card metric-card">
+          <h3 style="margin-bottom: 12px;">Ventas Online</h3>
+          <p style="font-size: 0.9rem;">
+            Piso razonable: <strong>ARS 25 millones/mes</strong>.<br>
+            Punto cómodo: <strong>ARS 40 millones/mes o más</strong>.<br>
+            <span style="color: var(--text-muted); font-size: 0.8rem;">Debajo de eso puede faltar volumen para justificar el fee.</span>
+          </p>
+        </div>
+        <div class="glass-card metric-card">
+          <h3 style="margin-bottom: 12px;">Carga Conversacional</h3>
+          <p style="font-size: 0.9rem;">
+            Ideal: Al menos <strong>300 conversaciones útiles por mes</strong> en WAP/DM.<br>
+            O que el 20%+ del proceso comercial dependa de atención humana.
+          </p>
+        </div>
+        <div class="glass-card metric-card">
+          <h3 style="margin-bottom: 12px;">Densidad de Recompra</h3>
+          <p style="font-size: 0.9rem;">
+            Ideal: <strong>25% o más</strong> de órdenes mensuales son recurrentes.<br>
+            Ciclo de reposición natural <= <strong>90 días</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card" style="margin-top: 24px; border: 1px solid rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.05);">
+        <h4 style="color: #f59e0b; margin-bottom: 8px;">Regla para nichos de baja recompra</h4>
+        <p style="font-size: 0.9rem; color: var(--text-main);">Si el subnicho tiene poca recompra (ej: Auto-Moto), debe compensarse con un <strong>Ticket Promedio mínimo de ARS 80.000</strong> y un Margen Bruto mayor al <strong>30%</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN COMERCIAL -->
+  <section id="comercial" class="section">
+    <div class="container">
+      <h2 class="gradient-text">Ganchos Comerciales</h2>
+      <p style="margin-bottom: 40px;">Ángulos de prospección para los 3 nichos TOP.</p>
+      
+      <div class="grid grid-3">
+        <div class="glass-card" style="border-top: 2px solid var(--primary);">
+          <h3>Skincare / Haircare</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px; color: var(--text-sub);">
+            <strong>Mensaje:</strong> CAR convierte dudas sobre rutina en ventas repetidas y posventa automática.<br><br>
+            <strong>Gancho:</strong> "¿Cuántas ventas se enfrían por tardar en responder sobre tipo de piel y cuántas no vuelven a comprar cuando se les termina?"
+          </p>
+        </div>
+        <div class="glass-card" style="border-top: 2px solid var(--accent);">
+          <h3>Pet Shop Premium</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px; color: var(--text-sub);">
+            <strong>Mensaje:</strong> El valor no está en vender alimento, sino en reponerlo a tiempo sin fricción.<br><br>
+            <strong>Gancho:</strong> "Si el cliente necesita alimento o pipeta cada 30-45 días, ¿quién lo reactiva hoy para que no compre en otro lado?"
+          </p>
+        </div>
+        <div class="glass-card" style="border-top: 2px solid var(--secondary);">
+          <h3>Suplementos</h3>
+          <p style="font-size: 0.9rem; margin-top: 12px; color: var(--text-sub);">
+            <strong>Mensaje:</strong> No gana quien tiene más productos, sino quien responde más rápido y genera confianza.<br><br>
+            <strong>Gancho:</strong> "¿Qué pasa hoy con los que preguntan dosis, objetivo o sabor por WhatsApp y no compran en el momento?"
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="text-align: center; padding: 48px 24px; color: var(--text-muted); border-top: 1px solid var(--border);">
+  <div class="container">
+    <p>&copy; 2026 SISTEMA CAR. Una creación conjunta de <strong>Algoritmia</strong> & <strong>Fluyent.ai</strong>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

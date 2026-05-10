@@ -60,6 +60,7 @@
   var links = [
     { href: 'index.html', text: 'Inicio' },
     { href: 'estrategia.html', text: 'Estrategia' },
+    { href: 'nichos.html', text: 'Nichos' },
     { href: 'oferta.html', text: 'Oferta' },
     { href: 'ventas.html', text: 'Ventas' },
     { href: 'operacion.html', text: 'Operación' },
