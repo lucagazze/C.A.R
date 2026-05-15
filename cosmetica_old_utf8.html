@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -418,10 +418,6 @@
   <div class="container">
     <a href="#oferta">La Oferta</a>
     <span class="divider">·</span>
-    <a href="#proceso">Proceso Comercial</a>
-    <span class="divider">·</span>
-    <a href="#llamada">Llamada de Ventas</a>
-    <span class="divider">·</span>
     <a href="#pricing">Precios</a>
     <span class="divider">·</span>
     <a href="#portal">Portal del Cliente</a>
@@ -430,13 +426,13 @@
     <span class="divider">·</span>
     <a href="#objeciones">Objeciones</a>
     <span class="divider">·</span>
-    <a href="#campanas">Meta Ads</a>
+    <a href="#campanas">Campañas</a>
     <span class="divider">·</span>
-    <a href="#formatos">Creativos</a>
+    <a href="#formatos">Formatos</a>
+    <span class="divider">·</span>
+    <a href="#angulos">Ángulos</a>
     <span class="divider">·</span>
     <a href="#audiencias">Audiencias</a>
-    <span class="divider">·</span>
-    <a href="#operacion">Operación</a>
   </div>
 </div>
 
@@ -464,129 +460,104 @@
 
       <div class="oferta-box">
         <h3 style="font-size:1.4rem; margin-bottom:4px; color:#fff;">El Sistema CAR — Skincare Edition</h3>
-        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:28px;">Lo que instalamos en el negocio del cliente. Explicado para que ellos lo entiendan en 60 segundos.</p>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:28px;">Lo que instalás en el negocio del cliente. Explicado para que ellos lo entiendan en 60 segundos.</p>
 
         <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
           <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); border-radius:18px; padding:24px;">
             <div style="font-size:1.6rem; margin-bottom:8px;">📢</div>
             <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--secondary); margin-bottom:6px;">C — Captación</div>
-            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">Publicidad que trae compradores reales</h4>
-            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">Campañas en Meta enfocadas en problemas concretos de piel: acné, manchas, piel sensible, antiage o glow. No se organiza por "mujeres que compran", sino por <b>dolor, intención y nivel de conciencia</b>.</p>
+            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">Publicidad en Meta que trae compradores reales</h4>
+            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">Campañas en Facebook e Instagram segmentadas a mujeres que ya están buscando rutina de skincare. Creativos que paran el scroll y llevan a la compra. Optimización semanal basada en datos.</p>
           </div>
           <div style="background:rgba(129,140,248,0.08); border:1px solid rgba(129,140,248,0.2); border-radius:18px; padding:24px;">
             <div style="font-size:1.6rem; margin-bottom:8px;">💬</div>
             <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:6px;">A — Atención</div>
-            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">Mensajes ordenados + IA en WhatsApp</h4>
-            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">Centralizamos WhatsApp e Instagram. En el plan Integral, la IA responde consultas frecuentes, guía la compra y deriva al equipo lo sensible. Se resuelven dudas sobre rutinas y productos sin esperas.</p>
+            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">IA que atiende consultas en WhatsApp 24/7</h4>
+            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">Un asistente de IA que responde preguntas sobre tipo de piel, rutinas, compatibilidad de productos y métodos de pago. Sin demoras. Sin que el dueño tenga que estar disponible.</p>
           </div>
           <div style="background:rgba(244,114,182,0.08); border:1px solid rgba(244,114,182,0.2); border-radius:18px; padding:24px;">
             <div style="font-size:1.6rem; margin-bottom:8px;">🔄</div>
             <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:6px;">R — Retención</div>
-            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">Seguimiento que genera recompra</h4>
-            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">Flujos post-compra para acompañar al cliente: cómo usar el producto, cuándo reponer, qué combinar y cómo mantenerse conectado. La R no es solo descuento, es <b>acompañamiento + comunidad + recompra</b>.</p>
+            <h4 style="font-size:0.95rem; margin-bottom:8px; color:#fff;">Automatizaciones que hacen recomprar al cliente</h4>
+            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55;">A los 45 días de la compra, el cliente recibe un mensaje automático recordando que el producto se le está por terminar. También flujos de bienvenida, tracking de envío y reactivación de inactivos.</p>
           </div>
         </div>
 
         <div class="warn-box green" style="margin-top:24px;">
-          <strong>Cómo explicarlo en llamada:</strong> "Lo que instalamos hace tres cosas: trae compradores nuevos con publicidad, ordena y responde las consultas para que no se caigan antes de comprar, y reactiva a quienes ya compraron cuando tiene sentido volver a comprar. Es el loop completo."
+          <strong>Cómo explicarlo en la llamada:</strong> "Lo que instalamos es un sistema que hace tres cosas: trae compradores nuevos con publicidad, los atiende automáticamente para que no se caigan antes de comprar, y los reactiva solos cuando se les termina el producto. Es el loop completo, sin que vos tengas que estar en ninguno de los tres."
         </div>
       </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!--  PROCESO COMERCIAL                                      -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-
-  <section id="proceso" class="section">
-    <div class="container">
-      <span class="section-label">Embudo de Ventas</span>
-      <h2 class="gradient-text">Proceso comercial High Ticket</h2>
-      <p style="max-width:700px; margin-bottom:32px;">Arquitectura oficial del embudo para vender CAR Skincare sin llenar la agenda de leads no calificados.</p>
-
-      <div class="warn-box blue" style="margin-bottom:32px;">
-        <strong>Estructura principal:</strong> Landing → Formulario CAR Fit → VSL → Calendario → Página de gracias.
-      </div>
-
-      <div class="step-pill">
-        <div class="step-num-pill bg-blue">1</div>
-        <div class="step-body">
-          <h4>Landing Page Educativa</h4>
-          <p>Explica rápido qué es CAR Skincare y por qué no es "solo Meta Ads". Genera contexto sobre las 3 palancas (C/A/R) y empuja al prospecto al formulario.</p>
-        </div>
-      </div>
-
-      <div class="step-pill">
-        <div class="step-num-pill bg-blue">2</div>
-        <div class="step-body">
-          <h4>Formulario CAR Fit</h4>
-          <p>Detección de fit real: facturación, margen, volumen de consultas y capacidad de inversión. Filtra marcas que no tienen condiciones para implementar el sistema.</p>
-        </div>
-      </div>
-
-      <div class="step-pill">
-        <div class="step-num-pill bg-blue">3</div>
-        <div class="step-body">
-          <h4>VSL (Video Sales Letter)</h4>
-          <p>Video de 10-15 min que explica el sistema CAR antes de la llamada. Así, el diagnóstico comercial no arranca de cero y el lead llega pre-vendido.</p>
-        </div>
-      </div>
-
-      <div class="step-pill">
-        <div class="step-num-pill bg-blue">4</div>
-        <div class="step-body">
-          <h4>Calendario Calificado</h4>
-          <p>Solo acceden quienes pasan el CAR Fit Score. La llamada se presenta como <b>diagnóstico CAR</b>, enfocada en revisar si el sistema tiene sentido para esa marca.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!--  ESTRUCTURA DE LLAMADA                                  -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-
-  <section id="llamada" class="section" style="background: rgba(255,255,255,0.01);">
-    <div class="container">
-      <span class="section-label">Llamada de Ventas</span>
-      <h2 class="gradient-text">Framework de Diagnóstico</h2>
-      <p style="max-width:700px; margin-bottom:32px;">Desde que abrís la llamada hasta que presentás la propuesta. La llamada no arranca vendiendo: arranca confirmando diagnóstico y detectando fugas.</p>
+      <!-- PASO A PASO DE LA PRESENTACIÓN -->
+      <h2 class="gradient-text" style="font-size:1.8rem; margin-top:56px; margin-bottom:8px;">Paso a paso para presentar la oferta</h2>
+      <p style="max-width:700px; margin-bottom:28px;">Desde que abrís la llamada hasta que mandás la propuesta. Orden exacto.</p>
 
       <div class="step-pill">
         <div class="step-num-pill bg-green">1</div>
         <div class="step-body">
-          <h4>Confirmar diagnóstico del formulario</h4>
-          <p>Usar el CAR Fit para demostrar preparación. "Vi que hoy generan X órdenes y que la recompra no está sistematizada. Quiero validar si entendí bien."</p>
+          <h4>Empezá por el diagnóstico, no por la oferta</h4>
+          <p>Los primeros 10 minutos de la llamada son para escuchar. Hacé estas 4 preguntas antes de explicar cualquier cosa.</p>
+          <div class="step-detail">
+            <strong>"¿Cuántas órdenes por mes generan online?"</strong><br>
+            <strong>"¿De esas, cuántas son de clientes que ya compraron antes?"</strong><br>
+            <strong>"¿Cómo manejan hoy las consultas que llegan por WhatsApp o DM?"</strong><br>
+            <strong>"¿Están corriendo publicidad en Meta ahora o lo hicieron antes?"</strong>
+          </div>
         </div>
       </div>
 
       <div class="step-pill">
         <div class="step-num-pill bg-green">2</div>
         <div class="step-body">
-          <h4>Discovery por C/A/R</h4>
-          <p>Profundizar en las tres palancas: pauta actual, canales de consulta (tiempos de respuesta) y acciones de recompra/LTV.</p>
+          <h4>Identificá el dolor principal y repetílo en tus propias palabras</h4>
+          <p>Antes de presentar el sistema, resumí lo que escuchaste. Eso crea confianza y demuestra que entendiste.</p>
+          <div class="step-detail">
+            Ejemplo: <strong>"Lo que entiendo es que están generando ventas con publicidad pero tienen mucho trabajo manual en la atención, y sienten que los clientes no vuelven a comprar solos. ¿Es correcto?"</strong>
+          </div>
         </div>
       </div>
 
       <div class="step-pill">
         <div class="step-num-pill bg-green">3</div>
         <div class="step-body">
-          <h4>Identificar la fuga principal</h4>
-          <p>Resumir el problema: "Por lo que veo, no es solo tráfico. Se están escapando oportunidades en atención y recompra. ¿Te hace sentido?"</p>
+          <h4>Presentá el sistema CAR conectado a sus palabras</h4>
+          <p>No explicás las herramientas. Explicás cómo el sistema resuelve exactamente lo que ellos dijeron en el paso anterior.</p>
+          <div class="step-detail">
+            <strong>"Hay tres problemas que resuelve el sistema: uno, la adquisición irregular — instalamos campañas que traen gente lista para comprar rutina de skincare. Dos, la atención manual — una IA atiende todas las consultas de WhatsApp 24 horas. Tres, la recompra — a los 45 días le mandamos un mensaje automático al cliente recordando que el producto se le termina."</strong>
+          </div>
         </div>
       </div>
 
       <div class="step-pill">
         <div class="step-num-pill bg-green">4</div>
         <div class="step-body">
-          <h4>Audit en vivo y Presentación CAR</h4>
-          <p>Demostrar criterio revisando tienda y anuncios. Presentar el plan (Esencial o Integral) conectado directamente a la fuga detectada.</p>
+          <h4>Hacé el audit en vivo — tu mejor arma de ventas</h4>
+          <p>Si tienen ads corriendo, abrís Meta Ad Library y revisás sus creativos con ellos. Si tienen WhatsApp, le mandás un mensaje de prueba y mostrás cuánto demoran en responder. Esta es la movida que más cierra.</p>
+          <div class="step-detail">
+            Datos: <strong>Una agencia que hace un audit en vivo durante la discovery call cierra a la mitad del tiempo vs. mandando solo una propuesta escrita.</strong> El audit demuestra que ya sabés su problema antes de cobrarles.
+          </div>
         </div>
       </div>
 
       <div class="step-pill">
         <div class="step-num-pill bg-green">5</div>
         <div class="step-body">
-          <h4>Precio con ancla de ROI</h4>
-          <p>Primero fuga y oportunidad económica → plan recomendado → inversión → próximos pasos. Nunca soltar precio antes de mostrar valor.</p>
+          <h4>Presentá el precio con ancla y justificación de ROI</h4>
+          <p>Nunca sueltes el precio sin antes establecer qué valor genera. Primero el número que dejan de capturar, después el costo del sistema.</p>
+          <div class="step-detail">
+            Ejemplo: <strong>"Si el 20% de sus clientes actuales repitiera compra en 60 días en lugar de no volver, ¿cuánto sería eso en facturación extra al mes? [Esperás que hagan el cálculo]. Eso es lo que el sistema de retención está capturando ahora mismo sin que lo vean. El costo del sistema es [X]. Es una fracción de eso."</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-pill">
+        <div class="step-num-pill bg-green">6</div>
+        <div class="step-body">
+          <h4>Mandá la propuesta en menos de 24 horas</h4>
+          <p>El momentum se enfría. La propuesta debe ser simple, visual y con tres opciones de precio. No una pared de texto.</p>
+          <div class="step-detail">
+            Estructura: <strong>Resumen de lo que escuchaste → El sistema CAR explicado en 3 puntos → 3 opciones de precio → Próximo paso claro → Deadline de decisión (7 días).</strong>
+          </div>
         </div>
       </div>
     </div>
@@ -595,71 +566,158 @@
   <!-- ════════════════════ PRICING ════════════════════ -->
   <section id="pricing" class="section" style="background: rgba(255,255,255,0.02);">
     <div class="container">
-      <span class="section-label">Pricing Interno</span>
-      <h2 class="gradient-text">Planes, tiers y lógica de cobro</h2>
-      <p style="max-width:700px; margin-bottom:8px;">Separamos dos decisiones: <b>qué plan contrata</b> (profundidad del sistema) y <b>en qué tier de facturación está el negocio</b> (carga operativa y valor potencial).</p>
+      <span class="section-label">Pricing</span>
+      <h2 class="gradient-text">El retainer sube<br>con tu resultado</h2>
+      <p style="max-width:680px; margin-bottom:8px;">Setup fijo. Retainer mensual escalonado según la facturación mensual del cliente — cuanto más crece su negocio, más crece el fee. Alineamos incentivos desde el día uno.</p>
 
       <div class="warn-box blue" style="margin-bottom:32px;">
         <strong>Regla Argentina:</strong> Cobrar en USD o con indexación mensual a inflación. Si el cliente pide pesos — al tipo de cambio del momento con cláusula de ajuste mensual.
       </div>
 
-      <div class="grid grid-2" style="margin-bottom:32px;">
-        <div class="glass-card" style="border-color:rgba(52,211,153,0.3); padding:24px;">
-          <h3 style="color:#fff; margin-bottom:8px;">CAR Esencial</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Instala la base completa: captación bien gestionada, atención ordenada (CRM centralizado) y retención esencial.</p>
-          <div style="font-size:1.4rem; font-weight:800; color:var(--secondary); margin-top:12px;">Setup USD 700</div>
-        </div>
-        <div class="glass-card" style="border-color:rgba(244,114,182,0.3); padding:24px;">
-          <h3 style="color:#fff; margin-bottom:8px;">CAR Integral</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Expande el sistema con IA autónoma en WhatsApp, retención avanzada multicanal y portal con métricas profundas.</p>
-          <div style="font-size:1.4rem; font-weight:800; color:var(--accent); margin-top:12px;">Setup USD 1.000</div>
+      <!-- Setup fijo -->
+      <div style="max-width:680px; margin:0 auto 24px;">
+        <div style="background:var(--bg-card); border:1px solid rgba(52,211,153,0.3); border-radius:16px; padding:20px 28px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--secondary); margin-bottom:4px;">Pago único al inicio</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">Setup, instalación del sistema CAR + onboarding</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:2.4rem; font-weight:800; font-family:'Outfit'; color:#fff; line-height:1;">USD 600</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">setup único</div>
+          </div>
         </div>
       </div>
 
-      <h3 style="color:var(--secondary); font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:16px;">Fee Mensual por Tier de Facturación</h3>
-      
-      <div class="glass-card" style="padding:0; overflow:hidden;">
-        <table>
-          <thead>
-            <tr>
-              <th>Tier</th>
-              <th>Facturación</th>
-              <th>Plan Esencial</th>
-              <th>Plan Integral</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><b>Tier 1 — Validado</b></td>
-              <td>USD 8k–20k</td>
-              <td><b>USD 700 /mes</b></td>
-              <td><b>USD 1.300 /mes</b></td>
-            </tr>
-            <tr>
-              <td><b>Tier 2 — Crecimiento</b></td>
-              <td>USD 20k–50k</td>
-              <td><b>USD 1.200 /mes</b></td>
-              <td><b>USD 1.700 /mes</b></td>
-            </tr>
-            <tr>
-              <td><b>Tier 3 — Escala</b></td>
-              <td>USD 50k–100k</td>
-              <td><b>USD 1.800 /mes</b></td>
-              <td><b>USD 2.200 /mes</b></td>
-            </tr>
-            <tr>
-              <td><b>Tier 4 — Alto Volumen</b></td>
-              <td>USD 100k+</td>
-              <td><b>USD 2.300 /mes</b></td>
-              <td><b>USD 2.700+ /mes</b></td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Tiers -->
+      <div style="max-width:680px; margin:0 auto;">
+        <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:12px; padding-left:4px;">Retainer mensual — según facturación del cliente</div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+
+          <!-- Tier 1 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:4px;">Tier 1 — Arranque</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">Hasta USD 20.000 / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">El fee de arranque mientras el sistema toma velocidad.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#34d399; line-height:1;">USD 600</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+          <!-- Tier 2 -->
+          <div style="background:var(--bg-card); border:1px solid rgba(52,211,153,0.25); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--secondary); margin-bottom:4px;">Tier 2 — Crecimiento</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">USD 20.000 – 50.000 / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">El sistema ya tiene datos. Los creativos y los flujos están optimizados.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#34d399; line-height:1;">USD 1.200</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+          <!-- Tier 3 -->
+          <div style="background:var(--bg-card); border:1px solid rgba(129,140,248,0.3); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:4px;">Tier 3 — Escala</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">USD 50.000 – 100.000 / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">Operación de alto volumen. Más creativos, más flujos, más seguimiento.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#818cf8; line-height:1;">USD 2.000</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+          <!-- Tier 4 -->
+          <div style="background:var(--bg-card); border:1px solid rgba(251,191,36,0.3); border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fbbf24; margin-bottom:4px;">Tier 4 — Alto impacto</div>
+              <div style="font-size:1rem; font-weight:700; color:#fff;">USD 100.000+ / mes facturado</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">Marcas de alto volumen con operación CAR completa en su máxima expresión.</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:1.8rem; font-weight:800; font-family:'Outfit'; color:#fbbf24; line-height:1;">USD 3.000</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">/mes</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:12px; font-size:0.75rem; color:var(--text-muted); padding:0 4px; line-height:1.6;">
+          * Facturación medida mensualmente con integración a TiendaNube o Shopify. Ad spend siempre aparte — mínimo recomendado USD 800/mes en Meta Ads. El tier se revisa cada mes y se ajusta según el cierre real.
+        </div>
       </div>
 
-      <div class="warn-box gold" style="margin-top:24px;">
-        <strong>Criterio de Upgrade:</strong> No se sube de Esencial a Integral solo por facturación. Se sube cuando el volumen de consultas (&gt;20/día), la oportunidad de IA o la necesidad de retención multicanal justifican el salto operativo.
+      <!-- Includes por pilar -->
+      <div style="max-width:680px; margin:24px auto 0;">
+        <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:12px; padding-left:4px;">Todo esto incluido en todos los tiers</div>
+        <div class="glass-card" style="padding:0; overflow:hidden; border-color:rgba(255,255,255,0.08);">
+
+          <!-- C -->
+          <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#34d399; flex-shrink:0;">C</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#34d399;">Captación — Meta Ads</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#34d399; flex-shrink:0;">◦</span>Gestión completa de campañas — 1 campaña por audiencia, conjuntos por pain point</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#34d399; flex-shrink:0;">◦</span>6+ creativos por mes (UGC, estático, carrusel, reels) con copy por nivel de consciencia</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#34d399; flex-shrink:0;">◦</span>Reporte quincenal de métricas + llamada mensual de revisión</div>
+            </div>
+          </div>
+
+          <!-- A -->
+          <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(129,140,248,0.15); border:1px solid rgba(129,140,248,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#818cf8; flex-shrink:0;">A</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#818cf8;">Atención — WhatsApp IA</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#818cf8; flex-shrink:0;">◦</span>IA completa sobre WhatsApp: consultas de producto, cierre de venta, post-compra</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#818cf8; flex-shrink:0;">◦</span>Transferencia a humano si la consulta lo requiere — sin fricción, sin perder la venta</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#818cf8; flex-shrink:0;">◦</span>Inbox Chatwoot: el cliente ve todos los chats en tiempo real desde su portal</div>
+            </div>
+          </div>
+
+          <!-- R -->
+          <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(244,114,182,0.12); border:1px solid rgba(244,114,182,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#f472b6; flex-shrink:0;">R</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#f472b6;">Retención — Automatizaciones</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#f472b6; flex-shrink:0;">◦</span>3 flujos automáticos: Bienvenida (día 0) · Recompra (día 45) · Reactivación (día 90+)</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#f472b6; flex-shrink:0;">◦</span>Mensajes enviados por WhatsApp API — el cliente ve cada conversación en su panel</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#f472b6; flex-shrink:0;">◦</span>Tracking de envíos integrado — el cliente puede activar o pausar el sistema cuando quiera</div>
+            </div>
+          </div>
+
+          <!-- Portal -->
+          <div style="padding:18px 24px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:26px; height:26px; background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.3); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; color:#fbbf24; flex-shrink:0;">+</div>
+              <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fbbf24;">Portal del Cliente — incluido siempre</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Dashboard propio: métricas de Meta Ads en tiempo real sin entrar al Administrador</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Acceso al inbox de Chatwoot: puede leer todos los chats de la IA con sus clientes</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Toggle para activar o pausar la IA con un click — control total en todo momento</div>
+              <div style="font-size:0.82rem; color:var(--text-sub); display:flex; gap:8px;"><span style="color:#fbbf24; flex-shrink:0;">◦</span>Seguimos agregando datos y funciones — cada mejora llega sin costo extra para clientes activos</div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <div class="warn-box green" style="margin-top:24px; max-width:680px; margin-left:auto; margin-right:auto;">
+        <strong>El argumento de ROI:</strong> Si el sistema lleva al cliente de USD 20K a USD 50K/mes, el fee pasa de USD 600 a USD 1.200. El cliente facturó USD 30K más — el aumento del fee es el 4% de esa ganancia incremental. La ecuación se sostiene sola en cada tier.
+      </div>
+
     </div>
   </section>
 
@@ -669,34 +727,80 @@
       <span class="section-label">Diferencial de la oferta</span>
       <h2 class="gradient-text">Portal del Cliente — Dashboard CAR</h2>
       <p style="max-width:700px; margin-bottom:12px;">Todos los clientes del sistema CAR reciben acceso a una plataforma propia donde pueden ver y controlar todo el trabajo que les hacemos en tiempo real.</p>
-      <div class="warn-box blue" style="margin-bottom:32px;">
-        <strong>Dashboard CAR:</strong> No es un reporte estático. Es un panel vivo conectado a Meta y a la tienda.
+      <div class="warn-box blue" style="margin-bottom:40px;">
+        <strong>Por qué esto importa en la venta:</strong> La mayoría de las agencias manda reportes en PDF una vez por mes. Con el Portal del Cliente, el dueño ve los números cuando quiere, puede activar o pausar la IA con un click, y tiene acceso a todos los chats en tiempo real. Eso genera confianza y reduce drásticamente las preguntas de "¿cómo va?" que consumen tiempo.
       </div>
 
-      <div class="grid grid-2">
-        <div class="glass-card">
-          <h4 style="color:var(--secondary); margin-bottom:12px;">En todos los planes (Esencial +)</h4>
-          <ul style="list-style:none; padding:0; font-size:0.85rem; color:var(--text-muted); line-height:1.8;">
-            <li>✅ <b>Métricas de Ads:</b> Spend, ROAS, CPA y CTR en tiempo real.</li>
-            <li>✅ <b>Inbox Centralizado:</b> Acceso a todas las conversaciones de WhatsApp.</li>
-            <li>✅ <b>Reporte de Ventas:</b> Órdenes totales y facturación integrada.</li>
-          </ul>
+      <div class="grid grid-2" style="margin-bottom:32px;">
+
+        <!-- Chatwoot -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(129,140,248,0.3);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(129,140,248,0.15); border:1px solid rgba(129,140,248,0.3); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">💬</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:2px;">Canal de comunicación</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Inbox de Chatwoot</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El cliente puede ver todos los chats que la IA está teniendo con sus clientes finales en tiempo real. Puede leer las conversaciones, ver cómo responde la IA, y detectar patrones de consulta.</p>
+          <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-sub); line-height:1.6;">
+            <strong style="color:#fff;">Powered by:</strong> Chatwoot (open source) · Acceso con usuario y contraseña propios · Sin límite de conversaciones
+          </div>
         </div>
-        <div class="glass-card" style="border-color:rgba(244,114,182,0.3);">
-          <h4 style="color:var(--accent); margin-bottom:12px;">Solo CAR Integral</h4>
-          <ul style="list-style:none; padding:0; font-size:0.85rem; color:var(--text-muted); line-height:1.8;">
-            <li>🚀 <b>Métricas de IA:</b> Tasa de resolución y ventas atribuidas a la IA.</li>
-            <li>🚀 <b>Análisis de Retención:</b> Cohortes de recompra y LTV por producto.</li>
-            <li>🚀 <b>Toggle de IA:</b> Activar/Pausar la autonomía del asistente con un click.</li>
-          </ul>
+
+        <!-- Toggle IA -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(52,211,153,0.3);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">🤖</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--secondary); margin-bottom:2px;">Control del sistema</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Activar / Pausar la IA</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El cliente puede activar o pausar la IA con un solo click. Si hay una temporada especial, un lanzamiento o prefieren atención 100% humana por un período, lo controlan ellos.</p>
+          <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-sub); line-height:1.6;">
+            <strong style="color:#fff;">Toggle en tiempo real:</strong> Activado → IA responde · Pausado → conversaciones van al equipo humano directamente
+          </div>
         </div>
+
+        <!-- Métricas Meta Ads -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(251,191,36,0.3);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">📊</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fbbf24; margin-bottom:2px;">Publicidad</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Métricas de Meta Ads</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El cliente ve sus métricas de publicidad sin tener que entrar al Administrador de Meta. ROAS, gasto diario, alcance, clics, conversiones — simplificado y actualizado automáticamente.</p>
+          <div style="background:rgba(251,191,36,0.06); border:1px solid rgba(251,191,36,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-sub); line-height:1.6;">
+            <strong style="color:#fff;">Sin acceso a Meta Ads Manager:</strong> El cliente no necesita entrar a la plataforma. Los números llegan solos al Dashboard.
+          </div>
+        </div>
+
+        <!-- Futuras features -->
+        <div class="glass-card" style="padding:28px; border-color:rgba(244,114,182,0.25);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:44px; background:rgba(244,114,182,0.12); border:1px solid rgba(244,114,182,0.25); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">🔮</div>
+            <div>
+              <div style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:2px;">En desarrollo</div>
+              <h3 style="font-size:1rem; margin:0; color:#fff;">Próximas funciones</h3>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">El portal se actualiza continuamente. Las funciones nuevas se agregan sin costo adicional para clientes activos — es parte del diferencial del sistema CAR.</p>
+          <div style="background:rgba(244,114,182,0.05); border:1px solid rgba(244,114,182,0.15); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:var(--text-muted); line-height:1.8;">
+            <span style="color:var(--accent);">◦</span> Historial de automatizaciones de retención<br>
+            <span style="color:var(--accent);">◦</span> Reporte de recompra y LTV del cliente<br>
+            <span style="color:var(--accent);">◦</span> Panel de creación de flujos<br>
+            <span style="color:var(--accent);">◦</span> Notificaciones por WhatsApp de métricas clave
+          </div>
+        </div>
+
       </div>
 
-      <div class="warn-box green" style="margin-top:24px;">
+      <div class="warn-box green">
         <strong>Cómo presentarlo en la llamada:</strong> "Además del servicio, vas a tener acceso a un panel propio donde podés ver los chats de la IA, las métricas de publicidad, y activar o pausar el sistema cuando quieras. Es tu negocio — nosotros lo manejamos, pero vos tenés visibilidad total en todo momento."
       </div>
-    </div>
-  </section>
 
     </div>
   </section>
@@ -705,35 +809,54 @@
   <section id="retencion" class="section" style="background: rgba(255,255,255,0.02);">
     <div class="container">
       <span class="section-label">Sistema R — Retención</span>
-      <h2 class="gradient-text">Retención Base vs Avanzada</h2>
-      <p style="max-width:700px; margin-bottom:32px;">La R del CAR. Automatizaciones que generan recompra sin trabajo manual.</p>
+      <h2 class="gradient-text">Flujos de retención —<br>qué se dispara, cuándo y qué dice</h2>
+      <p style="max-width:700px; margin-bottom:12px;">La R del CAR. Tres automatizaciones sobre WhatsApp + Chatwoot que generan recompra sin trabajo manual. Se activan solas en función del historial de compra.</p>
+      <div class="warn-box blue" style="margin-bottom:36px;">
+        <strong>Plataforma:</strong> Chatwoot (open source, self-hosted) + WhatsApp Business API. Los mensajes los envía la IA del sistema automáticamente. El cliente puede ver cada conversación desde su Portal en tiempo real.
+      </div>
 
-      <div class="grid grid-2">
-        <div class="glass-card">
-          <h4 style="color:var(--secondary); margin-bottom:12px;">CAR Esencial — Base</h4>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">Flujos críticos vía WhatsApp API para asegurar el LTV básico.</p>
-          <ul style="list-style:none; padding:0; font-size:0.8rem; color:var(--text-sub); line-height:1.8;">
-            <li>✅ <b>Día 0:</b> Bienvenida y Tracking de envío.</li>
-            <li>✅ <b>Día 45:</b> Recordatorio de reposición (Skincare dura ~45 días).</li>
-            <li>✅ <b>Día 90:</b> Reactivación con beneficio único.</li>
-          </ul>
-        </div>
-        <div class="glass-card" style="border-color:rgba(244,114,182,0.3);">
-          <h4 style="color:var(--accent); margin-bottom:12px;">CAR Integral — Avanzada</h4>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">Omnicanalidad y personalización dinámica por comportamiento.</p>
-          <ul style="list-style:none; padding:0; font-size:0.8rem; color:var(--text-sub); line-height:1.8;">
-            <li>🚀 <b>Upsell Dinámico:</b> Ofrece el complemento ideal según lo comprado.</li>
-            <li>🚀 <b>Win-back Multietapa:</b> Secuencia de 3 pasos para recuperar inactivos.</li>
-            <li>🚀 <b>Encuestas NPS:</b> Automatización de feedback post-compra.</li>
-          </ul>
+      <!-- Flow 1 -->
+      <div class="step-pill" style="margin-bottom:14px;">
+        <div class="step-num-pill" style="background:rgba(52,211,153,0.15); color:#34d399; min-width:72px; font-size:0.75rem; text-align:center; padding:0 12px; line-height:1.3;">FLOW<br>01</div>
+        <div class="step-body">
+          <h4 style="color:#34d399; margin-bottom:6px;">Bienvenida — Se dispara el Día 0</h4>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"><strong style="color:#fff;">Trigger:</strong> Orden completada en TiendaNube / Shopify → webhook → Chatwoot → mensaje automático por WhatsApp.</div>
+          <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15); border-radius:10px; padding:12px 16px; font-size:0.82rem; line-height:1.7; color:#e2e8f0; margin-bottom:10px;">
+            <span style="color:#34d399; font-weight:700;">Mensaje:</span> "Hola [Nombre] 👋 Tu pedido está confirmado — lo estamos preparando. En 24–48 hs tenés el código de seguimiento. Cualquier consulta respondemos por acá ✨"
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-muted);"><strong style="color:#fff;">Objetivo:</strong> Confirmar la compra, reducir ansiedad post-pago, y abrir el canal de WhatsApp para los flujos siguientes.</div>
         </div>
       </div>
 
-      <div class="warn-box green" style="margin-top:24px;">
+      <!-- Flow 2 -->
+      <div class="step-pill" style="margin-bottom:14px;">
+        <div class="step-num-pill" style="background:rgba(129,140,248,0.15); color:#818cf8; min-width:72px; font-size:0.75rem; text-align:center; padding:0 12px; line-height:1.3;">FLOW<br>02</div>
+        <div class="step-body">
+          <h4 style="color:#818cf8; margin-bottom:6px;">Recompra — Se dispara el Día 45</h4>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"><strong style="color:#fff;">Trigger:</strong> 45 días después de la primera compra. El producto promedio de skincare dura 45–60 días — el mensaje llega justo cuando se está por terminar.</div>
+          <div style="background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.15); border-radius:10px; padding:12px 16px; font-size:0.82rem; line-height:1.7; color:#e2e8f0; margin-bottom:10px;">
+            <span style="color:#818cf8; font-weight:700;">Mensaje:</span> "Hola [Nombre]! ¿Cómo te fue con [Producto]? 🌿 Ya vas por la mitad del frasco — si querés reponerlo antes de que se te termine, esta semana tenemos envío gratis. ¿Te armamos el pedido? 😊"
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-muted);"><strong style="color:#fff;">Objetivo:</strong> Segunda compra antes de que el cliente agote el stock y compre en otro lado. Es el flujo con mayor impacto en LTV de los tres.</div>
+        </div>
+      </div>
+
+      <!-- Flow 3 -->
+      <div class="step-pill" style="margin-bottom:36px;">
+        <div class="step-num-pill" style="background:rgba(244,114,182,0.12); color:#f472b6; min-width:72px; font-size:0.75rem; text-align:center; padding:0 12px; line-height:1.3;">FLOW<br>03</div>
+        <div class="step-body">
+          <h4 style="color:#f472b6; margin-bottom:6px;">Reactivación — Se dispara el Día 90+</h4>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"><strong style="color:#fff;">Trigger:</strong> Cliente que compró una vez hace más de 90 días y no volvió a comprar. Solo se activa si no respondió al Flujo 2.</div>
+          <div style="background:rgba(244,114,182,0.06); border:1px solid rgba(244,114,182,0.2); border-radius:10px; padding:12px 16px; font-size:0.82rem; line-height:1.7; color:#e2e8f0; margin-bottom:10px;">
+            <span style="color:#f472b6; font-weight:700;">Mensaje:</span> "Hola [Nombre] 🌸 Hace un tiempo que no sabemos de vos. Queremos que vuelvas — te dejamos un 15% de descuento en tu próxima compra, válido por 72 horas. → [LINK con descuento aplicado]"
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-muted);"><strong style="color:#fff;">Objetivo:</strong> Recuperar el cliente antes de que se pierda definitivamente. El descuento es el último recurso — si tampoco responde acá, se archiva el contacto.</div>
+        </div>
+      </div>
+
+      <div class="warn-box green">
         <strong>Cómo presentarlo en la llamada:</strong> "El sistema manda mensajes solo: cuando alguien compra, a los 45 días cuando el producto se está por terminar, y a los 90 días si no volvió a comprar. Todo se ve en el Portal — podés leer cada conversación y pausar el sistema cuando quieras."
       </div>
-    </div>
-  </section>
 
     </div>
   </section>
@@ -1152,29 +1275,6 @@
           </div>
         </div>
 
-        <!-- A8: IA Avatars / UGC Futuro -->
-        <div class="formato-row angulo-row">
-          <div class="formato-info">
-            <div class="angulo-header"><div class="angulo-icon">🤖</div><div><div class="angulo-nc">N3 — N4 · Tibio</div><div class="angulo-name">IA Avatars / UGC Futuro</div></div></div>
-            <div class="angulo-desc">Uso de avatares generados por IA para demostraciones rápidas, hooks visuales o testimonios sintéticos. Permite escalar el volumen de creativos sin los tiempos de producción de un UGC tradicional.</div>
-            <div class="angulo-examples">
-              <div class="example-line blue-border">"Hola! Te enseño mi rutina de 3 pasos que me cambió la piel." [IA Avatar]</div>
-              <div class="example-line blue-border">"¿Sabías que el 90% de las personas usan mal su serum? Te muestro cómo se hace."</div>
-            </div>
-            <div class="video-label">Tendencia 2026 · Escala masiva de contenido</div>
-          </div>
-          <div class="cr-mini" style="background:rgba(255,255,255,0.03); border:1px dashed rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center;">
-             <div style="text-align:center; opacity:0.4;">
-               <div style="font-size:2rem; margin-bottom:8px;">🤖</div>
-               <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;">AI Content Generation</div>
-             </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
       </div>
     </div>
   </section>
@@ -1280,37 +1380,6 @@
       </div>
 
 
-    </div>
-  <!-- ════════════════════ OPERACIÓN ════════════════════ -->
-  <section id="operacion" class="section" style="background: rgba(255,255,255,0.01);">
-    <div class="container">
-      <span class="section-label">Detrás de escena</span>
-      <h2 class="gradient-text">Logística y Operación CAR</h2>
-      <p style="max-width:700px; margin-bottom:32px;">Cómo nos integramos con el equipo del cliente para que el sistema funcione sin fricción.</p>
-
-      <div class="step-pill">
-        <div class="step-num-pill bg-blue">1</div>
-        <div class="step-body">
-          <h4>Onboarding Técnico (Semana 1)</h4>
-          <p>Conexión de Business Manager, Tienda (Shopify/TiendaNube), WhatsApp API e Inbox centralizado. Configuración del CAR Fit inicial.</p>
-        </div>
-      </div>
-
-      <div class="step-pill">
-        <div class="step-num-pill bg-blue">2</div>
-        <div class="step-body">
-          <h4>Setup de Creativos y Copy</h4>
-          <p>Análisis de catálogo, detección de productos estrella (Hero Products) y diseño de la primera tanda de anuncios por nivel de consciencia.</p>
-        </div>
-      </div>
-
-      <div class="step-pill">
-        <div class="step-num-pill bg-blue">3</div>
-        <div class="step-body">
-          <h4>Lanzamiento y Monitoreo</h4>
-          <p>Encendido de campañas y flujos de retención. Los primeros 15 días son de <b>supervisión humana intensiva</b> para calibrar la IA y el tono de marca.</p>
-        </div>
-      </div>
     </div>
   </section>
 
