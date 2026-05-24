@@ -1,0 +1,2771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referencias Meta Ads — Cosméticas / Skincare</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121a;
+    --bg3: #1a1a26;
+    --accent: #c084fc;
+    --accent2: #818cf8;
+    --accent3: #34d399;
+    --accent4: #f472b6;
+    --accent5: #fb923c;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: #1e1e2e;
+    --win: #10b981;
+    --lose: #ef4444;
+    --warn: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+  /* Layout */
+  .hero {
+    background: linear-gradient(135deg, #1a0533 0%, #0f172a 50%, #0a0a0f 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(192,132,252,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #c084fc, #818cf8, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .hero p { color: #94a3b8; font-size: 15px; }
+  .hero .meta {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .tag-purple { background: rgba(192,132,252,0.15); color: #c084fc; border: 1px solid rgba(192,132,252,0.3); }
+  .tag-blue { background: rgba(129,140,248,0.15); color: #818cf8; border: 1px solid rgba(129,140,248,0.3); }
+  .tag-green { background: rgba(52,211,153,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+  .tag-pink { background: rgba(244,114,182,0.15); color: #f472b6; border: 1px solid rgba(244,114,182,0.3); }
+  .tag-orange { background: rgba(251,146,60,0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
+
+  nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 14px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--text); border-bottom-color: var(--accent); }
+
+  /* Ring examples */
+  .ring-section {
+    margin-bottom: 48px;
+  }
+  .ring-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .ring-badge {
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    flex-shrink: 0;
+    color: white;
+    letter-spacing: -1px;
+  }
+  .r1 { background: #1877f2; }
+  .r2 { background: #f5c518; color: #111; }
+  .r3 { background: #111; border: 2px solid #fff; }
+  .r4 { background: #22c55e; }
+  .r5 { background: #ef4444; }
+  .ring-info h2 { font-size: 18px; font-weight: 800; }
+  .ring-info p { font-size: 13px; color: #94a3b8; margin-top: 2px; }
+
+  .examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  .example-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: zoom-in;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .example-card:hover {
+    border-color: rgba(192,132,252,0.4);
+    transform: translateY(-2px);
+  }
+  .example-card video, .example-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    background: #0a0a0f;
+    max-height: none;
+  }
+  .example-meta {
+    padding: 8px 10px;
+    border-top: 1px solid var(--border);
+  }
+  .example-brand { font-size: 11px; font-weight: 700; margin-bottom: 0; }
+  .example-desc { display: none; }
+  .example-tags { margin-top: 5px; display: flex; gap: 4px; flex-wrap: wrap; }
+  .example-card .tag { font-size: 9px; padding: 1px 5px; }
+
+  .screenshot-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .screenshot-card img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 500px;
+    object-position: top;
+  }
+  .screenshot-meta {
+    padding: 12px 14px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .ring-rule {
+    background: var(--bg3);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+  .ring-rule.r1-rule { border-left-color: #1877f2; }
+  .ring-rule.r2-rule { border-left-color: #f5c518; }
+  .ring-rule.r3-rule { border-left-color: #64748b; }
+  .ring-rule.r4-rule { border-left-color: #22c55e; }
+  .ring-rule.r5-rule { border-left-color: #ef4444; }
+
+  .container { max-width: 1400px; margin: 0 auto; padding: 40px; }
+
+  section { margin-bottom: 60px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title span { font-size: 22px; }
+  .section-sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+
+  /* Cards */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(192,132,252,0.3); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
+  @media (max-width: 900px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .container { padding: 20px; }
+  }
+
+  /* Stats */
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #c084fc, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .stat-sub { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+
+  /* Progress bars */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .bar-label { width: 180px; font-size: 13px; color: var(--text); flex-shrink: 0; }
+  .bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--bg3);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+  .bar-pct { width: 48px; font-size: 13px; font-weight: 700; text-align: right; flex-shrink: 0; }
+
+  /* Hook cards */
+  .hook-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 3px solid var(--accent);
+  }
+  .hook-card.green { border-left-color: var(--accent3); }
+  .hook-card.blue { border-left-color: var(--accent2); }
+  .hook-card.pink { border-left-color: var(--accent4); }
+  .hook-card.orange { border-left-color: var(--accent5); }
+  .hook-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hook-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .hook-desc { font-size: 13px; color: #94a3b8; margin-bottom: 12px; }
+  .hook-brands { font-size: 12px; color: var(--muted); }
+  .hook-brands strong { color: var(--accent3); }
+  .hook-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    padding: 3px 10px;
+    background: rgba(52,211,153,0.1);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent3);
+  }
+
+  /* Format cards */
+  .format-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .format-rank {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .format-icon { font-size: 28px; margin-bottom: 10px; }
+  .format-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .format-pct {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #c084fc, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+  }
+  .format-life { font-size: 12px; color: var(--muted); }
+  .format-tip {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: var(--bg3);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .winner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: rgba(52,211,153,0.15);
+    border: 1px solid rgba(52,211,153,0.3);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--win);
+    margin-bottom: 8px;
+  }
+
+  /* Ad examples */
+  .ad-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .ad-header {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ad-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c084fc, #818cf8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .ad-brand { font-size: 13px; font-weight: 700; }
+  .ad-since { font-size: 11px; color: var(--muted); }
+  .ad-active { margin-left: auto; }
+  .ad-body { padding: 16px; }
+  .ad-copy { font-size: 13px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px; }
+  .ad-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .ad-url { font-size: 11px; color: var(--muted); }
+
+  /* Benchmarks table */
+  .bench-table { width: 100%; border-collapse: collapse; }
+  .bench-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .bench-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(30,30,46,0.5);
+    font-size: 13px;
+  }
+  .bench-table tr:last-child td { border-bottom: none; }
+  .bench-table tr:hover td { background: rgba(192,132,252,0.04); }
+  .good { color: var(--win); font-weight: 700; }
+  .avg { color: var(--warn); font-weight: 700; }
+  .bad { color: var(--lose); font-weight: 700; }
+
+  /* Campaign structure */
+  .camp-block {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .camp-header {
+    padding: 14px 20px;
+    background: linear-gradient(90deg, rgba(192,132,252,0.1), transparent);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .camp-header h3 { font-size: 15px; font-weight: 700; }
+  .camp-header .budget {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent3);
+    background: rgba(52,211,153,0.1);
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(52,211,153,0.2);
+  }
+  .camp-body { padding: 16px 20px; }
+  .adset-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(30,30,46,0.5);
+    align-items: start;
+  }
+  .adset-row:last-child { border-bottom: none; }
+  .adset-name { font-size: 13px; font-weight: 700; color: var(--accent2); }
+  .adset-pain { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .creative-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .creative-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: default;
+  }
+  .cp-n1 { background: rgba(192,132,252,0.12); color: #c084fc; border: 1px solid rgba(192,132,252,0.25); }
+  .cp-n2 { background: rgba(129,140,248,0.12); color: #818cf8; border: 1px solid rgba(129,140,248,0.25); }
+  .cp-n3 { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+  .cp-n4 { background: rgba(244,114,182,0.12); color: #f472b6; border: 1px solid rgba(244,114,182,0.25); }
+  .cp-n5 { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.25); }
+
+  /* Copy framework */
+  .copy-block {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .copy-title { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+  .copy-example {
+    font-size: 13px;
+    color: #e2e8f0;
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 2px solid var(--accent);
+    padding-left: 12px;
+  }
+  .copy-rule { font-size: 12px; color: #94a3b8; margin-top: 8px; }
+
+  /* DO / DON'T */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .do-card {
+    background: rgba(16,185,129,0.05);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .dont-card {
+    background: rgba(239,68,68,0.05);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .do-card h3 { color: var(--win); font-size: 14px; margin-bottom: 14px; }
+  .dont-card h3 { color: var(--lose); font-size: 14px; margin-bottom: 14px; }
+  .do-list, .dont-list { list-style: none; }
+  .do-list li, .dont-list li {
+    padding: 6px 0;
+    font-size: 13px;
+    color: #cbd5e1;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .do-list li::before { content: '✓'; color: var(--win); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .dont-list li::before { content: '✗'; color: var(--lose); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .tl-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .tl-desc { font-size: 13px; color: #94a3b8; }
+
+  /* Brands */
+  .brand-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .brand-days {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #c084fc, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .brand-label { font-size: 11px; color: var(--muted); font-weight: 600; }
+  .brand-name { font-size: 14px; font-weight: 700; margin-top: 8px; }
+  .brand-desc { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 40px 0;
+  }
+
+  /* Script arc */
+  .arc-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .arc-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c084fc, #818cf8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+  }
+  .arc-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .arc-content p { font-size: 13px; color: #94a3b8; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* Tooltip */
+  [data-tip] { position: relative; cursor: help; }
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e1e2e;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .source-note {
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Referencias Meta Ads — Cosméticas & Skincare</h1>
+  <p>Análisis de 500+ anuncios de alto rendimiento · Benchmarks 2026 · Estructura de campañas · Hooks que convierten</p>
+  <div class="meta">
+    <span class="tag tag-purple">Actualizado: Mayo 2026</span>
+    <span class="tag tag-blue">500+ anuncios analizados</span>
+    <span class="tag tag-green">Argentina + Global</span>
+    <span class="tag tag-pink">Duracion media: 182 días</span>
+    <span class="tag tag-orange">Fuente: Evolut, StackMatix, BeautyMatter, Meta Ads Library</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="retencion.html" style="color:#19f28a;border-bottom-color:#19f28a;font-weight:700;">⚡ Retención →</a>
+  <a href="#rings">🎬 Ejemplos por Ring</a>
+  <a href="#stats">Stats clave</a>
+  <a href="#formatos">Formatos</a>
+  <a href="#hooks">Hooks</a>
+  <a href="#copy">Copy</a>
+  <a href="#estructura">Estructura</a>
+  <a href="#brands">Top Marcas</a>
+  <a href="#benchmarks">Benchmarks</a>
+  <a href="#dodont">DO / DON'T</a>
+  <a href="#guion">Arco de Guión</a>
+  <a href="#biblioteca">Meta Library</a>
+  <a href="#longevos">🏆 Top 5 Longevos</a>
+  <a href="#mas-creativos">🎥 Más Creativos</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════ EJEMPLOS POR RING ═══════════════════════════════ -->
+<section id="rings">
+  <div class="section-title"><span>🎬</span> Ejemplos Reales por Ring — Creativos que Gastan Más</div>
+  <div class="section-sub">Videos reales de Naturium · Hey Bud Skincare · OSEA Malibu + Screenshots de Meta Ads Library · Cada Ring = un tipo de creativo con gasto validado</div>
+
+  <!-- ── RING 1 ── -->
+  <div class="ring-section">
+    <div class="ring-header" style="background: rgba(24,119,242,0.07); border-color: rgba(24,119,242,0.25);">
+      <div class="ring-badge r1">R1</div>
+      <div class="ring-info">
+        <h2>UGC — Prospecting</h2>
+        <p>Video selfie auténtico · Cámara frontal · Sin producción · El creador aplica el producto en su piel real</p>
+      </div>
+    </div>
+    <div class="ring-rule r1-rule">
+      <strong>Regla:</strong> Nunca arrancar con el nombre de la marca. Abrir con el dolor o la sorpresa. El producto aparece <em>aplicándose</em> en los primeros 5 segundos. Tono de amiga contándole algo a otra amiga. Guión 80-100 palabras. Hook ideal: "No esperaba esto…" / "Normalmente no posteo esto pero…"
+    </div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <video controls preload="metadata" poster="">
+          <source src="videos/Hey_Bud_Skincare_video_1.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Hey Bud Skincare — UGC Real</div>
+          <div class="example-desc">Marca referente en UGC. 632 días promedio de duración. 100-120 ads por mes, 50% son UGC auténtico como este.</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-green">Prospecting frío</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="ads_ar/04_skincare_ari.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Skincare.Ari — UGC Hook #4 Vulnerabilidad</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC Vulnerabilidad</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-green">13+ meses AR</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/SkincareAri_907642045280510.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Skincare.Ari — "TENÉS MUCHA OLEOSIDAD"</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC Hook</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-pink">Dolor Oleosidad</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/SkincareAri_1598573281289453.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Skincare.Ari — Rutina para Granitos + Manchas (Cosmetóloga)</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC Educativo</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-green">Autoridad</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/SkincareAri_895000149816089.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Skincare.Ari — "¿Niacinamida, glicólico o retinol para manchas?"</div>
+          <div class="example-desc">Split: macro de manchas en piel + creadora. Hook visual agresivo — el problema en pantalla antes de que ella hable.</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC + Visual Hook</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-orange">Macro Skin</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/SkincareAri_1268810038291588.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Skincare.Ari — "¿Estás harta de los puntos negros?"</div>
+          <div class="example-desc">Macro de poros con puntos negros + asco inmediato. Hook de disgusto: el problema en primero plano antes de cualquier solución.</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC Disgust Hook</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-pink">Macro Poros</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/SkincareAri_806669122456901.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Skincare.Ari — "TENÉS LA PIEL GRASOSA" (con productos)</div>
+          <div class="example-desc">Habla a cámara en baño real con productos en la encimera (Lidherma + Niacinamide). Entorno cotidiano que refuerza la credibilidad.</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC Ambiente Real</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-green">Piel Grasosa</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/SkincareAri_1175158491184555.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Skincare.Ari — "Manchitas y marquitas de acné"</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC Post-Acné</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-pink">Marcas Acné</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/MeetBlume_ugc_1604607520202959.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Meet Blume — "Years of hormonal acne cured, in just 3 days"</div>
+          <div class="example-desc">UGC con producto en mano, hook de resultado extremo + tiempo específico. La promesa agresiva ("3 días") detiene el scroll en frío.</div>
+          <div class="example-tags">
+            <span class="tag tag-blue">UGC Hook</span>
+            <span class="tag tag-purple">Ring 1</span>
+            <span class="tag tag-pink">Resultado Extremo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RING 2 ── -->
+  <div class="ring-section">
+    <div class="ring-header" style="background: rgba(245,197,24,0.07); border-color: rgba(245,197,24,0.25);">
+      <div class="ring-badge r2">R2</div>
+      <div class="ring-info">
+        <h2>Product Demo — Prospecting</h2>
+        <p>Close-up del producto en uso · Textura real · Aplicación paso a paso · Sin hablar a cámara</p>
+      </div>
+    </div>
+    <div class="ring-rule r2-rule">
+      <strong>Regla:</strong> El foco está en el producto, no en la persona. Close-up extremo de la textura al aplicar, del ingrediente activo, del resultado inmediato en la piel. Sin voz necesariamente — puede ser solo música + texto superpuesto. El ingrediente activo aparece en pantalla en los primeros 3 segundos.
+    </div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="ads_ar/01_soluna_skin_v1.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Soluna SKIN — Product Demo</div>
+          <div class="example-tags">
+            <span class="tag tag-yellow" style="background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);">Product Demo</span>
+            <span class="tag tag-purple">Ring 2</span>
+            <span class="tag tag-green">6+ meses AR</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/Hey_Bud_Skincare_video_3.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Hey Bud Skincare — Product Demo</div>
+          <div class="example-tags">
+            <span class="tag tag-yellow" style="background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);">Product Demo</span>
+            <span class="tag tag-purple">Ring 2</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/Hey_Bud_Skincare_video_2.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Hey Bud Skincare — Product Demo Variante</div>
+          <div class="example-tags">
+            <span class="tag tag-yellow" style="background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);">Product Demo</span>
+            <span class="tag tag-purple">Ring 2</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/HeyBud_demo_1976988032869957.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Hey Bud Skincare — "saggy neck? not anymore"</div>
+          <div class="example-desc">Close-up del producto (Neck Serum Collagen + Hemp) con texto superpuesto. Foco total en el packaging y la promesa — sin persona en cámara.</div>
+          <div class="example-tags">
+            <span class="tag tag-yellow" style="background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);">Product Demo</span>
+            <span class="tag tag-purple">Ring 2</span>
+            <span class="tag tag-pink">Hook Problema</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/Kojeva_demo_946810911272428.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Kojeva — "YOU DONT LOOK OLD, YOU JUST NEED TO GUA SHA"</div>
+          <div class="example-desc">Técnica de gua sha en uso real, "If you are still relying on topicals..." — demo del método + reencuadre del problema. La herramienta en acción como protagonista.</div>
+          <div class="example-tags">
+            <span class="tag tag-yellow" style="background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);">Product Demo</span>
+            <span class="tag tag-purple">Ring 2</span>
+            <span class="tag tag-blue">Técnica en Uso</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RING 3 ── -->
+  <div class="ring-section">
+    <div class="ring-header" style="background: rgba(100,116,139,0.07); border-color: rgba(100,116,139,0.3);">
+      <div class="ring-badge r3">R3</div>
+      <div class="ring-info">
+        <h2>Testimonial — Prospecting</h2>
+        <p>Cliente real · Antes y después · Tiempo específico · Transformación visible y emocional</p>
+      </div>
+    </div>
+    <div class="ring-rule r3-rule">
+      <strong>Regla:</strong> Siempre tiempo específico ("usé esto 4 semanas", "a los 30 días"). El antes/después visual es el corazón. El testimonio no puede sonar a actor — tiene que sonar a persona real contando su experiencia. Hook ideal: "Usé esto durante X semanas, acá lo que pasó."
+      El antes/después es el tipo creativo que dura MÁS tiempo activo (promedio 293 días con Hook #3).
+    </div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <a href="https://greatads.co/ads/823976539273996" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/823976539273996-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">iGlow — Antes/Después Pestañas</div>
+          <div class="example-desc">"Look at Mina's lashes after she started using iGlow 😍" — Antes/después con nombre real + money-back + vegan. El nombre propio del cliente hace el testimonial más creíble que cualquier claim genérico.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Antes / Después</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-pink">Hook nombre real</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/272304895688760" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/272304895688760-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">iGlow — Cita Textual de Cliente</div>
+          <div class="example-desc">"I had almost no hair on my brows, this actually helps. Amazing!" — El dolor específico del cliente como gancho. Una cita textual con un problema concreto convierte más que cualquier promesa de marca.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Quote</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-blue">Hook #4 Vulnerabilidad</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/701107618725145" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/701107618725145-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Topicals — Tweet de Cliente Real</div>
+          <div class="example-desc">"I finally found something that smooths over my large pores 😭 ily @topicals" — Tweet real de @betterxjade usado como creativo. La cita de redes sociales tiene más credibilidad que cualquier texto de marca: es la voz del cliente que la plataforma ya validó públicamente.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Tweet Testimonial</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-blue">UGC Social</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/408886287707586" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/408886287707586-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Curology — Before/After Formato Meme</div>
+          <div class="example-desc">"How it started / How it's going" — adopta el meme viral como formato de antes/después. Acné severo → piel clara con formato pop-culture que el espectador ya conoce. El meme reference convierte la transformación en algo compartible: prueba social + cultura compartida.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Before / After</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-pink">Meme Format</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/1388989464971011" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/1388989464971011-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Curology — "Real Patients, Real Results"</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Before / After</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-orange">Prueba Pacientes Reales</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/874791070609285" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/874791070609285-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Jolie — Hook Agresivo + Testimonial 5★</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Quote</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-blue">Hook Agresivo</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/3269784986608701" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/3269784986608701-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Moon Juice — Testimonial Historia Real</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Narrativa</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-pink">Historia Personal</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <img src="creativos/naturium_testimonial_press.jpg" style="width:100%;display:block;border-bottom:1px solid var(--border);cursor:pointer;" onclick="openLb(this)">
+        <div class="example-meta">
+          <div class="example-brand">Naturium — Press + 5★ "Best Body Wash of All Time"</div>
+          <div class="example-desc">WWD Beauty Inc badge + cita real: "Luscious. Hydrating. Best Body Wash of all Time." Combina prueba de prensa con testimonial de cliente. El badge de premio valida la cita.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Press + Testimonial</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-orange">Premio + Cita</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <img src="creativos/naturium_testimonial_lauren.jpg" style="width:100%;display:block;border-bottom:1px solid var(--border);cursor:pointer;" onclick="openLb(this)">
+        <div class="example-meta">
+          <div class="example-brand">Naturium — 5★ "This body wash is IT" — Lauren</div>
+          <div class="example-desc">"Not only is it great for my sensitive skin, but it leaves me so soft I don't even need to moisturize afterwards." CTA "YOUR TURN NEXT" convierte la experiencia del cliente en invitación directa.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Quote</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-blue">CTA Inclusión</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <img src="creativos/naturium_testimonial_carey.jpg" style="width:100%;display:block;border-bottom:1px solid var(--border);cursor:pointer;" onclick="openLb(this)">
+        <div class="example-meta">
+          <div class="example-brand">Naturium — 5★ "It feels like a spa treatment" — C. Carey</div>
+          <div class="example-desc">"It lathers beautifully, rinses easily, and the glow it gives my skin is amazing." Detalles sensoriales específicos (lather, rinse, glow) hacen el testimonial creíble y visual sin mostrar antes/después.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Sensorial</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-pink">Detalle Concreto</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/HeyBud_testimonial_1485805003338795.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Hey Bud Skincare — "HOW I FIXED MY TURKEY NECK IN 30 DAYS"</div>
+          <div class="example-desc">Mujer real a cámara, tiempo específico (30 días), resultado concreto. El formato "cómo lo resolví" convierte mejor que el before/after silencioso porque da el proceso + la emoción.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Video</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-blue">30 días resultado</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/Marijana_testimonial_1426444728872934.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Marijana I. — Testimonial Hey Bud Neck Serum</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial UGC</span>
+            <span class="tag tag-purple">Ring 3</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/AHouseByTheFairway_testimonial_1547735433165837.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">A House by the Fairway — Skincare Routine en Espejo</div>
+          <div class="example-desc">@a_house_by_the_fairway aplicando su rutina frente al espejo. Entorno doméstico real, sin estudio. El reflejo en espejo circular añade estetica aspiracional sin perder autenticidad UGC.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Rutina</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-blue">Lifestyle UGC</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/PoreFavor_testimonial_2036175853602059.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">PORE FAVOR — "Leaving my acne behind this new year"</div>
+          <div class="example-desc">Acné visible en cara + "you should too!!!" — Vulnerabilidad real + CTA de inclusión. El acné sin filtro como prueba de autenticidad antes de mostrar el resultado.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Testimonial Vulnerabilidad</span>
+            <span class="tag tag-purple">Ring 3</span>
+            <span class="tag tag-pink">Acné Real</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RING 4 ── -->
+  <div class="ring-section">
+    <div class="ring-header" style="background: rgba(34,197,94,0.07); border-color: rgba(34,197,94,0.25);">
+      <div class="ring-badge r4">R4</div>
+      <div class="ring-info">
+        <h2>Offer Highlight — Segundo Toque</h2>
+        <p>Segundo toque para quien vio Ring 1 + 2 · Ingrediente o beneficio clave en grande · Fondo limpio</p>
+      </div>
+    </div>
+    <div class="ring-rule r4-rule">
+      <strong>Regla:</strong> Esta persona ya vio el UGC o el demo. Ahora necesita el argumento técnico/racional. Fondo blanco o negro limpio. El ingrediente activo en letras grandes (Ácido Salicílico 2% · Retinol 0.5% · Niacinamida 10%). Sin ruido. Imagen estática o video corto de 6-10 segundos. Puede incluir oferta o descuento.
+    </div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <a href="https://www.facebook.com/ads/library/?id=696831878999177" target="_blank"><img src="creativos_rings/R4_curology_offer.jpg" style="width:100%; display:block; border-bottom: 1px solid var(--border);"></a>
+        <div class="example-meta" style="background: var(--bg2);">
+          <div class="example-brand">Curology — Problema / Solución + Precio</div>
+          <div class="example-desc">Muestra 3 condiciones de piel reales (poros, acné, hiperpigmentación) con el producto como solución. Precio ancla: "less than $1/day". Fondo morado limpio.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Problema → Solución</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-blue">Precio ancla</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://www.facebook.com/ads/library/?id=782529650039198" target="_blank"><img src="creativos_rings/R4_heybud_guarantee.jpg" style="width:100%; display:block; border-bottom: 1px solid var(--border);"></a>
+        <div class="example-meta">
+          <div class="example-brand">Hey Bud — Review + Garantía 90 días</div>
+          <div class="example-desc">Testimonio real sobre acné + producto en mano + "TRY RISK-FREE! 90-DAY MONEY-BACK GUARANTEE". Elimina la objeción de riesgo en el segundo toque.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Social Proof + Oferta</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-pink">Garantía sin riesgo</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://www.facebook.com/ads/library/?id=994095201645498" target="_blank"><img src="creativos_rings/R4_avea_timeline.jpg" style="width:100%; display:block; border-bottom: 1px solid var(--border);"></a>
+        <div class="example-meta" style="background: var(--bg2);">
+          <div class="example-brand">AVEA — Timeline de Resultados + Oferta</div>
+          <div class="example-desc">Muestra resultados mes a mes (1M, 2M, 3M+) con producto en mano. "90 days or get your money back." Combina educación de producto con garantía BOFU.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Timeline + Garantía</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">Educación → Cierre</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/311005091578660" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/311005091578660-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Curology — Us vs Them + Precio Ancla</div>
+          <div class="example-desc">"Future-Proof Rx vs Baby Botox" — split visual con ✓ vs ✗ + "Starts at $1/day". El comparativo hace que rechazar el producto parezca elegir lo caro y lo inferior. El precio ancla ($1/día) convierte el costo en nada frente a la alternativa ($300-500/sesión).</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Us vs Them</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">Precio Ancla $1/día</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/337659745291010" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/337659745291010-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Curology — Ingrediente Hero + 50% Off</div>
+          <div class="example-desc">"Tretinoin: up to 20x more powerful than generic retinol" + 5 benefit pills flotantes + "Get up to 50% off your first purchase". Educación del ingrediente que crea deseo, seguida de oferta que elimina la barrera del precio. El 50% off al final de un ad de features convierte educación en venta.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Ingrediente + Oferta</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-pink">50% Off</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/696831878999177" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/696831878999177-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Curology — Dolor Visual + Precio Ancla</div>
+          <div class="example-desc">Primer plano de 3 problemas de piel reales (poros tapados, acné quístico, hiperpigmentación) + "one personalized formula / less than $1/day". Mostrar el dolor del cliente en imagen es el hook más honesto: quien tiene ese problema lo reconoce de inmediato y hace click.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Pain Point Visual</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">$1/día</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/1654245371668536" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/1654245371668536-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Proactiv — Oferta Producto Gratis + Emocional</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Oferta + Regalo</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">Free Gift CTA</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="ads_ar/06_voz_de_gaia.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Voz de Gaia — Oferta 10% OFF + Color Unify</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Oferta % Off</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">8+ meses AR</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/OSEA_Malibu_video_3.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">OSEA Malibu — Offer Highlight</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Offer Highlight</span>
+            <span class="tag tag-purple">Ring 4</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/Naturium_offer_1184199710427062.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Naturium — Offer Highlight</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Offer Highlight</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">Referente Global</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/Naturium_demo_998133189376056.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Naturium — Offer Highlight</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Offer Highlight</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">Referente Global</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/HeyBud_offer_2032048267264017.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Hey Bud Skincare — "my hyperpigmentation disappeared after THIS"</div>
+          <div class="example-desc">Antes/después con hiperpigmentación — el resultado visual es el gancho, no el descuento. La oferta implícita: "esto funcionó, puede funcionar para vos".</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Offer + Resultado</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-pink">Before / After</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <img src="creativos/kallistia_offer_melasma.jpg" style="width:100%;display:block;border-bottom:1px solid var(--border);cursor:pointer;" onclick="openLb(this)">
+        <div class="example-meta">
+          <div class="example-brand">Kallíistia — "Melasma Rule #1: If it burns, it can make it worse"</div>
+          <div class="example-desc">Educación como gancho de oferta: regla de producto que posiciona la marca como autoridad antes de vender. El miedo al daño impulsa a buscar una solución segura.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Offer Educativo</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-orange">Melasma / Manchas</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <img src="creativos/skinaccumax_offer_price.jpg" style="width:100%;display:block;border-bottom:1px solid var(--border);cursor:pointer;" onclick="openLb(this)">
+        <div class="example-meta">
+          <div class="example-brand">Monica Tolan — "SUPPLEMENTS THAT WORK" €119 + SHOP NOW</div>
+          <div class="example-desc">Precio visible + CTA directo + tres bullets de beneficio. El precio alto ($119) se ancla con "45 years of skin expertise" para justificar el valor antes de pedir el click.</div>
+          <div class="example-tags">
+            <span class="tag tag-green">Price Anchor</span>
+            <span class="tag tag-purple">Ring 4</span>
+            <span class="tag tag-blue">CTA Directo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RING 5 ── -->
+  <div class="ring-section">
+    <div class="ring-header" style="background: rgba(239,68,68,0.07); border-color: rgba(239,68,68,0.25);">
+      <div class="ring-badge r5">R5</div>
+      <div class="ring-info">
+        <h2>Features & Benefits — Segundo Toque</h2>
+        <p>Segundo toque para quien vio Ring 2 + 3 · Lista de beneficios con íconos · Carrusel o video corto · BOFU</p>
+      </div>
+    </div>
+    <div class="ring-rule r5-rule">
+      <strong>Regla:</strong> Esta persona ya vio el demo y el testimonio. Necesita el empujón final. 3-5 beneficios concretos con íconos o bullets visuales. Puede incluir la oferta final (envío gratis, descuento, garantía). Carrusel o video de 15 segundos. CTA directo: "Probalo 30 días sin riesgo."
+    </div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <a href="https://greatads.co/ads/619493910371403" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/619493910371403-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">The Jojoba Co — Educación de Ingrediente</div>
+          <div class="example-desc">"Vitamin C: apply after serums, before moisturiser and SPF" — La educación de rutina posiciona la marca como experta. El cliente que aprende de vos compra de vos. Autoridad sin vender directamente.</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Educación</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-blue">Autoridad Ingrediente</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/779457413463974" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/779457413463974-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Bushbalm — Checkmarks + Sin Químicos</div>
+          <div class="example-desc">"✓ Dark Spots ✓ Ingrown Hairs ✓ Razor Burn · Without harsh chemicals" — Checkmarks visuales como bullets que escanean rápido. El "sin químicos agresivos" neutraliza la objeción de miedo al ingrediente.</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Lista Beneficios</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-green">Sin objeciones</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/2242806599245252" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/2242806599245252-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">cheekyglo — Diagrama de Producto con Callouts</div>
+          <div class="example-desc">Scalp Scrubber con 4 flechas: bristles, dandruff, all hair types, healthy hair growth. El diagrama de producto con callouts en flechas es el formato R5 más limpio para BOFU: cada flecha = una objeción eliminada visualmente, sin leer texto.</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Features Diagram</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-green">Callout Arrows</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/720269800142426" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/720269800142426-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Curology — Ingredient Stack BOFU</div>
+          <div class="example-desc">"Does. It. All." — Tretinoin, Niacinamide, Azelaic Acid con foto de textura de cada uno y función específica. El stack de ingredientes con imagen de textura convierte el conocimiento técnico en deseo para quien ya investigó: ve exactamente qué está comprando.</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Ingredient Stack</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-blue">BOFU Técnico</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/797212935528555" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/797212935528555-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Fur — Ingredientes en Nubes + Nuevo Lanzamiento</div>
+          <div class="example-desc">"NEW!" badge + 4 callouts en nubes amarillas: Radish root (neutralizes sweat), Willow bark (ingrown hairs), Niacinamide (brightens), Botanicals (fresh scent). Cada ingrediente ligado a su beneficio específico. El "NEW!" añade urgencia sin necesitar descuento.</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Ingredientes Callouts</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-pink">Product Launch</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/634585485336788" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/634585485336788-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Sand &amp; Sky — Labels de Ingrediente en Producto</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Ingredient Labels</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-blue">BOFU Técnico</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <a href="https://greatads.co/ads/976941116985943" target="_blank">
+          <img src="https://ad-files.b-cdn.net/image/976941116985943-image.webp" style="width:100%;display:block;border-bottom:1px solid var(--border);">
+        </a>
+        <div class="example-meta">
+          <div class="example-brand">Medicube — Diagrama Causa → Solución (KP)</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Causa → Solución</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-green">Educación BOFU</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/OSEA_Malibu_video_2.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">OSEA Malibu — Features & Benefits</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Features & Benefits</span>
+            <span class="tag tag-purple">Ring 5</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/SharkBeauty_features_1863518821043910.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Shark Beauty UK — FacialPro Glow: 4 pasos + 126% Hydration</div>
+          <div class="example-desc">"How to assemble the Shark FacialPro Glow" — unboxing que enumera cada función (Cleanse → Extract → Hydrate → Glow) mientras muestra la caja con claims técnicos. El tutorial de armado como creativo de características.</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">Features Tutorial</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-blue">Unboxing</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <video controls preload="metadata">
+          <source src="videos/MeetBlume_ugc_1604607520202959.mp4" type="video/mp4">
+        </video>
+        <div class="example-meta">
+          <div class="example-brand">Meet Blume — UGC + Ingrediente "Green Oil" en uso</div>
+          <div class="example-desc">Hook UGC + producto visible en aplicación real. Doble función: credibilidad UGC + demostración del ingrediente activo (aceite verde aplicado con gotero).</div>
+          <div class="example-tags">
+            <span class="tag tag-orange">UGC + Ingrediente</span>
+            <span class="tag tag-purple">Ring 5</span>
+            <span class="tag tag-blue">Demo Real</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── STATS CLAVE ───────────────────────────────── -->
+<section id="stats">
+  <div class="section-title"><span>📊</span> Stats Clave — 500+ Top Beauty Ads</div>
+  <div class="section-sub">Data de estudios: Evolut Agency, StackMatix, BeautyMatter, Pennock · Período 2025-2026</div>
+
+  <div class="grid-4">
+    <div class="stat-card">
+      <div class="stat-number">182</div>
+      <div class="stat-label">Días promedio</div>
+      <div class="stat-sub">duración de anuncios top</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">36.8%</div>
+      <div class="stat-label">Top formato</div>
+      <div class="stat-sub">UGC Video domina</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">174</div>
+      <div class="stat-label">Días — estático</div>
+      <div class="stat-sub">promedio imagen fija</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">1,558</div>
+      <div class="stat-label">Días récord</div>
+      <div class="stat-sub">ad más longevo analizado</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 16px;" class="grid-4">
+    <div class="stat-card">
+      <div class="stat-number">80%</div>
+      <div class="stat-label">Top 10 ads</div>
+      <div class="stat-sub">demo-style en formato UGC</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">62%</div>
+      <div class="stat-label">UGC + prueba visual</div>
+      <div class="stat-sub">antes/después o close-up</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">78%</div>
+      <div class="stat-label">Apertura directa</div>
+      <div class="stat-sub">hook UGC en los primeros 5s</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100</div>
+      <div class="stat-label">Palabras — UGC</div>
+      <div class="stat-sub">longitud óptima del guión</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── FORMATOS ───────────────────────────────── -->
+<section id="formatos">
+  <div class="section-title"><span>🎬</span> Formatos — Distribución y Rendimiento</div>
+  <div class="section-sub">Basado en análisis de 300–500 top beauty ads en Meta · Ordenados por % de aparición en winners</div>
+
+  <div class="grid-auto">
+
+    <div class="format-card">
+      <div class="winner-badge">🏆 #1 WINNER</div>
+      <div class="format-rank">RANK 1</div>
+      <div class="format-icon">📱</div>
+      <div class="format-name">UGC Video</div>
+      <div class="format-pct">36.8%</div>
+      <div class="format-life">⏱ Vida media: 212 días (evergreen)</div>
+      <div class="format-tip">
+        Video selfie estilo creador real. Sin producción pulida. El producto se aplica en tiempo real. Cámara frontal, luz natural.
+        <br><br>
+        <strong>Subtipo que más convierte:</strong> Demo de aplicación (53.5%) · Antes/después (29.7%)
+      </div>
+    </div>
+
+    <div class="format-card">
+      <div class="format-rank">RANK 2</div>
+      <div class="format-icon">🖼️</div>
+      <div class="format-name">Imagen Estática</div>
+      <div class="format-pct">28.7%</div>
+      <div class="format-life">⏱ Vida media: 174.5 días</div>
+      <div class="format-tip">
+        Fondo limpio, producto destacado con texto grande del ingrediente o beneficio clave. Sin ruido visual.
+        <br><br>
+        <strong>Ángulos que más usan:</strong> Demo (35.1%) · Oferta/descuento (24.3%)
+      </div>
+    </div>
+
+    <div class="format-card">
+      <div class="format-rank">RANK 3</div>
+      <div class="format-icon">🎥</div>
+      <div class="format-name">Video Producido</div>
+      <div class="format-pct">17.2%</div>
+      <div class="format-life">⏱ Vida media: ~150 días</div>
+      <div class="format-tip">
+        Producción professional. Modelos reales, texturas. Funciona bien para lifestyle y rutinas.
+        <br><br>
+        <strong>Ángulos:</strong> Demo (53.7%) · Lifestyle (16.4%) · Prueba social (14.9%)
+      </div>
+    </div>
+
+    <div class="format-card">
+      <div class="format-rank">RANK 4</div>
+      <div class="format-icon">✨</div>
+      <div class="format-name">Animado / Motion</div>
+      <div class="format-pct">10.3%</div>
+      <div class="format-life">⏱ Vida media: 102.3 días ⚠️</div>
+      <div class="format-tip">
+        El de MENOR duración. Funciona para lanzamientos y temporadas cortas, no para evergreen.
+      </div>
+    </div>
+
+    <div class="format-card">
+      <div class="format-rank">RANK 5</div>
+      <div class="format-icon">📸</div>
+      <div class="format-name">Carrusel</div>
+      <div class="format-pct">6.9%</div>
+      <div class="format-life">⏱ Vida media: ~120 días</div>
+      <div class="format-tip">
+        Ideal para mito vs. realidad, listas de beneficios, antes/después multi-paso. Educacional.
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 24px;">
+    <div class="card">
+      <div class="section-title" style="font-size: 15px; margin-bottom: 16px;"><span>📈</span> Distribución de tipos creativos en top ads</div>
+      <div class="bar-row">
+        <span class="bar-label">Demo / Aplicación</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 40%; background: linear-gradient(90deg, #c084fc, #818cf8);"></div></div>
+        <span class="bar-pct" style="color: #c084fc;">40%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Lifestyle / Rutina</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 17.1%; background: linear-gradient(90deg, #818cf8, #60a5fa);"></div></div>
+        <span class="bar-pct" style="color: #818cf8;">17.1%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">CTA / Oferta directa</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 14.6%; background: linear-gradient(90deg, #f472b6, #fb923c);"></div></div>
+        <span class="bar-pct" style="color: #f472b6;">14.6%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Prueba Social</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 13.4%; background: linear-gradient(90deg, #34d399, #10b981);"></div></div>
+        <span class="bar-pct" style="color: #34d399;">13.4%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Educacional</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 11.6%; background: linear-gradient(90deg, #fb923c, #f59e0b);"></div></div>
+        <span class="bar-pct" style="color: #fb923c;">11.6%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── HOOKS ───────────────────────────────── -->
+<section id="hooks">
+  <div class="section-title"><span>🎯</span> Los 6 Hooks Ganadores — Probados en Miles de Ads</div>
+  <div class="section-sub">Frameworks con mayor duración de vida promedio. Extraídos de análisis de Naturium, Youthforia, Topicals, OSEA y más.</div>
+
+  <div class="grid-2">
+
+    <div class="hook-card">
+      <div class="hook-number">HOOK #1 — Sorpresa + Escepticismo</div>
+      <div class="hook-text">"No esperaba que esto funcionara…"<br><small style="font-size:14px; font-weight:400; color:#94a3b8">/ "Yo no creía en esto hasta que…"</small></div>
+      <div class="hook-desc">La persona admite que era escéptica. Eso genera curiosidad inmediata y baja la guardia del espectador que tampoco cree.</div>
+      <div class="hook-brands">Marcas: <strong>Topicals · Naturium · Hyper Skin</strong></div>
+      <div class="hook-duration">⏱ Alta duración · Evergreen</div>
+    </div>
+
+    <div class="hook-card green">
+      <div class="hook-number">HOOK #2 — Empowerment + FOMO</div>
+      <div class="hook-text">"Esta es tu señal para probar…"<br><small style="font-size:14px; font-weight:400; color:#94a3b8">/ "Si no lo probaste todavía, mirá esto"</small></div>
+      <div class="hook-desc">Empodera al espectador. Le dice que es su momento. Crea FOMO suave sin presión agresiva.</div>
+      <div class="hook-brands">Marcas: <strong>Youthforia · Glow Recipe · Cocokind</strong></div>
+      <div class="hook-duration">⏱ Alta duración · Muy efectivo en awareness</div>
+    </div>
+
+    <div class="hook-card blue">
+      <div class="hook-number">HOOK #3 — Prueba Temporal</div>
+      <div class="hook-text">"Usé esto durante X semanas, esto es lo que pasó"</div>
+      <div class="hook-desc">Da credibilidad real. El tiempo específico hace la promesa verificable. Genera confianza antes de mostrar resultados.</div>
+      <div class="hook-brands">Marcas: <strong>OSEA · Skinfix · TULA</strong></div>
+      <div class="hook-duration">⏱ Vida media 293 días — TOP duración</div>
+    </div>
+
+    <div class="hook-card pink">
+      <div class="hook-number">HOOK #4 — Vulnerabilidad</div>
+      <div class="hook-text">"Normalmente no posteo esto, pero…"</div>
+      <div class="hook-desc">El creador muestra algo íntimo o "imperfecto". Rompe la cuarta pared. Altísima autenticidad percibida.</div>
+      <div class="hook-brands">Marcas: <strong>Hey Bud · Peace Out Skincare</strong></div>
+      <div class="hook-duration">⏱ Muy efectivo en piel con problemas (acné, manchas)</div>
+    </div>
+
+    <div class="hook-card orange">
+      <div class="hook-number">HOOK #5 — Insider / Educación</div>
+      <div class="hook-text">"Lo que nadie te dice sobre [problema de piel]…"</div>
+      <div class="hook-desc">Posiciona al creador como experto. Genera curiosidad instantánea. Funciona muy bien en contenido educativo + producto.</div>
+      <div class="hook-brands">Marcas: <strong>Typology · Krave Beauty · Dr. Dennis Gross</strong></div>
+      <div class="hook-duration">⏱ Excelente para N2-N3 (problema/solución)</div>
+    </div>
+
+    <div class="hook-card" style="border-left-color: #34d399;">
+      <div class="hook-number">HOOK #6 — Prueba Social Sutil</div>
+      <div class="hook-text">"Esta es mi tercera botella de…"</div>
+      <div class="hook-desc">La recompra es el testimonio más poderoso. No dice "es increíble", muestra que volvió a comprarlo. No parece publicidad.</div>
+      <div class="hook-brands">Marcas: <strong>Glow Recipe · The Outset</strong></div>
+      <div class="hook-duration">⏱ Top para retargeting y N4-N5</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 24px;" class="card">
+    <div class="section-title" style="font-size: 14px; margin-bottom: 12px;"><span>🗣️</span> Aperturas de guión UGC que más convierten</div>
+    <div class="grid-3">
+      <div>
+        <div style="font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">ABRIR CON ESTO:</div>
+        <div class="copy-block" style="padding: 10px 14px;">
+          <div class="copy-example">"Estoy obsesionada con esto..."</div>
+        </div>
+        <div class="copy-block" style="padding: 10px 14px;">
+          <div class="copy-example">"Necesitás probar esto..."</div>
+        </div>
+        <div class="copy-block" style="padding: 10px 14px;">
+          <div class="copy-example">"Era escéptica, pero después..."</div>
+        </div>
+        <div class="copy-block" style="padding: 10px 14px;">
+          <div class="copy-example">"Esto cambió mi piel..."</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">CONSTRUIR CONFIANZA:</div>
+        <div class="copy-block" style="padding: 10px 14px;">
+          <div class="copy-example">"Todo el mundo habla de esto..."</div>
+        </div>
+        <div class="copy-block" style="padding: 10px 14px;">
+          <div class="copy-example">"Esto se viralizó y tuve que probarlo..."</div>
+        </div>
+        <div class="copy-block" style="padding: 10px 14px;">
+          <div class="copy-example">"Clínicamente probado para..."</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">NUNCA ABRIR CON:</div>
+        <div class="copy-block" style="padding: 10px 14px; border-left-color: var(--lose);">
+          <div class="copy-example" style="border-left-color: var(--lose); color: #ef4444;">El nombre de la marca en el primer segundo</div>
+        </div>
+        <div class="copy-block" style="padding: 10px 14px; border-left-color: var(--lose);">
+          <div class="copy-example" style="border-left-color: var(--lose); color: #ef4444;">"Nuestro mejor producto..."</div>
+        </div>
+        <div class="copy-block" style="padding: 10px 14px; border-left-color: var(--lose);">
+          <div class="copy-example" style="border-left-color: var(--lose); color: #ef4444;">Jerga de marketing corporativa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── COPY ───────────────────────────────── -->
+<section id="copy">
+  <div class="section-title"><span>✍️</span> Framework de Copy — Meta Ads Skincare (Charley T)</div>
+  <div class="section-sub">2 Textos Principales + 2 Títulos por cada creativo. Reglas aplicadas a la estructura de campaña de este cliente.</div>
+
+  <div class="grid-2">
+    <div>
+      <div class="copy-block">
+        <div class="copy-title">TEXTO 1 — LÓGICO / DIRECTO</div>
+        <div class="copy-example">
+          [GANCHO ≤125 chars] Directo, beneficio concreto, sin floro.<br><br>
+          [CUERPO] Datos, ingrediente activo, mecanismo.<br>
+          💊 Ácido salicílico 2% — exfolia dentro del poro<br>
+          🚫 Sin irritación, sin tirar la piel<br>
+          ✅ Resultado visible: semana 3<br><br>
+          [CTA] → Probá el kit sin riesgo. 30 días de garantía.
+        </div>
+        <div class="copy-rule">Gancho = problema o resultado. Cuerpo = lógica + credibilidad. CTA = eliminar fricción.</div>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-title">TEXTO 2 — EMOCIONAL / HISTORIA</div>
+        <div class="copy-example">
+          [GANCHO ≤125 chars] Dolor emocional, identificación.<br><br>
+          [CUERPO] Historia corta en primera persona o de cliente real.<br>
+          Ella se miraba al espejo antes de salir y<br>
+          siempre terminaba poniéndose más corrector...<br><br>
+          4 semanas después del tratamiento no necesitó.<br>
+          No el corrector. No el filtro. Nada.<br><br>
+          [CTA] → Ella no esperó. Vos tampoco tenés que hacerlo.
+        </div>
+        <div class="copy-rule">La historia no puede sonar a anuncio. Tiene que sonar a alguien que le cuenta algo a una amiga.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="copy-block">
+        <div class="copy-title">TÍTULO 1 — CLARIDAD DIRECTA (máx 40 chars)</div>
+        <div class="copy-example">
+          "Adiós granitos en 4 semanas 🎯"<br>
+          "Tu piel sin filtro 🌿"<br>
+          "Ácido salicílico que funciona ✅"<br>
+          "Piel grasa? Esto cambia todo ⚡"
+        </div>
+        <div class="copy-rule">Máx 5 palabras + emoji al final. Sin promesas vacías.</div>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-title">TÍTULO 2 — URGENCIA / PRUEBA SOCIAL</div>
+        <div class="copy-example">
+          "4.8★ de 890 clientas reales ⭐"<br>
+          "Quedan pocas unidades 🔥"<br>
+          "+2.000 pieles transformadas 💪"<br>
+          "25% OFF solo hoy → 🏷️"
+        </div>
+        <div class="copy-rule">Número real o urgencia real. Nunca inventar reviews ni stock.</div>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-title">PALABRAS QUE MÁS USAN LOS ADS QUE DURAN MÁS</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;">
+          <span class="tag tag-purple">The / La</span>
+          <span class="tag tag-blue">New / Nuevo</span>
+          <span class="tag tag-green">Get / Conseguí</span>
+          <span class="tag tag-pink">Your / Tu</span>
+          <span class="tag tag-orange">Meet / Conocé</span>
+          <span class="tag tag-purple">Discover / Descubrí</span>
+          <span class="tag tag-blue">Clinically proven</span>
+          <span class="tag tag-green">See the difference</span>
+          <span class="tag tag-pink">Try it</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── ESTRUCTURA ───────────────────────────────── -->
+<section id="estructura">
+  <div class="section-title"><span>🏗️</span> Estructura de Campaña — Cliente Cosméticas</div>
+  <div class="section-sub">3 Campañas CBO · 9 Ad Sets · 45 Creativos · Mapa completo N1→N5</div>
+
+  <!-- Campaña 1 -->
+  <div class="camp-block">
+    <div class="camp-header">
+      <span style="font-size: 20px;">👩‍🦱</span>
+      <div>
+        <h3>Campaña 1 — Mujeres 18-32 · Acné</h3>
+        <div style="font-size: 12px; color: var(--muted);">Dolor principal: granos, manchas, piel grasa</div>
+      </div>
+      <div class="budget">CBO $50–80/día</div>
+    </div>
+    <div class="camp-body">
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 1.1 — Acné Recurrente</div>
+          <div class="adset-pain">Dolor: granitos que vuelven cada mes</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC selfie · "Brilla a las 2hs"</span>
+          <span class="creative-pill cp-n2">N2 · Demo producto · "Acné vuelve cada mes"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Resultados en 4 semanas"</span>
+          <span class="creative-pill cp-n4">N4 · Estático ingrediente · "Ácido salicílico 2%"</span>
+          <span class="creative-pill cp-n5">N5 · Características · "25% OFF + envío gratis"</span>
+        </div>
+      </div>
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 1.2 — Manchas Post-Acné</div>
+          <div class="adset-pain">Dolor: manchas que no se van</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "Piel perfecta sin filtro"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Manchas duran más"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Resultados en 8 semanas"</span>
+          <span class="creative-pill cp-n4">N4 · Estático · "Niacinamida 10%"</span>
+          <span class="creative-pill cp-n5">N5 · Social proof · "4.8★ de 890 clientas"</span>
+        </div>
+      </div>
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 1.3 — Piel Grasa Excesiva</div>
+          <div class="adset-pain">Dolor: brillo a las 2 horas</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "Piel mate todo el día"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Retocarte 3 veces al día"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Menos brillo todo el día"</span>
+          <span class="creative-pill cp-n4">N4 · Estático · "Gel matifica al instante"</span>
+          <span class="creative-pill cp-n5">N5 · Garantía · "30 días garantía 100%"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaña 2 -->
+  <div class="camp-block">
+    <div class="camp-header">
+      <span style="font-size: 20px;">👩‍🦳</span>
+      <div>
+        <h3>Campaña 2 — Mujeres 32-48 · Anti-Age</h3>
+        <div style="font-size: 12px; color: var(--muted);">Dolor principal: líneas, flacidez, manchas de edad</div>
+      </div>
+      <div class="budget">CBO $60–100/día</div>
+    </div>
+    <div class="camp-body">
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 2.1 — Primeras Líneas</div>
+          <div class="adset-pain">Dolor: líneas al sonreír</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "40 se ven de 30"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Líneas al sonreír"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Piel más lisa en 4 semanas"</span>
+          <span class="creative-pill cp-n4">N4 · Estático · "Retinol 0.5% sin irritar"</span>
+          <span class="creative-pill cp-n5">N5 · Precio · "Kit anti-edad $12.900"</span>
+        </div>
+      </div>
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 2.2 — Pérdida de Firmeza</div>
+          <div class="adset-pain">Dolor: piel que se cae, no reacciona a la crema</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "Textura cambia 35+"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Tu crema no alcanza"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Más firmeza visible"</span>
+          <span class="creative-pill cp-n4">N4 · Estático · "Serum 5% péptidos"</span>
+          <span class="creative-pill cp-n5">N5 · Stars · "Dermatólogos 4.9★"</span>
+        </div>
+      </div>
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 2.3 — Manchas de Edad</div>
+          <div class="adset-pain">Dolor: tono disparejo, corrector no alcanza</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "Piel uniforme sin filtro"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Corrector no alcanza"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Tono parejo en 6 semanas"</span>
+          <span class="creative-pill cp-n4">N4 · Estático · "Vitamina C 15% + ferúlico"</span>
+          <span class="creative-pill cp-n5">N5 · Descuento · "20% OFF en 1 mes"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaña 3 -->
+  <div class="camp-block">
+    <div class="camp-header">
+      <span style="font-size: 20px;">💧</span>
+      <div>
+        <h3>Campaña 3 — Mujeres 25-42 · Hidratación</h3>
+        <div style="font-size: 12px; color: var(--muted);">Dolor principal: piel seca, sin glow, sensible</div>
+      </div>
+      <div class="budget">CBO $40–70/día</div>
+    </div>
+    <div class="camp-body">
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 3.1 — Piel Seca</div>
+          <div class="adset-pain">Dolor: crema dura 2 horas, piel opaca</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "Piel opaca"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Crema dura 2 horas"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Hidratación real 72hs"</span>
+          <span class="creative-pill cp-n4">N4 · Ingrediente · "HA triple peso molecular"</span>
+          <span class="creative-pill cp-n5">N5 · Precio · "72hs de hidratación $8.900"</span>
+        </div>
+      </div>
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 3.2 — Sin Glow</div>
+          <div class="adset-pain">Dolor: cara apagada, cara de cansancio</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "Brilla sin highlighter"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Cansada con 8hs de sueño"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Glow visible en 30 días"</span>
+          <span class="creative-pill cp-n4">N4 · Combo · "Vit C + Nia + HA"</span>
+          <span class="creative-pill cp-n5">N5 · Stars · "Más vendido 4.8★"</span>
+        </div>
+      </div>
+      <div class="adset-row">
+        <div>
+          <div class="adset-name">AS 3.3 — Piel Sensible</div>
+          <div class="adset-pain">Dolor: cara roja, reacciona a todo</div>
+        </div>
+        <div class="creative-list">
+          <span class="creative-pill cp-n1">N1 · UGC · "Piel no reacciona"</span>
+          <span class="creative-pill cp-n2">N2 · Demo · "Cara roja 2hs después"</span>
+          <span class="creative-pill cp-n3">N3 · Testimonio · "Calma desde la primera semana"</span>
+          <span class="creative-pill cp-n4">N4 · Claim · "Calmante sin fragancia"</span>
+          <span class="creative-pill cp-n5">N5 · Garantía · "Hipoalergénico $7.400"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────── TOP BRANDS ───────────────────────────────── -->
+<section id="brands">
+  <div class="section-title"><span>🏆</span> Top Marcas por Longevidad de Anuncios</div>
+  <div class="section-sub">Longevidad = sinónimo de eficiencia. Un ad que Meta sigue entregando por meses es un ad rentable.</div>
+
+  <div class="grid-4">
+    <div class="brand-card">
+      <div class="brand-days">667</div>
+      <div class="brand-label">días promedio</div>
+      <div class="brand-name">Naturium</div>
+      <div class="brand-desc">Skincare accesible + ingrediente-first. Demo UGC + estáticos limpios.</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-days">664</div>
+      <div class="brand-label">días promedio</div>
+      <div class="brand-name">Youthforia</div>
+      <div class="brand-desc">83% de sus ads = demos. UGC móvil sin producción. Viral + sustentable.</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-days">632</div>
+      <div class="brand-label">días promedio</div>
+      <div class="brand-name">Hey Bud Skincare</div>
+      <div class="brand-desc">100-120 ads/mes. 50% nuevos + 50% iteraciones. Data-driven total.</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-days">293</div>
+      <div class="brand-label">días promedio</div>
+      <div class="brand-name">OSEA / TULA</div>
+      <div class="brand-desc">Hook #3 (prueba temporal). "X días, esto pasó". Máxima credibilidad.</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px;" class="card">
+    <div class="section-title" style="font-size: 14px; margin-bottom: 16px;"><span>📋</span> Otros top brands analizados</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <span class="tag tag-purple">Topicals</span>
+      <span class="tag tag-blue">Glow Recipe</span>
+      <span class="tag tag-green">OSEA</span>
+      <span class="tag tag-pink">Tatcha</span>
+      <span class="tag tag-orange">Rhode (Hailey Bieber)</span>
+      <span class="tag tag-purple">Laneige</span>
+      <span class="tag tag-blue">Drunk Elephant</span>
+      <span class="tag tag-green">Necessaire</span>
+      <span class="tag tag-pink">Kosas</span>
+      <span class="tag tag-orange">Sol De Janeiro</span>
+      <span class="tag tag-purple">Hyper Skin</span>
+      <span class="tag tag-blue">Skinfix</span>
+      <span class="tag tag-green">BYOMA</span>
+      <span class="tag tag-pink">Tower 28 Beauty</span>
+      <span class="tag tag-orange">True Botanicals</span>
+    </div>
+    <div style="font-size: 12px; color: var(--muted); margin-top: 12px;">
+      Referencia directa en Meta Ads Library: buscar por nombre de marca, filtrar por "Todos los anuncios" → "Más de 90 días activos"
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── BENCHMARKS ───────────────────────────────── -->
+<section id="benchmarks">
+  <div class="section-title"><span>📐</span> Benchmarks — Meta Ads Skincare DTC 2026</div>
+  <div class="section-sub">Fuente: Pennock.co · Datos de cuentas DTC skincare activas · Período 2025-2026</div>
+
+  <div class="card">
+    <table class="bench-table">
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th>Rango típico</th>
+          <th>Bueno</th>
+          <th>Interpretación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>CPM</strong></td>
+          <td>$12 – $28</td>
+          <td class="good">&lt; $18</td>
+          <td>Por debajo de $18 = audiencia bien segmentada y creative con alto CTR</td>
+        </tr>
+        <tr>
+          <td><strong>CPC</strong></td>
+          <td>$0.80 – $2.40</td>
+          <td class="good">&lt; $1.40</td>
+          <td>CPC alto sin conversión = problema de landing page, no del anuncio</td>
+        </tr>
+        <tr>
+          <td><strong>CTR</strong></td>
+          <td>1.0% – 2.5%</td>
+          <td class="good">&gt; 1.8%</td>
+          <td>CTR bajo = problema de hook o relevancia. Optimizar primeros 3 segundos.</td>
+        </tr>
+        <tr>
+          <td><strong>CPA / CAC</strong></td>
+          <td>$25 – $80</td>
+          <td class="good">&lt; $45</td>
+          <td>Varía mucho por ticket. CPA / AOV &lt; 0.3 = saludable</td>
+        </tr>
+        <tr>
+          <td><strong>ROAS</strong></td>
+          <td>1.6x – 3.2x</td>
+          <td class="good">&gt; 2.5x</td>
+          <td>Blended ROAS más confiable que el in-platform. &gt;30% diferencia = problema de atribución</td>
+        </tr>
+        <tr>
+          <td><strong>Add to Cart</strong></td>
+          <td>4% – 9%</td>
+          <td class="good">&gt; 7%</td>
+          <td>Si ATC es bueno y compras no: problema de checkout/precio/confianza</td>
+        </tr>
+        <tr>
+          <td><strong>Checkout conversion</strong></td>
+          <td>1.5% – 3.5%</td>
+          <td class="good">&gt; 2.8%</td>
+          <td>Si es bajo: revisar UX del checkout, opciones de pago, shipping</td>
+        </tr>
+        <tr>
+          <td><strong>Creativos nuevos / mes</strong></td>
+          <td>2–4 típico</td>
+          <td class="good">8–15 óptimo</td>
+          <td>Marcas que suben 8-15 conceptos/mes superan consistentemente a las que reciclan 2-3</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── DO / DON'T ───────────────────────────────── -->
+<section id="dodont">
+  <div class="section-title"><span>⚡</span> DO / DON'T — Reglas definitivas</div>
+  <div class="section-sub">Extraído de análisis de 300–500 beauty ads · Lo que separa a los winners de los que mueren en 30 días</div>
+
+  <div class="do-dont">
+    <div class="do-card">
+      <h3>✅ HACER SIEMPRE</h3>
+      <ul class="do-list">
+        <li>Mostrar el producto aplicándose en los primeros 5 segundos</li>
+        <li>Usar UGC de creadores reales, no modelos perfectos</li>
+        <li>Abrir con el dolor del espectador, no con el nombre de la marca</li>
+        <li>Combinar UGC con prueba visual (antes/después, close-up textura)</li>
+        <li>Guión de 80-100 palabras para UGC (más largo dura más)</li>
+        <li>Un solo héroe-ingrediente por creativo (ácido, retinol, etc.)</li>
+        <li>CTA de experiencia: "Probalo" > "Comprá ahora"</li>
+        <li>Emojis en el copy (correlación positiva de 0.196 con duración)</li>
+        <li>Dirigir a página de producto específica, no a la home</li>
+        <li>Probar 8-15 conceptos nuevos por mes</li>
+        <li>Antes/después con tiempo específico ("semana 4", "30 días")</li>
+      </ul>
+    </div>
+    <div class="dont-card">
+      <h3>✗ NUNCA HACER</h3>
+      <ul class="dont-list">
+        <li>Abrir el video con el nombre de la marca o logo</li>
+        <li>Usar jerga de marketing: "nuestro mejor producto", "fórmula exclusiva"</li>
+        <li>Hacer un anuncio que suene a anuncio (lenguaje corporativo)</li>
+        <li>Prometer resultados sin timeline específico</li>
+        <li>Hacer intro larga antes de mostrar el producto</li>
+        <li>Usar "Comprar ahora" como único CTA (menor duración)</li>
+        <li>Over-explicar el antes/después (que hablen las imágenes)</li>
+        <li>Dirigir a página de colección o home en vez de producto</li>
+        <li>Reciclar 2-3 creativos sin iterar por meses</li>
+        <li>Usar animaciones como formato principal (duran 102 días vs 174)</li>
+        <li>Mostrar solo el producto, sin usarlo en piel real</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── ARCO DE GUIÓN ───────────────────────────────── -->
+<section id="guion">
+  <div class="section-title"><span>📝</span> Arco de Guión UGC — El Que Más Dura</div>
+  <div class="section-sub">4 pasos. 80-100 palabras. Duración promedio: 212 días.</div>
+
+  <div class="grid-2">
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-title">PASO 1 — Problema / Escepticismo (0-5s)</div>
+          <div class="tl-desc">Introduce el dolor de la audiencia o confiesa que no creía que funcionara. El espectador dice "eso me pasa a mí". Hook N2 o N1.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-title">PASO 2 — El Producto como Solución (5-20s)</div>
+          <div class="tl-desc">Se muestra el producto en uso. Aplicación real, textura real, en piel real. Sin cortes de producción. El ingrediente activo se menciona.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-title">PASO 3 — Transformación (20-40s)</div>
+          <div class="tl-desc">Resultado con tiempo específico. Antes/después visual o descripción de cómo cambió. Emoción real, no libreteada.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-title">PASO 4 — Convicción + CTA (40s-fin)</div>
+          <div class="tl-desc">"Por eso lo sigo comprando." / "Si tu piel es como la mía, probalo." CTA blando que suena a recomendación, no a venta.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="copy-block">
+        <div class="copy-title">EJEMPLO — Ad tipo N2/N3 Acné (Hook #4 Vulnerabilidad)</div>
+        <div class="copy-example">
+          "Normalmente no muestro esto sin filtro, pero...<br>
+          Estuve 4 años probando cosas para el acné.<br>
+          Cada producto que compraba prometía algo y nada funcionaba.<br>
+          Hasta que alguien me habló del ácido salicílico al 2%.<br>
+          Lo empecé a usar sin esperanzas.<br>
+          A la tercera semana los granitos activos habían bajado.<br>
+          A la quinta ya no tenía brotes nuevos.<br>
+          No es magia. Es química. Y funciona.<br>
+          Si tu piel también está en modo 'nada me sirve',<br>
+          probá esto 30 días con garantía. No tenés nada que perder."
+        </div>
+        <div class="copy-rule">83 palabras · Aplicación en segundos 5-15 · Resultado con tiempo · CTA sin presión</div>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-title">EJEMPLO — Ad tipo N1 Acné (Hook #1 Sorpresa)</div>
+        <div class="copy-example">
+          "No esperaba esto de un gel matificante.<br>
+          Siempre usé polvos para el brillo y nunca funcionaban más de 2 horas.<br>
+          [aplica gel en cámara]<br>
+          Eso fue a las 7am.<br>
+          A las 2pm: sin brillo. Sin retoques. Sin polvos.<br>
+          Ácido salicílico + niacinamida juntos.<br>
+          Esto cambia la rutina completa."
+        </div>
+        <div class="copy-rule">58 palabras · Más corto para N1 frío · Impacto visual > explicación</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────── META LIBRARY LINKS ───────────────────────────────── -->
+<section id="biblioteca">
+  <div class="section-title"><span>🔗</span> Meta Ads Library — Links de Búsqueda Directa</div>
+  <div class="section-sub">Abrir estos links para ver ads activos por categoría. Ordenar por "más antiguos" para ver los que más duran.</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--accent);">Argentina — Videos activos</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=AR&q=skincare&search_type=keyword_unordered&media_type=video" target="_blank" style="color: #818cf8; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🔍 "skincare" — ~2.200 resultados</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=AR&q=cosmetica+piel&search_type=keyword_unordered&media_type=video" target="_blank" style="color: #818cf8; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🔍 "cosmetica piel" — ~510 resultados</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=AR&q=acne+serum&search_type=keyword_unordered&media_type=video" target="_blank" style="color: #818cf8; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🔍 "acne serum" — AR</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=AR&q=suero+facial&search_type=keyword_unordered&media_type=video" target="_blank" style="color: #818cf8; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🔍 "suero facial" — AR</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=AR&q=tratamiento+piel&search_type=keyword_unordered&media_type=video" target="_blank" style="color: #818cf8; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🔍 "tratamiento piel" — AR</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--accent);">Top Marcas Globales — Buscar por anunciante</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&view_all_page_id=naturiumskin&search_type=page" target="_blank" style="color: #34d399; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🏆 Naturium — 667 días prom. (ver TODOS los ads)</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&view_all_page_id=youthforia&search_type=page" target="_blank" style="color: #34d399; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🏆 Youthforia — 664 días prom.</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&q=Hey+Bud+Skincare&search_type=keyword_unordered" target="_blank" style="color: #34d399; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🏆 Hey Bud Skincare — 632 días prom.</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&q=OSEA+Malibu&search_type=keyword_unordered" target="_blank" style="color: #34d399; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🏆 OSEA Malibu — Hook #3</a>
+        <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&q=Topicals+skincare&search_type=keyword_unordered" target="_blank" style="color: #34d399; font-size: 13px; text-decoration: none; padding: 8px 12px; background: var(--bg3); border-radius: 8px; display: block;">🏆 Topicals — Hook #1 + #4</a>
+      </div>
+      <div style="font-size: 11px; color: var(--muted); margin-top: 10px;">
+        💡 Tip: en la librería, usa "Ver detalles del anuncio" → click derecho en el video → "Guardar video como" para descargar referencias.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 16px;" class="card">
+    <div style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--accent3);">📥 Cómo descargar videos de referencia de Meta Ads Library</div>
+    <div style="font-size: 13px; color: #94a3b8; line-height: 1.8;">
+      <strong style="color: var(--text);">Método 1 (más fácil):</strong> Abrir el ad → "Ver detalles del anuncio" → en el video, click derecho → "Guardar video" o inspeccionar elemento y copiar URL del source.<br><br>
+      <strong style="color: var(--text);">Método 2 (Playwright):</strong> Script guardado en <code style="background: var(--bg3); padding: 2px 6px; border-radius: 4px; font-size: 12px;">C:\Users\lucag\Desktop\CLAUDE\scripts\scrape_meta_ads_library.py</code><br><br>
+      <strong style="color: var(--text);">Método 3 (MagicBrief / AdSpy):</strong> Herramientas especializadas que permiten guardar y organizar referencias de anuncios con un click. MagicBrief es la que usa Hey Bud Skincare.
+    </div>
+  </div>
+</section>
+
+<div class="source-note">
+  <strong>Fuentes:</strong>
+  Evolut Agency — "We Analyzed 300 Top Beauty Ads" (2025) · "2026 Top Beauty Ads Intelligence Report" ·
+  StackMatix — "Beauty Ads on Meta Ads Library: Trending Formats and Creative Insights" (2025) ·
+  BeautyMatter — "Creative Playbook That Will Power Beauty's Top Ads in 2026" ·
+  Pennock — "Skincare Advertising Benchmarks 2026" ·
+  MagicBrief — "Hey Bud Skincare Case Study" ·
+  Meta Ads Library (Argentina + Global) — Capturado Mayo 2026
+</div>
+
+
+<!-- ═══════════════════════════════ TOP 5 LONGEVOS ═══════════════════════════════ -->
+<section id="longevos">
+  <div class="section-title"><span>🏆</span> Top 5 Skincare Ads Más Longevos (Activos) — Búsqueda Global</div>
+  <div class="section-sub">keyword="skincare" · country=ALL · ordenados por tiempo activo · capturado Mayo 2026</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
+
+    <div class="card" style="border-left:3px solid #fbbf24;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#111;flex-shrink:0;">#1</div>
+        <div>
+          <div style="font-size:15px;font-weight:800;">Elise Esthetics Institute &amp; Spa</div>
+          <div style="font-size:12px;color:#94a3b8;">Activo desde: 13 ago. 2019 · <strong style="color:#fbbf24;">~6.7 años</strong></div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:12px;">Spa/educación skincare Orlando. Solo visible en US (no AR).</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&q=Elise+Esthetics+Institute&search_type=keyword_unordered" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.35);border-radius:8px;font-size:12px;font-weight:700;color:#fbbf24;text-decoration:none;">Ver en Meta Library ↗</a>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #c084fc;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#c084fc,#818cf8);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0;">#2</div>
+        <div>
+          <div style="font-size:15px;font-weight:800;">Hello Glow</div>
+          <div style="font-size:12px;color:#94a3b8;">Activo desde: 31 dic. 2020 · <strong style="color:#c084fc;">~5.4 años</strong></div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:12px;">No visible en AR — probablemente geo-restringido a US.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&q=Hello+Glow&search_type=keyword_unordered" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:rgba(192,132,252,0.15);border:1px solid rgba(192,132,252,0.35);border-radius:8px;font-size:12px;font-weight:700;color:#c084fc;text-decoration:none;">Ver en Meta Library ↗</a>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #34d399;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#34d399,#10b981);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0;">#3</div>
+        <div>
+          <div style="font-size:15px;font-weight:800;">Susona</div>
+          <div style="font-size:12px;color:#94a3b8;">Activo desde: 26 ene. 2021 · <strong style="color:#34d399;">~5.3 años</strong></div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:12px;">3 ads activos con el mismo copy. Alta consistencia de mensaje.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&q=Susona&search_type=keyword_unordered" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.35);border-radius:8px;font-size:12px;font-weight:700;color:#34d399;text-decoration:none;">Ver en Meta Library ↗</a>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #f472b6;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#f472b6,#ec4899);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0;">#4</div>
+        <div>
+          <div style="font-size:15px;font-weight:800;">Noy Skincare</div>
+          <div style="font-size:12px;color:#94a3b8;">Activo desde: 28 ene. 2021 · <strong style="color:#f472b6;">~5.3 años</strong></div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:12px;">"Focus on restoring balance in the skin's acid mantle and microbiome" — copy educativo/ingrediente. Ángulo científico que resiste el tiempo.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&q=Noy+Skincare&search_type=keyword_unordered" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:rgba(244,114,182,0.15);border:1px solid rgba(244,114,182,0.35);border-radius:8px;font-size:12px;font-weight:700;color:#f472b6;text-decoration:none;">Ver en Meta Library ↗</a>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #fb923c;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#fb923c,#f97316);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0;">#5</div>
+        <div>
+          <div style="font-size:15px;font-weight:800;">Autor da Própria Saúde</div>
+          <div style="font-size:12px;color:#94a3b8;">Activo desde: 25 mar. 2021 · <strong style="color:#fb923c;">~5.1 años</strong></div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:12px;">Marca brasilera de salud natural — falso positivo por keyword skincare. Longevidad igualmente relevante como referencia de estructura.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&q=Autor+da+Pr%C3%B3pria+Sa%C3%BAde&search_type=keyword_unordered" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:rgba(251,146,60,0.15);border:1px solid rgba(251,146,60,0.35);border-radius:8px;font-size:12px;font-weight:700;color:#fb923c;text-decoration:none;">Ver en Meta Library ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ MÁS CREATIVOS ═══════════════════════════════ -->
+<section id="mas-creativos">
+  <div class="section-title"><span>🎥</span> Más Creativos para Ver que Funcionan</div>
+  <div class="section-sub">Descargados de Meta Ads Library · Soluna SKIN · Skincare.Ari · Hey Bud Skincare · Voz de Gaia · Naturium · Mayo 2026</div>
+  <div class="examples-grid">
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Voz de Gaia_1545118890026075_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Voz de Gaia — #1545118890026075</div><div class="example-tags"><span class="tag tag-orange">Voz de Gaia</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Skincare.Ari_1353425119027811_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Skincare.Ari — #1353425119027811</div><div class="example-tags"><span class="tag tag-blue">Skincare.Ari</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Skincare.Ari_907642045280510_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Skincare.Ari — #907642045280510</div><div class="example-tags"><span class="tag tag-blue">Skincare.Ari</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Skincare.Ari_1598573281289453_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Skincare.Ari — #1598573281289453</div><div class="example-tags"><span class="tag tag-blue">Skincare.Ari</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Skincare.Ari_895000149816089_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Skincare.Ari — #895000149816089</div><div class="example-tags"><span class="tag tag-blue">Skincare.Ari</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Skincare.Ari_1268810038291588_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Skincare.Ari — #1268810038291588</div><div class="example-tags"><span class="tag tag-blue">Skincare.Ari</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Skincare.Ari_806669122456901_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Skincare.Ari — #806669122456901</div><div class="example-tags"><span class="tag tag-blue">Skincare.Ari</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Skincare.Ari_1175158491184555_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Skincare.Ari — #1175158491184555</div><div class="example-tags"><span class="tag tag-blue">Skincare.Ari</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Hey Bud Skincare_1976988032869957_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Hey Bud Skincare — #1976988032869957</div><div class="example-tags"><span class="tag tag-green">Hey Bud</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Hey Bud Skincare_1485805003338795_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Hey Bud Skincare — UGC</div><div class="example-tags"><span class="tag tag-green">Hey Bud</span><span class="tag tag-blue">UGC</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/LUNA SKIN_1521485129044767_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">LUNA SKIN — #1521485129044767</div><div class="example-tags"><span class="tag tag-purple">LUNA SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <img src="mas_creativos/687944078_1494758138822724_359886300297536340_n.jpg" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
+      <div class="example-meta"><div class="example-brand">Creativo Estático — #1494758138822724</div><div class="example-tags"><span class="tag tag-pink">Estático</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <img src="mas_creativos/704148014_1757221638598921_6698966943875290332_n.jpg" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
+      <div class="example-meta"><div class="example-brand">Creativo Estático — #1757221638598921</div><div class="example-tags"><span class="tag tag-pink">Estático</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <img src="mas_creativos/700691963_2377184389425330_7302929063918302109_n.jpg" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
+      <div class="example-meta"><div class="example-brand">Creativo Estático — #2377184389425330</div><div class="example-tags"><span class="tag tag-pink">Estático</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_847455107795038_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — UGC</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span><span class="tag tag-blue">UGC</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1424639316104974_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1424639316104974</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1358760609283243_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1358760609283243</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_838919475596578_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #838919475596578</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1352698066502047_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1352698066502047</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_2373524933092953_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #2373524933092953</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1349446896678533_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1349446896678533</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_4176814732584380_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #4176814732584380</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1880623286188315_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1880623286188315</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1342703016814825_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1342703016814825</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1525165115162971_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1525165115162971</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_875892664829996_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #875892664829996</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_24976165652064972_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #24976165652064972</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1944576756157427_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1944576756157427</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_2551853375194625_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #2551853375194625</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1662132308504931_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1662132308504931</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1198837742159970_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1198837742159970</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1394397435437585_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1394397435437585</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_857411473446044_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #857411473446044</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_842127948551523_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #842127948551523</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_738002295980435_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #738002295980435</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1324468795559043_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1324468795559043</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_839173551831311_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #839173551831311</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_851368424509081_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #851368424509081</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1735970403761133_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1735970403761133</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_25243601778627823_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #25243601778627823</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_761516513596853_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #761516513596853</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1955904708600569_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1955904708600569</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1583445106428988_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1583445106428988</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1531549644636896_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1531549644636896</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_3378998282252626_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #3378998282252626</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_670255789297941_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #670255789297941</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1135189072061919_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1135189072061919</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_817547457697628_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #817547457697628</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_24449300368083019_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #24449300368083019</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1428784055432753_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1428784055432753</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_611365145397785_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #611365145397785</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1217952820388354_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1217952820388354</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1127971722873954_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — Beneficios + Product Demo</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span><span class="tag tag-green">Beneficios</span><span class="tag tag-yellow" style="background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);">Product Demo</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_1557878838790580_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #1557878838790580</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_847462771062296_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #847462771062296</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_838839292237796_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — Offer Highlight</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span><span class="tag tag-green">Offer Highlight</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_678859461702522_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — Características</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span><span class="tag tag-blue">Características</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_821573003929883_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — UGC + Product Demo</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span><span class="tag tag-blue">UGC</span><span class="tag tag-yellow" style="background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);">Product Demo</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_880823054274701_2026-05-24.mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #880823054274701 (v1)</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_880823054274701_2026-05-24 (1).mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #880823054274701 (v2)</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+    <div class="example-card">
+      <video controls preload="metadata"><source src="mas_creativos/Soluna SKIN_880823054274701_2026-05-24 (2).mp4" type="video/mp4"></video>
+      <div class="example-meta"><div class="example-brand">Soluna SKIN — #880823054274701 (v3)</div><div class="example-tags"><span class="tag tag-purple">Soluna SKIN</span></div></div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#c084fc' : '';
+      a.style.borderBottomColor = a.getAttribute('href') === '#' + current ? '#c084fc' : '';
+    });
+  });
+</script>
+
+<!-- LIGHTBOX -->
+<div id="lb" onclick="if(event.target===this)lbClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;padding:16px;">
+  <div id="lb-box" style="position:relative;max-width:min(460px,95vw);width:100%;background:var(--bg2);border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 80px rgba(0,0,0,0.7);">
+    <button onclick="lbClose()" style="position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.75);border:none;color:white;font-size:15px;cursor:pointer;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;z-index:10;line-height:1;">✕</button>
+    <div id="lb-media"></div>
+    <div style="padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);gap:8px;">
+      <span id="lb-title" style="font-size:12px;font-weight:700;color:white;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      <a id="lb-link" href="#" target="_blank" style="font-size:11px;color:#c084fc;text-decoration:none;white-space:nowrap;flex-shrink:0;">Ver anuncio ↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function lbOpen(card) {
+  var lb = document.getElementById('lb');
+  var lbMedia = document.getElementById('lb-media');
+  var lbTitle = document.getElementById('lb-title');
+  var lbLink = document.getElementById('lb-link');
+  lbMedia.innerHTML = '';
+  var brandEl = card.querySelector('.example-brand');
+  lbTitle.textContent = brandEl ? brandEl.textContent.trim() : '';
+  var aEl = card.querySelector('a[href]');
+  if (aEl && aEl.href && aEl.href.slice(-1) !== '#') {
+    lbLink.href = aEl.href;
+    lbLink.style.display = 'inline';
+  } else {
+    lbLink.style.display = 'none';
+  }
+  var vsrc = card.querySelector('video source');
+  var img = card.querySelector('img');
+  if (vsrc) {
+    var v = document.createElement('video');
+    v.controls = true; v.autoplay = true;
+    v.style.cssText = 'width:100%;max-height:78vh;display:block;background:#000;';
+    var s = document.createElement('source');
+    s.src = vsrc.src; s.type = vsrc.type || 'video/mp4';
+    v.appendChild(s); lbMedia.appendChild(v);
+  } else if (img) {
+    var i = document.createElement('img');
+    i.src = img.src;
+    i.style.cssText = 'width:100%;max-height:78vh;object-fit:contain;display:block;background:#000;';
+    lbMedia.appendChild(i);
+  }
+  lb.style.display = 'flex';
+}
+function lbClose() {
+  document.getElementById('lb-media').innerHTML = '';
+  document.getElementById('lb').style.display = 'none';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.example-card video').forEach(function(v) {
+    v.removeAttribute('controls');
+    v.style.pointerEvents = 'none';
+  });
+  document.querySelectorAll('.example-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      lbOpen(card);
+    });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') lbClose();
+  });
+});
+</script>
+
+</body>
+</html>
